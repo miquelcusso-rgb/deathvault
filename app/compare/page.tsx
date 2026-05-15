@@ -8,6 +8,7 @@ import { EVENTS, formatDeaths, getEventById } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { Skull, Users, Calendar, ChevronDown, X, Globe } from "lucide-react";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { deathsAsPopPct, formatPct } from "@/data/world-population";
 
 function EventPicker({
@@ -155,8 +156,16 @@ export default function ComparePage() {
           animate={{ opacity: 1, y: 0 }}
           className="mb-10"
         >
-          <h1 className="section-title">{t("compare_title")}</h1>
-          <p className="section-sub">{t("compare_subtitle")}</p>
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+              <h1 className="section-title">{t("compare_title")}</h1>
+              <p className="section-sub">{t("compare_subtitle")}</p>
+            </div>
+            <ShareButton
+              title="Compare Deadliest Events"
+              text="Side-by-side comparison of history's most deadly events"
+            />
+          </div>
         </motion.div>
 
         {/* Pickers */}

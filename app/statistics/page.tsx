@@ -8,6 +8,7 @@ import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { Skull, TrendingUp, Globe } from "lucide-react";
 import Link from "next/link";
+import { ShareButton } from "@/components/ui/ShareButton";
 const sorted = [...EVENTS].sort((a, b) => b.deathsEstimate - a.deathsEstimate);
 const totalDeaths = EVENTS.reduce((s, e) => s + e.deathsEstimate, 0);
 
@@ -20,8 +21,16 @@ export default function StatisticsPage() {
       <main className="max-w-7xl mx-auto px-4 pt-28 pb-16 space-y-10">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="section-title">{t("stats_title")}</h1>
-          <p className="section-sub">{t("stats_subtitle")}</p>
+          <div className="flex items-start justify-between gap-4 flex-wrap">
+            <div>
+              <h1 className="section-title">{t("stats_title")}</h1>
+              <p className="section-sub">{t("stats_subtitle")}</p>
+            </div>
+            <ShareButton
+              title="Historical Death Statistics"
+              text="Ranked charts of history's deadliest events"
+            />
+          </div>
         </motion.div>
 
         {/* Summary cards */}

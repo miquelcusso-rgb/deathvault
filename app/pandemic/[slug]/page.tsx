@@ -3,6 +3,7 @@ import { use } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ExternalLink, Skull, Users, Calendar, MapPin, Bug } from "lucide-react";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
@@ -30,13 +31,19 @@ export default function PandemicPage({ params }: Props) {
       <Navbar />
       <main className="max-w-4xl mx-auto px-4 pt-28 pb-16">
         {/* Back */}
-        <Link
-          href="/"
-          className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 text-sm mb-8 transition-colors duration-200 cursor-pointer"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          {t("back")}
-        </Link>
+        <div className="flex items-center gap-3 mb-8">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            {t("back")}
+          </Link>
+          <ShareButton
+            title={name}
+            text={`${formatDeaths(event.deathsEstimate)} deaths · ${event.startYear}–${event.endYear ?? "present"}`}
+          />
+        </div>
 
         {/* Hero */}
         <motion.div

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { detectBrand, BRAND_META } from "@/lib/brand";
 import { getEventById } from "@/data/events";
 
 export async function generateMetadata(
@@ -6,6 +8,11 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await params;
   const event = getEventById(slug);
+
+  const host = (await headers()).get("host") ?? "";
+  const brand = detectBrand(host);
+  const meta = BRAND_META[brand];
+  const baseUrl = meta.url;
 
   if (!event) {
     return { title: "Event Not Found" };
@@ -27,12 +34,12 @@ export async function generateMetadata(
     title,
     description,
     alternates: {
-      canonical: `https://www.plagueatlas.com/pandemic/${slug}`,
+      canonical: `${baseUrl}/pandemic/${slug}`,
     },
     openGraph: {
       title,
       description,
-      url: `https://www.plagueatlas.com/pandemic/${slug}`,
+      url: `${baseUrl}/pandemic/${slug}`,
       type: "article",
     },
     twitter: {

@@ -14,6 +14,7 @@ import { useBrand } from "@/app/providers";
 import { BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { ShareButton } from "@/components/ui/ShareButton";
 
 // Dynamic import to avoid SSR issues with Three.js/WebGL
 const GlobeView = dynamic(
@@ -102,6 +103,10 @@ export default function HomePage() {
               <Zap className="w-3.5 h-3.5" />
               {t("nav_statistics")}
             </Link>
+            <ShareButton
+              title={meta.name}
+              text={meta.tagline}
+            />
           </div>
         </div>
       </div>
