@@ -44,17 +44,20 @@ body {
 
 /* ─── Light mode overrides ─── */
 html.light body {
-  background-color: #f1f5f9;
+  background-color: #dce2eb;
   color: #0f172a;
 }
 
 /* Backgrounds */
 html.light .bg-void {
-  background-color: #f1f5f9 !important;
+  background-color: #dce2eb !important;
 }
 
 html.light .bg-grid {
-  background-image: radial-gradient(circle, #94a3b830 1px, transparent 1px) !important;
+  background-image:
+    linear-gradient(rgba(100, 116, 139, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.14) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
 }
 
 /* Cards */
@@ -122,6 +125,24 @@ html.light ::-webkit-scrollbar-thumb {
 }
 html.light ::-webkit-scrollbar-thumb:hover {
   background: #64748b;
+}
+
+/* Footer */
+html.light footer {
+  background: rgba(255, 255, 255, 0.75) !important;
+  border-color: rgba(148, 163, 184, 0.5) !important;
+  backdrop-filter: blur(12px);
+}
+html.light footer h3 {
+  color: #0f172a !important;
+}
+html.light footer a,
+html.light footer p,
+html.light footer span {
+  color: #334155 !important;
+}
+html.light footer a:hover {
+  color: #0f172a !important;
 }
 
 /* Scanline overlay effect */
@@ -280,14 +301,17 @@ html[data-brand="deathvault"] header {
    ═══════════════════════════════════════════════════════ */
 
 html.light[data-brand="deathvault"] body {
-  background-color: #f1f5f9 !important;
+  background-color: #dce2eb !important;
   color: #0f172a !important;
 }
 html.light[data-brand="deathvault"] .bg-void {
-  background-color: #f1f5f9 !important;
+  background-color: #dce2eb !important;
 }
 html.light[data-brand="deathvault"] .bg-grid {
-  background-image: radial-gradient(circle, #94a3b830 1px, transparent 1px) !important;
+  background-image:
+    linear-gradient(rgba(100, 116, 139, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.14) 1px, transparent 1px) !important;
+  background-size: 24px 24px !important;
 }
 html.light[data-brand="deathvault"] .card {
   background: rgba(255, 255, 255, 0.92) !important;
