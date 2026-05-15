@@ -274,6 +274,75 @@ html[data-brand="deathvault"] header {
   border-radius: 0 !important;
 }
 
+/* ═══════════════════════════════════════════════════════
+   LIGHT MODE — DEATHVAULT BRAND
+   Must come AFTER the dark brand overrides to win cascade
+   ═══════════════════════════════════════════════════════ */
+
+html.light[data-brand="deathvault"] body {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+html.light[data-brand="deathvault"] .bg-void {
+  background-color: #f1f5f9 !important;
+}
+html.light[data-brand="deathvault"] .bg-grid {
+  background-image: radial-gradient(circle, #94a3b830 1px, transparent 1px) !important;
+}
+html.light[data-brand="deathvault"] .card {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+html.light[data-brand="deathvault"] nav {
+  background: rgba(255, 255, 255, 0.85) !important;
+  border-color: rgba(203, 213, 225, 0.7) !important;
+}
+html.light[data-brand="deathvault"] .text-white {
+  color: #0f172a !important;
+}
+html.light[data-brand="deathvault"] .text-slate-400 {
+  color: #475569 !important;
+}
+html.light[data-brand="deathvault"] .text-slate-500 {
+  color: #64748b !important;
+}
+html.light[data-brand="deathvault"] .text-slate-600 {
+  color: #475569 !important;
+}
+html.light[data-brand="deathvault"] .bg-black\/40,
+html.light[data-brand="deathvault"] .bg-black\/20 {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+html.light[data-brand="deathvault"] .bg-white\/5,
+html.light[data-brand="deathvault"] .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+html.light[data-brand="deathvault"] .border-border\/60,
+html.light[data-brand="deathvault"] .border-border\/40 {
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+html.light[data-brand="deathvault"] .btn-secondary {
+  background: rgba(0, 0, 0, 0.04) !important;
+  border-color: rgba(203, 213, 225, 0.8) !important;
+  color: #334155 !important;
+}
+html.light[data-brand="deathvault"] .section-title {
+  color: #0f172a !important;
+}
+html.light[data-brand="deathvault"] .section-sub {
+  color: #475569 !important;
+}
+/* Keep amber accent in light mode */
+html.light[data-brand="deathvault"] header::before {
+  opacity: 0.6;
+}
+html.light[data-brand="deathvault"] ::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+}
+html.light[data-brand="deathvault"] .scrollbar-thin {
+  scrollbar-color: #94a3b8 transparent;
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-crimson/20 border border-crimson/40 text-crimson-light font-semibold text-sm hover:bg-crimson/30 hover:border-crimson/60 transition-all duration-200 cursor-pointer;

@@ -59,7 +59,7 @@ export const useAppStore = create<AppState>()(
       setSearchQuery: (q) => set({ searchQuery: q }),
     }),
     {
-      name: "pandemic-watch-store",
+      name: "pw-store-v2",
       partialize: (s) => ({
         darkMode: s.darkMode,
         mapView: s.mapView,
