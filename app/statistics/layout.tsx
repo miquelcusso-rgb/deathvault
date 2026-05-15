@@ -20,6 +20,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Ranked comparisons of history's deadliest pandemics, wars, and nuclear events. Interactive charts and data visualizations.",
       url: `${baseUrl}/statistics`,
+      images: [{ url: "/statistics/opengraph-image", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Historical Death Statistics | ${meta.name}`,
+      description: "Ranked comparisons of history's deadliest pandemics, wars, and nuclear events.",
+      images: ["/statistics/opengraph-image"],
     },
   };
 }

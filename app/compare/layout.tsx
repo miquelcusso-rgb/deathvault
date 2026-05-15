@@ -20,6 +20,13 @@ export async function generateMetadata(): Promise<Metadata> {
       description:
         "Side-by-side comparison of pandemics, wars, and nuclear events. Death tolls, timelines, and geographic impact.",
       url: `${baseUrl}/compare`,
+      images: [{ url: "/compare/opengraph-image", width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `Compare Historical Events | ${meta.name}`,
+      description: "Side-by-side comparison of pandemics, wars, and nuclear events.",
+      images: ["/compare/opengraph-image"],
     },
   };
 }

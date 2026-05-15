@@ -24,7 +24,7 @@ export default async function OGImage() {
   const wordB = isPlagueAtlas ? "Atlas" : "Vault";
   const badge = isPlagueAtlas ? "INTERACTIVE DEATH MAP" : "CLASSIFIED ARCHIVE";
   const subtitle = isPlagueAtlas
-    ? "Interactive pandemic & famine history map"
+    ? "Interactive epidemic & disease history map"
     : "Every mass death event in recorded history";
   const stats = isPlagueAtlas
     ? [

@@ -52,7 +52,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en" data-brand={brand} suppressHydrationWarning>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
           async
