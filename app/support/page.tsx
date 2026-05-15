@@ -2,6 +2,8 @@
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { useI18n } from "@/lib/i18n";
+import { useBrand } from "@/app/providers";
+import { BRAND_META } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { Heart, ExternalLink, Check } from "lucide-react";
 
@@ -13,15 +15,20 @@ const TIERS = [
   { amount: "25€", label: "Champion",    link: "https://buy.stripe.com/aFa6oJ1LAd1Z80v7YY9R604" },
 ];
 
-const PERKS = [
-  "Fund ongoing data research and updates",
-  "Support new pandemic events being added",
-  "Cover server and infrastructure costs",
-  "Enable new features (timeline animations, mobile app)",
-];
-
 export default function SupportPage() {
   const { t } = useI18n();
+  const brand = useBrand();
+  const meta = BRAND_META[brand];
+  const isDV = brand === "deathvault";
+
+  const PERKS = [
+    "Fund ongoing data research and updates",
+    isDV
+      ? "Support new historical events being added (wars, famines, disasters)"
+      : "Support new pandemic and epidemic events being added",
+    "Cover server and infrastructure costs",
+    "Enable new features (timeline animations, mobile app)",
+  ];
 
   return (
     <div className="min-h-screen bg-void bg-grid">
@@ -46,7 +53,7 @@ export default function SupportPage() {
             <p className="text-slate-400 text-sm mb-5">{t("support_why_text")}</p>
             <div className="space-y-2.5">
               {PERKS.map((perk) => (
-                <div key={perk} className="flex items-start gap-2.5 text-sm text-slate-300">
+                <div key={perk} className="flex items-start gap-2.5 text-sm text-slate-200">
                   <Check className="w-4 h-4 text-emerald-light flex-shrink-0 mt-0.5" />
                   {perk}
                 </div>
@@ -81,7 +88,7 @@ export default function SupportPage() {
           </div>
 
           <p className="text-center text-slate-600 text-xs">
-            PlagueAtlas is not a registered charity. Donations support project costs only.
+            {meta.name} is not a registered charity. Donations support project costs only.
           </p>
         </div>
       </main>

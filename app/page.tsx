@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { useState, useMemo } from "react";
-import { Globe, Map, BarChart3, Zap } from "lucide-react";
+import { Globe, Map } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
@@ -13,7 +13,6 @@ import { useAppStore } from "@/lib/store";
 import { useBrand } from "@/app/providers";
 import { BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
 import { ShareButton } from "@/components/ui/ShareButton";
 
 // Dynamic import to avoid SSR issues with Three.js/WebGL
@@ -65,7 +64,7 @@ export default function HomePage() {
       <div className="pt-20 pb-0">
         <div className="max-w-7xl mx-auto px-4 pt-6">
           {/* Stats bar */}
-          <div className="flex flex-wrap items-center gap-4 mb-6">
+          <div className="flex flex-wrap items-center gap-6 mb-6">
             <div>
               <h1 className="font-display font-black text-3xl sm:text-4xl text-white">
                 {isDV
@@ -76,37 +75,23 @@ export default function HomePage() {
               <p className="text-slate-500 text-sm mt-0.5">{meta.tagline}</p>
             </div>
             <div className="flex-1" />
-            <div className="flex gap-4">
+            <div className="flex items-center gap-5">
               <div className="text-center">
-                <p className={cn("font-mono font-black text-2xl", accentColor, accentNeon)}>
+                <p className={cn("font-mono font-black text-4xl sm:text-5xl leading-none", accentColor, accentNeon)}>
                   {formatDeaths(TOTAL_DEATHS)}
                 </p>
-                <p className="text-slate-600 text-xs">{t("hero_deaths")}</p>
+                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">{t("hero_deaths")}</p>
               </div>
-              <div className="w-px bg-border/40" />
+              <div className="w-px h-12 bg-border/40" />
               <div className="text-center">
-                <p className="font-mono font-black text-2xl text-cyan-light">
+                <p className="font-mono font-black text-4xl sm:text-5xl leading-none text-cyan-light">
                   {TOTAL_EVENTS}
                 </p>
-                <p className="text-slate-600 text-xs">{t("hero_events")}</p>
+                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">{t("hero_events")}</p>
               </div>
+              <div className="w-px h-12 bg-border/40" />
+              <ShareButton title={meta.name} text={meta.tagline} />
             </div>
-          </div>
-
-          {/* Quick links */}
-          <div className="flex gap-2 mb-6 flex-wrap">
-            <Link href="/compare" className="btn-secondary text-xs py-2">
-              <BarChart3 className="w-3.5 h-3.5" />
-              {t("nav_compare")}
-            </Link>
-            <Link href="/statistics" className="btn-secondary text-xs py-2">
-              <Zap className="w-3.5 h-3.5" />
-              {t("nav_statistics")}
-            </Link>
-            <ShareButton
-              title={meta.name}
-              text={meta.tagline}
-            />
           </div>
         </div>
       </div>
@@ -115,7 +100,7 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr_300px] gap-4">
           {/* Left — Selector */}
-          <div className="card p-4 h-[calc(100vh-220px)] min-h-[500px] flex flex-col overflow-hidden order-2 lg:order-1">
+          <div className="card p-4 h-[calc(66vh-80px)] min-h-[360px] flex flex-col overflow-hidden order-2 lg:order-1">
             <h2 className="text-white font-display font-semibold text-sm mb-3 flex items-center gap-2">
               <div className="w-1.5 h-4 rounded-full bg-crimson-light" />
               Events
@@ -127,7 +112,7 @@ export default function HomePage() {
           </div>
 
           {/* Center — Globe / Map */}
-          <div className="card overflow-hidden h-[calc(100vh-220px)] min-h-[500px] relative order-1 lg:order-2">
+          <div className="card overflow-hidden h-[calc(66vh-80px)] min-h-[360px] relative order-1 lg:order-2">
             {/* View toggle */}
             <div className="absolute top-4 left-4 z-10 flex gap-1 bg-black/40 border border-border/50 backdrop-blur-sm rounded-xl p-1">
               <button
@@ -192,7 +177,7 @@ export default function HomePage() {
           </div>
 
           {/* Right — Info panel */}
-          <div className="card p-4 h-[calc(100vh-220px)] min-h-[500px] overflow-y-auto scrollbar-thin order-3">
+          <div className="card p-4 h-[calc(66vh-80px)] min-h-[360px] overflow-y-auto scrollbar-thin order-3">
             <DeathCounter event={selectedEvent} />
           </div>
         </div>

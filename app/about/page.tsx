@@ -91,14 +91,7 @@ export default function AboutPage() {
             <div className="card p-6 flex items-center justify-between gap-4 flex-wrap">
               <p className="text-slate-500 text-sm">
                 Built by{" "}
-                <a
-                  href="https://furiosa.studio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-300 font-semibold hover:text-white transition-colors duration-200"
-                >
-                  Furiosa Studio
-                </a>
+                <span className="text-slate-300 font-semibold">Furiosa Studio</span>
               </p>
               <Link href="/support" className="btn-primary">
                 Support the Project

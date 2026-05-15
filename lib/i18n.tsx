@@ -59,7 +59,7 @@ const translations = {
     support_subtitle: "Help keep this educational resource free and up to date",
     support_donate: "Donate via Stripe",
     support_why: "Why support?",
-    support_why_text: "PlagueAtlas is an independent, non-commercial educational project. Your support helps cover server costs, data research, and keeps the site ad-free.",
+    support_why_text: "An independent, non-commercial educational project. Your support helps cover server costs and ongoing data research.",
     // Footer
     footer_description: "An educational data visualization project tracking humanity's greatest health crises and conflicts.",
     footer_legal: "Legal",
