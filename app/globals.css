@@ -55,9 +55,9 @@ html.light .bg-void {
 
 html.light .bg-grid {
   background-image:
-    linear-gradient(rgba(100, 116, 139, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100, 116, 139, 0.14) 1px, transparent 1px) !important;
-  background-size: 24px 24px !important;
+    linear-gradient(rgba(100, 116, 139, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.18) 1px, transparent 1px) !important;
+  background-size: 8px 8px !important;
 }
 
 /* Cards */
@@ -163,8 +163,10 @@ html.light footer a:hover {
 
 /* Grid background */
 .bg-grid {
-  background-image: radial-gradient(circle, #1E3A5F22 1px, transparent 1px);
-  background-size: 32px 32px;
+  background-image:
+    linear-gradient(rgba(30, 58, 95, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.2) 1px, transparent 1px);
+  background-size: 8px 8px;
 }
 
 /* Neon glow text */
@@ -202,7 +204,10 @@ html[data-brand="deathvault"] .bg-void {
   background-color: #07090D !important;
 }
 html[data-brand="deathvault"] .bg-grid {
-  background-image: radial-gradient(circle, #1B273622 1px, transparent 1px) !important;
+  background-image:
+    linear-gradient(rgba(27, 39, 54, 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27, 39, 54, 0.3) 1px, transparent 1px) !important;
+  background-size: 8px 8px !important;
 }
 html[data-brand="deathvault"] .bg-abyss {
   background-color: #0A0D12 !important;
@@ -309,9 +314,9 @@ html.light[data-brand="deathvault"] .bg-void {
 }
 html.light[data-brand="deathvault"] .bg-grid {
   background-image:
-    linear-gradient(rgba(100, 116, 139, 0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100, 116, 139, 0.14) 1px, transparent 1px) !important;
-  background-size: 24px 24px !important;
+    linear-gradient(rgba(100, 116, 139, 0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 116, 139, 0.18) 1px, transparent 1px) !important;
+  background-size: 8px 8px !important;
 }
 html.light[data-brand="deathvault"] .card {
   background: rgba(255, 255, 255, 0.92) !important;
