@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
 import { Providers } from "./providers";
+import { CookieBanner } from "@/components/ui/CookieBanner";
 import { detectBrand, BRAND_META } from "@/lib/brand";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -61,6 +62,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body className="min-h-screen bg-void antialiased">
         <Providers brand={brand}>{children}</Providers>
+        <CookieBanner />
       </body>
     </html>
   );
