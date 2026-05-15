@@ -8,8 +8,6 @@ import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { Skull, TrendingUp, Globe } from "lucide-react";
 import Link from "next/link";
-import { AdSlot } from "@/components/ads/AdSlot";
-
 const sorted = [...EVENTS].sort((a, b) => b.deathsEstimate - a.deathsEstimate);
 const totalDeaths = EVENTS.reduce((s, e) => s + e.deathsEstimate, 0);
 
@@ -43,9 +41,6 @@ export default function StatisticsPage() {
             </div>
           ))}
         </div>
-
-        {/* Ad — horizontal banner between stats cards and ranking table */}
-        <AdSlot slot="1234567890" format="horizontal" className="w-full rounded-xl" />
 
         {/* Top 10 table */}
         <div className="card p-6">

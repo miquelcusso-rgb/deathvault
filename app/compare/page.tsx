@@ -8,7 +8,6 @@ import { EVENTS, formatDeaths, getEventById } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { Skull, Users, Calendar, ChevronDown, X, Globe } from "lucide-react";
-import { AdSlot } from "@/components/ads/AdSlot";
 import { deathsAsPopPct, formatPct } from "@/data/world-population";
 
 function EventPicker({
@@ -185,9 +184,6 @@ export default function ComparePage() {
             />
           </div>
         </div>
-
-        {/* Ad — between pickers and results */}
-        <AdSlot slot="0987654321" format="horizontal" className="w-full rounded-xl mb-8" />
 
         {bothSelected ? (
           <motion.div

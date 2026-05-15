@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { TimelineChart } from "@/components/charts/TimelineChart";
-import { AdSlot } from "@/components/ads/AdSlot";
 import { getEventById, formatDeaths, formatDeathsFull } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
 
@@ -129,9 +128,6 @@ export default function PandemicPage({ params }: Props) {
             </div>
           ))}
         </div>
-
-        {/* Ad — between stat cards and article content */}
-        <AdSlot slot="1122334455" format="horizontal" className="w-full rounded-xl mb-6" />
 
         {/* Description */}
         <div className="card p-6 mb-6">
