@@ -67,7 +67,7 @@ export default function TermsPage() {
           </Section>
 
           <Section title="10. Contact">
-            <p>Questions about these terms: <span className="text-cyan-light font-mono">miquelcusso@gmail.com</span></p>
+            <p>Questions about these terms: <a href={`mailto:${brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}`} className="text-cyan-light font-mono hover:underline">{brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}</a></p>
           </Section>
         </motion.div>
       </main>

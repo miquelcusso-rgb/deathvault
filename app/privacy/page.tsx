@@ -71,7 +71,7 @@ export default function PrivacyPage() {
           </Section>
 
           <Section title="7. Contact &amp; Complaints">
-            <p>For privacy-related questions: <span className="text-cyan-light font-mono">miquelcusso@gmail.com</span></p>
+            <p>For privacy-related questions: <a href={`mailto:${brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}`} className="text-cyan-light font-mono hover:underline">{brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}</a></p>
             <p>If you believe your rights have not been respected, you may lodge a complaint with the Spanish data protection authority: <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer" className="text-cyan-light hover:underline">AEPD (aepd.es)</a>.</p>
           </Section>
         </motion.div>
