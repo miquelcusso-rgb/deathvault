@@ -83,7 +83,7 @@ export function Footer() {
 
         <div className="border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-slate-600 text-xs">
-            © {year} {isDV ? "DeathVault" : "PlagueAtlas"}. {t("footer_rights")}
+            © {year} {isDV ? "DeathVault" : "PlagueAtlas"} by <a href="https://furiosa.studio" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors duration-200">Furiosa Studio</a>. {t("footer_rights")}
           </p>
           <p className="text-slate-600 text-xs">
             Data: WHO · CDC · UNAIDS · IAEA · Britannica

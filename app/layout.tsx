@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
     title: { default: `${m.name} — ${m.headline}`, template: `%s | ${m.name}` },
     description: m.description,
     keywords: [...m.keywords],
-    authors: [{ name: m.name }],
-    creator: m.name,
+    authors: [{ name: "Furiosa Studio" }],
+    creator: "Furiosa Studio",
     publisher: m.name,
     alternates: { canonical: m.canonical },
     openGraph: {

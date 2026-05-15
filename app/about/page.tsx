@@ -1,6 +1,8 @@
 "use client";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
+import { useBrand } from "@/app/providers";
+import { BRAND_META } from "@/lib/brand";
 import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { Activity, Database, Globe, Shield } from "lucide-react";
@@ -8,6 +10,9 @@ import Link from "next/link";
 
 export default function AboutPage() {
   const { t } = useI18n();
+  const brand = useBrand();
+  const meta = BRAND_META[brand];
+  const isDV = brand === "deathvault";
 
   return (
     <div className="min-h-screen bg-void bg-grid">
@@ -20,13 +25,12 @@ export default function AboutPage() {
             <div className="card p-6">
               <div className="flex items-center gap-3 mb-3">
                 <Activity className="w-5 h-5 text-crimson-light" />
-                <h2 className="font-display font-bold text-white text-lg">What is PlagueAtlas?</h2>
+                <h2 className="font-display font-bold text-white text-lg">What is {meta.name}?</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm">
-                PlagueAtlas is an independent, non-commercial educational data visualization project
-                that maps the deadliest pandemics, wars, and nuclear events in human history. Our goal
-                is to make historical mortality data accessible, engaging, and context-rich — helping
-                people understand the scale and impact of humanity's greatest crises.
+                {isDV
+                  ? "DeathVault is an independent educational archive documenting every major mass-death event in recorded history — pandemics, world wars, famines, and nuclear disasters. Our goal is to make historical mortality data accessible, accurate, and context-rich, helping people grasp the true scale of humanity's greatest catastrophes."
+                  : "PlagueAtlas is an independent educational data visualization project mapping the deadliest pandemics and famines in human history. Our goal is to make historical mortality data accessible, engaging, and context-rich — helping people understand the scale and impact of humanity's greatest disease crises."}
               </p>
             </div>
 
@@ -66,9 +70,8 @@ export default function AboutPage() {
                 <h2 className="font-display font-bold text-white text-lg">Technology</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm">
-                Built with Next.js 14, TypeScript, Tailwind CSS, Three.js (3D globe), D3.js
-                (data visualization), and Recharts. Hosted on Vercel. No personal data is
-                collected beyond standard anonymized analytics.
+                Built with Next.js 15, TypeScript, Tailwind CSS, Three.js (3D globe), and Recharts.
+                Hosted on Vercel. No personal data is collected beyond standard anonymized analytics.
               </p>
             </div>
 
@@ -78,14 +81,25 @@ export default function AboutPage() {
                 <h2 className="font-display font-bold text-white text-lg">Disclaimer</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm">
-                PlagueAtlas is an educational resource only. The data presented reflects
-                historical estimates that may vary between scholarly sources. This site is not
-                affiliated with any government, health organization, or research institution.
-                For medical advice, consult qualified healthcare professionals.
+                {meta.name} is an educational resource only. The data presented reflects historical
+                estimates that may vary between scholarly sources. This site is not affiliated with
+                any government, health organization, or research institution. For medical advice,
+                consult qualified healthcare professionals.
               </p>
             </div>
 
-            <div className="text-center pt-4">
+            <div className="card p-6 flex items-center justify-between gap-4 flex-wrap">
+              <p className="text-slate-500 text-sm">
+                Built by{" "}
+                <a
+                  href="https://furiosa.studio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-slate-300 font-semibold hover:text-white transition-colors duration-200"
+                >
+                  Furiosa Studio
+                </a>
+              </p>
               <Link href="/support" className="btn-primary">
                 Support the Project
               </Link>
