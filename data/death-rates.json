@@ -1,0 +1,30 @@
+{
+  "lastUpdated": "2026-05-18T17:19:43.190Z",
+  "rates": {
+    "malaria": {
+      "annualDeaths": 609930,
+      "year": 2024,
+      "source": "WHO GHO MALARIA_EST_DEATHS (2024)"
+    },
+    "cholera": {
+      "annualDeaths": 675533,
+      "year": 2024,
+      "source": "WHO GHO WHS3_62 (2024)"
+    },
+    "hiv-aids": {
+      "annualDeaths": 40800000,
+      "year": 2024,
+      "source": "WHO GHO HIV_0000000001 (2024)"
+    },
+    "covid-19": {
+      "annualDeaths": 80000,
+      "year": 2026,
+      "source": "WHO estimate 2026"
+    },
+    "hantavirus": {
+      "annualDeaths": 200,
+      "year": 2026,
+      "source": "CDC/WHO 2026"
+    }
+  }
+}

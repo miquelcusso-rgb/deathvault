@@ -1,0 +1,28 @@
+name: Weekly SEO Health Check
+
+on:
+  # Run every Monday at 08:00 UTC
+  schedule:
+    - cron: "0 8 * * 1"
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  seo-check:
+    runs-on: ubuntu-latest
+    name: Run SEO health check report
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run SEO health check
+        run: node scripts/seo-check.mjs
