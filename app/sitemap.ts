@@ -26,13 +26,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${base}/terms`,         lastModified: maintained, changeFrequency: "yearly",  priority: 0.2 },
   ];
 
-  // Event pages — highest priority, dated by last-known endYear or ongoing
+  // Event pages — highest priority
+  // lastModified = when the PAGE was last updated (not when the historical event ended)
+  // Ancient event endYears (e.g. 430 AD) would produce invalid ISO dates for Google
   const eventPages: MetadataRoute.Sitemap = brandEvents.map((ev) => ({
     url: `${base}/pandemic/${ev.id}`,
-    // Ongoing events change more frequently; historical ones are stable
-    lastModified: ev.endYear === null ? maintained : new Date(`${ev.endYear}-12-31`),
+    lastModified: maintained,
     changeFrequency: (ev.endYear === null ? "weekly" : "yearly") as MetadataRoute.Sitemap[number]["changeFrequency"],
-    priority: ev.endYear === null ? 0.95 : 0.9, // ongoing events ranked slightly higher
+    priority: ev.endYear === null ? 0.95 : 0.9,
   }));
 
   return [...staticPages, ...eventPages];
