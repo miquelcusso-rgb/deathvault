@@ -75,7 +75,7 @@ export default async function NewsPage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-4xl mx-auto px-4 pt-20 pb-16">
+      <main className="max-w-4xl mx-auto px-4 pt-12 pb-16">
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-2 mb-3">

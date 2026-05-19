@@ -213,7 +213,7 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 pt-20 pb-20">
+      <main className="max-w-7xl mx-auto px-4 pt-12 pb-20">
 
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <motion.div
