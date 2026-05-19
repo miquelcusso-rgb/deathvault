@@ -382,7 +382,7 @@ export default function PathogensPage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 pt-24 pb-16">
+      <main className="max-w-7xl mx-auto px-4 pt-20 pb-16">
 
         {/* ── Hero ── */}
         <motion.div

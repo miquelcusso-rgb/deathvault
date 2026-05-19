@@ -35,7 +35,7 @@ export default function PandemicPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-4xl mx-auto px-4 pt-28 pb-16">
+      <main className="max-w-4xl mx-auto px-4 pt-20 pb-16">
         {/* Back */}
         <div className="flex items-center gap-3 mb-8">
           <Link

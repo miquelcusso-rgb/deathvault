@@ -180,7 +180,7 @@ export default function ComparePage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 pt-28 pb-16">
+      <main className="max-w-6xl mx-auto px-4 pt-20 pb-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
