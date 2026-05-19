@@ -1340,6 +1340,754 @@ The war has had global consequences far beyond the battlefield. It triggered a E
     ],
     tags: ["ukraine", "russia", "europe", "nato", "war 2022", "donbas", "ongoing"],
   },
+
+  // ── WARS (HISTORICAL) ──────────────────────────────────────────────────────
+  {
+    id: "thirty-years-war",
+    name: "Thirty Years' War",
+    nameEs: "Guerra de los Treinta Años",
+    category: "war",
+    startYear: 1618,
+    endYear: 1648,
+    deathsMin: 5_000_000,
+    deathsMax: 12_000_000,
+    deathsEstimate: 8_000_000,
+    color: "#64748B",
+    glowColor: "rgba(100,116,139,0.5)",
+    icon: "Sword",
+    originCountry: "Holy Roman Empire",
+    originLat: 50.1,
+    originLng: 14.4,
+    regions: [
+      { lat: 51.2, lng: 10.4, radius: 5, intensity: 1.0, label: "Germany (Holy Roman Empire)" },
+      { lat: 49.8, lng: 15.5, radius: 3.5, intensity: 0.8, label: "Bohemia / Moravia" },
+      { lat: 48.2, lng: 16.4, radius: 3, intensity: 0.7, label: "Austria" },
+      { lat: 46.8, lng: 8.2, radius: 2.5, intensity: 0.5, label: "Swiss Confederation" },
+      { lat: 52.4, lng: 4.9, radius: 2.5, intensity: 0.6, label: "Spanish Netherlands" },
+    ],
+    timeline: [
+      { year: 1618, deaths: 0, label: "Defenestration of Prague — war begins" },
+      { year: 1625, deaths: 1_000_000, label: "Danish phase — plague & famine ravage Germany" },
+      { year: 1631, deaths: 3_000_000, label: "Sack of Magdeburg — 20,000 civilians killed" },
+      { year: 1635, deaths: 5_500_000, label: "French intervention escalates conflict" },
+      { year: 1648, deaths: 8_000_000, label: "Peace of Westphalia — war ends" },
+    ],
+    descriptionEn: "The Thirty Years' War (1618–1648) was one of Europe's most devastating conflicts, fought primarily in the Holy Roman Empire (modern Germany). What began as a religious dispute between Catholics and Protestants escalated into a continent-wide power struggle. Germany lost an estimated 25–40% of its population — a demographic catastrophe not surpassed until World War II.",
+    descriptionEs: "La Guerra de los Treinta Años (1618–1648) fue uno de los conflictos más devastadores de Europa, principalmente en el Sacro Imperio Romano Germánico. Alemania perdió entre el 25 y el 40% de su población.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Thirty Years' War, fought between 1618 and 1648, stands as one of the most destructive conflicts in European history prior to the World Wars. It began as a religious confrontation between Catholic and Protestant princes within the Holy Roman Empire — triggered on May 23, 1618, when Protestant Bohemian nobles threw two Catholic imperial governors out of a window in Prague (the "Defenestration of Prague"). What started as a localized rebellion quickly drew in every major European power, transforming into a struggle for territorial dominance, religious supremacy, and the future political order of Europe.
+
+The war progressed through four overlapping phases: the Bohemian phase (1618–1625), the Danish phase (1625–1629), the Swedish phase (1630–1635), and the French phase (1635–1648). Each escalation brought new foreign armies into German territory, which became the primary battleground. Imperial forces under Wallenstein, Swedish armies under Gustavus Adolphus, French forces under Condé and Turenne — all traversed and pillaged the same exhausted German territories for three decades.
+
+The human cost was catastrophic, and much of it came not from battle but from the war's secondary effects. Armies of the era lived off the land, systematically looting food, livestock, and grain from civilian populations. When armies moved through a region, they left famine in their wake. This food insecurity triggered epidemic diseases: plague, typhus, and dysentery spread through malnourished populations with lethal efficiency. The Sack of Magdeburg in 1631 — where imperial troops killed roughly 20,000 of the city's 25,000 civilians and burned it to the ground — became the defining atrocity of the conflict.
+
+Demographic estimates for Germany suggest the country lost between 25% and 40% of its total population over the three decades. Some regions were even more severely affected: Württemberg lost 75% of its population; Pomerania lost roughly two-thirds. Entire villages were abandoned. Trade collapsed. Agricultural land went fallow for decades. Germany would not recover its pre-war population levels until the mid-18th century — nearly 100 years later.
+
+The war concluded with the Peace of Westphalia in 1648, a landmark settlement that established the modern concept of national sovereignty and religious tolerance in international relations. The principle that rulers could not intervene in the internal religious affairs of other sovereign states — *cuius regio, eius religio* evolved into genuine toleration — became the foundation of modern international law.`,
+    faqs: [
+      { q: "How many people died in the Thirty Years' War?", a: "Estimates range from 5 to 12 million deaths, with 8 million being the most common scholarly consensus. The majority died not from combat but from famine and epidemic diseases — plague, typhus, and dysentery — caused by the war's systematic devastation of agricultural regions." },
+      { q: "Why was the Thirty Years' War so deadly for Germany?", a: "Germany (the Holy Roman Empire) was the primary battleground for 30 years. Multiple foreign armies — Swedish, French, Spanish, Danish — repeatedly looted the same territories. Famine followed every army's passage; disease followed famine. Some German regions lost over 60–75% of their populations." },
+      { q: "What ended the Thirty Years' War?", a: "The Peace of Westphalia in 1648, actually two simultaneous peace treaties signed in Osnabrück and Münster. It established the modern concept of sovereign statehood and became the foundation of international relations. France and Sweden gained territory; German princes gained autonomy from the Holy Roman Emperor." },
+      { q: "Was the Thirty Years' War a religious war?", a: "It began as one, but evolved into a complex geopolitical conflict. By the later phases, Catholic France was funding Protestant Sweden against the Catholic Habsburg Empire — power politics consistently overrode religious solidarity. The final settlement guaranteed legal equality between Catholics and Lutherans in the Empire." },
+    ],
+    references: [
+      { title: "The Thirty Years War — C.V. Wedgwood (1938)", url: "https://www.google.com/books/edition/The_Thirty_Years_War/", source: "Academic" },
+      { title: "Demographic consequences of the Thirty Years' War — Eugen Weber", url: "https://www.jstor.org", source: "JSTOR" },
+    ],
+    tags: ["europe", "germany", "holy roman empire", "religious war", "17th century", "famine", "plague"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Pre-statistical era. Estimates based on parish records, tax registers, and regional studies. Ranges vary significantly (5–12M) depending on methodology. The 8M figure represents a scholarly midpoint.",
+  },
+  {
+    id: "napoleonic-wars",
+    name: "Napoleonic Wars",
+    nameEs: "Guerras Napoleónicas",
+    category: "war",
+    startYear: 1803,
+    endYear: 1815,
+    deathsMin: 3_500_000,
+    deathsMax: 6_000_000,
+    deathsEstimate: 5_000_000,
+    color: "#1D4ED8",
+    glowColor: "rgba(29,78,216,0.5)",
+    icon: "Sword",
+    originCountry: "France",
+    originLat: 48.8,
+    originLng: 2.3,
+    regions: [
+      { lat: 48.8, lng: 2.3, radius: 3, intensity: 0.7, label: "France" },
+      { lat: 51.2, lng: 10.4, radius: 4, intensity: 0.9, label: "German States" },
+      { lat: 52.2, lng: 21.0, radius: 4, intensity: 0.95, label: "Russia / Poland" },
+      { lat: 40.4, lng: -3.7, radius: 3.5, intensity: 0.8, label: "Iberian Peninsula" },
+      { lat: 41.9, lng: 12.5, radius: 3, intensity: 0.6, label: "Italy" },
+    ],
+    timeline: [
+      { year: 1803, deaths: 0, label: "War of the Third Coalition begins" },
+      { year: 1807, deaths: 500_000, label: "Height of French Empire dominance" },
+      { year: 1812, deaths: 2_500_000, label: "Russian campaign — 400,000 Grande Armée lost" },
+      { year: 1813, deaths: 4_000_000, label: "Battle of Leipzig — largest battle before WWI" },
+      { year: 1815, deaths: 5_000_000, label: "Waterloo — Napoleon exiled, wars end" },
+    ],
+    descriptionEn: "The Napoleonic Wars (1803–1815) engulfed virtually all of Europe in a series of conflicts stemming from the French Revolutionary Wars. Napoleon Bonaparte's Grande Armée reshaped the continent's borders, but at a cost of 3.5–6 million lives — military and civilian — including the catastrophic Russian campaign of 1812 in which Napoleon lost over 400,000 men.",
+    descriptionEs: "Las Guerras Napoleónicas (1803–1815) envolvieron a casi toda Europa. La campaña rusa de 1812 costó más de 400.000 soldados. El coste total fue de entre 3,5 y 6 millones de vidas.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Napoleonic Wars represent the first truly continental conflict in European history — a series of interlocking wars in which Napoleon Bonaparte's French Empire fought shifting coalitions of nearly every major European power from 1803 to 1815. They emerged directly from the French Revolutionary Wars and Napoleon's ambition to establish French hegemony over the continent.
+
+The conflicts ranged across Europe from the Iberian Peninsula (the brutal Peninsular War, 1808–1814, which Wellington called the "Spanish Ulcer") to Egypt, from Prussia to Russia. Napoleon's military genius produced stunning victories — Austerlitz (1805), Jena (1806), Wagram (1809) — that temporarily gave France dominance over much of Europe. At its peak, the French Empire directly controlled or influenced territories from Spain to Warsaw.
+
+The turning point came in 1812. Napoleon invaded Russia with approximately 600,000 soldiers — the largest army ever assembled to that point. The Russian strategy of retreat and scorched earth, followed by the brutal Russian winter, destroyed the Grande Armée. Only about 100,000 men survived to recross the border. The psychological and material blow was irreversible. By 1813, a revived coalition defeated Napoleon at the Battle of Leipzig (the "Battle of Nations") — the largest battle in history before World War I, involving over 600,000 soldiers. Napoleon was exiled, escaped, raised a new army, and was finally defeated at Waterloo in June 1815.
+
+Military deaths are relatively well-documented for the period; civilian casualties are harder to quantify but were enormous. The Peninsular War in Spain involved systematic guerrilla warfare and French reprisals that killed hundreds of thousands of Spanish civilians — Francisco Goya documented the atrocities in his series "The Disasters of War." Disease, particularly typhus, killed more soldiers than combat throughout the campaigns. The Russian campaign's retreat through winter killed via exposure, starvation, and Cossack raids as much as by battle.
+
+The wars transformed Europe. The Congress of Vienna (1815) redrew the map and established a balance of power that — with interruptions — kept Europe largely at peace for nearly a century. Nationalism, awakened by the wars, would drive 19th-century politics. The Napoleonic legal reforms (Code Napoléon) permanently reshaped civil law across much of Europe and its former colonies.`,
+    faqs: [
+      { q: "How many died in the Napoleonic Wars?", a: "Estimates range from 3.5 to 6 million total deaths, including both military personnel and civilians. France alone lost approximately 900,000 soldiers; Russia lost a similar number. Disease — particularly typhus — killed more soldiers than combat in most campaigns." },
+      { q: "What was Napoleon's greatest military disaster?", a: "The Russian campaign of 1812. Napoleon invaded with roughly 600,000 men; only about 100,000 returned. Causes included Russian scorched-earth tactics, the burning of Moscow, the catastrophic winter retreat, and disease. It effectively broke the Grande Armée and began Napoleon's downfall." },
+      { q: "Why did the Napoleonic Wars end?", a: "After the catastrophic Russian campaign, a new coalition of Britain, Austria, Prussia, Russia, and Sweden defeated Napoleon at Leipzig in 1813. He was exiled to Elba, returned for the Hundred Days, and was definitively defeated at Waterloo in June 1815. He was then exiled to Saint Helena, where he died in 1821." },
+      { q: "What was the long-term impact of the Napoleonic Wars?", a: "They fundamentally reshaped Europe. The Congress of Vienna created a conservative international order that lasted until WWI. Nationalism, spread by Napoleon's conquests, became the dominant political force of the 19th century. The Code Napoléon reformed civil law across much of Europe and its colonies. The wars also hastened the decline of the old dynastic order." },
+    ],
+    references: [
+      { title: "Napoleon: A Biography — Frank McLynn", url: "https://www.google.com/books/", source: "Academic" },
+      { title: "The Napoleonic Wars: A Global History — Alexander Mikaberidze", url: "https://global.oup.com/", source: "Oxford University Press" },
+    ],
+    tags: ["napoleon", "france", "europe", "russia", "waterloo", "19th century", "coalition"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Military records exist for most major powers but vary in completeness. Civilian deaths and disease mortality are estimated from regional records. Scholarly consensus ranges 3.5–6M.",
+  },
+  {
+    id: "russian-civil-war",
+    name: "Russian Civil War",
+    nameEs: "Guerra Civil Rusa",
+    category: "war",
+    startYear: 1917,
+    endYear: 1922,
+    deathsMin: 5_000_000,
+    deathsMax: 9_000_000,
+    deathsEstimate: 7_000_000,
+    color: "#B91C1C",
+    glowColor: "rgba(185,28,28,0.5)",
+    icon: "Sword",
+    originCountry: "Russia",
+    originLat: 55.8,
+    originLng: 49.1,
+    regions: [
+      { lat: 55.75, lng: 37.6, radius: 4, intensity: 0.8, label: "Central Russia / Moscow" },
+      { lat: 48.5, lng: 34.9, radius: 4.5, intensity: 0.9, label: "Ukraine (famine zone)" },
+      { lat: 51.7, lng: 39.2, radius: 3.5, intensity: 0.8, label: "Volga Region" },
+      { lat: 43.1, lng: 44.5, radius: 3, intensity: 0.7, label: "Caucasus" },
+      { lat: 56.8, lng: 53.2, radius: 3, intensity: 0.6, label: "Ural / Siberia" },
+    ],
+    timeline: [
+      { year: 1917, deaths: 0, label: "October Revolution — Bolsheviks seize power" },
+      { year: 1918, deaths: 1_000_000, label: "Civil war begins; Red Terror launched" },
+      { year: 1920, deaths: 4_000_000, label: "Famine and typhus epidemic peak" },
+      { year: 1921, deaths: 6_500_000, label: "Volga famine kills 5M+" },
+      { year: 1922, deaths: 7_000_000, label: "Soviet victory; USSR established" },
+    ],
+    descriptionEn: "The Russian Civil War (1917–1922) followed the Bolshevik Revolution and pitted the Red Army against a fragmented coalition of White armies, foreign interventionists, and nationalist movements. The conflict killed an estimated 5–9 million people — mostly through famine and disease rather than combat. The 1921–22 Volga famine alone, caused partly by war disruption, killed 5 million.",
+    descriptionEs: "La Guerra Civil Rusa (1917–1922) causó entre 5 y 9 millones de muertos, principalmente por hambre y epidemias. El Ejército Rojo venció a las fuerzas Blancas y a los intervencionistas extranjeros. La hambruna del Volga de 1921–22 mató a 5 millones de personas.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Russian Civil War erupted in the wake of the October 1917 Bolshevik Revolution, when Lenin's forces seized power in Petrograd and began dismantling the provisional government. The ensuing conflict lasted until 1922 and involved not just two sides but a chaotic multiplicity of factions: the Bolshevik Red Army, the counter-revolutionary White Armies (backed by Britain, France, the United States, and Japan), nationalist movements in Ukraine, the Caucasus, and the Baltic states, anarchist forces under Nestor Makhno, and peasant armies responding to forced grain requisition.
+
+The Red Army, reorganized by Leon Trotsky, ultimately prevailed through superior centralization, control of Russia's industrial heartland and railway network, and the ideological cohesion of Bolshevik leadership. The Whites were fatally divided — monarchists, liberals, and nationalists who could agree on little beyond opposing Bolshevism — and were further weakened by the withdrawal of foreign support after 1920. The last major White forces were evacuated from Crimea in November 1920.
+
+The human cost was staggering, but the majority of deaths came not from combat but from the war's secondary catastrophes. The Red Terror and White Terror together killed hundreds of thousands through summary executions and political violence. Epidemic disease — typhus, cholera, and influenza — swept through a population weakened by years of World War I followed by civil war. The Bolshevik policy of "War Communism," which included forced grain requisitions from peasants, destroyed agricultural production. This triggered the catastrophic Volga famine of 1921–22, which killed approximately 5 million people and required a massive international relief effort led by Herbert Hoover's American Relief Administration.
+
+International intervention complicated the conflict further. Allied forces occupied Murmansk, Archangel, Vladivostok, and other strategic points — partly to keep Russia in WWI, partly to strangle Bolshevism. Japanese forces occupied parts of Siberia until 1922. This foreign presence inflamed Russian nationalism and, paradoxically, helped the Bolsheviks portray their struggle as one of national survival against imperialist invasion.
+
+The war's conclusion established the Soviet Union, formally proclaimed in December 1922. But the scars ran deep: a population devastated by seven years of world war and civil war, an economy in ruins, and a political culture shaped by violence, emergency rule, and the suppression of all opposition. These conditions laid the groundwork for Stalin's later consolidation of absolute power.`,
+    faqs: [
+      { q: "How many people died in the Russian Civil War?", a: "Estimates range from 5 to 9 million deaths, with 7 million being the most cited figure. The majority died not in battle but from the 1921–22 Volga famine (5 million dead), typhus and cholera epidemics, and political violence (Red and White Terrors combined killed hundreds of thousands)." },
+      { q: "Who were the main factions in the Russian Civil War?", a: "The primary combatants were the Bolshevik Red Army versus the White Armies (a coalition of monarchists, liberals, and nationalists backed by Britain, France, the US, and Japan). Additional actors included Ukrainian nationalists, anarchists (Makhno's Black Army), various separatist movements, and peasant armies opposing grain requisitions." },
+      { q: "Why did the Bolsheviks win?", a: "The Reds had several decisive advantages: control of Russia's industrial heartland and railway network, a centralized military command under Trotsky, ideological cohesion, and the ability to conscript and arm a large force. The Whites were fatally divided among themselves and were geographically separated into different theaters with poor coordination." },
+      { q: "What caused the Volga famine of 1921–22?", a: "Multiple overlapping causes: the war had devastated agricultural regions; Bolshevik War Communism policies forced peasants to hand over grain surpluses, destroying incentives to grow food; a severe drought struck the Volga region in 1921. The result was mass starvation killing approximately 5 million people. International aid, particularly from the American Relief Administration, saved millions more." },
+    ],
+    references: [
+      { title: "A People's Tragedy: The Russian Revolution — Orlando Figes", url: "https://www.google.com/books/", source: "Academic" },
+      { title: "The Russian Civil War — W. Bruce Lincoln", url: "https://www.simonandschuster.com/", source: "Simon & Schuster" },
+    ],
+    tags: ["russia", "bolshevik", "revolution", "famine", "typhus", "red army", "white army", "20th century"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Soviet-era records were incomplete and sometimes suppressed. Modern Russian historical research has improved estimates, but the chaos of the period makes precision impossible. The 7M figure is a widely cited scholarly estimate.",
+  },
+  {
+    id: "second-sino-japanese-war",
+    name: "Second Sino-Japanese War",
+    nameEs: "Segunda Guerra Sino-Japonesa",
+    category: "war",
+    startYear: 1937,
+    endYear: 1945,
+    deathsMin: 8_000_000,
+    deathsMax: 22_000_000,
+    deathsEstimate: 14_000_000,
+    color: "#0891B2",
+    glowColor: "rgba(8,145,178,0.5)",
+    icon: "Sword",
+    originCountry: "China",
+    originLat: 39.9,
+    originLng: 116.4,
+    regions: [
+      { lat: 32.1, lng: 118.8, radius: 5, intensity: 1.0, label: "Nanking (Massacre)" },
+      { lat: 31.2, lng: 121.5, radius: 4.5, intensity: 0.9, label: "Shanghai" },
+      { lat: 39.9, lng: 116.4, radius: 4, intensity: 0.85, label: "North China Plain" },
+      { lat: 29.6, lng: 106.6, radius: 3.5, intensity: 0.7, label: "Chongqing (wartime capital)" },
+      { lat: 23.1, lng: 113.3, radius: 3, intensity: 0.6, label: "Canton / South China" },
+    ],
+    timeline: [
+      { year: 1937, deaths: 500_000, label: "Marco Polo Bridge Incident — full-scale war; Nanjing Massacre" },
+      { year: 1939, deaths: 3_000_000, label: "Japanese control most coastal cities; Yellow River flood" },
+      { year: 1941, deaths: 7_000_000, label: "War merges with WWII after Pearl Harbor" },
+      { year: 1943, deaths: 11_000_000, label: "Henan famine (2–3M dead)" },
+      { year: 1945, deaths: 14_000_000, label: "Japan surrenders; war ends August 15" },
+    ],
+    descriptionEn: "The Second Sino-Japanese War (1937–1945) was the largest Asian war of the 20th century, killing an estimated 8–22 million people — the majority of them Chinese civilians. Japan's invasion involved systematic atrocities including the Nanjing Massacre (300,000+ killed in 6 weeks), biological warfare (Unit 731), mass aerial bombing of cities, and deliberate famine. It merged into WWII in 1941.",
+    descriptionEs: "La Segunda Guerra Sino-Japonesa (1937–1945) fue la guerra asiática más grande del siglo XX, con 8–22 millones de muertos, en su mayoría civiles chinos. Incluye la Masacre de Nanjing (300.000+ muertos) y la guerra biológica del Ejército Imperial Japonés.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Second Sino-Japanese War began on July 7, 1937 with the Marco Polo Bridge Incident near Beijing — a minor military skirmish that escalated into full-scale invasion as Japan sought to extend its control over China following its 1931 seizure of Manchuria. What followed was eight years of catastrophic warfare that killed between 8 and 22 million people, making it the deadliest conflict in Asian history and one of the most lethal of the 20th century.
+
+Japan's military strategy combined overwhelming conventional force with deliberate terrorization of civilians. The fall of the Chinese capital Nanjing in December 1937 was followed by the Nanjing Massacre — six weeks of organized killing, rape, and looting in which Japanese soldiers murdered an estimated 200,000 to 300,000 Chinese civilians and prisoners of war. The massacre was documented by foreign witnesses in the city, including Nazi Party member John Rabe, and by subsequent war crimes tribunals. It remains a defining atrocity of modern warfare and a major point of historical contention between China and Japan.
+
+Japan's military conducted biological warfare through Unit 731, a covert research unit that experimented on live prisoners and released plague, cholera, and anthrax agents on Chinese cities. Estimates of deaths from biological attacks range from tens of thousands to hundreds of thousands. The Japanese Air Force conducted sustained bombing of Chongqing and other cities, in campaigns that preceded the German bombing of Guernica and London by months or years.
+
+The war created catastrophic humanitarian conditions across occupied China. The Yellow River flood of 1938 — caused by Nationalist Chinese forces deliberately breaking the Huayuankou dike to slow Japanese advance — inundated thousands of square kilometers, destroying harvests and killing an estimated 500,000 to 900,000 people. The 1942–43 Henan famine, exacerbated by wartime disruption, Japanese grain seizures, and Nationalist mismanagement, killed 2–3 million people. Disease spread through refugee populations fleeing the fighting.
+
+After Pearl Harbor in December 1941, the conflict merged with the broader Pacific War. China received Allied assistance through the Burma Road and "The Hump" air route over the Himalayas. The war ended on August 15, 1945, with Japan's surrender following the atomic bombings of Hiroshima and Nagasaki. China emerged devastated but unified — though the civil war between Nationalists and Communists immediately resumed, leading to another 5 million deaths by 1949.`,
+    faqs: [
+      { q: "How many people died in the Second Sino-Japanese War?", a: "Estimates range from 8 to 22 million deaths, with 14 million being a commonly cited figure. The wide range reflects the difficulty of counting deaths across eight years of conflict spanning an enormous geographic area, including deaths from combat, the Nanjing Massacre, biological warfare, deliberate flooding, and famine." },
+      { q: "What was the Nanjing Massacre?", a: "Following the fall of China's capital Nanjing in December 1937, Japanese soldiers conducted six weeks of mass killing, rape, and looting. Chinese and international estimates put the death toll at 200,000–300,000 civilians and prisoners. It was documented by foreign witnesses and confirmed at the Tokyo War Crimes Tribunal, though exact figures remain disputed between Chinese and Japanese historians." },
+      { q: "What was Unit 731?", a: "A covert Japanese biological and chemical warfare research unit that conducted lethal experiments on Chinese, Soviet, Korean, and Allied prisoners. It also weaponized plague, cholera, anthrax, and other pathogens for deployment against Chinese cities. After the war, the US granted immunity to Unit 731 researchers in exchange for their experimental data, meaning none faced prosecution." },
+      { q: "How did the Second Sino-Japanese War relate to WWII?", a: "The war began in 1937 — two years before Germany invaded Poland — and merged with WWII following Japan's attack on Pearl Harbor in December 1941. China's resistance tied down over a million Japanese troops throughout the war, significantly constraining Japan's ability to project force elsewhere in the Pacific theater." },
+    ],
+    references: [
+      { title: "The Rape of Nanking — Iris Chang (1997)", url: "https://www.google.com/books/", source: "Academic" },
+      { title: "China's War with Japan, 1937–1945 — Rana Mitter", url: "https://www.penguinrandomhouse.com/", source: "Penguin" },
+    ],
+    tags: ["japan", "china", "asia", "nanjing", "wwii", "unit 731", "biological warfare", "20th century"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Death toll estimates vary enormously (8–22M) due to the geographic scale, duration, and lack of comprehensive records for civilian deaths in occupied territories. The Nanjing Massacre toll specifically is contested between Chinese (300K+) and some Japanese historians (lower estimates). The 14M figure represents a mainstream scholarly estimate.",
+  },
+  {
+    id: "chinese-civil-war",
+    name: "Chinese Civil War",
+    nameEs: "Guerra Civil China",
+    category: "war",
+    startYear: 1927,
+    endYear: 1949,
+    deathsMin: 2_000_000,
+    deathsMax: 8_000_000,
+    deathsEstimate: 5_000_000,
+    color: "#B45309",
+    glowColor: "rgba(180,83,9,0.5)",
+    icon: "Sword",
+    originCountry: "China",
+    originLat: 31.2,
+    originLng: 121.5,
+    regions: [
+      { lat: 39.9, lng: 116.4, radius: 5, intensity: 0.9, label: "Manchuria / North China" },
+      { lat: 31.2, lng: 121.5, radius: 4, intensity: 0.85, label: "Central China" },
+      { lat: 29.6, lng: 106.6, radius: 3.5, intensity: 0.7, label: "Sichuan / Southwest" },
+      { lat: 22.3, lng: 114.2, radius: 3, intensity: 0.6, label: "South China" },
+    ],
+    timeline: [
+      { year: 1927, deaths: 0, label: "Shanghai Massacre — KMT turns on CCP; civil war begins" },
+      { year: 1934, deaths: 500_000, label: "Long March — CCP forced retreat" },
+      { year: 1945, deaths: 1_500_000, label: "Japan surrenders; full civil war resumes" },
+      { year: 1948, deaths: 4_000_000, label: "Decisive Huaihai Campaign — PLA defeats KMT" },
+      { year: 1949, deaths: 5_000_000, label: "People's Republic proclaimed; KMT retreats to Taiwan" },
+    ],
+    descriptionEn: "The Chinese Civil War (1927–1949) between the Nationalist Kuomintang (KMT) and the Communist Party (CCP) killed an estimated 2–8 million people across two phases separated by the Second Sino-Japanese War. Mao Zedong's People's Liberation Army ultimately defeated Chiang Kai-shek's forces, establishing the People's Republic of China on October 1, 1949.",
+    descriptionEs: "La Guerra Civil China (1927–1949) entre el Kuomintang y el Partido Comunista mató entre 2 y 8 millones de personas. El Ejército de Liberación Popular de Mao Zedong derrotó a Chiang Kai-shek, fundando la República Popular China el 1 de octubre de 1949.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Chinese Civil War unfolded in two phases across more than two decades, punctuated by the Second Sino-Japanese War. Its origins lie in the revolutionary alliance between the Chinese Nationalist Party (Kuomintang/KMT) under Chiang Kai-shek and the Chinese Communist Party (CCP) under Mao Zedong, which collapsed violently in 1927 when Chiang ordered the massacre of Communist organizers and trade unionists in Shanghai and other cities in what became known as the White Terror.
+
+The first phase (1927–1937) saw the KMT's National Revolutionary Army conducting successive "Encirclement Campaigns" against Communist base areas. The CCP, driven from its southern strongholds, undertook the legendary Long March in 1934–35 — a 9,000-kilometer retreat to Yan'an in the northwest that became the founding myth of Chinese Communism. Despite enormous losses (roughly 100,000 marchers set out; fewer than 10,000 arrived), the Long March allowed the CCP to survive and regroup.
+
+The Japanese invasion in 1937 forced a temporary KMT-CCP United Front, but cooperation was limited and both sides preserved their forces for the anticipated post-war confrontation. The Communists in particular used the period to expand their base areas, organize peasants, and build the People's Liberation Army into a formidable force.
+
+When Japan surrendered in August 1945, civil war immediately resumed at full scale. Despite initial American attempts to broker a peace (the Marshall Mission of 1945–46), negotiations collapsed. The military balance shifted decisively after 1947. The KMT held cities and railroads but had alienated the rural population through corruption, inflation, and brutal counterinsurgency. The CCP's land reform policies won massive peasant support. In the decisive Huaihai Campaign of 1948–49, the PLA encircled and destroyed KMT forces numbering over 500,000 men in a 65-day engagement.
+
+On October 1, 1949, Mao Zedong proclaimed the People's Republic of China in Beijing's Tiananmen Square. Chiang Kai-shek and approximately 2 million Nationalist soldiers, officials, and civilians retreated to Taiwan, where the Republic of China government continues to exist today. The Communist victory set the course for the remainder of the 20th century in Asia.`,
+    faqs: [
+      { q: "How many people died in the Chinese Civil War?", a: "Estimates range from 2 to 8 million deaths across the entire conflict (1927–1949), with 5 million being the most commonly cited figure. Deaths came from combat, political executions (both KMT and CCP conducted mass killings), famine associated with wartime disruption, and disease." },
+      { q: "What was the Long March?", a: "A strategic retreat by the Chinese Communist Party in 1934–35, fleeing KMT encirclement campaigns. Approximately 100,000 people began the 9,000-kilometer march to Yan'an in northwestern China; fewer than 10,000 survived. Despite the catastrophic losses, it became the foundational mythology of Chinese Communism and allowed Mao Zedong to consolidate leadership of the CCP." },
+      { q: "Why did the Communists win?", a: "Multiple factors: the CCP's land reform policies won enormous peasant support; the KMT government was crippled by hyperinflation and corruption; KMT military commanders were often incompetent or disloyal; the PLA captured massive stocks of Japanese weapons after WWII; and US support for the KMT was insufficient to offset these disadvantages. The Huaihai Campaign of 1948–49 sealed the KMT's defeat." },
+      { q: "What happened to the KMT after losing?", a: "Chiang Kai-shek and approximately 2 million soldiers, officials, and civilians retreated to Taiwan in 1949, establishing the Republic of China government there. Backed by the US (especially after the Korean War began in 1950), Taiwan maintained its separate existence. The question of Taiwan's status — officially claimed by both Beijing and Taipei — remains one of Asia's most critical geopolitical tensions." },
+    ],
+    references: [
+      { title: "The Battle for China: Essays on the Military History of the Sino-Japanese War — Mark Peattie et al.", url: "https://www.sup.org/books/", source: "Stanford University Press" },
+      { title: "China's Civil War — Diana Lary", url: "https://www.cambridge.org/", source: "Cambridge University Press" },
+    ],
+    tags: ["china", "mao", "kuomintang", "communist", "long march", "taiwan", "20th century"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Casualty figures are disputed. Chinese government records were politicized during the Maoist era. The wide range (2–8M) reflects genuine scholarly disagreement over the boundary between civil war deaths and deaths from the overlapping Sino-Japanese War period.",
+  },
+  {
+    id: "nigerian-civil-war",
+    name: "Nigerian Civil War (Biafra)",
+    nameEs: "Guerra Civil de Nigeria (Biafra)",
+    category: "war",
+    startYear: 1967,
+    endYear: 1970,
+    deathsMin: 1_000_000,
+    deathsMax: 3_000_000,
+    deathsEstimate: 2_000_000,
+    color: "#16A34A",
+    glowColor: "rgba(22,163,74,0.5)",
+    icon: "Sword",
+    originCountry: "Nigeria",
+    originLat: 6.5,
+    originLng: 3.4,
+    regions: [
+      { lat: 5.5, lng: 7.0, radius: 4.5, intensity: 1.0, label: "Biafra (Eastern Nigeria)" },
+      { lat: 6.5, lng: 7.5, radius: 3.5, intensity: 0.9, label: "Ibo heartland" },
+      { lat: 4.8, lng: 7.0, radius: 3, intensity: 0.85, label: "Port Harcourt area" },
+      { lat: 6.3, lng: 6.9, radius: 2.5, intensity: 0.8, label: "Enugu" },
+    ],
+    timeline: [
+      { year: 1967, deaths: 0, label: "Biafra declares independence (May 30)" },
+      { year: 1968, deaths: 500_000, label: "Nigerian blockade causes mass famine — children starving on global TV" },
+      { year: 1969, deaths: 1_500_000, label: "Famine at peak; 8,000–10,000 deaths/day estimated" },
+      { year: 1970, deaths: 2_000_000, label: "Biafra surrenders (January 15)" },
+    ],
+    descriptionEn: "The Nigerian Civil War (1967–1970) began when the predominantly Igbo eastern region of Nigeria declared independence as the Republic of Biafra. The federal government's military response included a blockade that caused one of the 20th century's most visible famines — images of starving Biafran children shocked the world. An estimated 1–3 million people died, the majority from starvation.",
+    descriptionEs: "La Guerra Civil de Nigeria (1967–1970) comenzó cuando la región oriental declaró su independencia como República de Biafra. El bloqueo federal causó una hambruna masiva. Las imágenes de niños biafrianos desnutridos conmocionaron al mundo. Murieron entre 1 y 3 millones de personas, la mayoría de hambre.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Nigerian Civil War emerged from the ethnic and political tensions that followed Nigerian independence from Britain in 1960. Nigeria's colonial borders had lumped together hundreds of ethnic groups, with three dominant ones: the Hausa-Fulani (predominantly Muslim, dominant in the north), the Yoruba (southwest), and the Igbo (southeast). After two military coups in 1966 — the second specifically targeting Igbo officers — and a wave of anti-Igbo pogroms in the north that killed 10,000–30,000 people and displaced over a million, the military governor of the Eastern Region, Odumegwu Ojukwu, declared independence as the Republic of Biafra on May 30, 1967.
+
+The federal government, led by General Yakubu Gowon, declared war to preserve Nigerian unity. What followed was a brutal three-year conflict in which federal forces, backed by the Soviet Union and Britain, gradually encircled and compressed the secessionist territory. Military operations were accompanied by a naval blockade cutting off Biafra from food and medical supplies — a strategic choice that would produce one of the century's defining humanitarian catastrophes.
+
+The famine that resulted from the blockade became the most televised in history to that point. Red Cross and aid organizations documented Igbo children with the distended bellies and orange-tinted hair of kwashiorkor — severe protein deficiency. Photographs and film footage circulated globally, generating massive international pressure for humanitarian access. The Irish charity CONCERN was founded specifically in response to the Biafra crisis; it was also a formative event for Médecins Sans Frontières (MSF), whose founders broke from the Red Cross over the question of whether to speak publicly about atrocities witnessed.
+
+Estimates of total deaths range from 1 to 3 million, with the majority dying from starvation and related disease rather than combat. Airlift operations — flown at night to evade federal aircraft — brought in some food and medicine but were wholly insufficient. Biafra surrendered on January 15, 1970. Despite dire predictions, the post-war period was notable for a relatively conciliatory "No victor, no vanquished" policy by Gowon, and Nigeria avoided the worst post-war reprisals — though full political reconciliation has remained incomplete.`,
+    faqs: [
+      { q: "How many people died in the Biafran War?", a: "Estimates range from 1 to 3 million deaths, with approximately 2 million being the most cited figure. The crucial fact is that the great majority — perhaps 90% — died from starvation and disease caused by the federal blockade, not from combat. The famine killed approximately 8,000–10,000 people per day at its peak in 1968–69." },
+      { q: "Why did Biafra secede?", a: "Following two military coups in 1966 and organized massacres of Igbo people in northern Nigeria (killing 10,000–30,000), the Igbo-dominated Eastern Region felt it had no future within Nigeria. Governor Ojukwu declared independence as Biafra on May 30, 1967, with the backing of most Igbo people who feared genocide if they remained within the federation." },
+      { q: "Who supported each side?", a: "The federal Nigerian government was backed by the Soviet Union (weapons) and Britain (political and material support). Biafra received covert support from France (weapons through Côte d'Ivoire and Gabon) and some humanitarian support from international NGOs. The US officially remained neutral but tacitly backed the federal government. Many African states supported Nigeria's territorial integrity." },
+      { q: "What was the long-term impact of the Biafra war?", a: "The war shaped modern humanitarian intervention: it catalyzed the founding of Médecins Sans Frontières (MSF) and strengthened Red Cross humanitarian law. Within Nigeria, the war created ethnic tensions that persist today, with periodic calls for Biafran independence. Economically, the discovery of oil in the Niger Delta — in former Biafran territory — has remained a source of conflict and grievance." },
+    ],
+    references: [
+      { title: "There Was a Country — Chinua Achebe (2012)", url: "https://www.penguinrandomhouse.com/", source: "Penguin" },
+      { title: "The Biafran War and Postcolonial Humanitarianism — Charlotte Lydia Riley", url: "https://www.cambridge.org/", source: "Cambridge University Press" },
+    ],
+    tags: ["nigeria", "biafra", "africa", "famine", "igbo", "blockade", "20th century", "humanitarian"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Death toll is heavily debated. The range 1–3M reflects genuine uncertainty; most deaths were from famine with no reliable enumeration. The 2M figure is widely cited but contested. Igbo nationalist sources tend toward higher estimates; Nigerian federal sources lower.",
+  },
+  {
+    id: "war-of-triple-alliance",
+    name: "War of the Triple Alliance",
+    nameEs: "Guerra de la Triple Alianza",
+    category: "war",
+    startYear: 1864,
+    endYear: 1870,
+    deathsMin: 400_000,
+    deathsMax: 1_200_000,
+    deathsEstimate: 800_000,
+    color: "#7C3AED",
+    glowColor: "rgba(124,58,237,0.5)",
+    icon: "Sword",
+    originCountry: "Paraguay",
+    originLat: -23.4,
+    originLng: -58.4,
+    regions: [
+      { lat: -23.4, lng: -58.4, radius: 5, intensity: 1.0, label: "Paraguay (catastrophic losses)" },
+      { lat: -34.6, lng: -58.4, radius: 3, intensity: 0.5, label: "Argentina" },
+      { lat: -30.0, lng: -51.2, radius: 2.5, intensity: 0.4, label: "Brazil" },
+      { lat: -34.9, lng: -56.2, radius: 2, intensity: 0.3, label: "Uruguay" },
+    ],
+    timeline: [
+      { year: 1864, deaths: 0, label: "Paraguay invades Brazil (Mato Grosso) and Argentina" },
+      { year: 1866, deaths: 150_000, label: "Alliance counterattacks into Paraguay" },
+      { year: 1868, deaths: 400_000, label: "Battle of Lomas Valentinas — Paraguayan army destroyed" },
+      { year: 1870, deaths: 800_000, label: "Lopez killed; war ends. Paraguay loses 60–70% of population" },
+    ],
+    descriptionEn: "The War of the Triple Alliance (1864–1870) pitted Paraguay against the combined forces of Brazil, Argentina, and Uruguay. It was the most destructive war in Latin American history. Paraguay under dictator Francisco Solano López lost an estimated 60–70% of its total population — making it proportionally one of the most devastating national catastrophes in modern history.",
+    descriptionEs: "La Guerra de la Triple Alianza (1864–1870) enfrentó a Paraguay contra Brasil, Argentina y Uruguay. Paraguay perdió entre el 60 y el 70% de su población total — proporcionalmente, una de las mayores catástrofes nacionales de la historia moderna.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The War of the Triple Alliance stands as the deadliest interstate conflict in Latin American history and one of the most demographically catastrophic wars in recorded history. Its cause lies in the geopolitical ambitions of Paraguayan dictator Francisco Solano López, who in 1864 intervened in a Uruguayan civil war and — when denied passage through Argentine territory — declared war on both Argentina and Brazil, triggering a defensive alliance of the three neighboring nations.
+
+Paraguay in 1864 was an unusual state: an isolated, largely self-sufficient nation that had pursued a developmental model quite unlike the export-oriented economies of its neighbors. Under Francisco Solano López and his father before him, Paraguay had built railways, established industries, and trained a professional army, all largely independent of foreign capital. This relative independence was both the source of López's confidence in going to war and the foundation that allowed Paraguay to sustain the fight far longer than any outside observer predicted.
+
+The war's first phase saw Paraguayan forces invade Mato Grosso (Brazil) and Corrientes province (Argentina) simultaneously. The allied response was slow to organize but overwhelming in eventual size: Brazil alone mobilized a force of over 100,000 men, backed by its ironclad fleet on the Paraná and Paraguay rivers. The Battle of Tuiutí in May 1866 — the largest land battle in South American history — saw the Paraguayan army repulsed with catastrophic losses.
+
+By 1868, the Allied forces had penetrated Paraguayan territory. López, refusing to accept defeat or negotiate, ordered the mobilization of literally every available man — then women, children, and elderly — in a last-ditch defense. Mass graves from this period contain skeletal remains confirming combatants as young as 12 and 13. Disease, particularly cholera, killed more Paraguayan soldiers than enemy fire. The Brazilian navy bombarded Asunción. López continued fighting a guerrilla campaign until he was killed on March 1, 1870, reportedly shouting "I die with my country."
+
+What was left of Paraguay was devastating to behold. Pre-war estimates put the population at approximately 450,000; post-war censuses found perhaps 150,000 survivors, of whom roughly 90% were women, children, and elderly men. Adult males had been virtually annihilated as a demographic group. Brazil occupied Paraguay until 1876. The country did not recover its pre-war population level until well into the 20th century.`,
+    faqs: [
+      { q: "How many people died in the War of the Triple Alliance?", a: "Estimates range from 400,000 to over 1.2 million deaths, with 800,000 being a commonly cited figure. Paraguay's losses were proportionally catastrophic: the country lost an estimated 60–70% of its total pre-war population of approximately 450,000, including roughly 90% of its adult male population." },
+      { q: "Why did Paraguay lose so catastrophically?", a: "Dictator Francisco Solano López refused any peace settlement even as defeat became inevitable, mobilizing women, children, and old men as soldiers in the war's final phases. Disease (especially cholera) killed more than combat. The combined military and industrial power of Brazil, Argentina, and Uruguay was simply overwhelming. López's intransigence turned a military defeat into a national catastrophe." },
+      { q: "What caused the War of the Triple Alliance?", a: "Paraguayan dictator Francisco Solano López intervened in a Uruguayan civil war in 1864 and requested passage through Argentine territory to reach Brazil. When Argentina refused, López declared war on both, triggering a defensive alliance. Underlying causes included López's expansionist ambitions, regional geopolitical rivalries, and Brazilian imperial interests in the Rio de la Plata region." },
+      { q: "How did Paraguay recover?", a: "Recovery was agonizingly slow. Brazil occupied Paraguay until 1876. The country had to import labor and accept mass immigration to repopulate. Paraguay did not recover its pre-war population until approximately 1950 — 80 years after the war's end. The political instability caused by the war's aftermath contributed to Paraguay's underdevelopment throughout the 19th and early 20th centuries." },
+    ],
+    references: [
+      { title: "The Paraguayan War — Thomas Whigham", url: "https://www.nebraskapress.unl.edu/", source: "University of Nebraska Press" },
+      { title: "Genocide in Paraguay — Richard Arens (ed.)", url: "https://www.google.com/books/", source: "Temple University Press" },
+    ],
+    tags: ["paraguay", "brazil", "argentina", "latin america", "19th century", "demographic catastrophe"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Pre-war Paraguayan population is itself uncertain (estimates range 400K–800K), making percentage loss calculations imprecise. Post-war census data is more reliable. The specific death toll range (400K–1.2M) reflects genuine scholarly debate.",
+  },
+
+  // ── GENOCIDES ──────────────────────────────────────────────────────────────
+  {
+    id: "holocaust",
+    name: "The Holocaust",
+    nameEs: "El Holocausto",
+    category: "genocide",
+    startYear: 1941,
+    endYear: 1945,
+    deathsMin: 9_000_000,
+    deathsMax: 11_000_000,
+    deathsEstimate: 11_000_000,
+    color: "#EC4899",
+    glowColor: "rgba(236,72,153,0.5)",
+    icon: "Skull",
+    originCountry: "Germany",
+    originLat: 52.5,
+    originLng: 13.4,
+    regions: [
+      { lat: 50.1, lng: 19.9, radius: 4.5, intensity: 1.0, label: "Auschwitz-Birkenau (Poland)" },
+      { lat: 51.2, lng: 23.1, radius: 4, intensity: 0.95, label: "Treblinka / Sobibor / Belzec (Poland)" },
+      { lat: 52.5, lng: 13.4, radius: 3, intensity: 0.7, label: "Germany" },
+      { lat: 52.2, lng: 20.9, radius: 3.5, intensity: 0.9, label: "Warsaw Ghetto" },
+      { lat: 48.5, lng: 34.9, radius: 3.5, intensity: 0.85, label: "Ukraine / Babi Yar" },
+    ],
+    timeline: [
+      { year: 1933, deaths: 0, label: "Nazis come to power — anti-Jewish laws begin" },
+      { year: 1938, deaths: 100_000, label: "Kristallnacht; mass deportations begin" },
+      { year: 1941, deaths: 500_000, label: "Einsatzgruppen begin mass shootings; death camps planned" },
+      { year: 1942, deaths: 4_000_000, label: "Operation Reinhard — Treblinka, Sobibor, Belzec operational" },
+      { year: 1944, deaths: 9_500_000, label: "Hungarian Jews deported to Auschwitz (400K+ in 8 weeks)" },
+      { year: 1945, deaths: 11_000_000, label: "Liberation of camps; war ends in Europe" },
+    ],
+    descriptionEn: "The Holocaust was the state-sponsored, systematic murder of six million Jews and five million others (Roma, disabled people, Soviet POWs, homosexuals, political prisoners) by Nazi Germany and its collaborators between 1941 and 1945. It was the most meticulously documented genocide in history, carried out through shooting massacres, gas vans, and six purpose-built extermination camps in occupied Poland.",
+    descriptionEs: "El Holocausto fue el asesinato sistemático de seis millones de judíos y cinco millones de otras personas por parte de la Alemania nazi entre 1941 y 1945. Es el genocidio mejor documentado de la historia, llevado a cabo mediante fusilamientos masivos y seis campos de exterminio en Polonia.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Holocaust — known in Hebrew as the Shoah ("catastrophe") — was the systematic, state-organized murder of approximately six million Jews and five million others by the Nazi regime and its collaborators. It stands as the most thoroughly documented genocide in history, unique in that it was not the incidental byproduct of war but a deliberate policy objective pursued with industrial efficiency even when it diverted resources from the military effort.
+
+The path to genocide was incremental. After Adolf Hitler and the Nazi Party came to power in Germany in 1933, a cascade of legal discrimination stripped German Jews of citizenship (Nuremberg Laws, 1935), confined them to ghettos, and made emigration nearly impossible through property confiscation. Kristallnacht (November 1938) — a coordinated nationwide pogrom that destroyed thousands of synagogues and Jewish businesses and killed approximately 100 Jews — marked the transition from legal persecution to mass violence.
+
+The decision to pursue total extermination crystallized with the invasion of the Soviet Union in June 1941. Mobile killing units (Einsatzgruppen) followed the advancing German army, shooting Jewish communities en masse. The largest single massacre was Babi Yar, near Kyiv, where 33,771 Jews were shot in two days (September 29–30, 1941). The Wannsee Conference of January 1942 coordinated the "Final Solution to the Jewish Question" — the bureaucratic euphemism for a program to murder every Jew in Europe.
+
+Six purpose-built extermination camps were constructed in occupied Poland: Auschwitz-Birkenau, Treblinka, Sobibor, Belzec, Chelmno, and Majdanek. Auschwitz alone killed approximately 1.1 million people, overwhelmingly Jews. The camps used Zyklon B gas (Auschwitz) or carbon monoxide (the Operation Reinhard camps) in chambers disguised as shower rooms. Corpses were cremated to destroy evidence. The system killed at its peak rate approximately 6,000 people per day.
+
+Non-Jewish victims included an estimated 220,000–500,000 Roma; 200,000–250,000 disabled persons murdered in the Aktion T4 euthanasia program; 3 million Soviet POWs (deliberately starved in violation of the Geneva Convention); hundreds of thousands of Soviet civilians; 1.8–1.9 million non-Jewish Poles; and tens of thousands of homosexuals and political prisoners. The total non-Jewish death toll thus equals or exceeds Jewish losses.
+
+The Holocaust was liberated piecemeal as Allied forces advanced. Soviet troops reached Auschwitz on January 27, 1945 — now commemorated as International Holocaust Remembrance Day. The Nuremberg Trials (1945–46) established the legal concept of crimes against humanity. The Holocaust directly motivated the 1948 UN Genocide Convention and the Universal Declaration of Human Rights.`,
+    faqs: [
+      { q: "How many people died in the Holocaust?", a: "Approximately 6 million Jews were murdered — representing about two-thirds of European Jewry. An additional 5 million non-Jews were also systematically killed: Roma (220,000–500,000), disabled persons (200,000+), Soviet POWs (3 million), non-Jewish Poles (1.8M), and others. Total Holocaust victims are estimated at 11 million." },
+      { q: "What were the main extermination camps?", a: "Six extermination camps were built in occupied Poland: Auschwitz-Birkenau (1.1M killed), Treblinka (700,000–900,000), Belzec (430,000–500,000), Sobibor (170,000–250,000), Chelmno (150,000–340,000), and Majdanek (60,000–80,000). These are distinct from concentration camps — the extermination camps existed specifically to kill, not to imprison." },
+      { q: "When did the Holocaust begin?", a: "Legal persecution began immediately after the Nazis came to power in 1933. Mass murder began with the Einsatzgruppen shootings in the USSR in summer 1941. Systematic death camp operations began in 1942 with Operation Reinhard. The Holocaust is thus both a process (1933–1945) and a specific industrial extermination campaign (1941–1945)." },
+      { q: "How was the Holocaust documented?", a: "The Nazis kept meticulous records — transport lists, camp registers, internal memos, photographs, and film. The Nuremberg Trials compiled documentary evidence. Survivor testimonies have been systematically collected (the USC Shoah Foundation alone has recorded 55,000 testimonies). Demographic studies comparing pre- and post-war Jewish population census data provide independent confirmation of the death toll." },
+    ],
+    references: [
+      { title: "The Holocaust: A History — Deborah Dwork & Robert Jan van Pelt", url: "https://www.google.com/books/", source: "Academic" },
+      { title: "Yad Vashem — The World Holocaust Remembrance Center", url: "https://www.yadvashem.org/", source: "Yad Vashem" },
+      { title: "United States Holocaust Memorial Museum", url: "https://www.ushmm.org/", source: "USHMM" },
+    ],
+    tags: ["holocaust", "shoah", "nazis", "jewish", "auschwitz", "genocide", "wwii", "germany"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "The Holocaust is the most thoroughly documented genocide in history. Nazi bureaucratic records, survivor testimony, demographic analysis, and post-war tribunal evidence all converge on approximately 6 million Jewish victims. The 11M total including non-Jews is also well-supported by documentary and demographic evidence.",
+  },
+  {
+    id: "cambodian-genocide",
+    name: "Cambodian Genocide",
+    nameEs: "Genocidio Camboyano",
+    category: "genocide",
+    startYear: 1975,
+    endYear: 1979,
+    deathsMin: 1_500_000,
+    deathsMax: 2_000_000,
+    deathsEstimate: 1_700_000,
+    color: "#DC2626",
+    glowColor: "rgba(220,38,38,0.5)",
+    icon: "Skull",
+    originCountry: "Cambodia",
+    originLat: 11.6,
+    originLng: 104.9,
+    regions: [
+      { lat: 11.6, lng: 104.9, radius: 4.5, intensity: 1.0, label: "Phnom Penh and surroundings" },
+      { lat: 13.4, lng: 103.9, radius: 3.5, intensity: 0.85, label: "Siem Reap / NW Cambodia" },
+      { lat: 11.0, lng: 104.2, radius: 3, intensity: 0.8, label: "Kampot / Southwest" },
+      { lat: 12.5, lng: 105.0, radius: 3, intensity: 0.75, label: "Eastern Zones" },
+    ],
+    timeline: [
+      { year: 1975, deaths: 0, label: "Khmer Rouge seizes Phnom Penh (April 17) — Year Zero declared" },
+      { year: 1975, deaths: 300_000, label: "Forced evacuation of Phnom Penh (2M people, days)" },
+      { year: 1977, deaths: 1_000_000, label: "Internal purges accelerate; Eastern Zone massacre" },
+      { year: 1978, deaths: 1_500_000, label: "Peak killing; famine in forced labor zones" },
+      { year: 1979, deaths: 1_700_000, label: "Vietnam invades; Khmer Rouge driven from power" },
+    ],
+    descriptionEn: "The Cambodian Genocide (1975–1979) was carried out by the Khmer Rouge under Pol Pot, who sought to create an agrarian utopia by evacuating cities, abolishing money and religion, and eliminating 'enemies' — intellectuals, ethnic minorities, Buddhist monks, and perceived class enemies. Between 1.5 and 2 million people died, representing 25% of Cambodia's entire population.",
+    descriptionEs: "El Genocidio Camboyano (1975–1979) fue perpetrado por los Jemeres Rojos bajo Pol Pot. Entre 1,5 y 2 millones de personas murieron, el 25% de la población total de Camboya, en campos de trabajo, ejecuciones y hambrunas deliberadas.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Cambodian Genocide was one of the most extreme episodes of state-organized mass murder in the 20th century. Under the Khmer Rouge (Communist Party of Kampuchea) government of Pol Pot, which ruled Cambodia from April 1975 to January 1979, an estimated 1.5 to 2 million people died — representing approximately 25% of Cambodia's pre-war population of around 7 million.
+
+The Khmer Rouge captured Phnom Penh on April 17, 1975 after a five-year civil war supported by US bombing campaigns (1969–1973) that had killed tens of thousands of Cambodians and destabilized the country. Within days of seizing power, Pol Pot's regime declared "Year Zero" — the starting point of a revolutionary new order that sought to erase all existing social structures and create a purely agrarian communist utopia. The entire urban population of Phnom Penh — approximately 2 million people — was forcibly marched into the countryside within days, on pain of death. Hospitals were emptied; patients on intravenous drips were pushed into the streets.
+
+The new regime abolished money, markets, schools, hospitals, religion, and private property. Wearing glasses or speaking a foreign language could be grounds for execution on suspicion of being an "intellectual." Buddhist monks — approximately 60,000 of them — were defrocked and either executed or forced to labor; the vast majority of Cambodia's temples were destroyed or converted to prisons. Ethnic Chinese, Vietnamese, and Cham Muslims were targeted for elimination. Urban Cambodians were classified as "new people" — unreliable — and subjected to systematic discrimination, forced labor, starvation, and killing.
+
+The killing apparatus centered on a network of prisons and execution sites. The most notorious was S-21 (Tuol Sleng) in Phnom Penh, where an estimated 17,000 people were tortured and executed; only a handful survived. The "killing fields" — Choeung Ek being the most famous — were execution sites where prisoners were brought by truck at night and killed to save bullets (with farming implements, bamboo poles, or sharp palm fronds), then thrown into mass graves. Forensic excavations have uncovered hundreds of mass grave sites across Cambodia.
+
+The regime was brought down in January 1979 when Vietnamese forces — responding to repeated Khmer Rouge border attacks on Vietnam — invaded and captured Phnom Penh in two weeks. Pol Pot and the Khmer Rouge fled to the jungle near the Thai border, where they continued as an insurgency for nearly two decades, inexplicably retaining Cambodia's UN seat until 1982. Pol Pot died in 1998, having never faced international justice. The Extraordinary Chambers in the Courts of Cambodia (ECCC) — a hybrid Cambodian-international tribunal — finally began trials in 2009; senior Khmer Rouge leaders Nuon Chea and Khieu Samphan were convicted of genocide in 2018.`,
+    faqs: [
+      { q: "How many people died in the Cambodian Genocide?", a: "Between 1.5 and 2 million people, with 1.7 million being the most widely cited estimate. This represents approximately 25% of Cambodia's entire pre-war population. Deaths came from execution, starvation in forced labor camps, disease, and the brutal forced evacuation of cities." },
+      { q: "Who were the Khmer Rouge?", a: "A Maoist-inspired communist revolutionary movement led by Pol Pot (Saloth Sar), who had studied in Paris and was influenced by French communist intellectuals. The movement drew its name from the Khmer ethnic majority of Cambodia. After years of insurgency (backed partly by China), they seized power in 1975 and ruled until 1979." },
+      { q: "Why did the Khmer Rouge kill so many of their own people?", a: "Pol Pot's ideology sought to create a classless agrarian utopia by eliminating all 'class enemies' — defined to include urban dwellers, intellectuals, professionals, ethnic minorities, and religious practitioners. Internal paranoia also drove constant purges of the party itself; no one was safe. The Eastern Zone massacre of 1977–78, in which the regime killed hundreds of thousands of its own cadres suspected of pro-Vietnamese sympathies, killed more Cambodians than many entire wars." },
+      { q: "Was anyone held accountable for the Cambodian Genocide?", a: "Justice came very late. The Extraordinary Chambers in the Courts of Cambodia (ECCC) — established in 2006 — convicted Kaing Guek Eav ('Duch'), the S-21 prison commandant, in 2010. Senior leaders Nuon Chea and Khieu Samphan were convicted of genocide in 2018. Pol Pot himself died in 1998 without facing trial. Many perpetrators lived freely for decades." },
+    ],
+    references: [
+      { title: "When the War Was Over — Elizabeth Becker (1986)", url: "https://www.google.com/books/", source: "Public Affairs" },
+      { title: "The Killing Fields — Documentation Center of Cambodia", url: "https://www.d.dccam.org/", source: "DC-Cam" },
+      { title: "Extraordinary Chambers in the Courts of Cambodia", url: "https://www.eccc.gov.kh/", source: "ECCC" },
+    ],
+    tags: ["cambodia", "khmer rouge", "pol pot", "genocide", "killing fields", "year zero", "asia", "20th century"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "Forensic excavations of mass grave sites, documentation by the Documentation Center of Cambodia (DC-Cam), demographic analysis, and survivor testimony provide strong evidence for the 1.5–2M range. The Cambodian Genocide Documentation Project cross-referenced multiple data sources.",
+  },
+  {
+    id: "atlantic-slave-trade",
+    name: "Atlantic Slave Trade",
+    nameEs: "Trata Atlántica de Esclavos",
+    category: "genocide",
+    startYear: 1500,
+    endYear: 1900,
+    deathsMin: 1_800_000,
+    deathsMax: 4_000_000,
+    deathsEstimate: 2_000_000,
+    color: "#9D174D",
+    glowColor: "rgba(157,23,77,0.5)",
+    icon: "Skull",
+    originCountry: "West Africa",
+    originLat: 5.6,
+    originLng: -0.2,
+    regions: [
+      { lat: 6.4, lng: 2.4, radius: 5, intensity: 1.0, label: "West Africa (Slave Coast)" },
+      { lat: -8.8, lng: 13.2, radius: 4.5, intensity: 0.9, label: "Central Africa (Angola / Congo)" },
+      { lat: 14.7, lng: -17.4, radius: 4, intensity: 0.85, label: "Senegambia / Upper Guinea" },
+      { lat: 10.0, lng: -15.0, radius: 3.5, intensity: 0.7, label: "Lower Guinea" },
+      { lat: -25.0, lng: -43.2, radius: 3, intensity: 0.5, label: "Brazil (destination)" },
+    ],
+    timeline: [
+      { year: 1500, deaths: 0, label: "Portuguese establish first slave trading posts in West Africa" },
+      { year: 1600, deaths: 200_000, label: "Trade accelerates; ~300,000 enslaved people shipped per decade" },
+      { year: 1700, deaths: 600_000, label: "Peak of British slave trade; ~60,000 per year crossing Atlantic" },
+      { year: 1780, deaths: 1_200_000, label: "All-time peak — ~80,000/year; abolitionist movement begins" },
+      { year: 1850, deaths: 1_800_000, label: "Trade officially abolished by most powers but continues illegally" },
+      { year: 1900, deaths: 2_000_000, label: "End of transatlantic slave trade" },
+    ],
+    descriptionEn: "The Atlantic Slave Trade (c.1500–1900) forcibly transported approximately 12.5 million Africans across the Atlantic to the Americas. An estimated 1.8–4 million people died during the Middle Passage alone — the brutal ocean crossing — from disease, violence, and inhumane conditions. This figure does not include the millions killed in African wars and raids specifically conducted to obtain enslaved people for European buyers.",
+    descriptionEs: "La Trata Atlántica de Esclavos (c.1500–1900) transportó forzosamente a unos 12,5 millones de africanos a América. Entre 1,8 y 4 millones murieron solo durante el Paso Intermedio (Middle Passage) por enfermedad, violencia y condiciones inhumanas.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Atlantic Slave Trade represents one of the largest forced migrations and sustained atrocities in human history. Between approximately 1500 and 1900, an estimated 12.5 million African men, women, and children were captured, sold, and transported across the Atlantic Ocean to work as enslaved people in the Americas — primarily in Brazil, the Caribbean, and North America. The Trans-Atlantic Slave Trade Database, compiled by scholars over decades, provides the most authoritative quantification.
+
+The death toll presented here reflects only direct mortality during the Middle Passage — the ocean crossing itself. Conditions were deliberately designed for profit, not survival: enslaved people were packed into ship holds with roughly 60 centimeters of space per person, chained in place for weeks or months. Disease — particularly dysentery (the "bloody flux"), smallpox, and scurvy — spread rapidly through the densely packed holds. Mortality rates on individual voyages ranged from a few percent to over 25%. Averaging across the trade's history, approximately 10–15% of those who embarked died before reaching land — producing the 1.8–4 million death range for the Middle Passage alone.
+
+This figure dramatically understates the system's total human cost. Before the Middle Passage came the violent capture and forced march to coastal slave depots (barracoons), during which additional mortality occurred. The wars and raids conducted within Africa specifically to supply European demand for enslaved people — destabilizing entire regions for generations — caused additional deaths that are essentially uncountable. After arrival, the brutality of plantation slavery in the Americas — worked to death, separated from families, forbidden education — caused further mortality beyond normal demographic loss.
+
+The countries most involved in the trade were Portugal/Brazil (responsible for approximately 5 million enslaved people transported), Britain (3.1 million), France (1.4 million), Spain (1.1 million), the Netherlands (500,000), and the United States (400,000). The primary African regions of origin were West-Central Africa (Congo/Angola), the Slave Coast (modern Benin/Nigeria), the Gold Coast (modern Ghana), and Senegambia.
+
+Abolition came gradually. Britain abolished the slave trade in 1807 and slavery throughout its empire in 1833. The United States abolished the trade in 1808 (though slavery persisted until 1865). Brazil — the largest single destination, absorbing roughly 40% of all enslaved people transported — did not abolish slavery until 1888. The trade continued illegally after official abolition by various powers; the Royal Navy's West Africa Squadron intercepted illegal slave ships for decades.
+
+The Atlantic Slave Trade's legacy shaped the demographics, economies, and racial structures of the entire Atlantic world. It directly caused the underdevelopment of West and Central Africa through population loss and political destabilization. The racial hierarchies it created persist in the Americas centuries later.`,
+    faqs: [
+      { q: "How many people died in the Atlantic Slave Trade?", a: "Approximately 1.8 to 4 million people died during the Middle Passage — the ocean crossing — alone. This represents roughly 10–15% of the 12.5 million people who were transported. The total human cost, including deaths during capture, transport to the coast, and from the conditions of plantation slavery, was substantially higher." },
+      { q: "How many people were enslaved in total?", a: "The Trans-Atlantic Slave Trade Database documents approximately 12.5 million enslaved people embarked on slave ships between roughly 1500 and 1900. Of these, approximately 10.7 million survived the Middle Passage to reach the Americas. Brazil received by far the largest number (approximately 40%), followed by the Caribbean colonies of various European powers." },
+      { q: "Which countries were most responsible for the slave trade?", a: "Portugal and Brazil were responsible for approximately 5 million enslaved people transported (40% of the total). Britain transported approximately 3.1 million (25%) before abolishing the trade in 1807. France transported 1.4 million, Spain 1.1 million, the Netherlands 500,000, and the United States approximately 400,000." },
+      { q: "When was the Atlantic Slave Trade abolished?", a: "Abolition was gradual: Denmark abolished the trade in 1792; Britain in 1807 (and slavery empire-wide in 1833); the US banned the trade in 1808 (slavery ended in 1865); France abolished slavery in its colonies in 1848; Brazil, the largest destination, finally abolished slavery in 1888. Despite official abolition, illegal slave trading continued for decades after, intercepted by naval patrols." },
+    ],
+    references: [
+      { title: "Trans-Atlantic Slave Trade Database (Slave Voyages)", url: "https://www.slavevoyages.org/", source: "SlaveVoyages.org" },
+      { title: "The Slave Trade — Hugh Thomas (1997)", url: "https://www.google.com/books/", source: "Simon & Schuster" },
+    ],
+    tags: ["slavery", "africa", "atlantic", "middle passage", "colonialism", "portugal", "britain", "brazil"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "The Trans-Atlantic Slave Trade Database (slavevoyages.org) provides the most comprehensive data on voyages and passenger numbers. Death toll during the Middle Passage is estimated from voyage records with known mortality rates. Mortality before embarkation in Africa is poorly documented and not included in this figure.",
+  },
+
+  // ── FAMINES ────────────────────────────────────────────────────────────────
+  {
+    id: "great-chinese-famine",
+    name: "Great Chinese Famine",
+    nameEs: "Gran Hambruna China",
+    category: "famine",
+    startYear: 1959,
+    endYear: 1961,
+    deathsMin: 15_000_000,
+    deathsMax: 55_000_000,
+    deathsEstimate: 30_000_000,
+    color: "#F59E0B",
+    glowColor: "rgba(245,158,11,0.5)",
+    icon: "Flame",
+    originCountry: "China",
+    originLat: 35.0,
+    originLng: 105.0,
+    regions: [
+      { lat: 33.9, lng: 113.6, radius: 5, intensity: 1.0, label: "Henan (hardest hit)" },
+      { lat: 29.6, lng: 106.6, radius: 4.5, intensity: 0.9, label: "Sichuan" },
+      { lat: 30.3, lng: 120.2, radius: 4, intensity: 0.8, label: "Anhui" },
+      { lat: 26.1, lng: 107.3, radius: 4, intensity: 0.85, label: "Guizhou" },
+      { lat: 36.1, lng: 103.8, radius: 3.5, intensity: 0.7, label: "Gansu" },
+    ],
+    timeline: [
+      { year: 1958, deaths: 0, label: "Great Leap Forward launched; collectivization and steel campaign" },
+      { year: 1959, deaths: 5_000_000, label: "Famine begins; Mao suppresses reports; grain exports continue" },
+      { year: 1960, deaths: 20_000_000, label: "Peak famine; some provinces lose 10–15% of population" },
+      { year: 1961, deaths: 30_000_000, label: "Mao adjusts policies; famine begins to ease" },
+      { year: 1962, deaths: 30_000_000, label: "Famine declared over; true toll suppressed for decades" },
+    ],
+    descriptionEn: "The Great Chinese Famine (1959–1961) was the deadliest famine in human history, caused primarily by Mao Zedong's Great Leap Forward — a disastrous attempt to rapidly collectivize agriculture and industrialize China. Estimates range from 15 to 55 million deaths. The Communist Party continued exporting grain even as tens of millions starved, and suppressed all reporting of the catastrophe.",
+    descriptionEs: "La Gran Hambruna China (1959–1961) fue la hambruna más mortífera de la historia, causada por el Gran Salto Adelante de Mao Zedong. Murieron entre 15 y 55 millones de personas mientras el Partido Comunista exportaba grano y suprimía toda información.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Great Chinese Famine of 1959–1961 was the deadliest famine in recorded human history and one of the greatest policy-caused disasters of the 20th century. It killed an estimated 15 to 55 million people — the extraordinary range reflecting the difficulty of reconstructing demographic data from a government that actively concealed the catastrophe for decades. The most rigorous scholarly estimates cluster between 30 and 45 million excess deaths.
+
+The famine was not caused by drought or crop failure alone, though poor weather contributed in some regions. It was primarily the result of Mao Zedong's Great Leap Forward — a radical campaign launched in 1958 to transform China from an agrarian society into a communist industrial power in just a few years. The centerpiece was the forced collectivization of agriculture into People's Communes, in which private farming was abolished and agricultural decisions were made by party cadres with no farming knowledge. Simultaneously, the "backyard steel furnace" campaign diverted tens of millions of farmers away from fields to smelt steel — producing low-quality pig iron useless for industry while leaving harvests to rot unharvested.
+
+Local party officials, terrified of being labeled counter-revolutionaries for reporting food shortages, systematically falsified production figures upward. Mao, receiving reports of miraculous harvests, set grain quotas based on fictional numbers — and grain was forcibly extracted from villages at these quotas even when it left nothing for the people who grew it. In some areas, state requisitions took the entire harvest. Peasants caught hiding food or eating crops in the fields were beaten, imprisoned, or killed. While millions starved, China continued exporting grain to the Soviet Union and other countries to maintain political prestige and repay debts.
+
+The geographic distribution of mortality was uneven. Provinces including Anhui, Sichuan, Henan, Guizhou, and Gansu suffered catastrophic losses — some counties lost 20% or more of their population in a single year. Rural areas suffered far more than cities; Communist Party members and urban workers had priority access to food. Entire villages were depopulated. Reports from the period describe people consuming bark, roots, insects, leather, and in documented cases, human flesh.
+
+The famine was not openly acknowledged by the Chinese Communist Party until decades later, and its true scale is still politically sensitive in China today. Scholars like Yang Jisheng (author of "Tombstone") conducted investigations by cross-referencing county-level population data, interviewing survivors, and accessing provincial archives — confirming the macro-scale of the catastrophe even as some specific figures remain disputed.`,
+    faqs: [
+      { q: "How many people died in the Great Chinese Famine?", a: "Estimates range from 15 to 55 million deaths, with most rigorous scholarly studies clustering between 30 and 45 million excess deaths. The wide range reflects the Chinese government's decades-long suppression of data and the difficulty of reconstructing county-level mortality from incomplete records." },
+      { q: "What caused the Great Chinese Famine?", a: "Primarily Mao Zedong's Great Leap Forward policies: forced agricultural collectivization destroyed farming incentives and knowledge; the backyard steel campaign diverted farmers from fields; local officials falsified harvest data upward out of fear; grain was forcibly extracted at impossible quotas; and food was still exported internationally even as millions starved. A poor harvest in some regions worsened but did not cause the famine." },
+      { q: "Did the Chinese government know about the famine?", a: "Yes. Reports of starvation reached party leadership from the beginning, but local officials falsified data upward to avoid punishment, and those who reported honestly faced persecution. Peng Dehuai, a senior general who privately told Mao about the famine at the Lushan conference in 1959, was purged. Mao's response to honest reports was often to accuse reporters of 'rightism' and intensify grain requisitions." },
+      { q: "Is the Great Chinese Famine acknowledged in China today?", a: "Officially, the Chinese Communist Party acknowledges the famine as a 'mistake' of the Great Leap Forward period, attributing it to policy errors combined with natural disasters. The full death toll and the famine's political causes remain highly sensitive; books like Yang Jisheng's 'Tombstone' are banned in mainland China. Academic discussion is constrained, and official estimates are far lower than scholarly ones." },
+    ],
+    references: [
+      { title: "Tombstone: The Great Chinese Famine — Yang Jisheng (2012)", url: "https://www.google.com/books/", source: "Farrar, Straus and Giroux" },
+      { title: "Mao's Great Famine — Frank Dikötter (2010)", url: "https://www.google.com/books/", source: "Walker & Company" },
+    ],
+    tags: ["china", "mao", "great leap forward", "collectivization", "famine", "communism", "20th century"],
+    dataReliabilityLevel: "low",
+    dataReliabilityNote: "The Chinese government suppressed famine data for decades and official figures are far lower than scholarly estimates. Research by Yang Jisheng, Frank Dikötter, Judith Banister, and others using provincial archives and demographic modeling yields estimates of 30–45M. The extraordinary range (15–55M) reflects genuine uncertainty due to data suppression.",
+  },
+  {
+    id: "holodomor",
+    name: "Holodomor (Soviet Famine 1932–33)",
+    nameEs: "Holodomor (Hambruna Soviética 1932–33)",
+    category: "famine",
+    startYear: 1932,
+    endYear: 1933,
+    deathsMin: 3_500_000,
+    deathsMax: 7_500_000,
+    deathsEstimate: 5_000_000,
+    color: "#78716C",
+    glowColor: "rgba(120,113,108,0.5)",
+    icon: "Flame",
+    originCountry: "Ukraine",
+    originLat: 49.0,
+    originLng: 31.5,
+    regions: [
+      { lat: 49.0, lng: 31.5, radius: 6, intensity: 1.0, label: "Ukraine (entire country)" },
+      { lat: 48.5, lng: 35.0, radius: 4, intensity: 0.9, label: "Eastern Ukraine / Donbas" },
+      { lat: 50.4, lng: 30.5, radius: 3.5, intensity: 0.8, label: "Kyiv Oblast" },
+      { lat: 51.5, lng: 31.3, radius: 3.5, intensity: 0.75, label: "Northern Kazakhstan (also affected)" },
+    ],
+    timeline: [
+      { year: 1932, deaths: 0, label: "Collectivization accelerated; grain quotas imposed on Ukraine" },
+      { year: 1932, deaths: 1_000_000, label: "Blacklist decree — entire villages cut off from food supplies" },
+      { year: 1933, deaths: 4_000_000, label: "Peak famine: estimated 28,000 deaths per day in January–June 1933" },
+      { year: 1933, deaths: 5_000_000, label: "Famine officially ends; USSR denies any famine occurred" },
+    ],
+    descriptionEn: "The Holodomor ('death by hunger' in Ukrainian) was a man-made famine in Soviet Ukraine in 1932–33 that killed an estimated 3.5–7.5 million Ukrainians. Stalin's regime enforced impossibly high grain quotas, blacklisted villages that couldn't meet them, and sealed Ukrainian borders to prevent the starving population from seeking food elsewhere. 33 countries recognize the Holodomor as genocide.",
+    descriptionEs: "El Holodomor ('muerte por hambre') fue una hambruna artificial en Ucrania soviética en 1932–33 que mató entre 3,5 y 7,5 millones de ucranianos. El régimen de Stalin impuso cuotas de grano imposibles y selló las fronteras ucranianas para que la población hambrienta no pudiera buscar alimentos. 33 países reconocen el Holodomor como genocidio.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Holodomor — Ukrainian for "death by hunger" — was a catastrophic famine that swept through Soviet Ukraine in 1932–33, killing an estimated 3.5 to 7.5 million Ukrainians. The word is also used to refer specifically to the deliberate policy measures that caused and sustained the famine — measures that 33 countries have legally recognized as genocide, though this classification remains contested by Russia.
+
+The famine's origins lie in Stalin's forced collectivization drive of 1929–1933, which sought to eliminate independent peasant farmers (kulaks) and replace private agriculture with collective farms (kolkhozy). Ukrainian peasants — who formed one of the Soviet Union's most productive agricultural regions — resisted collectivization with particular determination, slaughtering livestock rather than surrendering them to collectives and hiding grain from requisition brigades. The Soviet regime responded with escalating violence.
+
+In 1932, when grain quotas could not be met from a diminished harvest, the regime's response was to increase pressure rather than provide relief. The "Law of Spikelets" (August 1932) made it a criminal offense punishable by death or ten years' labor camp to take even a handful of grain from collective fields — even for immediate consumption. In November 1932, the "blacklist" policy was introduced: villages that failed to meet quotas were blacklisted, meaning all food items — not just grain but everything, including bread, lard, vegetables, and other foods — were confiscated, and no food could be brought in from outside. Blacklisted villages were, in effect, sealed death zones.
+
+Perhaps most damningly, at the peak of the famine in January–June 1933 — when contemporaneous Soviet internal reports estimated 25,000–28,000 Ukrainians were dying per day — the USSR maintained a military cordon around Ukraine preventing peasants from traveling to cities or other regions to find food, and continued exporting grain internationally. The border restrictions applied specifically and with unique severity to Ukraine, distinguishing the Ukrainian famine from the broader Soviet famine that also affected Kazakhstan and parts of Russia.
+
+The Soviet government denied the famine was happening at all. Foreign journalists in Moscow were pressured to report nothing or to deny eyewitness accounts. Welsh journalist Gareth Jones, who traveled through Ukraine and reported honestly on the mass starvation, was attacked and discredited by Soviet-sympathizing journalists including Walter Duranty of the New York Times, who won a Pulitzer Prize for reports denying the famine. Soviet census data from 1937, which would have shown the demographic catastrophe, was suppressed — and the statisticians who conducted the census were arrested and shot.
+
+The Holodomor was not publicly acknowledged within the Soviet Union until 1990. Ukraine officially recognizes it as genocide; Russia disputes this characterization, arguing it was a tragic but non-intentional famine affecting multiple Soviet nationalities.`,
+    faqs: [
+      { q: "How many people died in the Holodomor?", a: "Estimates range from 3.5 to 7.5 million deaths in Ukraine alone, with 5 million being a frequently cited figure. A broader Soviet famine in the same period killed additional millions in Kazakhstan (~1.5M) and parts of Russia. The wide range reflects the suppression of Soviet census data and the difficulty of retrospective demographic reconstruction." },
+      { q: "Was the Holodomor a genocide?", a: "33 countries, including Ukraine, the United States, Canada, Australia, and most EU members, have officially recognized the Holodomor as genocide. The argument is that specific Soviet policies — the blacklist decree, border restrictions uniquely applied to Ukraine, continued grain exports during peak starvation — were deliberately targeted at Ukrainians as a national group. Russia disputes this, arguing it was a tragic famine without genocidal intent." },
+      { q: "How did the Soviet government respond to the famine?", a: "The USSR denied the famine was occurring. It maintained the blacklist and border restrictions at the peak of mass mortality. It suppressed census data that would have revealed population losses. It pressured foreign journalists to report nothing. Grain continued to be exported. Soviet officials who reported honestly to Moscow about starvation faced punishment for 'defeatism'." },
+      { q: "Who was Gareth Jones and why does he matter?", a: "Gareth Jones was a Welsh journalist who traveled through Ukraine in March 1933 and published honest eyewitness reports of mass starvation. He was vigorously attacked by Walter Duranty (NYT Moscow bureau chief), who denied the famine. Jones was vindicated posthumously; Duranty's Pulitzer Prize has been repeatedly called for rescission (it has not been revoked). Jones's story was the basis for the 2019 film 'Mr. Jones'." },
+    ],
+    references: [
+      { title: "Red Famine: Stalin's War on Ukraine — Anne Applebaum (2017)", url: "https://www.google.com/books/", source: "Doubleday" },
+      { title: "The Ukrainian Famine of 1932–1933 — Robert Conquest", url: "https://www.google.com/books/", source: "Academic" },
+      { title: "Holodomor Research and Education Consortium", url: "https://www.holodomor.ca/", source: "HREC" },
+    ],
+    tags: ["ukraine", "ussr", "stalin", "collectivization", "holodomor", "genocide", "famine", "1930s"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Soviet census data for the period was suppressed; the 1937 census was destroyed and its compilers shot. Modern demographic reconstruction using retrospective methods yields estimates of 3.5–7.5M for Ukraine. The wide range reflects genuine scholarly debate. Ukrainian government and diaspora sources tend toward higher estimates; Russian sources lower.",
+  },
+  {
+    id: "bengal-famine-1943",
+    name: "Bengal Famine 1943",
+    nameEs: "Hambruna de Bengala 1943",
+    category: "famine",
+    startYear: 1943,
+    endYear: 1944,
+    deathsMin: 2_000_000,
+    deathsMax: 3_000_000,
+    deathsEstimate: 2_500_000,
+    color: "#92400E",
+    glowColor: "rgba(146,64,14,0.5)",
+    icon: "Flame",
+    originCountry: "India (British Bengal)",
+    originLat: 22.6,
+    originLng: 88.4,
+    regions: [
+      { lat: 22.6, lng: 88.4, radius: 5, intensity: 1.0, label: "Bengal (Calcutta & rural)" },
+      { lat: 23.7, lng: 90.4, radius: 4, intensity: 0.9, label: "East Bengal (now Bangladesh)" },
+      { lat: 22.3, lng: 87.3, radius: 3.5, intensity: 0.8, label: "Rural West Bengal" },
+      { lat: 24.9, lng: 91.9, radius: 3, intensity: 0.7, label: "Sylhet / Assam border" },
+    ],
+    timeline: [
+      { year: 1942, deaths: 0, label: "Cyclone + Japanese invasion of Burma cuts off rice imports" },
+      { year: 1943, deaths: 500_000, label: "Food prices triple; rural famine spreads to cities" },
+      { year: 1943, deaths: 2_000_000, label: "Peak mortality: bodies in Calcutta streets; cholera outbreaks" },
+      { year: 1944, deaths: 2_500_000, label: "Famine recedes; total death count compiled" },
+    ],
+    descriptionEn: "The Bengal Famine of 1943 killed an estimated 2–3 million people in British India (modern West Bengal and Bangladesh). A combination of wartime disruption, rice crop failure, British colonial export policies, and Winston Churchill's refusal to authorize emergency food imports — despite urgent requests from Indian and British officials — turned a food shortage into a catastrophic famine. Amartya Sen's foundational famine research began with this event.",
+    descriptionEs: "La Hambruna de Bengala de 1943 mató a entre 2 y 3 millones de personas en la India Británica. La combinación de perturbaciones bélicas, malas cosechas y la negativa de Churchill a autorizar importaciones de alimentos de emergencia convirtió una escasez en una catástrofe.",
+    symptomsEn: [],
+    symptomsEs: [],
+    longDescriptionEn: `The Bengal Famine of 1943 killed an estimated 2 to 3 million people in the Bengal Presidency of British India (encompassing modern West Bengal in India and Bangladesh). It stands as a defining example of famine economics — specifically, of how food shortages caused by policy failure and political indifference kill millions even when food exists elsewhere.
+
+The famine's immediate triggers included a cyclone in October 1942 that destroyed Bengal's rice crop; the Japanese invasion of Burma in 1942 that cut off Bengal's primary rice import supply; and a fungal disease (Helminthosporium oryzae) that damaged the 1942 crop further. These factors produced a genuine food supply shortfall of roughly 10% — insufficient in isolation to cause mass death.
+
+What transformed scarcity into catastrophe was policy. British wartime policy included "denial policies" — the deliberate destruction of boats, rice, and transport infrastructure in coastal Bengal to deny resources to potential Japanese invaders. This simultaneously destroyed the livelihoods of fishing communities and disrupted food distribution. The British Indian government exported rice from Bengal to other war zones even as prices in Bengal tripled. Speculation and hoarding by merchants, enabled by rapid wartime inflation, further concentrated food access among those who could pay.
+
+Most critically, Churchill and the War Cabinet in London repeatedly refused to authorize emergency food shipments to India, despite urgent requests from Viceroy Wavell, Bengal's Lieutenant Governor, and members of Churchill's own cabinet. Churchill's documented statements expressing contempt for Indians ("a beastly people with a beastly religion") have led historians including Madhusree Mukerjee to argue that the famine's political dimension amounted to deliberate neglect. The British government denied the existence of famine publicly for months while people starved on Calcutta's streets — their bodies collected daily by municipal workers.
+
+Amartya Sen's foundational work on famine economics — which won him the Nobel Prize in Economics — began with this event. Sen demonstrated that the Bengal Famine occurred not because food was unavailable in India but because the poor lacked "entitlements" to access it: their purchasing power collapsed relative to food prices, while those with money or political connections ate adequately. This "entitlement approach" transformed how economists understand famine causation.`,
+    faqs: [
+      { q: "How many people died in the 1943 Bengal Famine?", a: "Estimates range from 2 to 3 million deaths, with 2.5 million being the most commonly cited figure. The Indian government's post-independence Famine Inquiry Commission (1945) estimated approximately 1.5 million, which is widely considered an undercount. Demographic reconstruction studies suggest 2–3 million excess deaths." },
+      { q: "What caused the Bengal Famine?", a: "Multiple intersecting causes: a cyclone and fungal disease damaged the 1942 rice crop; the Japanese invasion of Burma cut off Bengal's rice import source; British 'denial policies' destroyed coastal boats and food to prevent Japanese use; rice continued to be exported from Bengal during the famine; wartime inflation destroyed poor people's purchasing power; and Churchill's War Cabinet refused emergency food imports despite urgent requests." },
+      { q: "What role did Churchill play in the Bengal Famine?", a: "Churchill's War Cabinet repeatedly refused to authorize emergency food shipments to India, even after Viceroy Wavell made urgent requests and other cabinet members supported intervention. Churchill's documented comments expressing hostility toward Indians — blaming them for 'breeding like rabbits' — have led some historians to characterize British policy as deliberate neglect. The debate over Churchill's moral responsibility for the famine remains live among historians." },
+      { q: "What did Amartya Sen learn from the Bengal Famine?", a: "Sen, who was a child in Bengal during the famine, later demonstrated that the famine occurred not from absolute food shortage but from collapse of 'entitlements' — poor people's ability to acquire food. Food was available in Bengal and India; the rural poor simply lacked the purchasing power to buy it as prices tripled. This insight — that famines are political and economic failures, not just natural disasters — became the foundation of modern famine economics and contributed to Sen's 1998 Nobel Prize." },
+    ],
+    references: [
+      { title: "Poverty and Famines — Amartya Sen (1981)", url: "https://global.oup.com/", source: "Oxford University Press" },
+      { title: "Churchill's Secret War — Madhusree Mukerjee (2010)", url: "https://www.google.com/books/", source: "Basic Books" },
+      { title: "The Bengal Famine — Madhusree Mukerjee", url: "https://www.jstor.org/", source: "Economic and Political Weekly" },
+    ],
+    tags: ["india", "bengal", "british empire", "wwii", "churchill", "colonialism", "famine", "1940s"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "The 1945 Famine Inquiry Commission estimated 1.5M — widely considered an undercount. Modern demographic reconstruction studies yield 2–3M. British wartime records are partially available in UK National Archives; Indian provincial records are incomplete. The 2.5M figure represents current scholarly consensus.",
+  },
+
   {
     id: "gaza-war",
     name: "Israel–Gaza War",
