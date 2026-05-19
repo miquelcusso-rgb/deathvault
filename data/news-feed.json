@@ -1,6 +1,33 @@
 {
-  "lastUpdated": "2026-05-18T17:19:39.323Z",
+  "lastUpdated": "2026-05-19T17:30:39.639Z",
   "items": [
+    {
+      "id": "paho-paho-reinforces-preparedness-measures-fo-2026-05-18",
+      "eventId": "hiv-aids",
+      "date": "2026-05-18",
+      "headline": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
+      "source": "PAHO",
+      "url": "https://www.paho.org/en/news/18-5-2026-paho-reinforces-preparedness-measures-following-who-ebola-emergency-declaration",
+      "urgent": true
+    },
+    {
+      "id": "paho-es-paho-reinforces-preparedness-measures-fo-2026-05-18",
+      "eventId": "hiv-aids",
+      "date": "2026-05-18",
+      "headline": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/en/news/18-5-2026-paho-reinforces-preparedness-measures-following-who-ebola-emergency-declaration",
+      "urgent": true
+    },
+    {
+      "id": "ecdc-mpox-worldwide-overview-2026-05-13",
+      "eventId": "mpox",
+      "date": "2026-05-13",
+      "headline": "Mpox worldwide overview",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/mpox-worldwide-overview",
+      "urgent": false
+    },
     {
       "id": "who-don601",
       "eventId": "hantavirus",
