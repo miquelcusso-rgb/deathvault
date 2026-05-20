@@ -85,11 +85,35 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="apple-mobile-web-app-title" content={m.name} />
         <link rel="manifest" href="/manifest.json" />
         <JsonLd data={[websiteSchema, orgSchema]} />
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959"
-          crossOrigin="anonymous"
+        {/* GTM Consent Mode v2 — must run BEFORE GTM loads */}
+        <Script
+          id="gtm-consent-default"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                analytics_storage: 'denied',
+                ad_storage: 'denied',
+                ad_user_data: 'denied',
+                ad_personalization: 'denied',
+                wait_for_update: 500,
+              });
+              // Restore granted consent if user already accepted
+              try {
+                var c = localStorage.getItem('cookie_consent');
+                if (c === 'accepted') {
+                  gtag('consent', 'update', {
+                    analytics_storage: 'granted',
+                    ad_storage: 'granted',
+                    ad_user_data: 'granted',
+                    ad_personalization: 'granted',
+                  });
+                }
+              } catch(e) {}
+            `,
+          }}
         />
         <Script
           id="gtm-head"
@@ -97,6 +121,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${brand === "plagueatlas" ? "GTM-5XWCZFN6" : "GTM-PCBW2RMX"}');`,
           }}
+        />
+        {/* AdSense — lazyOnload, consent-gated */}
+        <Script
+          id="adsense"
+          strategy="lazyOnload"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959"
+          crossOrigin="anonymous"
         />
         {/* GA4 is managed via GTM — no direct script needed here */}
       </head>

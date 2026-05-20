@@ -4,6 +4,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Cookie } from "lucide-react";
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 const STORAGE_KEY = "cookie_consent";
 
 export function CookieBanner() {
@@ -16,11 +22,21 @@ export function CookieBanner() {
 
   const accept = () => {
     localStorage.setItem(STORAGE_KEY, "accepted");
+    // GTM Consent Mode v2 — update to granted
+    try {
+      window.gtag?.("consent", "update", {
+        analytics_storage: "granted",
+        ad_storage: "granted",
+        ad_user_data: "granted",
+        ad_personalization: "granted",
+      });
+    } catch (e) {}
     setVisible(false);
   };
 
   const decline = () => {
     localStorage.setItem(STORAGE_KEY, "declined");
+    // Consent stays denied (default set in layout.tsx)
     setVisible(false);
   };
 

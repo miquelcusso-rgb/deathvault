@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META } from "@/lib/brand";
-import { getEventById } from "@/data/events";
+import { EVENTS, getEventById } from "@/data/events";
 import { JsonLd } from "@/components/ui/JsonLd";
+
+// Pre-render all 36 event pages at build time (ISR: revalidate every hour)
+export async function generateStaticParams() {
+  return EVENTS.map((e) => ({ slug: e.id }));
+}
+export const revalidate = 3600;
 
 export async function generateMetadata(
   { params }: { params: Promise<{ slug: string }> }
@@ -103,8 +109,9 @@ export default async function EventLayout({
     "headline": pageTitle,
     "description": event.descriptionEn,
     "url": `${baseUrl}/pandemic/${slug}`,
-    "datePublished": `${event.startYear}-01-01`,
-    "dateModified": new Date().toISOString().slice(0, 10),
+    "datePublished": "2025-01-01",  // date this site/content was first published
+    "dateModified": "2026-05-20",   // date content was last updated
+
     "author": {
       "@type": "Organization",
       "name": meta.name,
