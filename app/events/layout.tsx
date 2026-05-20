@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { detectBrand, BRAND_META } from "@/lib/brand";
+import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
+import { EVENTS } from "@/data/events";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -39,6 +40,8 @@ export default async function EventsLayout({ children }: { children: React.React
   const brand = detectBrand(host);
   const meta = BRAND_META[brand];
   const isPA = brand === "plagueatlas";
+  const brandEvents = EVENTS.filter((e) => BRAND_CATEGORIES[brand].includes(e.category))
+    .sort((a, b) => b.deathsEstimate - a.deathsEstimate);
 
   const collectionSchema = {
     "@context": "https://schema.org",
@@ -49,6 +52,20 @@ export default async function EventsLayout({ children }: { children: React.React
       : "Interactive archive of history's deadliest pandemics, wars, nuclear events, and famines with death tolls and maps.",
     "url": `${meta.url}/events`,
     "isPartOf": { "@type": "WebSite", "name": meta.name, "url": meta.url },
+  };
+
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": isPA ? "Deadliest Pandemics in History" : "Deadliest Events in Human History",
+    "numberOfItems": brandEvents.length,
+    "itemListElement": brandEvents.slice(0, 20).map((ev, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": ev.name,
+      "url": `${meta.url}/pandemic/${ev.id}`,
+      "description": ev.descriptionEn.slice(0, 150),
+    })),
   };
 
   const breadcrumbSchema = {
@@ -62,7 +79,7 @@ export default async function EventsLayout({ children }: { children: React.React
 
   return (
     <>
-      <JsonLd data={[collectionSchema, breadcrumbSchema]} />
+      <JsonLd data={[collectionSchema, itemListSchema, breadcrumbSchema]} />
       {children}
     </>
   );

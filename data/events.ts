@@ -115,6 +115,8 @@ The outbreak did not end cleanly. Plague returned in recurring waves for roughly
       { q: "How did the Plague of Justinian affect the Byzantine Empire?", a: "It was catastrophic for the Empire. Justinian's campaigns to reconquer western Roman territory were undermined, tax revenues collapsed, army recruitment failed, and many cities lost half their populations. It contributed significantly to the empire's long-term decline." },
     ],
     tags: ["bubonic", "ancient", "bacteria", "byzantine"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Ancient records are sparse. Estimates rely on Byzantine chronicles, archeological evidence, and retrospective demographic modeling. The 30–50M range reflects genuine scholarly uncertainty.",
   },
   {
     id: "black-death",
@@ -179,6 +181,8 @@ The Black Death did not end in 1353. Plague continued to return to Europe in wav
       { q: "Is bubonic plague still a threat today?", a: "Yersinia pestis still exists in rodent populations in parts of Central Asia, Africa, and the American Southwest. A handful of human cases occur globally each year, but modern antibiotics cure it effectively when diagnosed promptly." },
     ],
     tags: ["bubonic", "medieval", "bacteria", "europe", "plague"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Medieval parish records and chronicles exist for parts of Europe; data for Asia and the Middle East is far less complete. Modern estimates use demographic reconstruction from regional sources.",
   },
   {
     id: "smallpox",
@@ -243,6 +247,8 @@ Today, live Variola virus exists in only two officially sanctioned repositories:
       { q: "Does smallpox still exist?", a: "The Variola virus no longer circulates in the wild. Live samples exist only in two officially authorized laboratories: the CDC in Atlanta, USA, and the VECTOR Institute in Russia." },
     ],
     tags: ["virus", "eradicated", "vaccine", "global"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "WHO-led global eradication campaign (1967–1980) produced extensive modern surveillance data. Historical mortality is well-documented from the 19th century onward; earlier centuries use demographic reconstruction.",
   },
   {
     id: "spanish-flu",
@@ -307,6 +313,8 @@ The Spanish Flu ended gradually during 1919 and early 1920 as the virus mutated 
       { q: "How did the Spanish Flu compare to COVID-19?", a: "The Spanish Flu killed far more people in absolute terms (50–100M vs ~7M officially for COVID-19, though excess mortality estimates for COVID reach 15–20M). Both spread globally via respiratory transmission. The 1918 flu killed far more young adults; COVID-19 disproportionately killed the elderly." },
     ],
     tags: ["influenza", "virus", "wwi", "h1n1", "respiratory"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "WWI-era censorship suppressed reporting in many countries. Modern estimates use demographic excess-mortality analysis. Revised upward significantly from original estimates; scholarly consensus now 50–100M.",
   },
   {
     id: "hiv-aids",
@@ -374,6 +382,8 @@ The transformation came with antiretroviral therapy (ART). Early antiretroviral 
       { q: "Which countries are most affected by HIV/AIDS?", a: "Sub-Saharan Africa bears nearly 70% of global HIV infections. Southern African countries — Eswatini, Lesotho, Botswana, and Zimbabwe — have the highest prevalence rates, with 10–27% of adults living with HIV." },
     ],
     tags: ["virus", "retrovirus", "ongoing", "africa", "sexual-transmission"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "UNAIDS publishes annual surveillance data with confidence intervals. Historical figures since 1981 are well-documented. Ongoing pandemic with strong global monitoring infrastructure.",
   },
   {
     id: "covid-19",
@@ -441,6 +451,8 @@ Official COVID-19 death counts reached approximately 7 million as reported to th
       { q: "How effective were COVID-19 vaccines?", a: "mRNA vaccines (Pfizer/BioNTech, Moderna) showed 90–95% efficacy against severe disease from the original strain. Effectiveness against Omicron was lower for infection but remained high for preventing death and hospitalization. Vaccination is estimated to have saved 20 million lives in 2021 alone." },
     ],
     tags: ["coronavirus", "virus", "respiratory", "modern", "vaccine"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "Extensive modern surveillance. Official death counts exist for nearly all countries; excess mortality studies (The Economist, WHO) provide independent cross-checks. The 7M+ figure is an undercount; excess mortality estimates range 18–27M.",
   },
   {
     id: "malaria",
@@ -499,6 +511,8 @@ Between 2000 and 2023, the global malaria death rate fell by roughly 60%, saving
       { q: "Is there a vaccine for malaria?", a: "Yes. The RTS,S/AS01 (Mosquirix) vaccine was approved by the WHO in 2021 and is now being deployed in parts of Africa. The more effective R21/Matrix-M vaccine received WHO approval in 2023. Neither provides complete protection." },
     ],
     tags: ["parasite", "mosquito", "tropical", "ongoing", "africa"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "WHO publishes annual World Malaria Reports with country-level data. Historical estimates use demographic modeling. One of the most rigorously monitored infectious diseases globally.",
   },
   {
     id: "ebola",
@@ -555,6 +569,8 @@ The outbreak prompted the fastest vaccine development effort in history for the 
       { q: "Where does Ebola come from?", a: "Ebola's natural reservoir is believed to be fruit bats in Central and West Africa. Humans are infected through contact with infected animals (bats, apes, or other wildlife), and then the virus spreads person-to-person through direct contact with bodily fluids." },
     ],
     tags: ["virus", "hemorrhagic", "africa", "contained"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "Each outbreak is individually tracked by WHO and CDC with case counts and outcomes documented. The 2014–16 West African epidemic is the most studied; smaller outbreaks have complete records.",
   },
   {
     id: "hantavirus",
@@ -615,6 +631,8 @@ There is no specific antiviral treatment for any hantavirus infection, and no ap
       { q: "Is there a treatment or vaccine for hantavirus?", a: "There is no approved antiviral treatment for hantavirus infection in most countries. Treatment is supportive, focusing on mechanical ventilation (for HPS) or dialysis (for HFRS). China has an approved killed whole-virus vaccine for HFRS, but no global vaccine is available." },
     ],
     tags: ["virus", "rodent-borne", "respiratory", "americas"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "Relatively rare disease with individual cases tracked by national health authorities. The 2026 MV Hondius cluster is being monitored in real time. Historical case fatality rates well-established at 38%.",
   },
   {
     id: "cholera",
@@ -673,6 +691,8 @@ Oral rehydration therapy (ORT) — a simple solution of water, salt, and sugar �
       { q: "How was John Snow connected to cholera?", a: "During London's 1854 cholera outbreak, Dr. John Snow mapped cases and identified a contaminated water pump on Broad Street as the source. By convincing authorities to remove the pump handle, he helped end the local outbreak. His work is considered the founding act of modern epidemiology." },
     ],
     tags: ["bacteria", "waterborne", "sanitation", "historical"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Historical pandemics (1817–1923) rely on incomplete records from colonized regions. Modern WHO surveillance is comprehensive. The ongoing 7th pandemic (1961–present) is well-monitored but under-reported in conflict zones.",
   },
 
   // ── WARS ───────────────────────────────────────────────────────────────────
@@ -733,6 +753,8 @@ The war's political consequences reshaped the world. The Austro-Hungarian, Russi
       { q: "Why were casualties so high in WWI?", a: "Casualties were catastrophically high because industrial-age weapons — machine guns, artillery, poison gas — combined with outdated 19th-century tactics of massed infantry assaults. The result was trench warfare stalemate where offensives cost tens of thousands of lives for minimal territorial gain." },
     ],
     tags: ["war", "europe", "industrial", "trenches"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "Extensive national military archives for all major combatants. War graves commissions documented military casualties. Civilian deaths less complete but well-studied. The 20M figure is the established scholarly consensus.",
   },
   {
     id: "wwii",
@@ -794,6 +816,8 @@ The war ended with the unconditional surrender of Germany on May 8, 1945 (V-E Da
       { q: "Why did the US drop atomic bombs on Japan?", a: "The US dropped atomic bombs on Hiroshima (August 6, 1945) and Nagasaki (August 9, 1945) to force Japan's surrender and avoid a land invasion of Japan, which military planners estimated would cost hundreds of thousands of American and millions of Japanese lives. Japan surrendered on August 15, 1945." },
     ],
     tags: ["war", "global", "holocaust", "nuclear", "deadliest"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "The most thoroughly documented war in history: Nuremberg Trials, national archives, census records, Holocaust documentation. Civilian casualties less precise but well-bounded. The 70–85M range reflects genuine variation in methodology.",
   },
   {
     id: "mongol-conquests",
@@ -852,6 +876,8 @@ By the mid-14th century, the empire fragmented into successor states: the Yuan d
       { q: "What was the Pax Mongolica?", a: "The Pax Mongolica ('Mongol Peace') refers to a period of roughly a century (c.1260–1360) during which Mongol control of the Silk Road trade routes created relative stability and enabled unprecedented commercial and cultural exchange across Eurasia, connecting China, the Islamic world, and Europe." },
     ],
     tags: ["war", "conquest", "medieval", "empire"],
+    dataReliabilityLevel: "low",
+    dataReliabilityNote: "Medieval sources are limited, often from court historians with agendas. Demographic estimates are extrapolated from regional population data before and after conquest. The 40M figure is a widely cited estimate but uncertainty is very high.",
   },
   {
     id: "taiping-rebellion",
@@ -906,6 +932,8 @@ The death toll came not primarily from combat but from the catastrophic disrupti
       { q: "Why is the Taiping Rebellion not well known?", a: "The Taiping Rebellion is little known outside China partly because it occurred simultaneously with the American Civil War and European colonial expansion, diverting Western attention. It was also inconvenient for multiple political narratives: too Christian for Communist historiography, too heterodox for traditional Chinese historiography." },
     ],
     tags: ["war", "civil-war", "china", "19th-century"],
+    dataReliabilityLevel: "low",
+    dataReliabilityNote: "Limited Western documentation; Chinese records from this period are incomplete. Population data from Qing dynasty census records is imprecise. Estimates range enormously (10–30M); the 20M figure is a commonly cited midpoint.",
   },
 
   // ── NUCLEAR ────────────────────────────────────────────────────────────────
@@ -962,6 +990,8 @@ Hiroshima and Nagasaki remain the only instances in history when nuclear weapons
       { q: "Have nuclear weapons been used in war since 1945?", a: "No. Hiroshima and Nagasaki remain the only instances of nuclear weapons use in armed conflict in history. However, approximately 12,500 nuclear warheads remain in the world's arsenals as of 2024, held by nine countries." },
     ],
     tags: ["nuclear", "wwii", "atomic-bomb", "japan", "radiation"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "Extensively documented by US military, Japanese government, and medical researchers. Atomic Bomb Casualty Commission studied survivors for decades. Immediate deaths well-established; long-term radiation deaths remain subject to ongoing research.",
   },
   {
     id: "chernobyl",
@@ -1018,6 +1048,8 @@ The Chernobyl Exclusion Zone — still in place today — has become an involunt
       { q: "What happened to the city of Pripyat after Chernobyl?", a: "Pripyat, a purpose-built Soviet city of approximately 50,000 residents adjacent to the plant, was evacuated on April 27, 1986 — 36 hours after the explosion. Residents were told to bring only essentials for a temporary evacuation. They never returned. The city remains abandoned and is now a major tourist site within the Exclusion Zone." },
     ],
     tags: ["nuclear", "accident", "ukraine", "soviet", "radiation"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Immediate deaths well-documented. Long-term cancer mortality is the subject of ongoing scientific debate — WHO estimates 4,000 excess deaths; Greenpeace and TORCH report project higher figures (60,000+). Soviet-era suppression of data complicates early estimates.",
   },
 
   // ── MODERN WARS ────────────────────────────────────────────────────────────
@@ -1072,6 +1104,8 @@ The human cost was catastrophic. South Korea lost approximately 137,000–415,00
       { title: "Korean War — US Department of Defense", url: "https://www.defense.gov/Spotlights/korean-war/", source: "US DoD" },
     ],
     tags: ["cold war", "korea", "usa", "china", "armistice", "forgotten war"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "US and South Korean casualties well-documented. North Korean and Chinese military casualties estimated from intelligence sources. North Korean civilian deaths are particularly uncertain given the closed nature of the regime.",
   },
   {
     id: "vietnam-war",
@@ -1127,6 +1161,8 @@ President Nixon pursued "Vietnamization" — training South Vietnamese forces to
       { title: "Vietnam War Casualties — VFW", url: "https://www.vfw.org/", source: "VFW" },
     ],
     tags: ["cold war", "vietnam", "usa", "indochina", "guerrilla", "agent orange"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "US military casualties precisely recorded. South Vietnamese and North Vietnamese military casualties estimated from multiple sources. Civilian deaths in North Vietnam and Laos/Cambodia are the least certain component of the total.",
   },
   {
     id: "rwandan-genocide",
@@ -1177,6 +1213,8 @@ The genocide ended not through international intervention but when the RPF's mil
       { title: "Rwandan Genocide — Human Rights Watch", url: "https://www.hrw.org/reports/1999/rwanda/", source: "HRW" },
     ],
     tags: ["genocide", "africa", "rwanda", "hutu", "tutsi", "un failure", "1994"],
+    dataReliabilityLevel: "high",
+    dataReliabilityNote: "International Criminal Tribunal for Rwanda, Human Rights Watch, and survivor testimony provide strong documentation. The 100-day timeframe and geographic concentration made enumeration possible. Population census data cross-confirms the demographic impact.",
   },
   {
     id: "second-congo-war",
@@ -1232,6 +1270,8 @@ The formal Second Congo War ended with the Pretoria Agreement in 2002 and the fo
       { title: "Congo War — Global Witness", url: "https://www.globalwitness.org/en/campaigns/democratic-republic-congo/", source: "Global Witness" },
     ],
     tags: ["africa", "drc", "congo", "rwanda", "minerals", "famine", "africa world war"],
+    dataReliabilityLevel: "low",
+    dataReliabilityNote: "Most deaths were from disease and famine in inaccessible areas of eastern DRC. The IRC's 2004 mortality survey extrapolated from household surveys. Independent verification is extremely limited. Wide uncertainty range (1–5.4M) reflects genuine data scarcity.",
   },
   {
     id: "syrian-civil-war",
@@ -1286,6 +1326,8 @@ The siege and fall of Aleppo — Syria's largest city — in December 2016 marke
       { title: "Syrian Observatory for Human Rights", url: "https://www.syriahr.com/en/", source: "SOHR" },
     ],
     tags: ["middle east", "syria", "isis", "russia", "proxy war", "refugees", "arab spring", "chemical weapons"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Multiple monitoring organizations (SNHR, SOHR, UN) track casualties, but access restrictions limit verification. The conflict's complexity and fragmentation make comprehensive counting extremely difficult. The 500,000 figure is a commonly cited estimate.",
   },
   {
     id: "ukraine-war",
@@ -1339,6 +1381,8 @@ The war has had global consequences far beyond the battlefield. It triggered a E
       { title: "Ukraine war losses — Oryx", url: "https://www.oryxspioenkop.com/2022/02/attack-on-europe-documenting-equipment.html", source: "Oryx" },
     ],
     tags: ["ukraine", "russia", "europe", "nato", "war 2022", "donbas", "ongoing"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Ukrainian government and UN monitor civilian casualties. Military casualties (especially Russian) are not officially disclosed and are estimated from open-source intelligence. The conflict is ongoing; figures will require significant revision.",
   },
 
   // ── WARS (HISTORICAL) ──────────────────────────────────────────────────────
@@ -2138,6 +2182,8 @@ The war has generated intense international legal scrutiny. South Africa filed a
       { title: "ICJ — South Africa v. Israel", url: "https://www.icj-cij.org/case/192", source: "ICJ" },
     ],
     tags: ["middle east", "israel", "gaza", "hamas", "palestine", "icj", "ongoing", "2023"],
+    dataReliabilityLevel: "moderate",
+    dataReliabilityNote: "Gaza Ministry of Health figures are the primary source; the UN has assessed these as reliable based on historical cross-checking. Some governments dispute the methodology. Indirect deaths (collapsed healthcare, malnutrition) are harder to quantify but documented by The Lancet and UN agencies.",
   },
 ];
 

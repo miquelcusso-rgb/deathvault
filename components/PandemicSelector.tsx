@@ -179,6 +179,8 @@ export function PandemicSelector({ selectedId, onSelect }: Props) {
           <input
             type="text"
             placeholder={t("selector_search")}
+            aria-label="Search historical events"
+            role="searchbox"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             className="w-full bg-black/30 border border-border/60 rounded-xl pl-9 pr-8 py-2.5 text-sm text-slate-300 placeholder:text-slate-600 focus:outline-none focus:border-cyan-DEFAULT/50 focus:bg-black/50 transition-all duration-200 font-mono"

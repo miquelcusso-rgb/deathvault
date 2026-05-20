@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import { detectBrand } from "@/lib/brand";
 import { getEventById, formatDeaths } from "@/data/events";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 86400; // regenerate OG images once per day
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

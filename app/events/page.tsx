@@ -298,6 +298,8 @@ export default function EventsPage() {
             <input
               type="text"
               placeholder="Search events…"
+              aria-label="Search historical events"
+              role="searchbox"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="bg-transparent outline-none text-xs w-36 sm:w-44"
@@ -307,6 +309,8 @@ export default function EventsPage() {
           {/* Sort toggle */}
           <button
             onClick={() => setSortMode((m) => (m === "deaths" ? "chrono" : "deaths"))}
+            aria-label={sortMode === "deaths" ? "Sort chronologically" : "Sort by death toll"}
+            aria-pressed={sortMode === "deaths"}
             className={cn(
               "flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-semibold transition-all duration-200 cursor-pointer",
               darkMode

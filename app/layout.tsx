@@ -22,7 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: "Furiosa Studio" }],
     creator: "Furiosa Studio",
     publisher: m.name,
-    alternates: { canonical: m.canonical },
+    alternates: {
+      canonical: m.canonical,
+      languages: { "en": m.url, "x-default": m.url },
+    },
     openGraph: {
       title: `${m.name} — ${m.headline}`,
       description: m.description,
