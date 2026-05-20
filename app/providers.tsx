@@ -34,6 +34,12 @@ function ThemeSync({ children }: { children: ReactNode }) {
 
 // ── Root providers ────────────────────────────────────────────────────────────
 export function Providers({ children, brand }: { children: ReactNode; brand: Brand }) {
+  // Rehydrate Zustand store AFTER hydration completes.
+  // This prevents React #418 (server/client state mismatch from localStorage).
+  useEffect(() => {
+    void useAppStore.persist.rehydrate();
+  }, []);
+
   return (
     <BrandContext.Provider value={brand}>
       <I18nProvider>

@@ -60,6 +60,9 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: "pw-store-v2",
+      // skipHydration: server and client both start with initial state,
+      // then Providers calls rehydrate() after mount — prevents React #418
+      skipHydration: true,
       partialize: (s) => ({
         darkMode: s.darkMode,
         mapView: s.mapView,
