@@ -24,14 +24,15 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: isPA
       ? ["deadliest pandemics history", "list of pandemics", "pandemic death tolls", "epidemic history", "black death", "spanish flu", "cholera pandemics"]
       : ["deadliest events human history", "war casualties list", "pandemic deaths", "nuclear disasters deaths", "historical death tolls", "wwii deaths", "chernobyl deaths"],
-    alternates: { canonical: `${meta.url}/events` },
-    openGraph: {
-      title,
-      description,
-      url: `${meta.url}/events`,
-      type: "website",
+    alternates: {
+      canonical: `${meta.url}/events`,
+      languages: { "en": `${meta.url}/events`, "x-default": `${meta.url}/events` },
     },
-    twitter: { card: "summary_large_image", title, description },
+    openGraph: {
+      title, description, url: `${meta.url}/events`, type: "website",
+      images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
   };
 }
 
@@ -59,7 +60,7 @@ export default async function EventsLayout({ children }: { children: React.React
     "@type": "ItemList",
     "name": isPA ? "Deadliest Pandemics in History" : "Deadliest Events in Human History",
     "numberOfItems": brandEvents.length,
-    "itemListElement": brandEvents.slice(0, 20).map((ev, i) => ({
+    "itemListElement": brandEvents.map((ev, i) => ({
       "@type": "ListItem",
       "position": i + 1,
       "name": ev.name,

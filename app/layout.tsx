@@ -1,12 +1,32 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Script from "next/script";
+import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import { CookieBanner } from "@/components/ui/CookieBanner";
 import { AddToHomeBanner } from "@/components/ui/AddToHomeBanner";
 import { detectBrand, BRAND_META } from "@/lib/brand";
 import { JsonLd } from "@/components/ui/JsonLd";
+
+const fontSpace = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-space",
+  display: "swap",
+});
+const fontMono = JetBrains_Mono({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
+const fontInter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export async function generateMetadata(): Promise<Metadata> {
   const h = await headers();
@@ -74,11 +94,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "name": m.name,
     "url": m.url,
     "logo": `${m.url}/opengraph-image`,
-    "sameAs": [],
+    "sameAs": [
+      "https://furiosa.studio",
+      brand === "plagueatlas"
+        ? "https://twitter.com/plagueatlas"
+        : "https://twitter.com/deathvaultapp",
+    ],
   };
 
   return (
-    <html lang="en" data-brand={brand} suppressHydrationWarning>
+    <html lang="en" data-brand={brand} suppressHydrationWarning
+      className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* PWA / Add to Home Screen */}
@@ -135,6 +161,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* GA4 is managed via GTM — no direct script needed here */}
       </head>
       <body className="min-h-screen bg-void antialiased">
+        {/* Skip-to-content — WCAG 2.4.1 bypass block (Level A) */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[200] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold"
+        >
+          Skip to content
+        </a>
         <noscript>
           <iframe src={`https://www.googletagmanager.com/ns.html?id=${brand === "plagueatlas" ? "GTM-5XWCZFN6" : "GTM-PCBW2RMX"}`} height="0" width="0" style={{display:'none',visibility:'hidden'}} />
         </noscript>

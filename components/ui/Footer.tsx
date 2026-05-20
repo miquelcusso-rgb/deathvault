@@ -64,6 +64,9 @@ export function Footer() {
               Navigation
             </h3>
             <div className="flex flex-col gap-2">
+              <Link href="/events" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+                Event Archive
+              </Link>
               <Link href="/about" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_about")}
               </Link>

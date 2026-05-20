@@ -1,32 +1,43 @@
-"use client";
-import { use } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { ArrowLeft, ExternalLink, Skull, Users, Calendar, MapPin, Bug, ChevronDown, Info, AlertCircle, ShieldAlert } from "lucide-react";
-import { ShareButton } from "@/components/ui/ShareButton";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import {
+  ArrowLeft, ExternalLink, Skull, Users, Calendar,
+  MapPin, Bug, ChevronDown, Info, AlertCircle, ShieldAlert,
+} from "lucide-react";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
-import { TimelineChart } from "@/components/charts/TimelineChart";
 import { getEventById, EVENTS, formatDeaths } from "@/data/events";
-import { useI18n } from "@/lib/i18n";
+
+// Client-only: Web Share API + framer-motion hero animation
+const ShareButton = dynamic(
+  () => import("@/components/ui/ShareButton").then((m) => m.ShareButton),
+  { ssr: false },
+);
+const TimelineChart = dynamic(
+  () => import("@/components/charts/TimelineChart").then((m) => m.TimelineChart),
+  { ssr: false, loading: () => <div className="h-32 flex items-center justify-center text-slate-600 text-sm font-mono">Loading chart…</div> },
+);
+
+// English labels (default language — indexed by Google)
+const CATEGORY_LABELS: Record<string, string> = {
+  pandemic: "Pandemic",
+  war:      "War",
+  nuclear:  "Nuclear",
+  famine:   "Famine",
+  genocide: "Genocide",
+};
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-export default function PandemicPage({ params }: Props) {
-  const { slug } = use(params);
-  const { t, lang } = useI18n();
+export default async function PandemicPage({ params }: Props) {
+  const { slug } = await params;
   const event = getEventById(slug);
 
   if (!event) notFound();
 
-  const name = lang === "es" ? event.nameEs : event.name;
-  const description = lang === "es" ? event.descriptionEs : event.descriptionEn;
-  const symptoms = lang === "es" ? event.symptomsEs : event.symptomsEn;
-
-  // Related events: same category, exclude self, top 3 by death toll
   const relatedEvents = EVENTS
     .filter((e) => e.category === event.category && e.id !== event.id)
     .sort((a, b) => b.deathsEstimate - a.deathsEstimate)
@@ -35,28 +46,25 @@ export default function PandemicPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-4xl mx-auto px-4 pt-12 pb-16">
-        {/* Back */}
+      <main id="main-content" className="max-w-4xl mx-auto px-4 pt-12 pb-16">
+
+        {/* Back + Share */}
         <div className="flex items-center gap-3 mb-8">
           <Link
             href="/"
             className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            {t("back")}
+            Back
           </Link>
           <ShareButton
-            title={name}
+            title={event.name}
             text={`${formatDeaths(event.deathsEstimate)} deaths · ${event.startYear}–${event.endYear ?? "present"}`}
           />
         </div>
 
         {/* Hero */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8"
-        >
+        <div className="mb-8">
           <div
             className="card p-8 relative overflow-hidden"
             style={{
@@ -64,12 +72,9 @@ export default function PandemicPage({ params }: Props) {
               boxShadow: `0 0 60px ${event.color}10`,
             }}
           >
-            {/* Background glow */}
             <div
               className="absolute inset-0 opacity-5"
-              style={{
-                background: `radial-gradient(circle at top right, ${event.color}, transparent 60%)`,
-              }}
+              style={{ background: `radial-gradient(circle at top right, ${event.color}, transparent 60%)` }}
             />
             <div className="relative z-10">
               <div className="flex items-start justify-between gap-4 flex-wrap">
@@ -80,19 +85,16 @@ export default function PandemicPage({ params }: Props) {
                       className="text-xs font-mono font-semibold uppercase tracking-wider"
                       style={{ color: event.color }}
                     >
-                      {t(event.category as "pandemic" | "war" | "nuclear" | "famine" | "genocide")}
+                      {CATEGORY_LABELS[event.category] ?? event.category}
                     </span>
                   </div>
-                  <h1 className="font-display font-black text-4xl text-white mb-1">{name}</h1>
+                  <h1 className="font-display font-black text-4xl text-white mb-1">{event.name}</h1>
                   {event.pathogen && (
                     <p className="text-slate-500 font-mono text-sm">{event.pathogen}</p>
                   )}
                 </div>
                 <div className="text-right">
-                  <p
-                    className="font-mono font-black text-4xl"
-                    style={{ color: event.color }}
-                  >
+                  <p className="font-mono font-black text-4xl" style={{ color: event.color }}>
                     {formatDeaths(event.deathsEstimate)}
                   </p>
                   <p className="text-slate-500 text-xs font-mono mt-0.5">estimated deaths</p>
@@ -100,18 +102,18 @@ export default function PandemicPage({ params }: Props) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* Stats */}
+        {/* Stats grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
           {[
             {
-              label: t("period"),
-              value: `${event.startYear}–${event.endYear ?? t("ongoing")}`,
+              label: "Period",
+              value: `${event.startYear}–${event.endYear ?? "Ongoing"}`,
               icon: <Calendar className="w-4 h-4" />,
             },
             {
-              label: t("origin"),
+              label: "Origin",
               value: event.originCountry,
               icon: <MapPin className="w-4 h-4" />,
             },
@@ -122,7 +124,7 @@ export default function PandemicPage({ params }: Props) {
             },
             event.infectedEstimate
               ? {
-                  label: t("infected"),
+                  label: "Infected",
                   value: formatDeaths(event.infectedEstimate),
                   icon: <Users className="w-4 h-4" />,
                 }
@@ -142,13 +144,13 @@ export default function PandemicPage({ params }: Props) {
           ))}
         </div>
 
-        {/* Description */}
+        {/* Overview */}
         <div className="card p-6 mb-6">
           <h2 className="font-display font-bold text-white text-xl mb-4">Overview</h2>
-          <p className="text-slate-300 leading-relaxed">{description}</p>
+          <p className="text-slate-300 leading-relaxed">{event.descriptionEn}</p>
         </div>
 
-        {/* Long Description — full historical article */}
+        {/* Full History */}
         {event.longDescriptionEn && (
           <div className="card p-6 mb-6">
             <h2 className="font-display font-bold text-white text-xl mb-4">Full History</h2>
@@ -162,10 +164,10 @@ export default function PandemicPage({ params }: Props) {
 
         {/* Timeline */}
         <div className="card p-6 mb-6">
-          <h2 className="font-display font-bold text-white text-xl mb-4">{t("stats_timeline")}</h2>
+          <h2 className="font-display font-bold text-white text-xl mb-4">Timeline</h2>
           <TimelineChart event={event} />
           <div className="mt-4 space-y-2">
-            {event.timeline.filter((t) => t.label).map((tp, i) => (
+            {event.timeline.filter((tp) => tp.label).map((tp, i) => (
               <div key={i} className="flex items-center gap-3 text-sm">
                 <span className="font-mono text-slate-500 w-12 flex-shrink-0">{tp.year}</span>
                 <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: event.color }} />
@@ -175,19 +177,16 @@ export default function PandemicPage({ params }: Props) {
           </div>
         </div>
 
-        {/* Symptoms */}
-        {symptoms.length > 0 && (
+        {/* Symptoms / Effects */}
+        {event.symptomsEn.length > 0 && (
           <div className="card p-6 mb-6">
-            <h2 className="font-display font-bold text-white text-xl mb-4">{t("symptoms")}</h2>
+            <h2 className="font-display font-bold text-white text-xl mb-4">Symptoms / Effects</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-              {symptoms.map((s) => (
+              {event.symptomsEn.map((s) => (
                 <div
                   key={s}
                   className="flex items-start gap-2 p-3 rounded-xl border text-sm"
-                  style={{
-                    borderColor: event.color + "30",
-                    backgroundColor: event.color + "08",
-                  }}
+                  style={{ borderColor: event.color + "30", backgroundColor: event.color + "08" }}
                 >
                   <Bug className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" style={{ color: event.color }} />
                   <span className="text-slate-300">{s}</span>
@@ -197,7 +196,7 @@ export default function PandemicPage({ params }: Props) {
           </div>
         )}
 
-        {/* Affected regions */}
+        {/* Affected Regions */}
         <div className="card p-6 mb-6">
           <h2 className="font-display font-bold text-white text-xl mb-4">Affected Regions</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -209,10 +208,7 @@ export default function PandemicPage({ params }: Props) {
               >
                 <div
                   className="w-2 h-2 rounded-full flex-shrink-0"
-                  style={{
-                    backgroundColor: event.color,
-                    opacity: 0.4 + r.intensity * 0.6,
-                  }}
+                  style={{ backgroundColor: event.color, opacity: 0.4 + r.intensity * 0.6 }}
                 />
                 <span className="text-slate-400 text-xs">{r.label}</span>
               </div>
@@ -220,9 +216,38 @@ export default function PandemicPage({ params }: Props) {
           </div>
         </div>
 
-        {/* References */}
+        {/* FAQ Accordion — native <details> works without JS */}
+        {event.faqs && event.faqs.length > 0 && (
+          <div className="card p-6 mb-6">
+            <h2 className="font-display font-bold text-white text-xl mb-4">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-2">
+              {event.faqs.map(({ q, a }, i) => (
+                <details
+                  key={i}
+                  className="group rounded-xl border overflow-hidden"
+                  style={{ borderColor: event.color + "30" }}
+                >
+                  <summary
+                    className="flex items-center justify-between gap-3 p-4 cursor-pointer select-none hover:bg-white/5 transition-colors duration-150"
+                    style={{ backgroundColor: event.color + "08" }}
+                  >
+                    <span className="text-slate-200 text-sm font-medium leading-snug">{q}</span>
+                    <ChevronDown className="w-4 h-4 flex-shrink-0 text-slate-500 transition-transform duration-200 group-open:rotate-180" />
+                  </summary>
+                  <div className="px-4 pb-4 pt-2">
+                    <p className="text-slate-400 text-sm leading-relaxed">{a}</p>
+                  </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Sources */}
         <div className="card p-6 mb-8">
-          <h2 className="font-display font-bold text-white text-xl mb-4">{t("sources")}</h2>
+          <h2 className="font-display font-bold text-white text-xl mb-4">Sources</h2>
           <div className="space-y-2">
             {event.references.map((ref) => (
               <a
@@ -244,67 +269,32 @@ export default function PandemicPage({ params }: Props) {
           </div>
         </div>
 
-        {/* FAQ Accordion */}
-        {event.faqs && event.faqs.length > 0 && (
-          <div className="card p-6 mb-6">
-            <h2 className="font-display font-bold text-white text-xl mb-4">
-              Frequently Asked Questions
-            </h2>
-            <div className="space-y-2">
-              {event.faqs.map(({ q, a }, i) => (
-                <details
-                  key={i}
-                  className="group rounded-xl border overflow-hidden"
-                  style={{ borderColor: event.color + "30" }}
-                >
-                  <summary
-                    className="flex items-center justify-between gap-3 p-4 cursor-pointer select-none hover:bg-white/5 transition-colors duration-150"
-                    style={{ backgroundColor: event.color + "08" }}
-                  >
-                    <span className="text-slate-200 text-sm font-medium leading-snug">{q}</span>
-                    <ChevronDown
-                      className="w-4 h-4 flex-shrink-0 text-slate-500 transition-transform duration-200 group-open:rotate-180"
-                    />
-                  </summary>
-                  <div className="px-4 pb-4 pt-2">
-                    <p className="text-slate-400 text-sm leading-relaxed">{a}</p>
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Related Events */}
         {relatedEvents.length > 0 && (
           <div className="card p-6 mb-8">
             <h2 className="font-display font-bold text-white text-xl mb-4">Related Events</h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {relatedEvents.map((rel) => {
-                const relName = lang === "es" ? rel.nameEs : rel.name;
-                const relPeriod = rel.endYear
-                  ? `${rel.startYear}–${rel.endYear}`
-                  : `${rel.startYear}–present`;
-                return (
-                  <Link
-                    key={rel.id}
-                    href={`/pandemic/${rel.id}`}
-                    className="flex flex-col gap-2 p-4 rounded-xl border hover:bg-white/5 transition-all duration-200 cursor-pointer group"
-                    style={{ borderColor: rel.color + "40" }}
-                  >
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: rel.color }} />
-                      <span className="text-xs font-mono text-slate-500 uppercase">{relPeriod}</span>
-                    </div>
-                    <p className="text-slate-200 text-sm font-semibold group-hover:text-white transition-colors duration-150">
-                      {relName}
-                    </p>
-                    <p className="font-mono text-xs font-bold" style={{ color: rel.color }}>
-                      {formatDeaths(rel.deathsEstimate)} deaths
-                    </p>
-                  </Link>
-                );
-              })}
+              {relatedEvents.map((rel) => (
+                <Link
+                  key={rel.id}
+                  href={`/pandemic/${rel.id}`}
+                  className="flex flex-col gap-2 p-4 rounded-xl border hover:bg-white/5 transition-all duration-200 cursor-pointer group"
+                  style={{ borderColor: rel.color + "40" }}
+                >
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: rel.color }} />
+                    <span className="text-xs font-mono text-slate-500 uppercase">
+                      {rel.endYear ? `${rel.startYear}–${rel.endYear}` : `${rel.startYear}–present`}
+                    </span>
+                  </div>
+                  <p className="text-slate-200 text-sm font-semibold group-hover:text-white transition-colors duration-150">
+                    {rel.name}
+                  </p>
+                  <p className="font-mono text-xs font-bold" style={{ color: rel.color }}>
+                    {formatDeaths(rel.deathsEstimate)} deaths
+                  </p>
+                </Link>
+              ))}
             </div>
           </div>
         )}
@@ -312,7 +302,7 @@ export default function PandemicPage({ params }: Props) {
         {/* Compare CTA */}
         <div className="card p-6 text-center" style={{ borderColor: event.color + "30" }}>
           <p className="text-slate-400 text-sm mb-3">
-            Compare {name} with other events
+            Compare {event.name} with other events
           </p>
           <Link href="/compare" className="btn-primary">
             Open Comparison Tool
@@ -336,12 +326,17 @@ export default function PandemicPage({ params }: Props) {
             }
             <span>
               <strong className="uppercase tracking-wider mr-1">
-                {event.dataReliabilityLevel === "high" ? "Data confidence: High" : event.dataReliabilityLevel === "moderate" ? "Data confidence: Moderate" : "Data confidence: Low"}
+                {event.dataReliabilityLevel === "high"
+                  ? "Data confidence: High"
+                  : event.dataReliabilityLevel === "moderate"
+                  ? "Data confidence: Moderate"
+                  : "Data confidence: Low"}
               </strong>
               — {event.dataReliabilityNote}
             </span>
           </div>
         )}
+
       </main>
       <Footer />
     </div>

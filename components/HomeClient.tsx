@@ -51,7 +51,7 @@ export function HomeClient({ brandEvents, siteName, tagline }: Props) {
       <ShareButton title={siteName} text={tagline} />
 
       {/* Main interactive layout */}
-      <div className="max-w-[1350px] mx-auto px-4 pb-8">
+      <main id="main-content" className="max-w-[1350px] mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr_300px] gap-4">
           {/* Left — Event Selector */}
           <div className="card p-4 h-[600px] flex flex-col overflow-hidden order-2 lg:order-1">
@@ -123,7 +123,7 @@ export function HomeClient({ brandEvents, siteName, tagline }: Props) {
         <div className="mt-4">
           <NowLive onEventClick={(ev) => setSelectedEventId(ev.id)} />
         </div>
-      </div>
+      </main>
     </>
   );
 }

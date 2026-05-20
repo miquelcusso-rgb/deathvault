@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { detectBrand, BRAND_META } from "@/lib/brand";
+import { notFound } from "next/navigation";
+import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
 import { EVENTS, getEventById } from "@/data/events";
 import { JsonLd } from "@/components/ui/JsonLd";
 
-// Pre-render all 36 event pages at build time (ISR: revalidate every hour)
+// Pre-render all event pages at build time (ISR: revalidate every hour)
+// Both brands share the same build — brand filtering happens at request time below
 export async function generateStaticParams() {
   return EVENTS.map((e) => ({ slug: e.id }));
 }
@@ -88,7 +90,9 @@ export default async function EventLayout({
   const meta = BRAND_META[brand];
   const baseUrl = meta.url;
 
-  if (!event) return <>{children}</>;
+  // Brand guard: PlagueAtlas only shows pandemics; DeathVault shows all categories
+  const allowedCats = BRAND_CATEGORIES[brand];
+  if (!event || !allowedCats.includes(event.category)) notFound();
 
   const deathFormatted =
     event.deathsEstimate >= 1_000_000

@@ -213,7 +213,20 @@ export default function EventsPage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 pt-12 pb-20">
+      {/* Noscript: full event list for crawlers / no-JS users */}
+      <noscript>
+        <div style={{ padding: "1rem", fontFamily: "sans-serif" }}>
+          <h1>Event Archive</h1>
+          <ul>
+            {EVENTS.filter((ev) => allowedCats.includes(ev.category)).map((ev) => (
+              <li key={ev.id}>
+                <a href={`/pandemic/${ev.id}`}>{ev.name} ({ev.startYear}–{ev.endYear ?? "present"})</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </noscript>
+      <main id="main-content" className="max-w-7xl mx-auto px-4 pt-12 pb-20">
 
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <motion.div

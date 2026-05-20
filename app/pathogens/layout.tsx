@@ -26,9 +26,15 @@ export async function generateMetadata(): Promise<Metadata> {
       "infectious disease biology",
       "virus vs bacteria vs parasite",
     ],
-    alternates: { canonical: `${m.url}/pathogens` },
-    openGraph: { title, description, url: `${m.url}/pathogens`, type: "website" },
-    twitter: { card: "summary_large_image", title, description },
+    alternates: {
+      canonical: `${m.url}/pathogens`,
+      languages: { "en": `${m.url}/pathogens`, "x-default": `${m.url}/pathogens` },
+    },
+    openGraph: {
+      title, description, url: `${m.url}/pathogens`, type: "website",
+      images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
   };
 }
 

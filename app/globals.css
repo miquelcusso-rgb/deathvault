@@ -2,13 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
-:root {
-  --font-space: 'Space Grotesk', sans-serif;
-  --font-jetbrains: 'JetBrains Mono', monospace;
-  --font-inter: 'Inter', sans-serif;
-}
+/* Fonts are loaded via next/font/google (self-hosted, no render-blocking @import) */
+/* CSS variables are injected via html className in app/layout.tsx */
 
 * {
   box-sizing: border-box;

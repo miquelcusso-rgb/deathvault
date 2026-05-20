@@ -23,9 +23,15 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: isPA
       ? ["pandemic news 2026", "outbreak alerts", "who disease outbreak news", "epidemic updates", "hantavirus 2026", "cholera outbreak", "covid variant 2026"]
       : ["disaster news 2026", "pandemic alerts", "war casualties update", "global crisis news", "who outbreak alerts", "disease surveillance"],
-    alternates: { canonical: `${meta.url}/news` },
-    openGraph: { title, description, url: `${meta.url}/news`, type: "website" },
-    twitter: { card: "summary_large_image", title, description },
+    alternates: {
+      canonical: `${meta.url}/news`,
+      languages: { "en": `${meta.url}/news`, "x-default": `${meta.url}/news` },
+    },
+    openGraph: {
+      title, description, url: `${meta.url}/news`, type: "website",
+      images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },
   };
 }
 

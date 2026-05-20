@@ -16,6 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
       `Data-driven statistics on the deadliest pandemics, wars, and nuclear events on ${meta.name}. Ranked death tolls, category breakdowns, and interactive charts comparing 813M+ deaths across 16 historical events.`,
     alternates: {
       canonical: `${baseUrl}/statistics`,
+      languages: { "en": `${baseUrl}/statistics`, "x-default": `${baseUrl}/statistics` },
     },
     openGraph: {
       title: `Historical Death Statistics | ${meta.name}`,
