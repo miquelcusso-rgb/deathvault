@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { headers } from "next/headers";
 import Script from "next/script";
 import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Providers } from "./providers";
 import { CookieBanner } from "@/components/ui/CookieBanner";
@@ -176,6 +177,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <AddToHomeBanner />
         </Providers>
         <CookieBanner />
+        <SpeedInsights />
       </body>
     </html>
   );
