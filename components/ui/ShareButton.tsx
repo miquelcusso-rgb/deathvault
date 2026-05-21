@@ -132,7 +132,7 @@ export function ShareButton({ title, text, url, className }: ShareButtonProps) {
             style={{
               position: "absolute",
               top: "calc(100% + 8px)",
-              left: 0,
+              right: 0,
               zIndex: 50,
               minWidth: 170,
               overflow: "hidden",
