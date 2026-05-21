@@ -197,7 +197,8 @@ export function PandemicSelector({ selectedId, onSelect }: Props) {
         <SortDropdown sort={sort} setSort={setSort} />
       </div>
 
-      {/* Category filters */}
+      {/* Category filters — only show when there's more than one category (DV only) */}
+      {availableCats.length > 2 && (
       <div className="flex gap-1.5 flex-wrap">
         {availableCats.map((cat) => (
           <button
@@ -227,6 +228,7 @@ export function PandemicSelector({ selectedId, onSelect }: Props) {
           </button>
         ))}
       </div>
+      )}
 
       {/* Event list */}
       <div className="flex-1 overflow-y-auto space-y-1.5 pr-1 scrollbar-thin">
