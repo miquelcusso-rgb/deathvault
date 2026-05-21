@@ -14,12 +14,14 @@ import {
   BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell,
 } from "recharts";
 import { ChevronRight, Zap, Droplets, Wind, Bug, AlertTriangle, Shield, Info } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 // ── Pathogen type definitions ─────────────────────────────────────────────────
 
 interface PathogenType {
   id: string;
   name: string;
+  nameEs: string;
   latin: string;
   color: string;
   icon: string;
@@ -29,11 +31,16 @@ interface PathogenType {
   mutability: number;
   drugResistance: number;
   description: string;
+  descriptionEs: string;
   mechanism: string;
+  mechanismEs: string;
   size: string;
   transmission: string[];
+  transmissionEs: string[];
   famous: string[];
+  famousEs: string[];
   defenses: string[];
+  defensesEs: string[];
   radarLabel: string;
 }
 
@@ -41,6 +48,7 @@ const PATHOGEN_TYPES: PathogenType[] = [
   {
     id: "virus",
     name: "Virus",
+    nameEs: "Virus",
     latin: "Virion",
     color: "#DC2626",
     icon: "🦠",
@@ -51,17 +59,25 @@ const PATHOGEN_TYPES: PathogenType[] = [
     drugResistance: 80,
     description:
       "Viruses are the ultimate minimalist parasites — stripped-down genetic code (DNA or RNA) wrapped in a protein shell called a capsid. They cannot reproduce independently; they hijack living host cells, forcing them to manufacture thousands of viral copies. This makes them immune to antibiotics and extremely difficult to treat. Their rapid mutation rate allows them to evolve resistance and cross species barriers, triggering pandemics.",
+    descriptionEs:
+      "Los virus son los parásitos minimalistas por excelencia: código genético simplificado (ADN o ARN) envuelto en una cápsula proteica llamada cápside. No pueden reproducirse de forma independiente; secuestran células huésped vivas, forzándolas a fabricar miles de copias virales. Esto los hace inmunes a los antibióticos y extremadamente difíciles de tratar. Su rápida tasa de mutación les permite evolucionar resistencia y cruzar barreras entre especies, desencadenando pandemias.",
     mechanism:
       "A virus binds to specific receptors on a host cell, injects its genetic material, and reprograms cellular machinery to replicate itself. New virions are assembled and released — often destroying the host cell in the process.",
+    mechanismEs:
+      "Un virus se une a receptores específicos de una célula huésped, inyecta su material genético y reprograma la maquinaria celular para replicarse. Los nuevos viriones se ensamblan y liberan, a menudo destruyendo la célula huésped en el proceso.",
     size: "20 – 300 nm",
     transmission: ["Airborne droplets", "Direct contact", "Bodily fluids", "Vector-borne", "Fomite surfaces"],
+    transmissionEs: ["Gotas aerotransportadas", "Contacto directo", "Fluidos corporales", "Transmitido por vectores", "Superficies contaminadas"],
     famous: ["SARS-CoV-2 (COVID-19)", "HIV/AIDS", "Influenza A H1N1", "Variola (Smallpox)", "Ebola", "Hantavirus"],
+    famousEs: ["SARS-CoV-2 (COVID-19)", "VIH/SIDA", "Gripe A H1N1", "Variola (Viruela)", "Ébola", "Hantavirus"],
     defenses: ["Vaccines", "Antivirals (limited)", "Quarantine", "Personal protective equipment"],
+    defensesEs: ["Vacunas", "Antivirales (limitados)", "Cuarentena", "Equipo de protección personal"],
     radarLabel: "Virus",
   },
   {
     id: "bacteria",
     name: "Bacteria",
+    nameEs: "Bacteria",
     latin: "Prokaryota",
     color: "#8B5CF6",
     icon: "🔬",
@@ -72,17 +88,25 @@ const PATHOGEN_TYPES: PathogenType[] = [
     drugResistance: 75,
     description:
       "Bacteria are single-celled organisms — far more complex than viruses — capable of independent reproduction. While the vast majority are harmless or beneficial, pathogenic bacteria produce toxins and enzymes that damage tissues. Unlike viruses, many bacterial infections can be treated with antibiotics, though antibiotic resistance is a growing crisis. Bacteria were responsible for many of history's deadliest pandemics, including the Black Death.",
+    descriptionEs:
+      "Las bacterias son organismos unicelulares, mucho más complejos que los virus, capaces de reproducirse de forma independiente. Aunque la gran mayoría son inofensivas o beneficiosas, las bacterias patógenas producen toxinas y enzimas que dañan los tejidos. A diferencia de los virus, muchas infecciones bacterianas pueden tratarse con antibióticos, aunque la resistencia antibiótica es una crisis creciente. Las bacterias fueron responsables de muchas de las pandemias más mortales de la historia, incluida la Peste Negra.",
     mechanism:
       "Pathogenic bacteria colonise host tissues, evade immune responses, and produce exotoxins or endotoxins that disrupt cellular function. Some form biofilms to resist treatment. Reproduction is rapid — doubling every 20 minutes under ideal conditions.",
+    mechanismEs:
+      "Las bacterias patógenas colonizan los tejidos del huésped, evaden las respuestas inmunitarias y producen exotoxinas o endotoxinas que interrumpen la función celular. Algunas forman biopelículas para resistir el tratamiento. La reproducción es rápida: se duplican cada 20 minutos en condiciones ideales.",
     size: "0.5 – 10 μm",
     transmission: ["Contaminated water/food", "Direct contact", "Respiratory droplets", "Insect vectors (fleas, ticks)", "Wounds"],
+    transmissionEs: ["Agua/alimentos contaminados", "Contacto directo", "Gotas respiratorias", "Vectores de insectos (pulgas, garrapatas)", "Heridas"],
     famous: ["Yersinia pestis (Black Death)", "Vibrio cholerae (Cholera)", "Mycobacterium tuberculosis (TB)", "Salmonella typhi (Typhoid)"],
+    famousEs: ["Yersinia pestis (Peste Negra)", "Vibrio cholerae (Cólera)", "Mycobacterium tuberculosis (TB)", "Salmonella typhi (Tifoidea)"],
     defenses: ["Antibiotics", "Vaccines (some)", "Water sanitation", "Hygiene"],
+    defensesEs: ["Antibióticos", "Vacunas (algunas)", "Saneamiento del agua", "Higiene"],
     radarLabel: "Bacteria",
   },
   {
     id: "parasite",
     name: "Parasite",
+    nameEs: "Parásito",
     latin: "Parasita",
     color: "#10B981",
     icon: "🪱",
@@ -93,17 +117,25 @@ const PATHOGEN_TYPES: PathogenType[] = [
     drugResistance: 45,
     description:
       "Parasites are organisms that live on or within a host, deriving nutrients at the host's expense. They range from microscopic protozoa (like Plasmodium, which causes malaria) to macroscopic worms. Parasitic diseases disproportionately affect tropical and low-income regions. Malaria alone — caused by the protozoan Plasmodium transmitted by Anopheles mosquitoes — kills over 600,000 people per year, predominantly children under 5.",
+    descriptionEs:
+      "Los parásitos son organismos que viven sobre o dentro de un huésped, obteniendo nutrientes a expensas del mismo. Van desde protozoos microscópicos (como Plasmodium, causante de la malaria) hasta gusanos macroscópicos. Las enfermedades parasitarias afectan desproporcionadamente a las regiones tropicales y de bajos ingresos. Solo la malaria, causada por el protozoo Plasmodium transmitido por mosquitos Anopheles, mata más de 600.000 personas al año, principalmente niños menores de 5 años.",
     mechanism:
       "Parasites have evolved highly sophisticated immune evasion strategies. Plasmodium, for example, hides inside red blood cells, periodically bursting out to infect new cells — causing the characteristic fever cycles of malaria. Many have complex multi-host life cycles.",
+    mechanismEs:
+      "Los parásitos han desarrollado estrategias muy sofisticadas de evasión inmunológica. Plasmodium, por ejemplo, se oculta dentro de los glóbulos rojos, estallando periódicamente para infectar nuevas células, provocando los característicos ciclos de fiebre de la malaria. Muchos tienen ciclos de vida complejos con múltiples huéspedes.",
     size: "1 μm – several metres",
     transmission: ["Mosquito bites (malaria)", "Contaminated water (Giardia)", "Undercooked meat", "Soil contact", "Sandfly bites"],
+    transmissionEs: ["Picaduras de mosquito (malaria)", "Agua contaminada (Giardia)", "Carne poco cocida", "Contacto con el suelo", "Picaduras de flebótomos"],
     famous: ["Plasmodium falciparum (Malaria)", "Trypanosoma brucei (Sleeping sickness)", "Leishmania", "Toxoplasma gondii"],
+    famousEs: ["Plasmodium falciparum (Malaria)", "Trypanosoma brucei (Enfermedad del sueño)", "Leishmania", "Toxoplasma gondii"],
     defenses: ["Antimalarial drugs", "Insecticide-treated nets", "Vaccines (limited)", "Water treatment"],
+    defensesEs: ["Antipalúdicos", "Mosquiteros tratados con insecticida", "Vacunas (limitadas)", "Tratamiento del agua"],
     radarLabel: "Parasite",
   },
   {
     id: "prion",
     name: "Prion",
+    nameEs: "Prión",
     latin: "Prionica",
     color: "#F59E0B",
     icon: "⚡",
@@ -114,17 +146,25 @@ const PATHOGEN_TYPES: PathogenType[] = [
     drugResistance: 100,
     description:
       "Prions are the most terrifying pathogens known to science — they are not living organisms at all. A prion is simply a misfolded version of a normal protein (PrP). When it contacts a healthy protein, it causes it to misfold too, triggering an unstoppable chain reaction of neurological destruction. There is no treatment, no cure, and no known immune response. All prion diseases are 100% fatal. They also survive extreme heat, UV, and chemical disinfection.",
+    descriptionEs:
+      "Los priones son los patógenos más aterradores conocidos por la ciencia: no son organismos vivos en absoluto. Un prión es simplemente una versión mal plegada de una proteína normal (PrP). Cuando entra en contacto con una proteína sana, hace que también se pliegue mal, desencadenando una reacción en cadena imparable de destrucción neurológica. No hay tratamiento, no hay cura y no existe respuesta inmune conocida. Todas las enfermedades por priones son 100% fatales. Además, sobreviven al calor extremo, la radiación UV y la desinfección química.",
     mechanism:
       "Misfolded prion proteins convert normal PrP^C proteins into pathological PrP^Sc conformations. These accumulate in the brain, forming amyloid plaques that destroy neurons, creating spongiform (sponge-like) lesions. Death typically follows within months of symptom onset.",
+    mechanismEs:
+      "Las proteínas priónicas mal plegadas convierten las proteínas PrP^C normales en conformaciones patológicas PrP^Sc. Estas se acumulan en el cerebro, formando placas amiloides que destruyen neuronas y crean lesiones espongiformes. La muerte suele producirse en meses desde la aparición de los síntomas.",
     size: "< 1 nm (protein)",
     transmission: ["Consumption of infected tissue", "Surgical instruments (iatrogenic)", "Inherited mutations", "Corneal/dura mater transplants"],
+    transmissionEs: ["Consumo de tejido infectado", "Instrumentos quirúrgicos (iatrogénico)", "Mutaciones hereditarias", "Trasplantes de córnea/duramadre"],
     famous: ["CJD (Creutzfeldt-Jakob disease)", "vCJD (BSE / Mad Cow)", "Kuru (ritual cannibalism)", "Scrapie (sheep)", "Fatal Familial Insomnia"],
+    famousEs: ["ECJ (Creutzfeldt-Jakob)", "ECJv (BSE / Vaca Loca)", "Kuru (canibalismo ritual)", "Scrapie (ovejas)", "Insomnio Fatal Familiar"],
     defenses: ["Avoiding infected tissue", "Surgical instrument decontamination (autoclave + NaOH)", "Blood screening", "No vaccine exists"],
+    defensesEs: ["Evitar tejido infectado", "Descontaminación de instrumental (autoclave + NaOH)", "Cribado de sangre", "No existe vacuna"],
     radarLabel: "Prion",
   },
   {
     id: "fungus",
     name: "Fungus",
+    nameEs: "Hongo",
     latin: "Fungi",
     color: "#06B6D4",
     icon: "🍄",
@@ -135,12 +175,19 @@ const PATHOGEN_TYPES: PathogenType[] = [
     drugResistance: 65,
     description:
       "Fungi are eukaryotic organisms — more closely related to animals than to bacteria — which makes treating fungal infections challenging without harming the host. Most healthy people are resistant, but immunocompromised individuals (HIV patients, transplant recipients, cancer patients) are extremely vulnerable. Candida auris, a recently emerged drug-resistant fungus, is raising global alarm. The WHO added fungi to its priority pathogen list in 2022.",
+    descriptionEs:
+      "Los hongos son organismos eucariotas, más cercanos a los animales que a las bacterias, lo que hace que tratar las infecciones fúngicas sea difícil sin dañar al huésped. La mayoría de las personas sanas son resistentes, pero los individuos inmunocomprometidos (pacientes con VIH, trasplantados, pacientes con cáncer) son extremadamente vulnerables. Candida auris, un hongo resistente a los fármacos de reciente aparición, genera alarma mundial. La OMS incluyó los hongos en su lista de patógenos prioritarios en 2022.",
     mechanism:
       "Pathogenic fungi colonize tissues by evading immune cells (often by surviving inside macrophages), releasing enzymes that break down host tissue, and forming persistent biofilms. Some produce toxins (mycotoxins) that damage organs.",
+    mechanismEs:
+      "Los hongos patógenos colonizan los tejidos evadiendo las células inmunes (a menudo sobreviviendo dentro de los macrófagos), liberando enzimas que degradan el tejido del huésped y formando biopelículas persistentes. Algunos producen toxinas (micotoxinas) que dañan los órganos.",
     size: "2 – 10 μm (spores)",
     transmission: ["Inhaled spores (Aspergillus, Cryptococcus)", "Direct skin contact", "Healthcare settings (Candida auris)", "Soil contact"],
+    transmissionEs: ["Esporas inhaladas (Aspergillus, Cryptococcus)", "Contacto directo con la piel", "Entornos sanitarios (Candida auris)", "Contacto con el suelo"],
     famous: ["Candida auris (drug-resistant)", "Aspergillus fumigatus (Aspergillosis)", "Cryptococcus neoformans", "Coccidioides (Valley Fever)"],
+    famousEs: ["Candida auris (resistente a fármacos)", "Aspergillus fumigatus (Aspergilosis)", "Cryptococcus neoformans", "Coccidioides (Fiebre del Valle)"],
     defenses: ["Antifungal drugs (limited classes)", "Immunosuppression management", "Environmental controls", "Hygiene in clinical settings"],
+    defensesEs: ["Antifúngicos (clases limitadas)", "Manejo de la inmunosupresión", "Controles ambientales", "Higiene en entornos clínicos"],
     radarLabel: "Fungus",
   },
 ];
@@ -321,14 +368,14 @@ const GLYPHS: Record<string, (color: string) => React.ReactNode> = {
 
 // ── Stat bar ─────────────────────────────────────────────────────────────────
 
-function StatBar({ label, value, color }: { label: string; value: number; color: string }) {
+function StatBar({ label, value, color, darkMode }: { label: string; value: number; color: string; darkMode: boolean }) {
   return (
     <div>
-      <div className="flex justify-between items-center mb-1">
-        <span className="text-xs font-mono text-slate-400">{label}</span>
+      <div className="flex justify-between items-center mb-1.5">
+        <span className="text-xs font-mono text-slate-500">{label}</span>
         <span className="text-xs font-mono font-bold" style={{ color }}>{value}/100</span>
       </div>
-      <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+      <div className={cn("h-2 rounded-full overflow-hidden", darkMode ? "bg-white/8" : "bg-black/10")}>
         <motion.div
           initial={{ width: 0 }}
           animate={{ width: `${value}%` }}
@@ -343,12 +390,12 @@ function StatBar({ label, value, color }: { label: string; value: number; color:
 
 // ── Custom tooltip ────────────────────────────────────────────────────────────
 
-function CustomTooltip({ active, payload }: any) {
+function CustomTooltip({ active, payload, cfr_label }: any) {
   if (active && payload?.length) {
     return (
-      <div className="bg-surface border border-border/60 rounded-lg px-3 py-2 text-xs font-mono">
-        <p className="text-white font-bold">{payload[0].payload.name}</p>
-        <p className="text-slate-400">Case fatality rate: <span className="text-white">{payload[0].value}%</span></p>
+      <div className="rounded-lg px-3 py-2 text-xs font-mono" style={{ backgroundColor: "rgba(10,14,23,0.97)", border: "1px solid rgba(255,255,255,0.08)" }}>
+        <p className="font-bold mb-0.5" style={{ color: "#f1f5f9" }}>{payload[0].payload.name}</p>
+        <p style={{ color: "#94a3b8" }}>{cfr_label ?? "Case fatality rate:"} <span style={{ color: "#f8fafc" }}>{payload[0].value}%</span></p>
       </div>
     );
   }
@@ -362,6 +409,8 @@ export default function PathogensPage() {
   const brand = useBrand();
   const isDV = brand === "deathvault";
   const allowedCats = BRAND_CATEGORIES[brand];
+  const { t, lang } = useI18n();
+  const isEs = lang === "es";
   const [selected, setSelected] = useState<PathogenType>(PATHOGEN_TYPES[0]);
   const [activeTab, setActiveTab] = useState<"overview" | "transmission" | "symptoms" | "history">("overview");
 
@@ -395,15 +444,15 @@ export default function PathogensPage() {
               className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full border"
               style={{ color: accentColor, borderColor: accentColor + "40", backgroundColor: accentColor + "12" }}
             >
-              PATHOGEN ARCHIVE
+              {t("path_archive")}
             </div>
             <div className="flex-1 h-px bg-gradient-to-r from-border/60 to-transparent" />
           </div>
           <h1 className={cn("font-display font-black text-4xl sm:text-5xl mb-2", darkMode ? "text-white" : "text-slate-900")}>
-            Know Your <span style={{ color: accentColor }}>Enemy</span>
+            {t("path_hero_title_main")} <span style={{ color: accentColor }}>{t("path_hero_title_accent")}</span>
           </h1>
           <p className={cn("text-base max-w-2xl", darkMode ? "text-slate-400" : "text-slate-600")}>
-            The microorganisms that have shaped human history — their biology, transmission mechanisms, and the catastrophes they've caused. Select a pathogen class to explore.
+            {t("path_hero_subtitle")}
           </p>
         </motion.div>
 
@@ -426,7 +475,7 @@ export default function PathogensPage() {
               } : {}}
             >
               <span>{pt.icon}</span>
-              {pt.name}
+              {isEs ? pt.nameEs : pt.name}
             </button>
           ))}
         </div>
@@ -465,14 +514,14 @@ export default function PathogensPage() {
 
                 {/* Name + latin */}
                 <div className="text-center mb-6 relative z-10">
-                  <p className="font-display font-black text-2xl" style={{ color: selected.color }}>{selected.name}</p>
+                  <p className="font-display font-black text-2xl" style={{ color: selected.color }}>{isEs ? selected.nameEs : selected.name}</p>
                   <p className="text-slate-600 text-xs font-mono italic">{selected.latin}</p>
-                  <p className="text-slate-500 text-xs mt-1 font-mono">Size: {selected.size}</p>
+                  <p className="text-slate-500 text-xs mt-1 font-mono">{t("path_size")}: {selected.size}</p>
                 </div>
 
                 {/* Radar chart */}
                 <div className="w-full max-w-[260px] relative z-10">
-                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 text-center mb-2">Threat Profile</p>
+                  <p className="text-[10px] font-mono uppercase tracking-widest text-slate-600 text-center mb-2">{t("path_threat_profile")}</p>
                   <ResponsiveContainer width="100%" height={200}>
                     <RadarChart data={radarData} margin={{ top: 0, right: 20, bottom: 0, left: 20 }}>
                       <PolarGrid stroke={selected.color + "25"} />
@@ -497,21 +546,29 @@ export default function PathogensPage() {
               <div className="flex flex-col">
                 {/* Tab bar */}
                 <div className={cn("flex border-b", darkMode ? "border-border/40" : "border-slate-200")}>
-                  {(["overview", "transmission", "symptoms", "history"] as const).map((tab) => (
-                    <button
-                      key={tab}
-                      onClick={() => setActiveTab(tab)}
-                      className={cn(
-                        "px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 cursor-pointer capitalize",
-                        activeTab === tab
-                          ? "border-b-2 -mb-px"
-                          : darkMode ? "text-slate-500 hover:text-slate-300" : "text-slate-400 hover:text-slate-700"
-                      )}
-                      style={activeTab === tab ? { borderColor: selected.color, color: selected.color } : {}}
-                    >
-                      {tab}
-                    </button>
-                  ))}
+                  {(["overview", "transmission", "symptoms", "history"] as const).map((tab) => {
+                    const tabLabels = {
+                      overview: t("path_tab_overview"),
+                      transmission: t("path_tab_transmission"),
+                      symptoms: t("path_tab_symptoms"),
+                      history: t("path_tab_history"),
+                    };
+                    return (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={cn(
+                          "px-4 py-3 text-xs font-semibold uppercase tracking-wider transition-colors duration-150 cursor-pointer capitalize",
+                          activeTab === tab
+                            ? "border-b-2 -mb-px"
+                            : darkMode ? "text-slate-500 hover:text-slate-300" : "text-slate-400 hover:text-slate-700"
+                        )}
+                        style={activeTab === tab ? { borderColor: selected.color, color: selected.color } : {}}
+                      >
+                        {tabLabels[tab]}
+                      </button>
+                    );
+                  })}
                 </div>
 
                 {/* Tab content */}
@@ -527,23 +584,23 @@ export default function PathogensPage() {
                       {activeTab === "overview" && (
                         <div className="space-y-6">
                           <p className={cn("text-sm leading-relaxed", darkMode ? "text-slate-300" : "text-slate-700")}>
-                            {selected.description}
+                            {isEs ? selected.descriptionEs : selected.description}
                           </p>
 
                           {/* Stat bars */}
                           <div className="space-y-3">
-                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500">Threat metrics</p>
-                            <StatBar label="Infectivity"    value={selected.infectivity}   color={selected.color} />
-                            <StatBar label="Severity"       value={selected.severity}       color={selected.color} />
-                            <StatBar label="Lethality"      value={selected.lethality}      color={selected.color} />
-                            <StatBar label="Mutation Rate"  value={selected.mutability}     color={selected.color} />
-                            <StatBar label="Drug Resistance" value={selected.drugResistance} color={selected.color} />
+                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500">{t("path_threat_metrics")}</p>
+                            <StatBar label={t("path_infectivity")}    value={selected.infectivity}   color={selected.color} darkMode={darkMode} />
+                            <StatBar label={t("path_severity")}       value={selected.severity}       color={selected.color} darkMode={darkMode} />
+                            <StatBar label={t("path_lethality")}      value={selected.lethality}      color={selected.color} darkMode={darkMode} />
+                            <StatBar label={t("path_mutation_rate")}  value={selected.mutability}     color={selected.color} darkMode={darkMode} />
+                            <StatBar label={t("path_drug_resistance")} value={selected.drugResistance} color={selected.color} darkMode={darkMode} />
                           </div>
 
                           <div>
-                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-2">Mechanism</p>
+                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-2">{t("path_mechanism")}</p>
                             <p className={cn("text-sm leading-relaxed", darkMode ? "text-slate-400" : "text-slate-600")}>
-                              {selected.mechanism}
+                              {isEs ? selected.mechanismEs : selected.mechanism}
                             </p>
                           </div>
                         </div>
@@ -552,9 +609,9 @@ export default function PathogensPage() {
                       {activeTab === "transmission" && (
                         <div className="space-y-6">
                           <div>
-                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">Transmission routes</p>
+                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">{t("path_transmission_routes")}</p>
                             <div className="space-y-2">
-                              {selected.transmission.map((t, i) => (
+                              {(isEs ? selected.transmissionEs : selected.transmission).map((route, i) => (
                                 <div key={i} className={cn(
                                   "flex items-center gap-3 p-3 rounded-xl border",
                                   darkMode ? "border-border/30 bg-white/3" : "border-slate-100 bg-slate-50"
@@ -565,16 +622,16 @@ export default function PathogensPage() {
                                     {i === 2 && <Droplets className="w-3 h-3" style={{ color: selected.color }} />}
                                     {i >= 3 && <Bug className="w-3 h-3" style={{ color: selected.color }} />}
                                   </div>
-                                  <span className={cn("text-sm", darkMode ? "text-slate-300" : "text-slate-700")}>{t}</span>
+                                  <span className={cn("text-sm", darkMode ? "text-slate-300" : "text-slate-700")}>{route}</span>
                                 </div>
                               ))}
                             </div>
                           </div>
 
                           <div>
-                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">Known defenses</p>
+                            <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">{t("path_defenses")}</p>
                             <div className="space-y-2">
-                              {selected.defenses.map((d, i) => (
+                              {(isEs ? selected.defensesEs : selected.defenses).map((d, i) => (
                                 <div key={i} className="flex items-center gap-2">
                                   <Shield className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
                                   <span className={cn("text-sm", darkMode ? "text-slate-300" : "text-slate-700")}>{d}</span>
@@ -588,22 +645,22 @@ export default function PathogensPage() {
                       {activeTab === "symptoms" && (
                         <div className="space-y-4">
                           <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">
-                            Common clinical presentation varies by species. General indicators:
+                            {t("path_clinical_note")}
                           </p>
                           {/* Generic symptom progression based on type */}
                           {[
-                            { phase: "Early", days: "1-3 days", symptoms: selected.id === "prion" ? ["Memory lapses", "Personality changes", "Coordination problems"] : selected.id === "fungus" ? ["Persistent cough", "Fever", "Fatigue"] : ["Fever & chills", "Fatigue", "Headache"], color: "#F59E0B" },
-                            { phase: "Middle", days: "4-10 days", symptoms: selected.id === "prion" ? ["Rapid cognitive decline", "Muscle twitching", "Vision problems"] : selected.id === "virus" ? ["Respiratory distress", "Immune activation", "Systemic inflammation"] : ["Organ stress", "Dehydration", "Pain"], color: "#F97316" },
-                            { phase: "Severe", days: "10+ days", symptoms: selected.id === "prion" ? ["Complete dementia", "Coma", "Death (invariable)"] : ["Organ failure risk", "Septic shock", "Requires ICU care"], color: "#DC2626" },
+                            { phaseKey: "path_phase_early" as const, daysKey: "path_days_early" as const, symptoms: selected.id === "prion" ? (isEs ? ["Lagunas de memoria", "Cambios de personalidad", "Problemas de coordinación"] : ["Memory lapses", "Personality changes", "Coordination problems"]) : selected.id === "fungus" ? (isEs ? ["Tos persistente", "Fiebre", "Fatiga"] : ["Persistent cough", "Fever", "Fatigue"]) : (isEs ? ["Fiebre y escalofríos", "Fatiga", "Dolor de cabeza"] : ["Fever & chills", "Fatigue", "Headache"]), color: "#F59E0B" },
+                            { phaseKey: "path_phase_middle" as const, daysKey: "path_days_middle" as const, symptoms: selected.id === "prion" ? (isEs ? ["Deterioro cognitivo rápido", "Espasmos musculares", "Problemas de visión"] : ["Rapid cognitive decline", "Muscle twitching", "Vision problems"]) : selected.id === "virus" ? (isEs ? ["Dificultad respiratoria", "Activación inmune", "Inflamación sistémica"] : ["Respiratory distress", "Immune activation", "Systemic inflammation"]) : (isEs ? ["Estrés orgánico", "Deshidratación", "Dolor"] : ["Organ stress", "Dehydration", "Pain"]), color: "#F97316" },
+                            { phaseKey: "path_phase_severe" as const, daysKey: "path_days_severe" as const, symptoms: selected.id === "prion" ? (isEs ? ["Demencia completa", "Coma", "Muerte (invariable)"] : ["Complete dementia", "Coma", "Death (invariable)"]) : (isEs ? ["Riesgo de fallo orgánico", "Shock séptico", "Requiere UCI"] : ["Organ failure risk", "Septic shock", "Requires ICU care"]), color: "#DC2626" },
                           ].map((phase) => (
-                            <div key={phase.phase} className={cn(
+                            <div key={phase.phaseKey} className={cn(
                               "p-4 rounded-xl border",
                               darkMode ? "border-border/30 bg-white/3" : "border-slate-100 bg-slate-50"
                             )}>
                               <div className="flex items-center gap-2 mb-2">
                                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: phase.color }} />
-                                <span className="text-xs font-bold" style={{ color: phase.color }}>{phase.phase}</span>
-                                <span className="text-xs text-slate-500 font-mono">{phase.days}</span>
+                                <span className="text-xs font-bold" style={{ color: phase.color }}>{t(phase.phaseKey)}</span>
+                                <span className="text-xs text-slate-500 font-mono">{t(phase.daysKey)}</span>
                               </div>
                               <div className="flex flex-wrap gap-2">
                                 {phase.symptoms.map((s) => (
@@ -618,9 +675,7 @@ export default function PathogensPage() {
                           {selected.id === "prion" && (
                             <div className="flex items-start gap-2 p-3 rounded-xl border border-red-500/30 bg-red-500/5">
                               <AlertTriangle className="w-4 h-4 text-red-400 flex-shrink-0 mt-0.5" />
-                              <p className="text-xs text-red-300">
-                                Prion diseases are always fatal. No treatment exists. Incubation can be years or decades before symptoms appear.
-                              </p>
+                              <p className="text-xs text-red-300">{t("path_prion_warning")}</p>
                             </div>
                           )}
                         </div>
@@ -628,9 +683,9 @@ export default function PathogensPage() {
 
                       {activeTab === "history" && (
                         <div className="space-y-4">
-                          <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">Notable {selected.name} pathogens</p>
+                          <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">{t("path_notable_pathogens")} — {isEs ? selected.nameEs : selected.name}</p>
                           <div className="space-y-2">
-                            {selected.famous.map((f, i) => (
+                            {(isEs ? selected.famousEs : selected.famous).map((f, i) => (
                               <div key={i} className={cn(
                                 "flex items-center gap-3 p-3 rounded-xl border",
                                 darkMode ? "border-border/30" : "border-slate-100"
@@ -643,7 +698,7 @@ export default function PathogensPage() {
 
                           {linkedEvents.length > 0 && (
                             <div className="mt-4">
-                              <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">In our archive</p>
+                              <p className="text-[10px] font-mono uppercase tracking-widest text-slate-500 mb-3">{t("path_in_archive")}</p>
                               <div className="space-y-2">
                                 {linkedEvents.map((ev) => (
                                   <Link
@@ -682,16 +737,16 @@ export default function PathogensPage() {
           <div className={cn("rounded-2xl border p-6", darkMode ? "bg-surface/80 border-border/60" : "bg-white/90 border-slate-200")}>
             <div className="flex items-center gap-2 mb-1">
               <p className={cn("font-display font-bold text-base", darkMode ? "text-white" : "text-slate-900")}>
-                Case Fatality Rate
+                {t("path_cfr_title")}
               </p>
               <Info className="w-3.5 h-3.5 text-slate-500" />
             </div>
-            <p className="text-xs text-slate-500 mb-5">% of infected who die — untreated or worst case</p>
+            <p className="text-xs text-slate-500 mb-5">{t("path_cfr_subtitle")}</p>
             <ResponsiveContainer width="100%" height={280}>
               <BarChart data={MORTALITY_DATA} layout="vertical" margin={{ top: 0, right: 40, bottom: 0, left: 80 }}>
                 <XAxis type="number" domain={[0, 100]} tick={{ fontSize: 9, fill: "#64748B", fontFamily: "monospace" }} tickFormatter={(v) => v + "%"} axisLine={false} tickLine={false} />
                 <YAxis type="category" dataKey="name" tick={{ fontSize: 10, fill: "#94A3B8" }} axisLine={false} tickLine={false} width={80} />
-                <Tooltip content={<CustomTooltip />} />
+                <Tooltip content={<CustomTooltip cfr_label={t("path_cfr_axis_label")} />} />
                 <Bar dataKey="rate" radius={[0, 4, 4, 0]} maxBarSize={14}>
                   {MORTALITY_DATA.map((entry, index) => (
                     <Cell key={index} fill={entry.color} />
@@ -704,9 +759,9 @@ export default function PathogensPage() {
           {/* Pathogen comparison radar */}
           <div className={cn("rounded-2xl border p-6", darkMode ? "bg-surface/80 border-border/60" : "bg-white/90 border-slate-200")}>
             <p className={cn("font-display font-bold text-base mb-1", darkMode ? "text-white" : "text-slate-900")}>
-              All Types — Threat Comparison
+              {t("path_all_types_title")}
             </p>
-            <p className="text-xs text-slate-500 mb-4">Relative danger profile per pathogen class</p>
+            <p className="text-xs text-slate-500 mb-4">{t("path_all_types_subtitle")}</p>
             <ResponsiveContainer width="100%" height={280}>
               <RadarChart
                 data={[
@@ -738,7 +793,7 @@ export default function PathogensPage() {
               {PATHOGEN_TYPES.map((pt) => (
                 <button key={pt.id} onClick={() => setSelected(pt)} className="flex items-center gap-1.5 cursor-pointer opacity-80 hover:opacity-100">
                   <div className="w-2 h-2 rounded-full" style={{ backgroundColor: pt.color }} />
-                  <span className="text-[10px] font-mono text-slate-400">{pt.name}</span>
+                  <span className="text-[10px] font-mono text-slate-400">{isEs ? pt.nameEs : pt.name}</span>
                 </button>
               ))}
             </div>
@@ -752,8 +807,8 @@ export default function PathogensPage() {
         )}>
           <AlertTriangle className="w-5 h-5 flex-shrink-0" style={{ color: accentColor }} />
           <p className={cn("text-xs leading-relaxed", darkMode ? "text-slate-400" : "text-slate-600")}>
-            <span className="font-semibold" style={{ color: accentColor }}>Data note: </span>
-            Threat metrics are relative estimates based on historical outbreaks and peer-reviewed literature. Case fatality rates vary significantly by strain, healthcare access, and treatment availability. Source: WHO, CDC, UNAIDS, IAEA.
+            <span className="font-semibold" style={{ color: accentColor }}>{t("path_data_note")} </span>
+            {t("path_data_text")}
           </p>
         </div>
 
