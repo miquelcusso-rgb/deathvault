@@ -67,7 +67,7 @@ html.light nav {
   border-color: rgba(203, 213, 225, 0.7) !important;
 }
 
-/* Text */
+/* Text — expanded to cover all slate shades used in the app */
 html.light .section-title {
   color: #0f172a !important;
 }
@@ -77,6 +77,12 @@ html.light .section-sub {
 html.light .text-white {
   color: #0f172a !important;
 }
+html.light .text-slate-200 {
+  color: #334155 !important;
+}
+html.light .text-slate-300 {
+  color: #334155 !important;
+}
 html.light .text-slate-400 {
   color: #475569 !important;
 }
@@ -84,13 +90,34 @@ html.light .text-slate-500 {
   color: #64748b !important;
 }
 html.light .text-slate-600 {
-  color: #475569 !important;
+  color: #64748b !important;
 }
 
-/* Borders */
+/* Hover text overrides — prevent white text appearing on white bg */
+html.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+html.light .hover\:text-slate-300:hover {
+  color: #334155 !important;
+}
+html.light .hover\:text-slate-400:hover {
+  color: #475569 !important;
+}
+html.light .group:hover .group-hover\:text-white {
+  color: #0f172a !important;
+}
+
+/* Borders — expanded */
+html.light .border-border\/80,
 html.light .border-border\/60,
-html.light .border-border\/40 {
+html.light .border-border\/50,
+html.light .border-border\/40,
+html.light .border-border\/30 {
   border-color: rgba(203, 213, 225, 0.8) !important;
+}
+/* White-based borders used inline on news/pandemic pages */
+html.light .border-white\/5 {
+  border-color: rgba(100, 116, 139, 0.2) !important;
 }
 
 /* Buttons */
@@ -105,13 +132,41 @@ html.light .btn-secondary:hover {
 }
 
 /* Chart & panel backgrounds */
+html.light .bg-black\/50,
 html.light .bg-black\/40,
+html.light .bg-black\/30,
 html.light .bg-black\/20 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+html.light .focus\:bg-black\/50:focus,
+html.light .hover\:bg-black\/40:hover,
+html.light .hover\:bg-black\/50:hover {
   background-color: rgba(0, 0, 0, 0.06) !important;
 }
+html.light .bg-white\/3,
 html.light .bg-white\/5,
 html.light .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+/* Hover backgrounds — prevent dark glass hovers on light surfaces */
+html.light .hover\:bg-white\/5:hover,
+html.light .hover\:bg-white\/10:hover,
+html.light .hover\:bg-white\/3:hover {
   background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+/* bg-surface used outside .card */
+html.light .bg-surface\/80,
+html.light .bg-surface\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+html.light .bg-surface {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+html.light .hover\:bg-surface\/60:hover,
+html.light .hover\:bg-surface:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 /* Scrollbar */
@@ -324,6 +379,12 @@ html.light[data-brand="deathvault"] nav {
 html.light[data-brand="deathvault"] .text-white {
   color: #0f172a !important;
 }
+html.light[data-brand="deathvault"] .text-slate-200 {
+  color: #334155 !important;
+}
+html.light[data-brand="deathvault"] .text-slate-300 {
+  color: #334155 !important;
+}
 html.light[data-brand="deathvault"] .text-slate-400 {
   color: #475569 !important;
 }
@@ -331,19 +392,58 @@ html.light[data-brand="deathvault"] .text-slate-500 {
   color: #64748b !important;
 }
 html.light[data-brand="deathvault"] .text-slate-600 {
-  color: #475569 !important;
+  color: #64748b !important;
 }
+html.light[data-brand="deathvault"] .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+html.light[data-brand="deathvault"] .hover\:text-slate-300:hover {
+  color: #334155 !important;
+}
+html.light[data-brand="deathvault"] .group:hover .group-hover\:text-white {
+  color: #0f172a !important;
+}
+html.light[data-brand="deathvault"] .bg-black\/50,
 html.light[data-brand="deathvault"] .bg-black\/40,
+html.light[data-brand="deathvault"] .bg-black\/30,
 html.light[data-brand="deathvault"] .bg-black\/20 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+html.light[data-brand="deathvault"] .focus\:bg-black\/50:focus,
+html.light[data-brand="deathvault"] .hover\:bg-black\/40:hover,
+html.light[data-brand="deathvault"] .hover\:bg-black\/50:hover {
   background-color: rgba(0, 0, 0, 0.06) !important;
 }
+html.light[data-brand="deathvault"] .bg-white\/3,
 html.light[data-brand="deathvault"] .bg-white\/5,
 html.light[data-brand="deathvault"] .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+html.light[data-brand="deathvault"] .hover\:bg-white\/5:hover,
+html.light[data-brand="deathvault"] .hover\:bg-white\/10:hover,
+html.light[data-brand="deathvault"] .hover\:bg-white\/3:hover {
   background-color: rgba(0, 0, 0, 0.04) !important;
 }
+html.light[data-brand="deathvault"] .bg-surface\/80,
+html.light[data-brand="deathvault"] .bg-surface\/60 {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+}
+html.light[data-brand="deathvault"] .bg-surface {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+}
+html.light[data-brand="deathvault"] .hover\:bg-surface\/60:hover,
+html.light[data-brand="deathvault"] .hover\:bg-surface:hover {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+html.light[data-brand="deathvault"] .border-border\/80,
 html.light[data-brand="deathvault"] .border-border\/60,
-html.light[data-brand="deathvault"] .border-border\/40 {
+html.light[data-brand="deathvault"] .border-border\/50,
+html.light[data-brand="deathvault"] .border-border\/40,
+html.light[data-brand="deathvault"] .border-border\/30 {
   border-color: rgba(203, 213, 225, 0.8) !important;
+}
+html.light[data-brand="deathvault"] .border-white\/5 {
+  border-color: rgba(100, 116, 139, 0.2) !important;
 }
 html.light[data-brand="deathvault"] .btn-secondary {
   background: rgba(0, 0, 0, 0.04) !important;

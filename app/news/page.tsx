@@ -143,11 +143,11 @@ export default async function NewsPage() {
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-start gap-4 p-4 rounded-xl border transition-all duration-200 group cursor-pointer hover:bg-white/5"
-                        style={{
-                          borderColor: item.urgent ? color + "50" : "rgba(255,255,255,0.06)",
-                          backgroundColor: item.urgent ? color + "08" : undefined,
-                        }}
+                        className="flex items-start gap-4 p-4 rounded-xl border border-border/30 transition-all duration-200 group cursor-pointer hover:bg-white/5"
+                        style={item.urgent ? {
+                          borderColor: color + "50",
+                          backgroundColor: color + "08",
+                        } : {}}
                       >
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center gap-2 mb-1.5">
@@ -188,7 +188,7 @@ export default async function NewsPage() {
         )}
 
         {/* Footer note */}
-        <div className="mt-12 pt-8 border-t border-white/5 text-center">
+        <div className="mt-12 pt-8 border-t border-border/20 text-center">
           <p className="text-slate-600 text-xs font-mono">
             Data sourced from WHO Disease Outbreak News, CDC Health Alerts, ECDC, and PAHO.
             Automated updates run daily at 07:00 UTC.

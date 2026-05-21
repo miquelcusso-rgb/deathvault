@@ -64,7 +64,7 @@ function EventPicker({
       </div>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-surface/80 border border-border/60 rounded-xl hover:bg-surface transition-all duration-200 cursor-pointer"
+        className="w-full flex items-center justify-between gap-3 px-4 py-3 bg-surface/80 border border-border/60 rounded-xl hover:bg-surface/60 transition-all duration-200 cursor-pointer"
       >
         {selected ? (
           <div className="flex items-center gap-2 min-w-0">
