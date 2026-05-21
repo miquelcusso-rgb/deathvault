@@ -8,7 +8,6 @@ import { EVENTS, formatDeaths, getEventById } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
 import { motion } from "framer-motion";
 import { Skull, Users, Calendar, ChevronDown, X, Globe, Plus } from "lucide-react";
-import { ShareButton } from "@/components/ui/ShareButton";
 import { deathsAsPopPct, formatPct } from "@/data/world-population";
 import { useBrand } from "@/app/providers";
 import { BRAND_CATEGORIES } from "@/lib/brand";
@@ -180,23 +179,15 @@ export default function ComparePage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-6xl mx-auto px-4 pt-12 pb-16">
+      <main className="max-w-6xl mx-auto px-4 pt-24 pb-16">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           className="mb-10"
         >
-          <div className="flex items-start justify-between gap-4 flex-wrap">
-            <div>
-              <h1 className="section-title">{t("compare_title")}</h1>
-              <p className="section-sub">{t("compare_subtitle")}</p>
-            </div>
-            <ShareButton
-              title="Compare Deadliest Events"
-              text="Side-by-side comparison of history's most deadly events"
-            />
-          </div>
+          <h1 className="section-title">{t("compare_title")}</h1>
+          <p className="section-sub">{t("compare_subtitle")}</p>
         </motion.div>
 
         {/* Pickers grid */}

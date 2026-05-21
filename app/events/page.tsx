@@ -226,7 +226,7 @@ export default function EventsPage() {
           </ul>
         </div>
       </noscript>
-      <main id="main-content" className="max-w-7xl mx-auto px-4 pt-12 pb-20">
+      <main id="main-content" className="max-w-7xl mx-auto px-4 pt-24 pb-20">
 
         {/* ── Hero ─────────────────────────────────────────────────────────── */}
         <motion.div

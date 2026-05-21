@@ -21,13 +21,16 @@ interface Props {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-surface/95 border border-border/60 rounded-xl p-3 shadow-panel backdrop-blur-sm">
-      <p className="text-white text-sm font-semibold mb-2">{label}</p>
+    <div
+      className="rounded-xl p-3 shadow-panel backdrop-blur-sm"
+      style={{ backgroundColor: "rgba(10,14,23,0.97)", border: "1px solid rgba(255,255,255,0.08)" }}
+    >
+      <p className="text-sm font-semibold mb-2" style={{ color: "#f1f5f9" }}>{label}</p>
       {payload.map((p: any) => (
         <div key={p.dataKey} className="flex items-center gap-2 text-xs">
           <div className="w-2 h-2 rounded-full" style={{ backgroundColor: p.color }} />
-          <span className="text-slate-400 capitalize">{p.dataKey}:</span>
-          <span className="text-white font-mono font-semibold">
+          <span style={{ color: "#94a3b8" }} className="capitalize">{p.dataKey}:</span>
+          <span className="font-mono font-semibold" style={{ color: "#f8fafc" }}>
             {formatDeaths(p.value)}
           </span>
         </div>

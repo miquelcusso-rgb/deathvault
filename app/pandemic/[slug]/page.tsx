@@ -8,7 +8,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { getEventById, EVENTS, formatDeaths } from "@/data/events";
 // ssr:false dynamic imports must live in a "use client" file — not allowed in RSC
-import { ShareButton, TimelineChart } from "@/components/PandemicClientParts";
+import { TimelineChart } from "@/components/PandemicClientParts";
 
 // English labels (default language — indexed by Google)
 const CATEGORY_LABELS: Record<string, string> = {
@@ -37,9 +37,9 @@ export default async function PandemicPage({ params }: Props) {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main id="main-content" className="max-w-4xl mx-auto px-4 pt-12 pb-16">
+      <main id="main-content" className="max-w-4xl mx-auto px-4 pt-24 pb-16">
 
-        {/* Back + Share */}
+        {/* Back */}
         <div className="flex items-center gap-3 mb-8">
           <Link
             href="/"
@@ -48,10 +48,6 @@ export default async function PandemicPage({ params }: Props) {
             <ArrowLeft className="w-4 h-4" />
             Back
           </Link>
-          <ShareButton
-            title={event.name}
-            text={`${formatDeaths(event.deathsEstimate)} deaths · ${event.startYear}–${event.endYear ?? "present"}`}
-          />
         </div>
 
         {/* Hero */}

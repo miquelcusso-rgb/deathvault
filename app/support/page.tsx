@@ -33,7 +33,7 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
-      <main className="max-w-2xl mx-auto px-4 pt-12 pb-16">
+      <main className="max-w-2xl mx-auto px-4 pt-24 pb-16">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

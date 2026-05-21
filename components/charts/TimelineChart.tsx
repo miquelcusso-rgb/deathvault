@@ -19,11 +19,14 @@ interface Props {
 const CustomTooltip = ({ active, payload, label }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-surface/95 border border-border/60 rounded-xl p-3 shadow-panel backdrop-blur-sm">
-      <p className="text-slate-400 text-xs font-mono mb-1">Year {label}</p>
-      <p className="text-white font-mono font-bold">{formatDeaths(payload[0].value)} deaths</p>
+    <div
+      className="rounded-xl p-3 shadow-panel backdrop-blur-sm"
+      style={{ backgroundColor: "rgba(10,14,23,0.97)", border: "1px solid rgba(255,255,255,0.08)" }}
+    >
+      <p className="text-xs font-mono mb-1" style={{ color: "#94a3b8" }}>Year {label}</p>
+      <p className="font-mono font-bold" style={{ color: "#f8fafc" }}>{formatDeaths(payload[0].value)} deaths</p>
       {payload[0].payload.label && (
-        <p className="text-slate-400 text-xs mt-1">{payload[0].payload.label}</p>
+        <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>{payload[0].payload.label}</p>
       )}
     </div>
   );
