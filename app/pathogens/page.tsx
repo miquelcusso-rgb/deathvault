@@ -375,13 +375,13 @@ function StatBar({ label, value, color, darkMode }: { label: string; value: numb
         <span className="text-xs font-mono text-slate-500">{label}</span>
         <span className="text-xs font-mono font-bold" style={{ color }}>{value}/100</span>
       </div>
-      <div className={cn("h-2 rounded-full overflow-hidden", darkMode ? "bg-white/8" : "bg-black/10")}>
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${value}%` }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
+        className="h-2 rounded-full overflow-hidden"
+        style={{ backgroundColor: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.10)" }}
+      >
+        <div
           className="h-full rounded-full"
-          style={{ backgroundColor: color }}
+          style={{ width: `${value}%`, backgroundColor: color, animation: "bar-grow 0.7s ease-out both" }}
         />
       </div>
     </div>

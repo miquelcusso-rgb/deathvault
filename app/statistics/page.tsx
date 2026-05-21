@@ -5,6 +5,7 @@ import { ComparisonChart } from "@/components/charts/ComparisonChart";
 import { CategoryDonut } from "@/components/charts/CategoryDonut";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
+import { useAppStore } from "@/lib/store";
 import { motion } from "framer-motion";
 import { Skull, TrendingUp, Globe } from "lucide-react";
 import Link from "next/link";
@@ -13,6 +14,7 @@ const totalDeaths = EVENTS.reduce((s, e) => s + e.deathsEstimate, 0);
 
 export default function StatisticsPage() {
   const { t, lang } = useI18n();
+  const darkMode = useAppStore((s) => s.darkMode);
 
   return (
     <div className="min-h-screen bg-void bg-grid">
@@ -73,13 +75,18 @@ export default function StatisticsPage() {
                         {formatDeaths(ev.deathsEstimate)}
                       </span>
                     </div>
-                    <div className="h-1.5 bg-black/40 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${pct}%` }}
-                        transition={{ delay: i * 0.05 + 0.2, duration: 0.8, ease: "easeOut" }}
+                    <div
+                      className="h-2 rounded-full overflow-hidden"
+                      style={{ backgroundColor: darkMode ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.10)" }}
+                    >
+                      <div
                         className="h-full rounded-full"
-                        style={{ backgroundColor: ev.color, opacity: 0.8 }}
+                        style={{
+                          width: `${pct}%`,
+                          backgroundColor: ev.color,
+                          opacity: 0.85,
+                          animation: `bar-grow ${0.5 + i * 0.05}s ease-out both`,
+                        }}
                       />
                     </div>
                   </div>

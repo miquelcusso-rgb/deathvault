@@ -467,6 +467,12 @@ html.light[data-brand="deathvault"] .scrollbar-thin {
   scrollbar-color: #94a3b8 transparent;
 }
 
+/* Bar fill animation — used in statistics leaderboard and pathogen stat bars */
+@keyframes bar-grow {
+  from { max-width: 0; }
+  to   { max-width: 100%; }
+}
+
 @layer components {
   .btn-primary {
     @apply inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-crimson/20 border border-crimson/40 text-crimson-light font-semibold text-sm hover:bg-crimson/30 hover:border-crimson/60 transition-all duration-200 cursor-pointer;
