@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import {
   ArrowLeft, ExternalLink, Skull, Users, Calendar,
   MapPin, Bug, ChevronDown, Info, AlertCircle, ShieldAlert,
@@ -8,16 +7,8 @@ import {
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { getEventById, EVENTS, formatDeaths } from "@/data/events";
-
-// Client-only: Web Share API + framer-motion hero animation
-const ShareButton = dynamic(
-  () => import("@/components/ui/ShareButton").then((m) => m.ShareButton),
-  { ssr: false },
-);
-const TimelineChart = dynamic(
-  () => import("@/components/charts/TimelineChart").then((m) => m.TimelineChart),
-  { ssr: false, loading: () => <div className="h-32 flex items-center justify-center text-slate-600 text-sm font-mono">Loading chart…</div> },
-);
+// ssr:false dynamic imports must live in a "use client" file — not allowed in RSC
+import { ShareButton, TimelineChart } from "@/components/PandemicClientParts";
 
 // English labels (default language — indexed by Google)
 const CATEGORY_LABELS: Record<string, string> = {
