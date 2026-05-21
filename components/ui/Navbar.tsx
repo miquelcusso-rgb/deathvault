@@ -5,8 +5,10 @@ import { useState } from "react";
 import { Menu, X, Activity, Shield, FlaskConical, Skull } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
+import { BRAND_META } from "@/lib/brand";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
+import { ShareButton } from "./ShareButton";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
@@ -27,6 +29,8 @@ export function Navbar() {
     { href: "/about", label: t("nav_about") },
     { href: "/support", label: t("nav_support") },
   ];
+
+  const meta = BRAND_META[brand];
 
   const accentBg     = isDV ? "bg-amber-500/20"    : "bg-crimson/20";
   const accentBorder = isDV ? "border-amber-500/40" : "border-crimson/40";
@@ -85,6 +89,10 @@ export function Navbar() {
 
             {/* Controls */}
             <div className="flex items-center gap-2">
+              {/* Share */}
+              <div className="hidden md:block">
+                <ShareButton title={meta.name} text={meta.tagline} />
+              </div>
               {/* Cross-brand links */}
               {isDV && (
                 <a

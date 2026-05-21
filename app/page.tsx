@@ -2,7 +2,6 @@ import { headers } from "next/headers";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { HomeClient } from "@/components/HomeClient";
-import { ShareButton } from "@/components/ui/ShareButton";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { detectBrand, BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { cn } from "@/lib/utils";
@@ -52,8 +51,6 @@ export default async function HomePage() {
                 </p>
                 <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">events</p>
               </div>
-              <div className="w-px h-12 bg-border/40" />
-              <ShareButton title={meta.name} text={meta.tagline} />
             </div>
           </div>
 
