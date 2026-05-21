@@ -4,7 +4,6 @@ import { Globe, Map } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { PandemicSelector } from "@/components/PandemicSelector";
 import { DeathCounter } from "@/components/DeathCounter";
-import { ShareButton } from "@/components/ui/ShareButton";
 import { NowLive } from "@/components/NowLive";
 import { type HistoricalEvent, getEventById } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
@@ -33,11 +32,9 @@ function GlobeLoader() {
 
 interface Props {
   brandEvents: HistoricalEvent[];
-  siteName: string;
-  tagline: string;
 }
 
-export function HomeClient({ brandEvents, siteName, tagline }: Props) {
+export function HomeClient({ brandEvents }: Props) {
   const { t } = useI18n();
   const mapView = useAppStore((s) => s.mapView);
   const setMapView = useAppStore((s) => s.setMapView);
@@ -47,9 +44,6 @@ export function HomeClient({ brandEvents, siteName, tagline }: Props) {
 
   return (
     <>
-      {/* Share button — needs client for Web Share API */}
-      <ShareButton title={siteName} text={tagline} />
-
       {/* Main interactive layout */}
       <main id="main-content" className="max-w-[1350px] mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr_300px] gap-4">

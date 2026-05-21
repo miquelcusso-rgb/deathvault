@@ -2,6 +2,7 @@ import { headers } from "next/headers";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { HomeClient } from "@/components/HomeClient";
+import { ShareButton } from "@/components/ui/ShareButton";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { detectBrand, BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { cn } from "@/lib/utils";
@@ -53,7 +54,7 @@ export default async function HomePage() {
                 <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">events</p>
               </div>
               <div className="w-px h-12 bg-border/40" />
-              {/* ShareButton is client-only — rendered inside HomeClient */}
+              <ShareButton title={meta.name} text={meta.tagline} />
             </div>
           </div>
 
@@ -71,11 +72,7 @@ export default async function HomePage() {
       </div>
 
       {/* Interactive section — client component (globe, selector, counters) */}
-      <HomeClient
-        brandEvents={brandEvents}
-        siteName={meta.name}
-        tagline={meta.tagline}
-      />
+      <HomeClient brandEvents={brandEvents} />
 
       <Footer />
     </div>
