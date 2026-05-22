@@ -2,6 +2,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import Link from "next/link";
 import { headers } from "next/headers";
+import { getServerT, getServerLang } from "@/lib/i18n-server";
 import { detectBrand, BRAND_CATEGORIES } from "@/lib/brand";
 import { EVENTS } from "@/data/events";
 import newsFeedRaw from "@/data/news-feed.json";
@@ -30,8 +31,8 @@ const CATEGORY_COLORS: Record<string, string> = {
   famine:   "#a78bfa",
 };
 
-function formatDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", {
+function formatDate(iso: string, lang: "en" | "es") {
+  return new Date(iso).toLocaleDateString(lang === "es" ? "es-ES" : "en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
@@ -42,6 +43,9 @@ export default async function NewsPage() {
   const host = (await headers()).get("host") ?? "";
   const brand = detectBrand(host);
   const allowedCategories = BRAND_CATEGORIES[brand];
+  const t = await getServerT();
+  const lang = await getServerLang();
+  const isDV = brand === "deathvault";
 
   const feed = newsFeedRaw as NewsFeed;
 
@@ -81,24 +85,24 @@ export default async function NewsPage() {
           <div className="flex items-center gap-2 mb-3">
             <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
             <span className="text-xs font-mono text-red-400 uppercase tracking-widest font-semibold">
-              Live Intelligence Feed
+              {t("news_live_feed")}
             </span>
           </div>
           <h1 className="font-display font-black text-4xl text-white mb-3">
-            Outbreak & Pandemic News
+            {isDV ? t("news_title_dv") : t("news_title_pa")}
           </h1>
           <p className="text-slate-400 leading-relaxed max-w-2xl">
-            Real-time alerts from WHO, CDC, ECDC, and PAHO. Updated daily by automated surveillance scripts.
+            {t("news_intro")}
             {urgentCount > 0 && (
               <span className="ml-2 inline-flex items-center gap-1 text-red-400 font-semibold">
                 <AlertTriangle className="w-3.5 h-3.5" />
-                {urgentCount} urgent alert{urgentCount > 1 ? "s" : ""} active
+                {urgentCount} {urgentCount > 1 ? t("news_alert_many") : t("news_alert_one")}
               </span>
             )}
           </p>
           <p className="text-slate-600 text-xs font-mono mt-3 flex items-center gap-1">
             <Clock className="w-3 h-3" />
-            Last updated: {formatDate(feed.lastUpdated)}
+            {t("news_last_updated")} {formatDate(feed.lastUpdated, lang)}
           </p>
         </div>
 
@@ -128,7 +132,7 @@ export default async function NewsPage() {
                   {hasUrgent && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/15 text-red-400 text-xs font-mono font-semibold border border-red-500/30">
                       <AlertTriangle className="w-3 h-3" />
-                      URGENT
+                      {t("news_urgent")}
                     </span>
                   )}
                 </div>
@@ -165,7 +169,7 @@ export default async function NewsPage() {
                               dateTime={item.date}
                               className="text-xs font-mono text-slate-600"
                             >
-                              {formatDate(item.date)}
+                              {formatDate(item.date, lang)}
                             </time>
                           </div>
                           <p className="text-slate-200 text-sm leading-snug group-hover:text-white transition-colors duration-150">
@@ -183,15 +187,14 @@ export default async function NewsPage() {
 
         {items.length === 0 && (
           <div className="card p-12 text-center">
-            <p className="text-slate-500 font-mono text-sm">No recent news items found.</p>
+            <p className="text-slate-500 font-mono text-sm">{t("news_empty")}</p>
           </div>
         )}
 
         {/* Footer note */}
         <div className="mt-12 pt-8 border-t border-border/20 text-center">
           <p className="text-slate-600 text-xs font-mono">
-            Data sourced from WHO Disease Outbreak News, CDC Health Alerts, ECDC, and PAHO.
-            Automated updates run daily at 07:00 UTC.
+            {t("news_footer")}
           </p>
         </div>
       </main>

@@ -7,12 +7,14 @@ import { BRAND_META } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { Heart, ExternalLink, Check } from "lucide-react";
 
+import type { TranslationKey } from "@/lib/i18n";
+
 // Payment links — create at dashboard.stripe.com → Payment Links → New
-const TIERS = [
-  { amount: "2€",  label: "Supporter",   link: "https://buy.stripe.com/fZuaEZeyme634Oj4MM9R601" },
-  { amount: "5€",  label: "Contributor", link: "https://buy.stripe.com/3cIcN7fCqe63cgLenm9R602" },
-  { amount: "10€", label: "Patron",      link: "https://buy.stripe.com/14A7sN9e21jh2Gbcfe9R603" },
-  { amount: "25€", label: "Champion",    link: "https://buy.stripe.com/aFa6oJ1LAd1Z80v7YY9R604" },
+const TIERS: { amount: string; labelKey: TranslationKey; link: string }[] = [
+  { amount: "2€",  labelKey: "support_tier_supporter",   link: "https://buy.stripe.com/fZuaEZeyme634Oj4MM9R601" },
+  { amount: "5€",  labelKey: "support_tier_contributor", link: "https://buy.stripe.com/3cIcN7fCqe63cgLenm9R602" },
+  { amount: "10€", labelKey: "support_tier_patron",      link: "https://buy.stripe.com/14A7sN9e21jh2Gbcfe9R603" },
+  { amount: "25€", labelKey: "support_tier_champion",    link: "https://buy.stripe.com/aFa6oJ1LAd1Z80v7YY9R604" },
 ];
 
 export default function SupportPage() {
@@ -22,12 +24,10 @@ export default function SupportPage() {
   const isDV = brand === "deathvault";
 
   const PERKS = [
-    "Fund ongoing data research and updates",
-    isDV
-      ? "Support new historical events being added (wars, famines, disasters)"
-      : "Support new pandemic and epidemic events being added",
-    "Cover server and infrastructure costs",
-    "Enable new features (timeline animations, mobile app)",
+    t("support_perk_fund"),
+    isDV ? t("support_perk_events_dv") : t("support_perk_events_pa"),
+    t("support_perk_servers"),
+    t("support_perk_features"),
   ];
 
   return (
@@ -63,9 +63,9 @@ export default function SupportPage() {
 
           {/* Donation options */}
           <div className="card p-6">
-            <h2 className="font-display font-bold text-white text-lg mb-5">Choose your support</h2>
+            <h2 className="font-display font-bold text-white text-lg mb-5">{t("support_choose")}</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
-              {TIERS.map(({ amount, label, link }) => (
+              {TIERS.map(({ amount, labelKey, link }) => (
                 <a
                   key={amount}
                   href={link}
@@ -76,19 +76,19 @@ export default function SupportPage() {
                   <span className="font-mono font-black text-2xl text-white group-hover:text-crimson-light transition-colors duration-200">
                     {amount}
                   </span>
-                  <span className="text-slate-500 text-xs text-center">{label}</span>
+                  <span className="text-slate-500 text-xs text-center">{t(labelKey)}</span>
                 </a>
               ))}
             </div>
 
             <p className="text-slate-600 text-xs text-center mt-3 flex items-center justify-center gap-1.5">
               <ExternalLink className="w-3 h-3" />
-              Secured by Stripe · All major cards accepted
+              {t("support_stripe")}
             </p>
           </div>
 
           <p className="text-center text-slate-600 text-xs">
-            {meta.name} is not a registered charity. Donations support project costs only.
+            {meta.name} {t("support_not_charity_a")}
           </p>
         </div>
       </main>

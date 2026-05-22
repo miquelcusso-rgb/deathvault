@@ -25,32 +25,30 @@ export default function AboutPage() {
             <div className="card p-6">
               <div className="flex items-center gap-3 mb-3">
                 <Activity className="w-5 h-5 text-crimson-light" />
-                <h2 className="font-display font-bold text-white text-lg">What is {meta.name}?</h2>
+                <h2 className="font-display font-bold text-white text-lg">{t("about_what_is")} {meta.name}?</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm">
-                {isDV
-                  ? "DeathVault is an independent educational archive documenting every major mass-death event in recorded history — pandemics, world wars, famines, and nuclear disasters. Our goal is to make historical mortality data accessible, accurate, and context-rich, helping people grasp the true scale of humanity's greatest catastrophes."
-                  : "PlagueAtlas is an independent educational data visualization project mapping the deadliest pandemics and famines in human history. Our goal is to make historical mortality data accessible, engaging, and context-rich — helping people understand the scale and impact of humanity's greatest disease crises."}
+                {isDV ? t("about_desc_dv") : t("about_desc_pa")}
               </p>
             </div>
 
             <div className="card p-6">
               <div className="flex items-center gap-3 mb-3">
                 <Database className="w-5 h-5 text-cyan-light" />
-                <h2 className="font-display font-bold text-white text-lg">Data Sources</h2>
+                <h2 className="font-display font-bold text-white text-lg">{t("about_data_sources")}</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm mb-4">
-                All data is sourced from reputable academic and institutional sources including:
+                {t("about_data_intro")}
               </p>
               <ul className="space-y-2 text-sm text-slate-400">
                 {[
-                  "World Health Organization (WHO)",
-                  "Centers for Disease Control (CDC)",
-                  "UNAIDS Global Statistics",
-                  "International Atomic Energy Agency (IAEA)",
-                  "Encyclopaedia Britannica",
-                  "Peer-reviewed academic journals",
-                  "National museums and historical archives",
+                  t("about_source_who"),
+                  t("about_source_cdc"),
+                  t("about_source_unaids"),
+                  t("about_source_iaea"),
+                  t("about_source_britannica"),
+                  t("about_source_journals"),
+                  t("about_source_museums"),
                 ].map((s) => (
                   <li key={s} className="flex items-center gap-2">
                     <div className="w-1.5 h-1.5 rounded-full bg-cyan-DEFAULT flex-shrink-0" />
@@ -59,42 +57,37 @@ export default function AboutPage() {
                 ))}
               </ul>
               <p className="text-slate-600 text-xs mt-4">
-                Death toll estimates vary significantly between sources. We present the most
-                widely-cited estimates along with ranges where available.
+                {t("about_data_vary")}
               </p>
             </div>
 
             <div className="card p-6">
               <div className="flex items-center gap-3 mb-3">
                 <Globe className="w-5 h-5 text-emerald-light" />
-                <h2 className="font-display font-bold text-white text-lg">Technology</h2>
+                <h2 className="font-display font-bold text-white text-lg">{t("about_technology")}</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm">
-                Built with Next.js 15, TypeScript, Tailwind CSS, Three.js (3D globe), and Recharts.
-                Hosted on Vercel. No personal data is collected beyond standard anonymized analytics.
+                {t("about_technology_text")}
               </p>
             </div>
 
             <div className="card p-6">
               <div className="flex items-center gap-3 mb-3">
                 <Shield className="w-5 h-5 text-amber-light" />
-                <h2 className="font-display font-bold text-white text-lg">Disclaimer</h2>
+                <h2 className="font-display font-bold text-white text-lg">{t("about_disclaimer")}</h2>
               </div>
               <p className="text-slate-400 leading-relaxed text-sm">
-                {meta.name} is an educational resource only. The data presented reflects historical
-                estimates that may vary between scholarly sources. This site is not affiliated with
-                any government, health organization, or research institution. For medical advice,
-                consult qualified healthcare professionals.
+                {meta.name} {t("about_disclaimer_text_a")}
               </p>
             </div>
 
             <div className="card p-6 flex items-center justify-between gap-4 flex-wrap">
               <p className="text-slate-500 text-sm">
-                Built by{" "}
+                {t("about_built_by")}{" "}
                 <span className="text-slate-300 font-semibold">Furiosa Studio</span>
               </p>
               <Link href="/support" className="btn-primary">
-                Support the Project
+                {t("about_support_project")}
               </Link>
             </div>
           </div>

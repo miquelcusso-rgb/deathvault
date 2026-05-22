@@ -26,48 +26,48 @@ export default function TermsPage() {
       <main className="max-w-3xl mx-auto px-4 pt-24 pb-16">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="section-title mb-2">{t("terms_title")}</h1>
-          <p className="text-slate-600 text-xs font-mono mb-8">Last updated: May 2025 · {meta.name}</p>
+          <p className="text-slate-600 text-xs font-mono mb-8">{t("terms_last_updated")} {meta.name}</p>
 
-          <Section title="1. Acceptance of Terms">
-            <p>By accessing {meta.name}, you agree to these terms of service. If you disagree with any part, please discontinue use of this site.</p>
+          <Section title={t("terms_s1_title")}>
+            <p>{t("terms_s1_p1_before")} {meta.name}{t("terms_s1_p1_after")}</p>
           </Section>
 
-          <Section title="2. Educational Purpose">
-            <p>{meta.name} is an educational resource providing historical data visualisations. All content is intended for informational and educational purposes only. It does not constitute medical, legal, or professional advice of any kind.</p>
+          <Section title={t("terms_s2_title")}>
+            <p>{meta.name} {t("terms_s2_p1_a")}</p>
           </Section>
 
-          <Section title="3. Data Accuracy">
-            <p>While we strive for accuracy, historical death toll estimates vary significantly between sources and scholarly consensus may evolve. We present widely-cited estimates and note ranges where available. {meta.name} is not liable for decisions made based on this data.</p>
+          <Section title={t("terms_s3_title")}>
+            <p>{t("terms_s3_p1_before")} {meta.name} {t("terms_s3_p1_after")}</p>
           </Section>
 
-          <Section title="4. Advertising">
-            <p>This site displays advertisements served by Google AdSense. We are not responsible for the content of third-party advertisements. Ad content is controlled by Google and its advertising partners.</p>
-            <p>By using this site, you acknowledge that advertisements may be displayed. You may opt out of personalised ads via your Google Ad Settings.</p>
+          <Section title={t("terms_s4_title")}>
+            <p>{t("terms_s4_p1")}</p>
+            <p>{t("terms_s4_p2")}</p>
           </Section>
 
-          <Section title="5. Intellectual Property">
-            <p>The {meta.name} design, code, and original content are protected by copyright. Historical data is sourced from public domain and open-access sources (WHO, CDC, UNAIDS, IAEA, Britannica), appropriately attributed.</p>
-            <p>You may share links to {meta.name} pages. You may not reproduce the site's design, code, or original content without written permission.</p>
+          <Section title={t("terms_s5_title")}>
+            <p>{t("terms_s5_p1_before")} {meta.name} {t("terms_s5_p1_after")}</p>
+            <p>{t("terms_s5_p2_before")} {meta.name}{t("terms_s5_p2_after")}</p>
           </Section>
 
-          <Section title="6. Limitation of Liability">
-            <p>{meta.name} is provided "as is" without any warranties, express or implied. We are not liable for any damages arising from use of this site, including but not limited to errors in historical data presented or interruptions in service.</p>
+          <Section title={t("terms_s6_title")}>
+            <p>{meta.name} {t("terms_s6_p1_before")}</p>
           </Section>
 
-          <Section title="7. External Links">
-            <p>We link to external sources (WHO, CDC, Britannica, etc.) for reference. We are not responsible for the content, accuracy, or privacy practices of external sites.</p>
+          <Section title={t("terms_s7_title")}>
+            <p>{t("terms_s7_p1")}</p>
           </Section>
 
-          <Section title="8. Changes to Terms">
-            <p>We may update these terms at any time without prior notice. Continued use of {meta.name} after any changes constitutes acceptance of the updated terms.</p>
+          <Section title={t("terms_s8_title")}>
+            <p>{t("terms_s8_p1_before")} {meta.name} {t("terms_s8_p1_after")}</p>
           </Section>
 
-          <Section title="9. Governing Law">
-            <p>These terms are governed by the laws of Spain. Any disputes shall be subject to the exclusive jurisdiction of the courts of Spain.</p>
+          <Section title={t("terms_s9_title")}>
+            <p>{t("terms_s9_p1")}</p>
           </Section>
 
-          <Section title="10. Contact">
-            <p>Questions about these terms: <a href={`mailto:${brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}`} className="text-cyan-light font-mono hover:underline">{brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}</a></p>
+          <Section title={t("terms_s10_title")}>
+            <p>{t("terms_s10_p1")} <a href={`mailto:${brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}`} className="text-cyan-light font-mono hover:underline">{brand === "deathvault" ? "hello@deathvault.app" : "hello@plagueatlas.com"}</a></p>
           </Section>
         </motion.div>
       </main>
