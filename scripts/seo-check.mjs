@@ -13,7 +13,7 @@
  * Run: node scripts/seo-check.mjs
  */
 
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync, appendFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
@@ -21,6 +21,12 @@ const __dir = dirname(fileURLToPath(import.meta.url));
 const ROOT   = join(__dir, "..");
 
 const NOW = Date.now();
+
+// Collect results so we can surface a summary in the GitHub Actions UI
+// (instead of burying it in raw logs nobody reads).
+const WARNINGS = [];
+const PASSES   = [];
+let CURRENT_SECTION = "";
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -35,14 +41,46 @@ function ageInDays(isoString) {
   return (NOW - new Date(isoString).getTime()) / (1000 * 60 * 60 * 24);
 }
 
-function pass(label) { console.log(`  ✓  ${label}`); }
-function warn(label) { console.log(`  ✗  ${label}`); }
+function section(label) { CURRENT_SECTION = label; console.log(`\n── ${label} ──`); }
+function pass(label) { PASSES.push({ section: CURRENT_SECTION, label }); console.log(`  ✓  ${label}`); }
+function warn(label) { WARNINGS.push({ section: CURRENT_SECTION, label }); console.log(`  ✗  ${label}`); }
 function info(label) { console.log(`     ${label}`); }
+
+/**
+ * Write a markdown summary to GitHub Actions' run summary (the "Summary" tab),
+ * so warnings are visible at a glance without opening raw logs. Also emits
+ * ::warning:: annotations so they appear inline on the run.
+ */
+function writeStepSummary() {
+  const summaryFile = process.env.GITHUB_STEP_SUMMARY;
+  const dateStr = new Date().toISOString().slice(0, 10);
+  const status = WARNINGS.length === 0 ? "✅ All checks passed" : `⚠️ ${WARNINGS.length} warning(s)`;
+
+  // Inline annotations (visible on the Actions run page)
+  for (const w of WARNINGS) {
+    console.log(`::warning title=SEO check — ${w.section}::${w.label}`);
+  }
+
+  if (!summaryFile) return; // not running in GitHub Actions
+
+  let md = `## SEO Health Check — ${dateStr}\n\n`;
+  md += `**Status:** ${status} · ${PASSES.length} passed\n\n`;
+  if (WARNINGS.length > 0) {
+    md += `### ⚠️ Warnings\n\n`;
+    for (const w of WARNINGS) md += `- **${w.section}** — ${w.label}\n`;
+    md += `\n`;
+  }
+  md += `<details><summary>${PASSES.length} passing checks</summary>\n\n`;
+  for (const p of PASSES) md += `- ${p.section}: ${p.label}\n`;
+  md += `\n</details>\n`;
+
+  try { appendFileSync(summaryFile, md); } catch (e) { console.error("Could not write step summary:", e.message); }
+}
 
 // ── Check 1: Event slug routes ─────────────────────────────────────────────
 
 function checkEventSlugs() {
-  console.log("\n── Event Slug Routes ──");
+  section("Event Slug Routes");
 
   const eventsData = readJSON("data/events.ts");
   // events.ts is TypeScript, not JSON — we parse the IDs with a regex instead
@@ -100,7 +138,7 @@ function checkEventSlugs() {
 // ── Check 2: News feed freshness ──────────────────────────────────────────────
 
 function checkNewsFeed() {
-  console.log("\n── News Feed (data/news-feed.json) ──");
+  section("News Feed (data/news-feed.json)");
 
   const feed = readJSON("data/news-feed.json");
   if (!feed) { warn("data/news-feed.json not found"); return; }
@@ -136,7 +174,7 @@ function checkNewsFeed() {
 // ── Check 3: Death rates freshness ───────────────────────────────────────────
 
 function checkDeathRates() {
-  console.log("\n── Death Rates (data/death-rates.json) ──");
+  section("Death Rates (data/death-rates.json)");
 
   const rates = readJSON("data/death-rates.json");
   if (!rates) { warn("data/death-rates.json not found"); return; }
@@ -162,7 +200,7 @@ function checkDeathRates() {
 // ── Check 4: Event updates freshness ─────────────────────────────────────────
 
 function checkEventUpdates() {
-  console.log("\n── Event Updates (data/event-updates.json) ──");
+  section("Event Updates (data/event-updates.json)");
 
   const updates = readJSON("data/event-updates.json");
   if (!updates) { warn("data/event-updates.json not found"); return; }
@@ -191,7 +229,7 @@ function checkEventUpdates() {
 // ── Check 5: Trend signals freshness ─────────────────────────────────────────
 
 function checkTrendSignals() {
-  console.log("\n── Trend Signals (data/trend-signals.json) ──");
+  section("Trend Signals (data/trend-signals.json)");
 
   const signals = readJSON("data/trend-signals.json");
   if (!signals) { warn("data/trend-signals.json not found"); return; }
@@ -225,8 +263,10 @@ function main() {
   checkTrendSignals();
 
   console.log(`\n${"═".repeat(60)}`);
-  console.log(`  Check complete. Review warnings above.`);
+  console.log(`  Check complete — ${WARNINGS.length} warning(s), ${PASSES.length} passed.`);
   console.log(`${"═".repeat(60)}\n`);
+
+  writeStepSummary();
 }
 
 main();
