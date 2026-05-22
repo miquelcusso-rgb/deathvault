@@ -1,34 +1,44 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
+import { buildAlternates } from "@/lib/locale";
+import type { Lang } from "@/lib/translations";
 import { EVENTS } from "@/data/events";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
-  const baseUrl = meta.url;
+  const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
+  const invariantPath = h.get("x-invariant-path") || "/";
+  const isEs = locale === "es";
+  const alt = buildAlternates(meta.url, invariantPath, locale);
+
+  const title = isEs ? `${meta.name} — Estadísticas históricas de mortalidad` : `${meta.name} — Historical Death Statistics`;
+  const description = isEs
+    ? `Estadísticas basadas en datos sobre las pandemias, guerras y eventos nucleares más mortíferos en ${meta.name}. Cifras de muertes clasificadas, desgloses por categoría y gráficos interactivos que comparan más de 813M de muertes en 16 eventos históricos.`
+    : `Data-driven statistics on the deadliest pandemics, wars, and nuclear events on ${meta.name}. Ranked death tolls, category breakdowns, and interactive charts comparing 813M+ deaths across 16 historical events.`;
+  const ogTitle = isEs ? `Estadísticas históricas de mortalidad | ${meta.name}` : `Historical Death Statistics | ${meta.name}`;
+  const ogDescription = isEs
+    ? "Comparaciones clasificadas de las pandemias, guerras y eventos nucleares más mortíferos de la historia. Gráficos interactivos y visualizaciones de datos."
+    : "Ranked comparisons of history's deadliest pandemics, wars, and nuclear events. Interactive charts and data visualizations.";
 
   return {
-    title: `${meta.name} — Historical Death Statistics`,
-    description:
-      `Data-driven statistics on the deadliest pandemics, wars, and nuclear events on ${meta.name}. Ranked death tolls, category breakdowns, and interactive charts comparing 813M+ deaths across 16 historical events.`,
-    alternates: {
-      canonical: `${baseUrl}/statistics`,
-      languages: { "en": `${baseUrl}/statistics`, "x-default": `${baseUrl}/statistics` },
-    },
+    title,
+    description,
+    alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {
-      title: `Historical Death Statistics | ${meta.name}`,
-      description:
-        "Ranked comparisons of history's deadliest pandemics, wars, and nuclear events. Interactive charts and data visualizations.",
-      url: `${baseUrl}/statistics`,
+      title: ogTitle,
+      description: ogDescription,
+      url: alt.canonical,
+      locale: isEs ? "es_ES" : "en_US",
       images: [{ url: "/statistics/opengraph-image", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `Historical Death Statistics | ${meta.name}`,
-      description: "Ranked comparisons of history's deadliest pandemics, wars, and nuclear events.",
+      title: ogTitle,
+      description: ogDescription,
       images: ["/statistics/opengraph-image"],
     },
   };

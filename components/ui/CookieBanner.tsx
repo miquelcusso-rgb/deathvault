@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Cookie } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
+import { localizedHref } from "@/lib/locale";
 
 declare global {
   interface Window {
@@ -14,7 +15,7 @@ declare global {
 const STORAGE_KEY = "cookie_consent";
 
 export function CookieBanner() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -58,7 +59,7 @@ export function CookieBanner() {
               <p className="text-slate-400 text-xs leading-relaxed">
                 {t("cookie_before")}{" "}
                 <strong className="text-slate-300">Google AdSense</strong> {t("cookie_after")}{" "}
-                <Link href="/privacy" className="text-cyan-light hover:underline">
+                <Link href={localizedHref("/privacy", lang)} className="text-cyan-light hover:underline">
                   {t("footer_privacy")}
                 </Link>
                 .

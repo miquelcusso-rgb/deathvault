@@ -3,6 +3,7 @@ import { Footer } from "@/components/ui/Footer";
 import Link from "next/link";
 import { headers } from "next/headers";
 import { getServerT, getServerLang } from "@/lib/i18n-server";
+import { localizedHref } from "@/lib/locale";
 import { detectBrand, BRAND_CATEGORIES } from "@/lib/brand";
 import { EVENTS } from "@/data/events";
 import newsFeedRaw from "@/data/news-feed.json";
@@ -123,11 +124,11 @@ export default async function NewsPage() {
                     style={{ backgroundColor: color }}
                   />
                   <Link
-                    href={`/pandemic/${event.id}`}
+                    href={localizedHref(`/pandemic/${event.id}`, lang)}
                     className="font-display font-bold text-white text-lg hover:underline underline-offset-4"
                     style={{ color }}
                   >
-                    {event.name}
+                    {lang === "es" ? event.nameEs : event.name}
                   </Link>
                   {hasUrgent && (
                     <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-red-500/15 text-red-400 text-xs font-mono font-semibold border border-red-500/30">

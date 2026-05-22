@@ -8,6 +8,7 @@ import { useI18n } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
 import { useBrand } from "@/app/providers";
 import { BRAND_CATEGORIES } from "@/lib/brand";
+import { localizedHref } from "@/lib/locale";
 import { motion } from "framer-motion";
 import { Skull, TrendingUp, Globe } from "lucide-react";
 import Link from "next/link";
@@ -70,7 +71,7 @@ export default function StatisticsPage() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-3 mb-1.5">
                       <Link
-                        href={`/pandemic/${ev.id}`}
+                        href={localizedHref(`/pandemic/${ev.id}`, lang)}
                         className="text-sm font-semibold hover:underline truncate cursor-pointer"
                         style={{ color: ev.color }}
                       >
@@ -127,7 +128,7 @@ export default function StatisticsPage() {
             {brandEvents.map((ev) => (
               <Link
                 key={ev.id}
-                href={`/pandemic/${ev.id}`}
+                href={localizedHref(`/pandemic/${ev.id}`, lang)}
                 className="flex items-center gap-3 p-3 rounded-xl border border-border/40 hover:bg-white/5 hover:border-border/80 transition-all duration-200 cursor-pointer group"
               >
                 <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: ev.color }} />

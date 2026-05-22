@@ -7,6 +7,7 @@ import { useAppStore } from "@/lib/store";
 import { useBrand } from "@/app/providers";
 import { EVENTS } from "@/data/events";
 import { BRAND_CATEGORIES } from "@/lib/brand";
+import { localizedHref } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import {
@@ -703,7 +704,7 @@ export default function PathogensPage() {
                                 {linkedEvents.map((ev) => (
                                   <Link
                                     key={ev.id}
-                                    href={`/pandemic/${ev.id}`}
+                                    href={localizedHref(`/pandemic/${ev.id}`, lang)}
                                     className={cn(
                                       "flex items-center gap-3 p-3 rounded-xl border transition-colors duration-150 cursor-pointer group",
                                       darkMode ? "border-border/30 hover:border-border/60" : "border-slate-100 hover:border-slate-200"

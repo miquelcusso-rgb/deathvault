@@ -1,33 +1,45 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META } from "@/lib/brand";
+import { buildAlternates } from "@/lib/locale";
+import type { Lang } from "@/lib/translations";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
-  const baseUrl = meta.url;
+  const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
+  const invariantPath = h.get("x-invariant-path") || "/";
+  const isEs = locale === "es";
+  const alt = buildAlternates(meta.url, invariantPath, locale);
+
+  const title = isEs
+    ? `Acerca de ${meta.name} — Mapa interactivo de la historia de las pandemias`
+    : `About ${meta.name} — Interactive Pandemic History Map`;
+  const description = isEs
+    ? `${meta.name} es un proyecto educativo independiente que cartografía los eventos más mortíferos de la historia. Datos procedentes de la OMS, los CDC, el OIEA e investigación revisada por pares.`
+    : `${meta.name} is an independent educational project mapping history's deadliest events. Data sourced from WHO, CDC, IAEA, and peer-reviewed research.`;
+  const ogTitle = isEs ? `Acerca de ${meta.name}` : `About ${meta.name}`;
+  const ogDescription = isEs
+    ? `Una visualización de datos educativa e independiente de las pandemias, guerras y eventos nucleares más mortíferos de la historia.`
+    : `An independent, educational data visualization of history's deadliest pandemics, wars, and nuclear events.`;
 
   return {
-    title: `About ${meta.name} — Interactive Pandemic History Map`,
-    description:
-      `${meta.name} is an independent educational project mapping history's deadliest events. Data sourced from WHO, CDC, IAEA, and peer-reviewed research.`,
-    alternates: {
-      canonical: `${baseUrl}/about`,
-      languages: { "en": `${baseUrl}/about`, "x-default": `${baseUrl}/about` },
-    },
+    title,
+    description,
+    alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {
-      title: `About ${meta.name}`,
-      description:
-        `An independent, educational data visualization of history's deadliest pandemics, wars, and nuclear events.`,
-      url: `${baseUrl}/about`,
+      title: ogTitle,
+      description: ogDescription,
+      url: alt.canonical,
+      locale: isEs ? "es_ES" : "en_US",
       images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
-      title: `About ${meta.name}`,
-      description: `An independent, educational data visualization of history's deadliest pandemics, wars, and nuclear events.`,
+      title: ogTitle,
+      description: ogDescription,
       images: ["/opengraph-image"],
     },
   };

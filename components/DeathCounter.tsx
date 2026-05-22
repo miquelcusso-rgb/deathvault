@@ -7,6 +7,7 @@ import { deathsAsPopPct, formatPct } from "@/data/world-population";
 import type { HistoricalEvent } from "@/data/events";
 import { formatDeaths, formatDeathsFull } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
+import { localizedHref } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -121,7 +122,7 @@ export function DeathCounter({ event }: Props) {
             )}
           </div>
           <Link
-            href={`/pandemic/${event.id}`}
+            href={localizedHref(`/pandemic/${event.id}`, lang)}
             className="flex-shrink-0 flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-white/5 border border-border/40 text-slate-400 hover:text-white hover:bg-white/10 text-xs transition-all duration-200 cursor-pointer"
           >
             {t("learn_more")}
@@ -215,7 +216,7 @@ export function DeathCounter({ event }: Props) {
             {lang === "es" ? event.descriptionEs : event.descriptionEn}
           </p>
           <Link
-            href={`/pandemic/${event.id}`}
+            href={localizedHref(`/pandemic/${event.id}`, lang)}
             className="inline-flex items-center gap-1 text-xs mt-2 transition-colors duration-200 cursor-pointer"
             style={{ color: event.color }}
           >

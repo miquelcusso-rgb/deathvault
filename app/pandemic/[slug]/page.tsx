@@ -8,6 +8,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { getEventById, EVENTS, formatDeaths } from "@/data/events";
 import { getServerLang, getServerT } from "@/lib/i18n-server";
+import { localizedHref } from "@/lib/locale";
 // ssr:false dynamic imports must live in a "use client" file — not allowed in RSC
 import { TimelineChart } from "@/components/PandemicClientParts";
 
@@ -49,7 +50,7 @@ export default async function PandemicPage({ params }: Props) {
         {/* Back */}
         <div className="flex items-center gap-3 mb-8">
           <Link
-            href="/"
+            href={localizedHref("/", lang)}
             className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -283,7 +284,7 @@ export default async function PandemicPage({ params }: Props) {
                 return (
                   <Link
                     key={rel.id}
-                    href={`/pandemic/${rel.id}`}
+                    href={localizedHref(`/pandemic/${rel.id}`, lang)}
                     className="flex flex-col gap-2 p-4 rounded-xl border hover:bg-white/5 transition-all duration-200 cursor-pointer group"
                     style={{ borderColor: rel.color + "40" }}
                   >

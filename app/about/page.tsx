@@ -4,12 +4,13 @@ import { Footer } from "@/components/ui/Footer";
 import { useBrand } from "@/app/providers";
 import { BRAND_META } from "@/lib/brand";
 import { useI18n } from "@/lib/i18n";
+import { localizedHref } from "@/lib/locale";
 import { motion } from "framer-motion";
 import { Activity, Database, Globe, Shield } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const brand = useBrand();
   const meta = BRAND_META[brand];
   const isDV = brand === "deathvault";
@@ -86,7 +87,7 @@ export default function AboutPage() {
                 {t("about_built_by")}{" "}
                 <span className="text-slate-300 font-semibold">Furiosa Studio</span>
               </p>
-              <Link href="/support" className="btn-primary">
+              <Link href={localizedHref("/support", lang)} className="btn-primary">
                 {t("about_support_project")}
               </Link>
             </div>

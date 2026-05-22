@@ -1,22 +1,36 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
+import { buildAlternates } from "@/lib/locale";
+import type { Lang } from "@/lib/translations";
 import { EVENTS } from "@/data/events";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
   const isPA = brand === "plagueatlas";
+  const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
+  const invariantPath = h.get("x-invariant-path") || "/";
+  const isEs = locale === "es";
+  const alt = buildAlternates(meta.url, invariantPath, locale);
 
-  const title = isPA
-    ? "Deadliest Pandemics & Epidemics in History — Event Archive | PlagueAtlas"
-    : "Deadliest Events in Human History — Pandemics, Wars & Disasters | DeathVault";
+  const title = isEs
+    ? (isPA
+        ? "Las pandemias y epidemias más mortíferas de la historia — Archivo | PlagueAtlas"
+        : "Los eventos más mortíferos de la historia — Pandemias, Guerras y Desastres | DeathVault")
+    : (isPA
+        ? "Deadliest Pandemics & Epidemics in History — Event Archive | PlagueAtlas"
+        : "Deadliest Events in Human History — Pandemics, Wars & Disasters | DeathVault");
 
-  const description = isPA
-    ? "Full archive of history's deadliest pandemics and epidemics — Black Death, Spanish Flu, HIV/AIDS, COVID-19 and more. Interactive death tolls, timelines and maps."
-    : "Complete archive of history's deadliest events — pandemics, world wars, nuclear disasters and famines. 813M+ deaths documented across 16 events with interactive visualisations.";
+  const description = isEs
+    ? (isPA
+        ? "Archivo completo de las pandemias y epidemias más mortíferas de la historia — Peste Negra, Gripe Española, VIH/SIDA, COVID-19 y más. Cifras de muertes, cronologías y mapas interactivos."
+        : "Archivo completo de los eventos más mortíferos de la historia — pandemias, guerras mundiales, desastres nucleares y hambrunas. Más de 813M de muertes documentadas con visualizaciones interactivas.")
+    : (isPA
+        ? "Full archive of history's deadliest pandemics and epidemics — Black Death, Spanish Flu, HIV/AIDS, COVID-19 and more. Interactive death tolls, timelines and maps."
+        : "Complete archive of history's deadliest events — pandemics, world wars, nuclear disasters and famines. 813M+ deaths documented across 16 events with interactive visualisations.");
 
   return {
     title,
@@ -24,12 +38,10 @@ export async function generateMetadata(): Promise<Metadata> {
     keywords: isPA
       ? ["deadliest pandemics history", "list of pandemics", "pandemic death tolls", "epidemic history", "black death", "spanish flu", "cholera pandemics"]
       : ["deadliest events human history", "war casualties list", "pandemic deaths", "nuclear disasters deaths", "historical death tolls", "wwii deaths", "chernobyl deaths"],
-    alternates: {
-      canonical: `${meta.url}/events`,
-      languages: { "en": `${meta.url}/events`, "x-default": `${meta.url}/events` },
-    },
+    alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {
-      title, description, url: `${meta.url}/events`, type: "website",
+      title, description, url: alt.canonical, type: "website",
+      locale: isEs ? "es_ES" : "en_US",
       images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     },
     twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },

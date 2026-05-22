@@ -1,16 +1,25 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META } from "@/lib/brand";
+import { buildAlternates } from "@/lib/locale";
+import type { Lang } from "@/lib/translations";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const m = BRAND_META[brand];
+  const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
+  const invariantPath = h.get("x-invariant-path") || "/";
+  const isEs = locale === "es";
+  const alt = buildAlternates(m.url, invariantPath, locale);
 
-  const title = `Deadliest Pathogens — Viruses, Bacteria & Parasites Explained | ${m.name}`;
-  const description =
-    "How deadly is Ebola vs COVID-19? Explore the biology, lethality, and transmission of history's most dangerous pathogens — viruses, bacteria, parasites, prions, and fungi — with interactive threat profiles.";
+  const title = isEs
+    ? `Los patógenos más mortíferos — Virus, bacterias y parásitos explicados | ${m.name}`
+    : `Deadliest Pathogens — Viruses, Bacteria & Parasites Explained | ${m.name}`;
+  const description = isEs
+    ? "¿Qué es más letal, el Ébola o el COVID-19? Explora la biología, letalidad y transmisión de los patógenos más peligrosos de la historia — virus, bacterias, parásitos, priones y hongos — con perfiles de amenaza interactivos."
+    : "How deadly is Ebola vs COVID-19? Explore the biology, lethality, and transmission of history's most dangerous pathogens — viruses, bacteria, parasites, prions, and fungi — with interactive threat profiles.";
 
   return {
     title,
@@ -26,12 +35,10 @@ export async function generateMetadata(): Promise<Metadata> {
       "infectious disease biology",
       "virus vs bacteria vs parasite",
     ],
-    alternates: {
-      canonical: `${m.url}/pathogens`,
-      languages: { "en": `${m.url}/pathogens`, "x-default": `${m.url}/pathogens` },
-    },
+    alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {
-      title, description, url: `${m.url}/pathogens`, type: "website",
+      title, description, url: alt.canonical, type: "website",
+      locale: isEs ? "es_ES" : "en_US",
       images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
     },
     twitter: { card: "summary_large_image", title, description, images: ["/opengraph-image"] },

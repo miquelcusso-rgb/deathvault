@@ -3,10 +3,11 @@ import Link from "next/link";
 import { Activity, Shield, ExternalLink } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
+import { localizedHref } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function Footer() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const brand = useBrand();
   const isDV = brand === "deathvault";
   const year = new Date().getFullYear();
@@ -49,10 +50,10 @@ export function Footer() {
               {t("footer_legal")}
             </h3>
             <div className="flex flex-col gap-2">
-              <Link href="/privacy" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+              <Link href={localizedHref("/privacy", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_privacy")}
               </Link>
-              <Link href="/terms" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+              <Link href={localizedHref("/terms", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_terms")}
               </Link>
             </div>
@@ -64,19 +65,19 @@ export function Footer() {
               {t("footer_navigation")}
             </h3>
             <div className="flex flex-col gap-2">
-              <Link href="/events" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+              <Link href={localizedHref("/events", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_event_archive")}
               </Link>
-              <Link href="/about" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+              <Link href={localizedHref("/about", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_about")}
               </Link>
-              <Link href="/statistics" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+              <Link href={localizedHref("/statistics", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("nav_statistics")}
               </Link>
-              <Link href="/compare" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+              <Link href={localizedHref("/compare", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("nav_compare")}
               </Link>
-              <Link href="/support" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer flex items-center gap-1">
+              <Link href={localizedHref("/support", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer flex items-center gap-1">
                 {t("footer_support")}
                 <ExternalLink className="w-3 h-3" />
               </Link>

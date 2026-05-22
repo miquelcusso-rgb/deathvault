@@ -11,6 +11,7 @@ import { useI18n } from "@/lib/i18n";
 import { EVENTS, formatDeaths } from "@/data/events";
 import type { EventCategory } from "@/data/events";
 import { BRAND_CATEGORIES } from "@/lib/brand";
+import { localizedHref } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 // ── Category config ────────────────────────────────────────────────────────────
@@ -135,7 +136,7 @@ function EventCard({ ev, index }: EventCardProps) {
             ))}
           </div>
           <Link
-            href={`/pandemic/${ev.id}`}
+            href={localizedHref(`/pandemic/${ev.id}`, lang)}
             className="flex-shrink-0 flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-xl border transition-all duration-200 cursor-pointer group/btn"
             style={{
               color: ev.color,
@@ -219,11 +220,13 @@ export default function EventsPage() {
       {/* Noscript: full event list for crawlers / no-JS users */}
       <noscript>
         <div style={{ padding: "1rem", fontFamily: "sans-serif" }}>
-          <h1>Event Archive</h1>
+          <h1>{lang === "es" ? "Archivo de eventos" : "Event Archive"}</h1>
           <ul>
             {EVENTS.filter((ev) => allowedCats.includes(ev.category)).map((ev) => (
               <li key={ev.id}>
-                <a href={`/pandemic/${ev.id}`}>{ev.name} ({ev.startYear}–{ev.endYear ?? "present"})</a>
+                <a href={localizedHref(`/pandemic/${ev.id}`, lang)}>
+                  {lang === "es" ? ev.nameEs : ev.name} ({ev.startYear}–{ev.endYear ?? (lang === "es" ? "actualidad" : "present")})
+                </a>
               </li>
             ))}
           </ul>

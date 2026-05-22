@@ -6,18 +6,22 @@ import { Menu, X, Activity, Shield, FlaskConical, Skull } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
 import { BRAND_META } from "@/lib/brand";
+import { localizedHref, stripLocale } from "@/lib/locale";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { ShareButton } from "./ShareButton";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const pathname = usePathname();
+  const currentPath = stripLocale(pathname ?? "/").path;
   const [mobileOpen, setMobileOpen] = useState(false);
   const brand = useBrand();
   const isDV = brand === "deathvault";
 
+  // hrefs are the locale-free paths; we localize at render time and compare on
+  // the locale-free path so the active state works in both locales.
   const links = [
     { href: "/", label: t("nav_home") },
     { href: "/events", label: t("nav_events") },
@@ -45,7 +49,7 @@ export function Navbar() {
         <nav className={cn("bg-surface/80 backdrop-blur-xl border border-border/60 rounded-2xl px-4 shadow-panel", isDV ? "py-2" : "py-3")}>
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2.5 group cursor-pointer">
+            <Link href={localizedHref("/", lang)} className="flex items-center gap-2.5 group cursor-pointer">
               <div className={cn(
                 "w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-200",
                 accentBg, accentBorder,
@@ -74,10 +78,10 @@ export function Navbar() {
               {links.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={localizedHref(link.href, lang)}
                   className={cn(
                     "px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer",
-                    pathname === link.href
+                    currentPath === link.href
                       ? activeLink
                       : "text-slate-400 hover:text-white hover:bg-white/5"
                   )}
@@ -136,11 +140,11 @@ export function Navbar() {
               {links.map((link) => (
                 <Link
                   key={link.href}
-                  href={link.href}
+                  href={localizedHref(link.href, lang)}
                   onClick={() => setMobileOpen(false)}
                   className={cn(
                     "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer",
-                    pathname === link.href
+                    currentPath === link.href
                       ? activeLink
                       : "text-slate-400 hover:text-white hover:bg-white/5"
                   )}

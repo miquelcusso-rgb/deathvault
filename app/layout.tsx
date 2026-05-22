@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { headers, cookies } from "next/headers";
+import { headers } from "next/headers";
 import Script from "next/script";
-import type { Lang } from "@/lib/translations";
+import { makeT, type Lang } from "@/lib/translations";
+import { buildAlternates } from "@/lib/locale";
 import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -35,26 +36,29 @@ export async function generateMetadata(): Promise<Metadata> {
   const host = h.get("host") ?? "";
   const brand = detectBrand(host);
   const m = BRAND_META[brand];
+  const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
+  const invariantPath = h.get("x-invariant-path") || "/";
+  const isEs = locale === "es";
+  const t = makeT(locale);
+  const description = isEs ? t("hero_subtitle") : m.description;
+  const alternates = buildAlternates(m.url, invariantPath, locale);
 
   return {
     metadataBase: new URL(m.url),
     title: { default: `${m.name} — ${m.headline}`, template: `%s | ${m.name}` },
-    description: m.description,
+    description,
     keywords: [...m.keywords],
     authors: [{ name: "Furiosa Studio" }],
     creator: "Furiosa Studio",
     publisher: m.name,
-    alternates: {
-      canonical: m.canonical,
-      languages: { "en": m.url, "x-default": m.url },
-    },
+    alternates,
     openGraph: {
       title: `${m.name} — ${m.headline}`,
-      description: m.description,
+      description,
       type: "website",
-      url: m.url,
+      url: alternates.canonical,
       siteName: m.name,
-      locale: "en_US",
+      locale: isEs ? "es_ES" : "en_US",
       images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${m.name} — ${m.headline}` }],
     },
     twitter: {
@@ -75,8 +79,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const h = await headers();
   const host = h.get("host") ?? "";
   const brand = detectBrand(host);
-  const cookieStore = await cookies();
-  const initialLang: Lang = cookieStore.get("PLAGUE_LANG")?.value === "es" ? "es" : "en";
+  const initialLang: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const m = BRAND_META[brand];
 
   const websiteSchema = {
@@ -178,8 +181,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Providers brand={brand} initialLang={initialLang}>
           {children}
           <AddToHomeBanner />
+          <CookieBanner />
         </Providers>
-        <CookieBanner />
         <SpeedInsights />
       </body>
     </html>
