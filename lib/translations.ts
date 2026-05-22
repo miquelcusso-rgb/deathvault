@@ -208,6 +208,34 @@ export const translations = {
     path_data_note: "Data note:",
     path_data_text: "Threat metrics are relative estimates based on historical outbreaks and peer-reviewed literature. Case fatality rates vary significantly by strain, healthcare access, and treatment availability. Source: WHO, CDC, UNAIDS, IAEA.",
     path_cfr_axis_label: "Case fatality rate:",
+    // Footer (extra)
+    footer_navigation: "Navigation",
+    footer_event_archive: "Event Archive",
+    footer_data: "Data: WHO · CDC · UNAIDS · IAEA · Britannica",
+    // Share button
+    share_label: "Share",
+    share_copy: "Copy link",
+    share_copied: "Copied!",
+    // Cookie banner
+    cookie_before: "We use cookies to serve ads via",
+    cookie_after: "and store your preferences. By clicking “Accept” you consent to our use of cookies as described in our",
+    cookie_accept: "Accept",
+    cookie_decline: "Decline",
+    // Cross-brand nav
+    nav_cross_pathogens: "Pathogens → PlagueAtlas",
+    nav_cross_pathogens_title: "Pathogen data lives on PlagueAtlas",
+    nav_cross_more: "More events → DeathVault",
+    nav_cross_more_title: "Wars, famines, genocides & more on DeathVault",
+    nav_toggle_menu: "Toggle menu",
+    // PWA install banner
+    pwa_add_home: "Add to Home Screen",
+    pwa_tap: "Tap",
+    pwa_then: "then",
+    pwa_install_hint: "Install for quick access — works offline",
+    pwa_install: "Install",
+    pwa_dismiss: "Dismiss",
+    // Charts
+    chart_year: "Year",
     // Dark mode
     dark_mode: "Dark Mode",
     light_mode: "Light Mode",
@@ -417,6 +445,34 @@ export const translations = {
     path_data_note: "Nota sobre datos:",
     path_data_text: "Las métricas de amenaza son estimaciones relativas basadas en brotes históricos y literatura revisada por pares. Las tasas de mortalidad varían significativamente según la cepa, el acceso sanitario y los tratamientos disponibles. Fuente: OMS, CDC, ONUSIDA, OIEA.",
     path_cfr_axis_label: "Tasa de mortalidad:",
+    // Footer (extra)
+    footer_navigation: "Navegación",
+    footer_event_archive: "Archivo de Eventos",
+    footer_data: "Datos: OMS · CDC · ONUSIDA · OIEA · Britannica",
+    // Share button
+    share_label: "Compartir",
+    share_copy: "Copiar enlace",
+    share_copied: "¡Copiado!",
+    // Cookie banner
+    cookie_before: "Usamos cookies para mostrar anuncios mediante",
+    cookie_after: "y guardar tus preferencias. Al hacer clic en “Aceptar” consientes el uso de cookies descrito en nuestra",
+    cookie_accept: "Aceptar",
+    cookie_decline: "Rechazar",
+    // Cross-brand nav
+    nav_cross_pathogens: "Patógenos → PlagueAtlas",
+    nav_cross_pathogens_title: "Los datos de patógenos están en PlagueAtlas",
+    nav_cross_more: "Más eventos → DeathVault",
+    nav_cross_more_title: "Guerras, hambrunas, genocidios y más en DeathVault",
+    nav_toggle_menu: "Abrir/cerrar menú",
+    // PWA install banner
+    pwa_add_home: "Añadir a pantalla de inicio",
+    pwa_tap: "Toca",
+    pwa_then: "y luego",
+    pwa_install_hint: "Instala para acceso rápido — funciona sin conexión",
+    pwa_install: "Instalar",
+    pwa_dismiss: "Descartar",
+    // Charts
+    chart_year: "Año",
     // Dark mode
     dark_mode: "Modo Oscuro",
     light_mode: "Modo Claro",

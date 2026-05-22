@@ -61,11 +61,11 @@ export function Footer() {
           {/* Navigation */}
           <div>
             <h3 className="text-slate-300 text-xs font-semibold uppercase tracking-wider mb-3">
-              Navigation
+              {t("footer_navigation")}
             </h3>
             <div className="flex flex-col gap-2">
               <Link href="/events" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
-                Event Archive
+                {t("footer_event_archive")}
               </Link>
               <Link href="/about" className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_about")}
@@ -89,7 +89,7 @@ export function Footer() {
             © {year} {isDV ? "DeathVault" : "PlagueAtlas"} by <a href="https://furiosa.studio" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors duration-200">Furiosa Studio</a>. {t("footer_rights")}
           </p>
           <p className="text-slate-600 text-xs">
-            Data: WHO · CDC · UNAIDS · IAEA · Britannica
+            {t("footer_data")}
           </p>
         </div>
       </div>

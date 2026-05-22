@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { Share2, Copy, Check, Facebook, Linkedin, MessageCircle } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 interface ShareButtonProps {
   title: string;
@@ -16,6 +17,7 @@ const XIcon = () => (
 );
 
 export function ShareButton({ title, text, url, className }: ShareButtonProps) {
+  const { t } = useI18n();
   const [open, setOpen] = useState(false);
   const [copied, setCopied] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -84,7 +86,7 @@ export function ShareButton({ title, text, url, className }: ShareButtonProps) {
 
   const options = [
     {
-      label: copied ? "Copied!" : "Copy link",
+      label: copied ? t("share_copied") : t("share_copy"),
       icon: copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />,
       onClick: handleCopy,
     },
@@ -117,7 +119,7 @@ export function ShareButton({ title, text, url, className }: ShareButtonProps) {
         className={`btn-secondary text-xs py-2 cursor-pointer ${className ?? ""}`}
       >
         <Share2 className="w-3.5 h-3.5" />
-        Share
+        {t("share_label")}
       </button>
 
       {open && (

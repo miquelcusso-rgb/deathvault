@@ -165,7 +165,7 @@ export default function EventsPage() {
   const brand = useBrand();
   const isDV = brand === "deathvault";
   const allowedCats = BRAND_CATEGORIES[brand];
-  const accentColor = isDV ? "#F59E0B" : "#EC4899";
+  const accentColor = isDV ? "#F59E0B" : "#DC2626";
   const { t, lang } = useI18n();
 
   const [activeTab, setActiveTab] = useState<FilterTab>("all");

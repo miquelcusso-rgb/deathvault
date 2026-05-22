@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Cookie } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 declare global {
   interface Window {
@@ -13,6 +14,7 @@ declare global {
 const STORAGE_KEY = "cookie_consent";
 
 export function CookieBanner() {
+  const { t } = useI18n();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -54,12 +56,10 @@ export function CookieBanner() {
             <div className="flex items-start gap-3 flex-1 min-w-0">
               <Cookie className="w-5 h-5 text-amber-400 flex-shrink-0 mt-0.5" />
               <p className="text-slate-400 text-xs leading-relaxed">
-                We use cookies to serve ads via{" "}
-                <strong className="text-slate-300">Google AdSense</strong> and store your
-                preferences. By clicking "Accept" you consent to our use of cookies as
-                described in our{" "}
+                {t("cookie_before")}{" "}
+                <strong className="text-slate-300">Google AdSense</strong> {t("cookie_after")}{" "}
                 <Link href="/privacy" className="text-cyan-light hover:underline">
-                  Privacy Policy
+                  {t("footer_privacy")}
                 </Link>
                 .
               </p>
@@ -69,13 +69,13 @@ export function CookieBanner() {
                 onClick={decline}
                 className="flex-1 sm:flex-none px-3 py-1.5 rounded-lg border border-border/60 text-slate-500 hover:text-slate-300 hover:border-border text-xs font-medium transition-all duration-200 cursor-pointer"
               >
-                Decline
+                {t("cookie_decline")}
               </button>
               <button
                 onClick={accept}
                 className="flex-1 sm:flex-none btn-primary text-xs py-1.5 px-4"
               >
-                Accept
+                {t("cookie_accept")}
               </button>
             </div>
           </div>

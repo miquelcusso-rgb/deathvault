@@ -16,15 +16,15 @@ interface Props {
   event: HistoricalEvent;
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label, yearLabel, deathsLabel }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div
       className="rounded-xl p-3 shadow-panel backdrop-blur-sm"
       style={{ backgroundColor: "rgba(10,14,23,0.97)", border: "1px solid rgba(255,255,255,0.08)" }}
     >
-      <p className="text-xs font-mono mb-1" style={{ color: "#94a3b8" }}>Year {label}</p>
-      <p className="font-mono font-bold" style={{ color: "#f8fafc" }}>{formatDeaths(payload[0].value)} deaths</p>
+      <p className="text-xs font-mono mb-1" style={{ color: "#94a3b8" }}>{yearLabel} {label}</p>
+      <p className="font-mono font-bold" style={{ color: "#f8fafc" }}>{formatDeaths(payload[0].value)} {deathsLabel}</p>
       {payload[0].payload.label && (
         <p className="text-xs mt-1" style={{ color: "#94a3b8" }}>{payload[0].payload.label}</p>
       )}
@@ -33,6 +33,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
 };
 
 export function TimelineChart({ event }: Props) {
+  const { t } = useI18n();
   return (
     <div className="w-full">
       <ResponsiveContainer width="100%" height={200}>
@@ -50,7 +51,7 @@ export function TimelineChart({ event }: Props) {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={<CustomTooltip yearLabel={t("chart_year")} deathsLabel={t("deaths")} />} />
           <Line
             type="monotone"
             dataKey="deaths"

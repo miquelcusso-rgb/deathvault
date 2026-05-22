@@ -18,7 +18,7 @@ interface Props {
   events: HistoricalEvent[];
 }
 
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label, deathsLabel }: any) => {
   if (!active || !payload?.length) return null;
   return (
     <div
@@ -29,7 +29,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
       {payload.map((p: any) => (
         <div key={p.dataKey} className="flex items-center gap-2 text-xs">
           <div className="w-2 h-2 rounded-full" style={{ backgroundColor: p.color }} />
-          <span style={{ color: "#94a3b8" }} className="capitalize">{p.dataKey}:</span>
+          <span style={{ color: "#94a3b8" }}>{deathsLabel}:</span>
           <span className="font-mono font-semibold" style={{ color: "#f8fafc" }}>
             {formatDeaths(p.value)}
           </span>
@@ -73,7 +73,7 @@ export function ComparisonChart({ events }: Props) {
             axisLine={false}
             tickLine={false}
           />
-          <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
+          <Tooltip content={<CustomTooltip deathsLabel={t("deaths")} />} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
           <Bar dataKey="deaths" radius={[6, 6, 0, 0]} maxBarSize={60}>
             {data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={entry.color} fillOpacity={0.85} />

@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { X, Share2, Plus, Bug, Shield } from "lucide-react";
 import { useBrand } from "@/app/providers";
+import { useI18n } from "@/lib/i18n";
 import { BRAND_META } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
@@ -11,6 +12,7 @@ export function AddToHomeBanner() {
   const brand = useBrand();
   const isDV = brand === "deathvault";
   const meta = BRAND_META[brand];
+  const { t } = useI18n();
   const storageKey = `pwa-dismissed-${brand}`;
 
   const [state, setState] = useState<BannerState>("idle");
@@ -73,7 +75,7 @@ export function AddToHomeBanner() {
         "animate-in slide-in-from-bottom-4 duration-300 ease-out",
       )}
       role="banner"
-      aria-label="Add to Home Screen"
+      aria-label={t("pwa_add_home")}
     >
       <div className="m-3 bg-[#0d1117]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden">
         {/* Subtle brand gradient top border */}
@@ -100,17 +102,17 @@ export function AddToHomeBanner() {
             <p className="text-white text-sm font-bold leading-tight">{meta.name}</p>
             {state === "ios" ? (
               <p className="text-slate-400 text-xs leading-snug mt-0.5">
-                Tap{" "}
+                {t("pwa_tap")}{" "}
                 <span className="inline-flex items-center gap-0.5 mx-0.5 px-1.5 py-0.5 rounded bg-white/10 text-white text-[10px] font-medium">
                   <Share2 className="w-2.5 h-2.5" />
-                  Share
+                  {t("share_label")}
                 </span>{" "}
-                then{" "}
-                <strong className="text-white font-semibold">Add to Home Screen</strong>
+                {t("pwa_then")}{" "}
+                <strong className="text-white font-semibold">{t("pwa_add_home")}</strong>
               </p>
             ) : (
               <p className="text-slate-400 text-xs mt-0.5">
-                Install for quick access — works offline
+                {t("pwa_install_hint")}
               </p>
             )}
           </div>
@@ -126,7 +128,7 @@ export function AddToHomeBanner() {
               )}
             >
               <Plus className="w-3.5 h-3.5" />
-              Install
+              {t("pwa_install")}
             </button>
           )}
 
@@ -134,7 +136,7 @@ export function AddToHomeBanner() {
           <button
             onClick={dismiss}
             className="p-1.5 rounded-lg text-slate-600 hover:text-slate-400 hover:bg-white/8 transition-colors duration-150 cursor-pointer flex-shrink-0"
-            aria-label="Dismiss"
+            aria-label={t("pwa_dismiss")}
           >
             <X className="w-4 h-4" />
           </button>
