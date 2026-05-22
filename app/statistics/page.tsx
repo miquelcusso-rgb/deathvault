@@ -6,15 +6,20 @@ import { CategoryDonut } from "@/components/charts/CategoryDonut";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
+import { useBrand } from "@/app/providers";
+import { BRAND_CATEGORIES } from "@/lib/brand";
 import { motion } from "framer-motion";
 import { Skull, TrendingUp, Globe } from "lucide-react";
 import Link from "next/link";
-const sorted = [...EVENTS].sort((a, b) => b.deathsEstimate - a.deathsEstimate);
-const totalDeaths = EVENTS.reduce((s, e) => s + e.deathsEstimate, 0);
 
 export default function StatisticsPage() {
   const { t, lang } = useI18n();
   const darkMode = useAppStore((s) => s.darkMode);
+  const brand = useBrand();
+  const allowedCats = BRAND_CATEGORIES[brand];
+  const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
+  const sorted = [...brandEvents].sort((a, b) => b.deathsEstimate - a.deathsEstimate);
+  const totalDeaths = brandEvents.reduce((s, e) => s + e.deathsEstimate, 0);
 
   return (
     <div className="min-h-screen bg-void bg-grid">
@@ -30,7 +35,7 @@ export default function StatisticsPage() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
             { label: t("stats_card_total_deaths"), value: formatDeaths(totalDeaths), icon: <Skull className="w-5 h-5" />, color: "#DC2626" },
-            { label: t("stats_card_events"), value: String(EVENTS.length), icon: <Globe className="w-5 h-5" />, color: "#06B6D4" },
+            { label: t("stats_card_events"), value: String(brandEvents.length), icon: <Globe className="w-5 h-5" />, color: "#06B6D4" },
             { label: t("stats_card_deadliest"), value: lang === "es" ? sorted[0].nameEs : sorted[0].name, icon: <TrendingUp className="w-5 h-5" />, color: sorted[0].color },
             { label: t("stats_card_timespan"), value: t("stats_card_timespan_value"), icon: <TrendingUp className="w-5 h-5" />, color: "#10B981" },
           ].map((card) => (
@@ -104,13 +109,13 @@ export default function StatisticsPage() {
           {/* Category donut */}
           <div className="card p-6">
             <h2 className="section-title text-lg mb-4">{t("stats_by_category")}</h2>
-            <CategoryDonut />
+            <CategoryDonut events={brandEvents} />
           </div>
 
           {/* All events bar comparison */}
           <div className="card p-6">
             <h2 className="section-title text-lg mb-1">{t("stats_all_comparison")}</h2>
-            <p className="section-sub mb-4">{lang === "es" ? `Cifra de muertes en los ${EVENTS.length} eventos documentados` : `Death toll across all ${EVENTS.length} documented events`}</p>
+            <p className="section-sub mb-4">{lang === "es" ? `Cifra de muertes en los ${brandEvents.length} eventos documentados` : `Death toll across all ${brandEvents.length} documented events`}</p>
             <ComparisonChart events={sorted} />
           </div>
         </div>
@@ -119,7 +124,7 @@ export default function StatisticsPage() {
         <div className="card p-6">
           <h2 className="section-title text-lg mb-6">{t("stats_all_events_grid")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {EVENTS.map((ev) => (
+            {brandEvents.map((ev) => (
               <Link
                 key={ev.id}
                 href={`/pandemic/${ev.id}`}
@@ -131,7 +136,7 @@ export default function StatisticsPage() {
                     {lang === "es" ? ev.nameEs : ev.name}
                   </p>
                   <p className="text-xs text-slate-600 font-mono">
-                    {ev.startYear}{ev.endYear ? `–${ev.endYear}` : "–now"} · {ev.category}
+                    {ev.startYear}{ev.endYear ? `–${ev.endYear}` : `–${t("ev_present")}`} · {t(ev.category as any)}
                   </p>
                 </div>
                 <span className="font-mono text-xs font-bold flex-shrink-0" style={{ color: ev.color }}>

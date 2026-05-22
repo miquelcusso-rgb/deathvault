@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import * as THREE from "three";
 import type { HistoricalEvent } from "@/data/events";
+import { useI18n } from "@/lib/i18n";
 
 interface Props {
   event: HistoricalEvent | null;
@@ -34,6 +35,8 @@ function latLngToVec3(lat: number, lng: number, radius = 1): THREE.Vector3 {
 export function GlobeView({ event, allEvents, onEventClick }: Props) {
   const mountRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<Tooltip | null>(null);
+  const { lang } = useI18n();
+  const langRef = useRef(lang);
 
   // Refs for Three.js objects that persist across renders
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
@@ -55,6 +58,7 @@ export function GlobeView({ event, allEvents, onEventClick }: Props) {
   const onEventClickRef = useRef(onEventClick);
   useEffect(() => { eventRef.current = event; }, [event]);
   useEffect(() => { onEventClickRef.current = onEventClick; }, [onEventClick]);
+  useEffect(() => { langRef.current = lang; }, [lang]);
 
   // ── Setup Three.js scene (once) ──────────────────────────────────────────
   useEffect(() => {
@@ -218,7 +222,8 @@ export function GlobeView({ event, allEvents, onEventClick }: Props) {
         const hit = dotsDataRef.current.find((d) => d.mesh === hits[0].object);
         if (hit) {
           canvas.style.cursor = "pointer";
-          setTooltip({ x: e.clientX - rect.left, y: e.clientY - rect.top, text: `${hit.event.name} — ${hit.label}` });
+          const hitName = langRef.current === "es" ? hit.event.nameEs : hit.event.name;
+          setTooltip({ x: e.clientX - rect.left, y: e.clientY - rect.top, text: `${hitName} — ${hit.label}` });
           return;
         }
       }

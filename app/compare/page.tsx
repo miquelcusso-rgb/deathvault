@@ -158,7 +158,12 @@ export default function ComparePage() {
   const allowedCats = BRAND_CATEGORIES[brand];
   const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
 
-  const [ids, setIds] = useState<(string | null)[]>(["black-death", "wwii"]);
+  // Default to the two deadliest events that belong to THIS brand
+  // (prevents e.g. WWII showing on PlagueAtlas, which is pandemics-only)
+  const [ids, setIds] = useState<(string | null)[]>(() => {
+    const top = [...brandEvents].sort((a, b) => b.deathsEstimate - a.deathsEstimate).slice(0, 2);
+    return [top[0]?.id ?? null, top[1]?.id ?? null];
+  });
 
   const addSlot = () => {
     if (ids.length < 4) setIds((prev) => [...prev, null]);

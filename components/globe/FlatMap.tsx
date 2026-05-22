@@ -12,6 +12,7 @@ import { X } from "lucide-react";
 import type { HistoricalEvent } from "@/data/events";
 import { formatDeaths } from "@/data/events";
 import { useAppStore } from "@/lib/store";
+import { useI18n } from "@/lib/i18n";
 
 const GEO_URL = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
@@ -152,6 +153,8 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
   const [tooltip, setTooltip] = useState<{ x: number; y: number; label: string } | null>(null);
   const [countryInfo, setCountryInfo] = useState<CountryInfo | null>(null);
   const darkMode = useAppStore((s) => s.darkMode);
+  const { t, lang } = useI18n();
+  const evName = (ev: HistoricalEvent) => (lang === "es" ? ev.nameEs : ev.name);
 
   const handleZoomIn  = () => setZoom((z) => Math.min(z * 1.5, 8));
   const handleZoomOut = () => setZoom((z) => Math.max(z / 1.5, 1));
@@ -317,7 +320,7 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
           >
             <div className="flex items-start justify-between gap-2 mb-3">
               <div>
-                <p className={`text-xs font-mono uppercase tracking-wider mb-0.5 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>Country</p>
+                <p className={`text-xs font-mono uppercase tracking-wider mb-0.5 ${darkMode ? "text-slate-500" : "text-slate-400"}`}>{t("ev_country_label")}</p>
                 <p className={`font-display font-bold text-base ${darkMode ? "text-white" : "text-slate-900"}`}>{countryInfo.name}</p>
               </div>
               <button
@@ -331,7 +334,7 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
             {countryInfo.events.length > 0 ? (
               <div className="space-y-2">
                 <p className={`text-xs font-mono uppercase tracking-wider ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-                  {countryInfo.events.length} event{countryInfo.events.length > 1 ? "s" : ""} affected this region
+                  {countryInfo.events.length} {t("ev_events_affected")}
                 </p>
                 {countryInfo.events.map((ev) => (
                   <button
@@ -343,7 +346,7 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
                   >
                     <div className="flex items-center gap-2 min-w-0">
                       <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: ev.color }} />
-                      <span className={`text-xs font-semibold truncate ${darkMode ? "text-slate-300" : "text-slate-700"}`}>{ev.name}</span>
+                      <span className={`text-xs font-semibold truncate ${darkMode ? "text-slate-300" : "text-slate-700"}`}>{evName(ev)}</span>
                     </div>
                     <span className="text-xs font-mono flex-shrink-0" style={{ color: ev.color }}>
                       {formatDeaths(ev.deathsEstimate)}
@@ -353,7 +356,7 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
               </div>
             ) : (
               <p className={`text-xs ${darkMode ? "text-slate-500" : "text-slate-400"}`}>
-                No tracked events for this territory
+                {t("ev_no_events_territory")}
               </p>
             )}
           </motion.div>
@@ -367,10 +370,10 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
         }`}>
           <div className="flex items-center gap-2 mb-1">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: event.color }} />
-            <span className={`text-xs font-semibold ${darkMode ? "text-white" : "text-slate-800"}`}>{event.name}</span>
+            <span className={`text-xs font-semibold ${darkMode ? "text-white" : "text-slate-800"}`}>{evName(event)}</span>
           </div>
           <p className={`text-xs ${darkMode ? "text-slate-500" : "text-slate-500"}`}>
-            {event.startYear}–{event.endYear ?? "present"}
+            {event.startYear}–{event.endYear ?? t("ev_present")}
           </p>
         </div>
       )}
