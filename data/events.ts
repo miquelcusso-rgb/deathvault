@@ -114,7 +114,7 @@ The outbreak did not end cleanly. Plague returned in recurring waves for roughly
       { q: "When did the Plague of Justinian end?", a: "The initial wave ended around 549 CE, but plague returned in recurring waves for roughly two centuries. The pandemic finally subsided around 750 CE, approximately 200 years after it began." },
       { q: "How did the Plague of Justinian affect the Byzantine Empire?", a: "It was catastrophic for the Empire. Justinian's campaigns to reconquer western Roman territory were undermined, tax revenues collapsed, army recruitment failed, and many cities lost half their populations. It contributed significantly to the empire's long-term decline." },
     ],
-    tags: ["bubonic", "ancient", "bacteria", "byzantine"],
+    tags: ["bubonic", "ancient", "bacteria", "byzantine", "justinianic plague", "first pandemic in history", "Yersinia pestis", "byzantine empire plague", "541 AD pandemic", "eastern roman empire", "roman plague", "plague history"],
     dataReliabilityLevel: "moderate",
     dataReliabilityNote: "Ancient records are sparse. Estimates rely on Byzantine chronicles, archeological evidence, and retrospective demographic modeling. The 30–50M range reflects genuine scholarly uncertainty.",
   },
