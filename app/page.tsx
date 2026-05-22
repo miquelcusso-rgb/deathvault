@@ -4,7 +4,7 @@ import { Footer } from "@/components/ui/Footer";
 import { HomeClient } from "@/components/HomeClient";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { detectBrand, BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
-import { getServerT } from "@/lib/i18n-server";
+import { getServerLang, getServerT } from "@/lib/i18n-server";
 import { cn } from "@/lib/utils";
 
 export default async function HomePage() {
@@ -12,6 +12,7 @@ export default async function HomePage() {
   const brand = detectBrand(host);
   const isDV = brand === "deathvault";
   const t = await getServerT();
+  const isEs = (await getServerLang()) === "es";
 
   const allowedCats = BRAND_CATEGORIES[brand];
   const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
@@ -58,13 +59,17 @@ export default async function HomePage() {
 
           {/* SSR text content — indexable by Google without JS execution */}
           <p className="sr-only">
-            {meta.description} Explore {TOTAL_EVENTS} historical events including{" "}
+            {isEs ? t("hero_subtitle") : meta.description}{" "}
+            {isEs ? "Explora" : "Explore"} {TOTAL_EVENTS}{" "}
+            {isEs ? "eventos históricos, incluyendo" : "historical events including"}{" "}
             {brandEvents
               .sort((a, b) => b.deathsEstimate - a.deathsEstimate)
               .slice(0, 5)
-              .map((e) => e.name)
+              .map((e) => (isEs ? e.nameEs : e.name))
               .join(", ")}{" "}
-            and more. Total documented deaths: {formatDeaths(TOTAL_DEATHS)}.
+            {isEs
+              ? `y más. Muertes totales documentadas: ${formatDeaths(TOTAL_DEATHS)}.`
+              : `and more. Total documented deaths: ${formatDeaths(TOTAL_DEATHS)}.`}
           </p>
         </div>
       </div>

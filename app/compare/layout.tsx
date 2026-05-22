@@ -46,16 +46,18 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function CompareLayout({ children }: { children: React.ReactNode }) {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
+  const isEs = h.get("x-locale") === "es";
+  const base = isEs ? `${meta.url}/es` : meta.url;
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": meta.url },
-      { "@type": "ListItem", "position": 2, "name": "Compare Events", "item": `${meta.url}/compare` },
+      { "@type": "ListItem", "position": 1, "name": isEs ? "Inicio" : "Home", "item": base },
+      { "@type": "ListItem", "position": 2, "name": isEs ? "Comparar eventos" : "Compare Events", "item": `${base}/compare` },
     ],
   };
 
