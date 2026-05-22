@@ -100,7 +100,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "@type": "Organization",
     "name": m.name,
     "url": m.url,
-    "logo": `${m.url}/opengraph-image`,
+    "logo": `${m.url}/icon`,
     "sameAs": [
       "https://furiosa.studio",
       brand === "plagueatlas"

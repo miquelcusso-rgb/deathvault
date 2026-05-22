@@ -21,7 +21,7 @@ export const BRAND_CATEGORIES: Record<Brand, EventCategory[]> = {
 export const BRAND_META = {
   plagueatlas: {
     name:        "PlagueAtlas",
-    headline:    "History's Deadliest Epidemics — Interactive Map",
+    headline:    "History's Deadliest Pandemics, Mapped",
     tagline:     "Interactive epidemic & disease history map — 1,500 years of data",
     description: "How many people died from the Black Death, Spanish Flu, and COVID-19? Interactive 3D map of history's deadliest pandemics with real-time death counters and outbreak news.",
     url:         "https://www.plagueatlas.com",

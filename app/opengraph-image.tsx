@@ -4,7 +4,7 @@ import { detectBrand } from "@/lib/brand";
 
 export const dynamic = "force-dynamic";
 
-export const alt = "PlagueAtlas / DeathVault — Interactive Pandemic & Death Map";
+export const alt = "Interactive map of history's deadliest events";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
