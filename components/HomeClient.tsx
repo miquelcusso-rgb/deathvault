@@ -20,11 +20,12 @@ const FlatMap = dynamic(
 );
 
 function GlobeLoader() {
+  // Can't call useI18n here (it's a module-level fn), so we use a generic spinner
   return (
     <div className="w-full h-full flex items-center justify-center">
       <div className="flex flex-col items-center gap-3">
         <div className="w-12 h-12 rounded-full border-2 border-cyan-DEFAULT/30 border-t-cyan-DEFAULT animate-spin" />
-        <span className="text-slate-500 text-sm font-mono">Loading visualization...</span>
+        <span className="text-slate-500 text-sm font-mono">Loading…</span>
       </div>
     </div>
   );
@@ -35,7 +36,7 @@ interface Props {
 }
 
 export function HomeClient({ brandEvents }: Props) {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const mapView = useAppStore((s) => s.mapView);
   const setMapView = useAppStore((s) => s.setMapView);
   const selectedEventId = useAppStore((s) => s.selectedEventId);
@@ -51,7 +52,7 @@ export function HomeClient({ brandEvents }: Props) {
           <div className="card p-4 h-[600px] flex flex-col overflow-hidden order-2 lg:order-1">
             <h2 className="text-white font-display font-semibold text-sm mb-3 flex items-center gap-2">
               <div className="w-1.5 h-4 rounded-full bg-crimson-light" />
-              Events
+              {t("home_events_panel")}
             </h2>
             <PandemicSelector
               selectedId={selectedEventId}

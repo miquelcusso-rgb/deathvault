@@ -199,15 +199,19 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
         projection="geoNaturalEarth1"
         className="w-full h-full"
         projectionConfig={{ scale: 210, center: [0, 5] }}
+        style={{ overflow: "hidden" }}
       >
         <ZoomableGroup zoom={zoom} center={center} onMoveEnd={(pos: any) => {
+          const nextZoom = Math.max(1, Math.min(8, pos.zoom));
           const [lng, lat] = pos.coordinates as [number, number];
-          // Clamp so the map can't be dragged completely off-screen
+          // Tighter clamping at higher zoom so no blank space is visible at edges
+          const maxLng = Math.max(20, 160 / nextZoom);
+          const maxLat = Math.max(10, 70 / nextZoom);
           setCenter([
-            Math.max(-160, Math.min(160, lng)),
-            Math.max(-70, Math.min(70, lat)),
+            Math.max(-maxLng, Math.min(maxLng, lng)),
+            Math.max(-maxLat, Math.min(maxLat, lat)),
           ]);
-          setZoom(Math.max(1, Math.min(8, pos.zoom)));
+          setZoom(nextZoom);
         }}>
           <Geographies geography={GEO_URL}>
             {({ geographies }: any) =>

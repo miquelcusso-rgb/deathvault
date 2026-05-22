@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useEffect, useState, createContext, useContext } from "react";
-import { I18nProvider } from "@/lib/i18n";
+import { I18nProvider, type Lang } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
 import type { Brand } from "@/lib/brand";
 
@@ -33,7 +33,15 @@ function ThemeSync({ children }: { children: ReactNode }) {
 }
 
 // ── Root providers ────────────────────────────────────────────────────────────
-export function Providers({ children, brand }: { children: ReactNode; brand: Brand }) {
+export function Providers({
+  children,
+  brand,
+  initialLang = "en",
+}: {
+  children: ReactNode;
+  brand: Brand;
+  initialLang?: Lang;
+}) {
   // Rehydrate Zustand store AFTER hydration completes.
   // This prevents React #418 (server/client state mismatch from localStorage).
   useEffect(() => {
@@ -42,7 +50,7 @@ export function Providers({ children, brand }: { children: ReactNode; brand: Bra
 
   return (
     <BrandContext.Provider value={brand}>
-      <I18nProvider>
+      <I18nProvider initialLang={initialLang}>
         <ThemeSync>{children}</ThemeSync>
       </I18nProvider>
     </BrandContext.Provider>

@@ -4,12 +4,14 @@ import { Footer } from "@/components/ui/Footer";
 import { HomeClient } from "@/components/HomeClient";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { detectBrand, BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
+import { getServerT } from "@/lib/i18n-server";
 import { cn } from "@/lib/utils";
 
 export default async function HomePage() {
   const host = (await headers()).get("host") ?? "";
   const brand = detectBrand(host);
   const isDV = brand === "deathvault";
+  const t = await getServerT();
 
   const allowedCats = BRAND_CATEGORIES[brand];
   const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
@@ -42,14 +44,14 @@ export default async function HomePage() {
                 <p className={cn("font-mono font-black text-4xl sm:text-5xl leading-none", accentColor, accentNeon)}>
                   {formatDeaths(TOTAL_DEATHS)}
                 </p>
-                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">deaths documented</p>
+                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">{t("home_deaths_label")}</p>
               </div>
               <div className="w-px h-12 bg-border/40" />
               <div className="text-center">
                 <p className="font-mono font-black text-4xl sm:text-5xl leading-none text-cyan-light">
                   {TOTAL_EVENTS}
                 </p>
-                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">events</p>
+                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">{t("home_events_label")}</p>
               </div>
             </div>
           </div>

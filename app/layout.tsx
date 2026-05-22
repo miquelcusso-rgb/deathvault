@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
+import { headers, cookies } from "next/headers";
 import Script from "next/script";
+import type { Lang } from "@/lib/translations";
 import { Space_Grotesk, JetBrains_Mono, Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -74,6 +75,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const h = await headers();
   const host = h.get("host") ?? "";
   const brand = detectBrand(host);
+  const cookieStore = await cookies();
+  const initialLang: Lang = cookieStore.get("PLAGUE_LANG")?.value === "es" ? "es" : "en";
   const m = BRAND_META[brand];
 
   const websiteSchema = {
@@ -104,7 +107,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   };
 
   return (
-    <html lang="en" data-brand={brand} suppressHydrationWarning
+    <html lang={initialLang} data-brand={brand} suppressHydrationWarning
       className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable}`}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -172,7 +175,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <noscript>
           <iframe src={`https://www.googletagmanager.com/ns.html?id=${brand === "plagueatlas" ? "GTM-5XWCZFN6" : "GTM-PCBW2RMX"}`} height="0" width="0" style={{display:'none',visibility:'hidden'}} />
         </noscript>
-        <Providers brand={brand}>
+        <Providers brand={brand} initialLang={initialLang}>
           {children}
           <AddToHomeBanner />
         </Providers>
