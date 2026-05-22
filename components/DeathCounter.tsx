@@ -77,7 +77,7 @@ export function DeathCounter({ event }: Props) {
         </div>
         <div className="text-center">
           <p className="text-slate-400 text-sm">{t("map_select_event")}</p>
-          <p className="text-slate-600 text-xs mt-1">Select any event from the list</p>
+          <p className="text-slate-600 text-xs mt-1">{t("counter_select_hint")}</p>
         </div>
       </div>
     );
@@ -85,7 +85,7 @@ export function DeathCounter({ event }: Props) {
 
   const duration =
     event.endYear
-      ? `${event.startYear}–${event.endYear} (${event.endYear - event.startYear} years)`
+      ? `${event.startYear}–${event.endYear} (${event.endYear - event.startYear} ${t("counter_years")})`
       : `${event.startYear}–${t("ongoing")}`;
 
   return (
@@ -151,10 +151,10 @@ export function DeathCounter({ event }: Props) {
             </span>
           </div>
           <p className="text-slate-600 text-xs font-mono mt-2">
-            {formatDeathsFull(event.deathsEstimate)} estimated
+            {formatDeathsFull(event.deathsEstimate)} {t("counter_est_suffix")}
           </p>
           <p className="text-slate-600 text-xs font-mono mt-0.5">
-            Range: {formatDeaths(event.deathsMin)} – {formatDeaths(event.deathsMax)}
+            {t("counter_range")}: {formatDeaths(event.deathsMin)} – {formatDeaths(event.deathsMax)}
           </p>
           {/* % of world population */}
           {(() => {
@@ -169,7 +169,7 @@ export function DeathCounter({ event }: Props) {
                 <span className="text-xs font-mono font-bold" style={{ color: event.color }}>
                   {formatPct(pct)}
                 </span>
-                <span className="text-xs text-slate-600 font-mono">of world population</span>
+                <span className="text-xs text-slate-600 font-mono">{t("counter_of_pop")}</span>
               </div>
             );
           })()}
@@ -197,15 +197,15 @@ export function DeathCounter({ event }: Props) {
               label={t("counter_infected")}
               value={formatDeaths(event.infectedEstimate)}
               color="#06B6D4"
-              subValue="estimated"
+              subValue={t("counter_est_suffix")}
             />
           )}
           <StatCard
             icon={<Skull className="w-3.5 h-3.5" />}
-            label="Regions"
+            label={t("ev_regions_label")}
             value={`${event.regions.length}`}
             color={event.color}
-            subValue="affected areas"
+            subValue={t("counter_affected_areas")}
           />
         </div>
 

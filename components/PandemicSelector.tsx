@@ -39,11 +39,11 @@ const CATEGORY_COLORS: Record<EventCategory | "all", string> = {
 
 // ── Sort options ───────────────────────────────────────────────────────────
 
-const SORT_OPTIONS: { key: SortMode; label: string; icon: React.ReactNode }[] = [
-  { key: "deaths",  label: "Most deaths",   icon: <TrendingDown className="w-3.5 h-3.5" /> },
-  { key: "recent",  label: "Most recent",   icon: <Clock className="w-3.5 h-3.5" /> },
-  { key: "oldest",  label: "Oldest first",  icon: <CalendarClock className="w-3.5 h-3.5" /> },
-  { key: "ongoing", label: "Ongoing first", icon: <Activity className="w-3.5 h-3.5" /> },
+const SORT_OPTIONS: { key: SortMode; labelKey: string; icon: React.ReactNode }[] = [
+  { key: "deaths",  labelKey: "selector_sort_deaths",  icon: <TrendingDown className="w-3.5 h-3.5" /> },
+  { key: "recent",  labelKey: "selector_sort_recent",  icon: <Clock className="w-3.5 h-3.5" /> },
+  { key: "oldest",  labelKey: "selector_sort_oldest",  icon: <CalendarClock className="w-3.5 h-3.5" /> },
+  { key: "ongoing", labelKey: "selector_sort_ongoing", icon: <Activity className="w-3.5 h-3.5" /> },
 ];
 
 function sortEvents(events: HistoricalEvent[], mode: SortMode): HistoricalEvent[] {
@@ -70,6 +70,7 @@ function sortEvents(events: HistoricalEvent[], mode: SortMode): HistoricalEvent[
 function SortDropdown({ sort, setSort }: { sort: SortMode; setSort: (s: SortMode) => void }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const { t } = useI18n();
   const active = SORT_OPTIONS.find((o) => o.key === sort)!;
 
   // Close on outside click
@@ -85,7 +86,7 @@ function SortDropdown({ sort, setSort }: { sort: SortMode; setSort: (s: SortMode
     <div className="relative flex-shrink-0" ref={ref}>
       <button
         onClick={() => setOpen(!open)}
-        title="Sort events"
+        title={t("selector_sort_title")}
         className={cn(
           "flex items-center gap-1.5 h-full px-2.5 rounded-xl border text-xs font-mono font-semibold transition-all duration-200 cursor-pointer",
           open
@@ -94,7 +95,7 @@ function SortDropdown({ sort, setSort }: { sort: SortMode; setSort: (s: SortMode
         )}
       >
         <ArrowUpDown className="w-3.5 h-3.5 flex-shrink-0" />
-        <span className="hidden sm:inline truncate max-w-[70px]">{active.label}</span>
+        <span className="hidden sm:inline truncate max-w-[70px]">{t(active.labelKey as any)}</span>
       </button>
 
       <AnimatePresence>
@@ -120,7 +121,7 @@ function SortDropdown({ sort, setSort }: { sort: SortMode; setSort: (s: SortMode
                 <span className={sort === opt.key ? "text-cyan-400" : "text-slate-600"}>
                   {opt.icon}
                 </span>
-                {opt.label}
+                {t(opt.labelKey as any)}
                 {sort === opt.key && (
                   <span className="ml-auto w-1.5 h-1.5 rounded-full bg-cyan-400 flex-shrink-0" />
                 )}
@@ -179,7 +180,7 @@ export function PandemicSelector({ selectedId, onSelect }: Props) {
           <input
             type="text"
             placeholder={t("selector_search")}
-            aria-label="Search historical events"
+            aria-label={t("selector_search_aria")}
             role="searchbox"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -238,7 +239,7 @@ export function PandemicSelector({ selectedId, onSelect }: Props) {
             className="w-full flex items-center gap-2 px-3 py-2 rounded-lg border border-dashed border-slate-700 text-slate-500 hover:text-slate-400 hover:border-slate-600 text-xs transition-all duration-200 cursor-pointer"
           >
             <X className="w-3 h-3" />
-            Clear selection
+            {t("selector_clear")}
           </button>
         )}
 
@@ -255,7 +256,7 @@ export function PandemicSelector({ selectedId, onSelect }: Props) {
         </AnimatePresence>
 
         {filtered.length === 0 && (
-          <div className="text-center py-8 text-slate-600 text-sm">No events found</div>
+          <div className="text-center py-8 text-slate-600 text-sm">{t("selector_no_events")}</div>
         )}
       </div>
     </div>
@@ -299,7 +300,7 @@ function EventCard({
               {lang === "es" ? event.nameEs : event.name}
             </p>
             <p className="text-xs text-slate-600 font-mono">
-              {event.startYear}{event.endYear ? `–${event.endYear}` : "–present"}
+              {event.startYear}{event.endYear ? `–${event.endYear}` : (lang === "es" ? "–actualidad" : "–present")}
               {event.pathogen && ` · ${event.pathogen}`}
             </p>
           </div>
@@ -308,7 +309,7 @@ function EventCard({
           <p className="text-xs font-mono font-bold" style={{ color: event.color }}>
             {formatDeaths(event.deathsEstimate)}
           </p>
-          <p className="text-xs text-slate-600">deaths</p>
+          <p className="text-xs text-slate-600">{lang === "es" ? "muertes" : "deaths"}</p>
         </div>
       </div>
     </motion.button>

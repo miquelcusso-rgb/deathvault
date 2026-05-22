@@ -6,6 +6,7 @@ import { EVENTS, type HistoricalEvent } from "@/data/events";
 import { useAppStore } from "@/lib/store";
 import { BRAND_CATEGORIES } from "@/lib/brand";
 import { useBrand } from "@/app/providers";
+import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import newsFeedRaw from "@/data/news-feed.json";
 import deathRatesRaw from "@/data/death-rates.json";
@@ -93,6 +94,7 @@ function EventCounter({ event, isSelected, onSelect }: {
   onSelect: () => void;
 }) {
   const { count, perSecond } = useLiveCounter(event);
+  const { t, lang } = useI18n();
   const isAnimating = perSecond >= 1 / 86400;
 
   return (
@@ -111,14 +113,14 @@ function EventCounter({ event, isSelected, onSelect }: {
         style={{ backgroundColor: event.color }}
       />
       <div className="flex-1 min-w-0">
-        <p className="text-xs text-slate-400 truncate">{event.name}</p>
-        <p className="font-mono font-black text-base leading-tight" style={{ color: event.color }}>
+        <p className="text-xs text-slate-400 truncate">{lang === "es" ? event.nameEs : event.name}</p>
+        <p className="font-mono font-black text-base leading-tight tabular-nums" style={{ color: event.color }}>
           {formatLive(count)}
         </p>
       </div>
       <div className="text-right flex-shrink-0">
         <p className="text-[10px] text-slate-600 font-mono">{formatRate(perSecond)}</p>
-        <p className="text-[10px] text-slate-600">deaths</p>
+        <p className="text-[10px] text-slate-600">{t("live_deaths")}</p>
       </div>
     </button>
   );
@@ -129,6 +131,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
   const isDV = brand === "deathvault";
   const darkMode = useAppStore((s) => s.darkMode);
   const allowedCats = BRAND_CATEGORIES[brand];
+  const { t, lang } = useI18n();
 
   const ongoingEvents = EVENTS.filter(
     (e) => e.endYear === null && allowedCats.includes(e.category) && ANNUAL_RATES[e.id]
@@ -159,18 +162,18 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
             <span className="relative inline-flex rounded-full h-2.5 w-2.5" style={{ backgroundColor: accentColor }} />
           </span>
           <span className={cn("text-xs font-mono font-bold tracking-widest uppercase", darkMode ? "text-white" : "text-slate-900")}>
-            NOW LIVE
+            {t("live_now")}
           </span>
         </div>
         <div className={cn("h-3.5 w-px", darkMode ? "bg-border/60" : "bg-slate-300")} />
         <span className={cn("text-xs", darkMode ? "text-slate-500" : "text-slate-500")}>
-          Active outbreaks — real-time estimated death tolls
+          {t("live_subtitle")}
         </span>
         <div className="flex-1" />
         <div className="flex items-center gap-1.5">
           <RefreshCw className="w-2.5 h-2.5 text-slate-600" />
           <span className="text-[10px] font-mono text-slate-600">
-            Updated {new Date(FEED_UPDATED).toLocaleDateString("en", { day: "numeric", month: "short" })}
+            {t("live_updated")} {new Date(FEED_UPDATED).toLocaleDateString(lang === "es" ? "es" : "en", { day: "numeric", month: "short" })}
           </span>
         </div>
         <TrendingUp className="w-3.5 h-3.5 text-slate-500" />
@@ -180,7 +183,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
         {/* Left: event counters */}
         <div className="p-4 space-y-2">
           <p className={cn("text-[10px] font-mono uppercase tracking-widest mb-3", darkMode ? "text-slate-600" : "text-slate-400")}>
-            Ongoing events
+            {t("live_ongoing")}
           </p>
           {ongoingEvents.map((ev) => (
             <EventCounter
@@ -197,7 +200,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
           <div className="flex items-center gap-2 mb-3">
             <Newspaper className="w-3.5 h-3.5 text-slate-500" />
             <p className={cn("text-[10px] font-mono uppercase tracking-widest", darkMode ? "text-slate-600" : "text-slate-400")}>
-              Recent alerts &amp; news
+              {t("live_recent_alerts")}
             </p>
           </div>
 
@@ -224,7 +227,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
                 >
                   {item.urgent && (
                     <span className="mt-0.5 flex-shrink-0 text-[9px] font-bold font-mono tracking-wider px-1.5 py-0.5 rounded" style={{ backgroundColor: accentColor + "25", color: accentColor }}>
-                      ALERT
+                      {t("live_alert")}
                     </span>
                   )}
                   <div className="flex-1 min-w-0">
@@ -240,7 +243,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
                   <ExternalLink className="w-3 h-3 text-slate-600 group-hover:text-slate-400 flex-shrink-0 mt-0.5" />
                 </a>
               )) : (
-                <p className="text-slate-600 text-xs">No recent news for this event.</p>
+                <p className="text-slate-600 text-xs">{t("live_no_news")}</p>
               )}
             </motion.div>
           </AnimatePresence>
@@ -254,7 +257,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
               className="mt-3 flex items-center gap-1.5 text-xs font-semibold transition-colors duration-150 cursor-pointer hover:opacity-80"
               style={{ color: accentColor }}
             >
-              View on map <ChevronRight className="w-3.5 h-3.5" />
+              {t("view_on_map")} <ChevronRight className="w-3.5 h-3.5" />
             </button>
           )}
         </div>
