@@ -25,8 +25,8 @@ export default async function HomePage() {
       <Navbar />
 
       {/* Hero strip — server-rendered, fully indexable by Google */}
-      <div className={isDV ? "pt-[64px] pb-0" : "pt-20 pb-0"}>
-        <div className={cn("max-w-[1350px] mx-auto px-4", isDV ? "pt-2" : "pt-4")}>
+      <div className="pt-20 pb-0">
+        <div className={cn("max-w-[1350px] mx-auto px-4 pt-4")}>
           <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 mb-3">
             <div>
               <h1 className="font-display font-black text-4xl sm:text-5xl text-white">

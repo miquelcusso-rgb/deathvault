@@ -320,19 +320,9 @@ html[data-brand="deathvault"] .scrollbar-thin {
   scrollbar-color: #1B2736 transparent;
 }
 
-/* ── Ambient top border on nav ── */
-html[data-brand="deathvault"] header::before {
-  content: '';
-  display: block;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #D97706 30%, #F59E0B 70%, transparent);
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  z-index: 51;
-  pointer-events: none;
-}
-html[data-brand="deathvault"] header {
-  position: relative;
+/* ── Ambient accent on nav card ── */
+html[data-brand="deathvault"] nav {
+  box-shadow: 0 0 0 1px rgba(245,158,11,0.18), 0 8px 32px rgba(0,0,0,0.45) !important;
 }
 
 /* Animation for spread rings */

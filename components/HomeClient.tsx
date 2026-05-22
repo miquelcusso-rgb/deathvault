@@ -60,7 +60,7 @@ export function HomeClient({ brandEvents }: Props) {
           </div>
 
           {/* Center — Globe / Map */}
-          <div className="card overflow-hidden h-[600px] relative order-1 lg:order-2">
+          <div className="overflow-hidden h-[600px] relative order-1 lg:order-2 rounded-2xl border border-border/60 bg-surface" style={{ isolation: "isolate" }}>
             <div className="absolute top-4 left-4 z-10 flex gap-1 bg-black/40 border border-border/50 backdrop-blur-sm rounded-xl p-1">
               <button
                 onClick={() => setMapView("globe")}
