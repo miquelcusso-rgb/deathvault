@@ -29,10 +29,10 @@ export default function StatisticsPage() {
         {/* Summary cards */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
-            { label: "Total Deaths Tracked", value: formatDeaths(totalDeaths), icon: <Skull className="w-5 h-5" />, color: "#DC2626" },
-            { label: "Events Documented", value: String(EVENTS.length), icon: <Globe className="w-5 h-5" />, color: "#06B6D4" },
-            { label: "Deadliest Event", value: lang === "es" ? sorted[0].nameEs : sorted[0].name, icon: <TrendingUp className="w-5 h-5" />, color: sorted[0].color },
-            { label: "Time Span", value: "541 AD – Now", icon: <TrendingUp className="w-5 h-5" />, color: "#10B981" },
+            { label: t("stats_card_total_deaths"), value: formatDeaths(totalDeaths), icon: <Skull className="w-5 h-5" />, color: "#DC2626" },
+            { label: t("stats_card_events"), value: String(EVENTS.length), icon: <Globe className="w-5 h-5" />, color: "#06B6D4" },
+            { label: t("stats_card_deadliest"), value: lang === "es" ? sorted[0].nameEs : sorted[0].name, icon: <TrendingUp className="w-5 h-5" />, color: sorted[0].color },
+            { label: t("stats_card_timespan"), value: t("stats_card_timespan_value"), icon: <TrendingUp className="w-5 h-5" />, color: "#10B981" },
           ].map((card) => (
             <div key={card.label} className="card p-4" style={{ borderColor: card.color + "30" }}>
               <div className="flex items-center gap-2 mb-2" style={{ color: card.color }}>
@@ -109,15 +109,15 @@ export default function StatisticsPage() {
 
           {/* All events bar comparison */}
           <div className="card p-6">
-            <h2 className="section-title text-lg mb-1">All Events Comparison</h2>
-            <p className="section-sub mb-4">Death toll across all {EVENTS.length} documented events</p>
+            <h2 className="section-title text-lg mb-1">{t("stats_all_comparison")}</h2>
+            <p className="section-sub mb-4">{lang === "es" ? `Cifra de muertes en los ${EVENTS.length} eventos documentados` : `Death toll across all ${EVENTS.length} documented events`}</p>
             <ComparisonChart events={sorted} />
           </div>
         </div>
 
         {/* Full event grid */}
         <div className="card p-6">
-          <h2 className="section-title text-lg mb-6">All Documented Events</h2>
+          <h2 className="section-title text-lg mb-6">{t("stats_all_events_grid")}</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
             {EVENTS.map((ev) => (
               <Link

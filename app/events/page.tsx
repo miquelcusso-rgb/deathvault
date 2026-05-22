@@ -7,6 +7,7 @@ import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { useAppStore } from "@/lib/store";
 import { useBrand } from "@/app/providers";
+import { useI18n } from "@/lib/i18n";
 import { EVENTS, formatDeaths } from "@/data/events";
 import type { EventCategory } from "@/data/events";
 import { BRAND_CATEGORIES } from "@/lib/brand";
@@ -15,14 +16,6 @@ import { cn } from "@/lib/utils";
 // ── Category config ────────────────────────────────────────────────────────────
 
 type FilterTab = "all" | EventCategory;
-
-const CATEGORY_LABELS: Record<EventCategory, string> = {
-  pandemic: "Pandemic",
-  war:      "War",
-  nuclear:  "Nuclear",
-  famine:   "Famine",
-  genocide: "Genocide",
-};
 
 const CATEGORY_COLORS: Record<EventCategory, string> = {
   pandemic: "#EC4899",
@@ -49,10 +42,14 @@ interface EventCardProps {
 
 function EventCard({ ev, index }: EventCardProps) {
   const darkMode = useAppStore((s) => s.darkMode);
+  const { t, lang } = useI18n();
+
+  const evName = lang === "es" ? ev.nameEs : ev.name;
+  const evDesc = lang === "es" ? ev.descriptionEs : ev.descriptionEn;
+  const desc = evDesc.slice(0, 120).trimEnd() + (evDesc.length > 120 ? "…" : "");
   const yearRange = ev.endYear
     ? `${ev.startYear} – ${ev.endYear}`
-    : `${ev.startYear} – present`;
-  const desc = ev.descriptionEn.slice(0, 120).trimEnd() + (ev.descriptionEn.length > 120 ? "…" : "");
+    : `${ev.startYear} – ${lang === "es" ? "actualidad" : "present"}`;
   const tags = ev.tags.slice(0, 3);
 
   return (
@@ -87,13 +84,13 @@ function EventCard({ ev, index }: EventCardProps) {
             "font-display font-black text-base leading-tight mr-auto",
             darkMode ? "text-white" : "text-slate-900",
           )}>
-            {ev.name}
+            {evName}
           </h3>
           <span className={cn(
             "flex-shrink-0 text-[10px] font-mono font-bold tracking-[0.15em] uppercase px-2 py-0.5 rounded-full border",
             CATEGORY_BG[ev.category],
           )}>
-            {CATEGORY_LABELS[ev.category]}
+            {t(ev.category as any)}
           </span>
         </div>
 
@@ -109,7 +106,7 @@ function EventCard({ ev, index }: EventCardProps) {
           <span className="text-lg font-display font-black leading-none" style={{ color: ev.color }}>
             {formatDeaths(ev.deathsEstimate)}
           </span>
-          <span className="text-xs text-slate-500 font-mono">est. deaths</span>
+          <span className="text-xs text-slate-500 font-mono">{t("events_est_deaths")}</span>
         </div>
 
         {/* Description excerpt */}
@@ -152,7 +149,7 @@ function EventCard({ ev, index }: EventCardProps) {
               (e.currentTarget as HTMLElement).style.backgroundColor = ev.color + "12";
             }}
           >
-            Explore
+            {t("events_explore")}
             <ChevronRight className="w-3 h-3 transition-transform duration-200 group-hover/btn:translate-x-0.5" />
           </Link>
         </div>
@@ -169,6 +166,7 @@ export default function EventsPage() {
   const isDV = brand === "deathvault";
   const allowedCats = BRAND_CATEGORIES[brand];
   const accentColor = isDV ? "#F59E0B" : "#EC4899";
+  const { t, lang } = useI18n();
 
   const [activeTab, setActiveTab] = useState<FilterTab>("all");
   const [search, setSearch] = useState("");
@@ -176,8 +174,8 @@ export default function EventsPage() {
 
   // Build available tabs (brand-filtered)
   const availableTabs: { key: FilterTab; label: string }[] = [
-    { key: "all", label: "All" },
-    ...allowedCats.map((cat) => ({ key: cat as FilterTab, label: CATEGORY_LABELS[cat] })),
+    { key: "all", label: t("events_filter_all") },
+    ...allowedCats.map((cat) => ({ key: cat as FilterTab, label: t(cat as any) })),
   ];
 
   // Filter + sort
@@ -193,7 +191,9 @@ export default function EventsPage() {
       list = list.filter(
         (ev) =>
           ev.name.toLowerCase().includes(q) ||
+          ev.nameEs.toLowerCase().includes(q) ||
           ev.descriptionEn.toLowerCase().includes(q) ||
+          ev.descriptionEs.toLowerCase().includes(q) ||
           ev.tags.some((t) => t.includes(q)),
       );
     }
@@ -209,6 +209,9 @@ export default function EventsPage() {
 
   // Total deaths across filtered events
   const totalDeaths = filtered.reduce((sum, ev) => sum + ev.deathsEstimate, 0);
+
+  // Category labels for stats strip (joined list)
+  const catList = allowedCats.map((c) => t(c as any)).join(", ");
 
   return (
     <div className="min-h-screen bg-void bg-grid">
@@ -239,11 +242,11 @@ export default function EventsPage() {
               className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full border"
               style={{ color: accentColor, borderColor: accentColor + "40", backgroundColor: accentColor + "12" }}
             >
-              {isDV ? "DEATH ARCHIVE" : "DISEASE ARCHIVE"}
+              {isDV ? t("events_archive_dv") : t("events_archive_pa")}
             </div>
             <div className="flex-1 h-px bg-gradient-to-r from-border/60 to-transparent" />
             <div className="text-[10px] font-mono text-slate-600">
-              {filtered.length} events · {formatDeaths(totalDeaths)} documented deaths
+              {filtered.length} {t("events_count_suffix")} · {formatDeaths(totalDeaths)} {t("events_documented")}
             </div>
           </div>
 
@@ -251,13 +254,13 @@ export default function EventsPage() {
             "font-display font-black text-4xl sm:text-5xl mb-2",
             darkMode ? "text-white" : "text-slate-900",
           )}>
-            {isDV ? "Event" : "Disease"}{" "}
-            <span style={{ color: accentColor }}>Archive</span>
+            {isDV ? t("events_title_main_dv") : t("events_title_main_pa")}
+            <span style={{ color: accentColor }}>
+              {isDV ? t("events_title_accent_dv") : t("events_title_accent_pa")}
+            </span>
           </h1>
           <p className={cn("text-base max-w-2xl", darkMode ? "text-slate-400" : "text-slate-600")}>
-            {isDV
-              ? "Every mass death event in recorded history — pandemics, world wars, nuclear disasters, and famines with full data and interactive maps."
-              : "Browse every major pandemic and epidemic documented in our database — death tolls, timelines, interactive maps, and more."}
+            {isDV ? t("events_subtitle_dv") : t("events_subtitle_pa")}
           </p>
         </motion.div>
 
@@ -310,7 +313,7 @@ export default function EventsPage() {
             <Search className="w-3.5 h-3.5 text-slate-500 flex-shrink-0" />
             <input
               type="text"
-              placeholder="Search events…"
+              placeholder={t("events_search")}
               aria-label="Search historical events"
               role="searchbox"
               value={search}
@@ -332,7 +335,7 @@ export default function EventsPage() {
             )}
           >
             <ArrowUpDown className="w-3.5 h-3.5" />
-            {sortMode === "deaths" ? "Deaths ↓" : "Chronological"}
+            {sortMode === "deaths" ? t("events_sort_deaths") : t("events_sort_chrono")}
           </button>
         </motion.div>
 
@@ -347,10 +350,10 @@ export default function EventsPage() {
           )}
         >
           {[
-            { label: "Total events", value: filtered.length.toString() },
-            { label: "Documented deaths", value: formatDeaths(totalDeaths) },
-            { label: "Time span", value: `${Math.min(...filtered.map((e) => e.startYear))} – present` },
-            { label: "Categories", value: allowedCats.map((c) => CATEGORY_LABELS[c]).join(", ") },
+            { label: t("events_stat_total"), value: filtered.length.toString() },
+            { label: t("events_stat_deaths"), value: formatDeaths(totalDeaths) },
+            { label: t("events_stat_timespan"), value: `${Math.min(...filtered.map((e) => e.startYear))} – ${lang === "es" ? "hoy" : "present"}` },
+            { label: t("events_stat_categories"), value: catList },
           ].map((stat) => (
             <div key={stat.label} className="flex flex-col gap-0.5">
               <span className="text-[10px] font-mono uppercase tracking-widest text-slate-500">{stat.label}</span>
@@ -379,13 +382,13 @@ export default function EventsPage() {
             >
               <Filter className="w-8 h-8 text-slate-600" />
               <p className={cn("text-sm font-medium", darkMode ? "text-slate-400" : "text-slate-500")}>
-                No events match your filters
+                {t("events_no_results")}
               </p>
               <button
                 onClick={() => { setSearch(""); setActiveTab("all"); }}
                 className="text-xs font-semibold px-3 py-1.5 rounded-xl border border-border/40 text-slate-400 hover:text-white transition-colors cursor-pointer"
               >
-                Clear filters
+                {t("events_clear_filters")}
               </button>
             </motion.div>
           ) : (
@@ -409,8 +412,7 @@ export default function EventsPage() {
           transition={{ delay: 0.4 }}
           className="text-center text-xs text-slate-600 mt-12 font-mono"
         >
-          Death toll estimates sourced from WHO, CDC, and peer-reviewed academic literature.
-          Ranges reflect historiographic uncertainty.
+          {t("events_source_note")}
         </motion.p>
 
       </main>

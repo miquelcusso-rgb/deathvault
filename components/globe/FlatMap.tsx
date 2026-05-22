@@ -201,8 +201,13 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
         projectionConfig={{ scale: 210, center: [0, 5] }}
       >
         <ZoomableGroup zoom={zoom} center={center} onMoveEnd={(pos: any) => {
-          setCenter(pos.coordinates as [number, number]);
-          setZoom(pos.zoom);
+          const [lng, lat] = pos.coordinates as [number, number];
+          // Clamp so the map can't be dragged completely off-screen
+          setCenter([
+            Math.max(-160, Math.min(160, lng)),
+            Math.max(-70, Math.min(70, lat)),
+          ]);
+          setZoom(Math.max(1, Math.min(8, pos.zoom)));
         }}>
           <Geographies geography={GEO_URL}>
             {({ geographies }: any) =>

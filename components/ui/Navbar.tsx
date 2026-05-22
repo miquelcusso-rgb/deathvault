@@ -89,10 +89,6 @@ export function Navbar() {
 
             {/* Controls */}
             <div className="flex items-center gap-2">
-              {/* Share */}
-              <div className="hidden md:block">
-                <ShareButton title={meta.name} text={meta.tagline} />
-              </div>
               {/* Cross-brand links */}
               {isDV && (
                 <a
@@ -118,6 +114,10 @@ export function Navbar() {
                   More events → DeathVault
                 </a>
               )}
+              {/* Share */}
+              <div className="hidden md:block">
+                <ShareButton title={meta.name} text={meta.tagline} />
+              </div>
               <LanguageToggle />
               <ThemeToggle />
               <button
