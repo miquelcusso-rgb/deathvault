@@ -59,7 +59,7 @@ export default async function HomePage() {
 
           {/* SSR text content — indexable by Google without JS execution */}
           <p className="sr-only">
-            {isEs ? t("hero_subtitle") : meta.description}{" "}
+            {isEs ? ((meta as { descriptionEs?: string }).descriptionEs ?? meta.description) : meta.description}{" "}
             {isEs ? "Explora" : "Explore"} {TOTAL_EVENTS}{" "}
             {isEs ? "eventos históricos, incluyendo" : "historical events including"}{" "}
             {brandEvents

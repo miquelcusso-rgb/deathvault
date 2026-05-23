@@ -49,35 +49,46 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function EventsLayout({ children }: { children: React.ReactNode }) {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
   const isPA = brand === "plagueatlas";
+  const isEs = h.get("x-locale") === "es";
+  const base = isEs ? `${meta.url}/es` : meta.url;
   const brandEvents = EVENTS.filter((e) => BRAND_CATEGORIES[brand].includes(e.category))
     .sort((a, b) => b.deathsEstimate - a.deathsEstimate);
+
+  const collectionName = isEs
+    ? (isPA ? "Las pandemias y epidemias más mortíferas de la historia" : "Los eventos más mortíferos de la historia")
+    : (isPA ? "Deadliest Pandemics & Epidemics in History" : "Deadliest Events in Human History");
 
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": isPA ? "Deadliest Pandemics & Epidemics in History" : "Deadliest Events in Human History",
-    "description": isPA
-      ? "Interactive archive of history's deadliest pandemics and epidemics with death tolls, timelines, and maps."
-      : "Interactive archive of history's deadliest pandemics, wars, nuclear events, and famines with death tolls and maps.",
-    "url": `${meta.url}/events`,
-    "isPartOf": { "@type": "WebSite", "name": meta.name, "url": meta.url },
+    "inLanguage": isEs ? "es" : "en",
+    "name": collectionName,
+    "description": isEs
+      ? (isPA
+          ? "Archivo interactivo de las pandemias y epidemias más mortíferas de la historia con cifras de muertes, cronologías y mapas."
+          : "Archivo interactivo de las pandemias, guerras, eventos nucleares y hambrunas más mortíferos de la historia con cifras de muertes y mapas.")
+      : (isPA
+          ? "Interactive archive of history's deadliest pandemics and epidemics with death tolls, timelines, and maps."
+          : "Interactive archive of history's deadliest pandemics, wars, nuclear events, and famines with death tolls and maps."),
+    "url": `${base}/events`,
+    "isPartOf": { "@type": "WebSite", "name": meta.name, "url": base },
   };
 
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": isPA ? "Deadliest Pandemics in History" : "Deadliest Events in Human History",
+    "name": collectionName,
     "numberOfItems": brandEvents.length,
     "itemListElement": brandEvents.map((ev, i) => ({
       "@type": "ListItem",
       "position": i + 1,
-      "name": ev.name,
-      "url": `${meta.url}/pandemic/${ev.id}`,
-      "description": ev.descriptionEn.slice(0, 150),
+      "name": isEs ? ev.nameEs : ev.name,
+      "url": `${base}/pandemic/${ev.id}`,
+      "description": (isEs ? ev.descriptionEs : ev.descriptionEn).slice(0, 150),
     })),
   };
 
@@ -85,8 +96,8 @@ export default async function EventsLayout({ children }: { children: React.React
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": meta.url },
-      { "@type": "ListItem", "position": 2, "name": "Event Archive", "item": `${meta.url}/events` },
+      { "@type": "ListItem", "position": 1, "name": isEs ? "Inicio" : "Home", "item": base },
+      { "@type": "ListItem", "position": 2, "name": isEs ? "Archivo de eventos" : "Event Archive", "item": `${base}/events` },
     ],
   };
 

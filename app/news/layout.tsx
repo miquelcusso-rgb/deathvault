@@ -48,17 +48,22 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NewsLayout({ children }: { children: React.ReactNode }) {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
+  const isEs = h.get("x-locale") === "es";
+  const base = isEs ? `${meta.url}/es` : meta.url;
 
   const collectionSchema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Outbreak & Pandemic News",
-    "description": "Latest WHO, CDC, ECDC disease outbreak alerts and pandemic updates.",
-    "url": `${meta.url}/news`,
-    "isPartOf": { "@type": "WebSite", "name": meta.name, "url": meta.url },
+    "inLanguage": isEs ? "es" : "en",
+    "name": isEs ? "Noticias de brotes y pandemias" : "Outbreak & Pandemic News",
+    "description": isEs
+      ? "Últimas alertas de brotes de enfermedades de la OMS, CDC y ECDC, y actualizaciones de pandemias."
+      : "Latest WHO, CDC, ECDC disease outbreak alerts and pandemic updates.",
+    "url": `${base}/news`,
+    "isPartOf": { "@type": "WebSite", "name": meta.name, "url": base },
     "dateModified": new Date().toISOString().slice(0, 10),
   };
 
@@ -66,8 +71,8 @@ export default async function NewsLayout({ children }: { children: React.ReactNo
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": meta.url },
-      { "@type": "ListItem", "position": 2, "name": "News", "item": `${meta.url}/news` },
+      { "@type": "ListItem", "position": 1, "name": isEs ? "Inicio" : "Home", "item": base },
+      { "@type": "ListItem", "position": 2, "name": isEs ? "Noticias" : "News", "item": `${base}/news` },
     ],
   };
 

@@ -249,7 +249,7 @@ export const translations = {
     news_footer: "Data sourced from WHO Disease Outbreak News, CDC Health Alerts, ECDC, and PAHO. Automated updates run daily at 07:00 UTC.",
     // About page
     about_what_is: "What is",
-    about_desc_pa: "PlagueAtlas is an independent educational data visualization project mapping the deadliest pandemics and famines in human history. Our goal is to make historical mortality data accessible, engaging, and context-rich — helping people understand the scale and impact of humanity's greatest disease crises.",
+    about_desc_pa: "PlagueAtlas is an independent educational data visualization project mapping the deadliest pandemics and epidemics in human history. Our goal is to make historical mortality data accessible, engaging, and context-rich — helping people understand the scale and impact of humanity's greatest disease crises.",
     about_desc_dv: "DeathVault is an independent educational archive documenting every major mass-death event in recorded history — pandemics, world wars, famines, and nuclear disasters. Our goal is to make historical mortality data accessible, accurate, and context-rich, helping people grasp the true scale of humanity's greatest catastrophes.",
     about_data_sources: "Data Sources",
     about_data_intro: "All data is sourced from reputable academic and institutional sources including:",
@@ -604,7 +604,7 @@ export const translations = {
     news_footer: "Datos procedentes de WHO Disease Outbreak News, alertas sanitarias de los CDC, el ECDC y la OPS. Las actualizaciones automáticas se ejecutan a diario a las 07:00 UTC.",
     // About page
     about_what_is: "¿Qué es",
-    about_desc_pa: "PlagueAtlas es un proyecto educativo e independiente de visualización de datos que cartografía las pandemias y hambrunas más mortíferas de la historia de la humanidad. Nuestro objetivo es hacer que los datos históricos de mortalidad sean accesibles, atractivos y ricos en contexto, ayudando a la gente a comprender la magnitud y el impacto de las mayores crisis sanitarias de la humanidad.",
+    about_desc_pa: "PlagueAtlas es un proyecto educativo e independiente de visualización de datos que cartografía las pandemias y epidemias más mortíferas de la historia de la humanidad. Nuestro objetivo es hacer que los datos históricos de mortalidad sean accesibles, atractivos y ricos en contexto, ayudando a la gente a comprender la magnitud y el impacto de las mayores crisis sanitarias de la humanidad.",
     about_desc_dv: "DeathVault es un archivo educativo e independiente que documenta todos los grandes acontecimientos de mortalidad masiva de la historia registrada: pandemias, guerras mundiales, hambrunas y desastres nucleares. Nuestro objetivo es hacer que los datos históricos de mortalidad sean accesibles, precisos y ricos en contexto, ayudando a la gente a captar la verdadera magnitud de las mayores catástrofes de la humanidad.",
     about_data_sources: "Fuentes de datos",
     about_data_intro: "Todos los datos proceden de fuentes académicas e institucionales de prestigio, entre ellas:",

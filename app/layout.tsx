@@ -40,7 +40,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const invariantPath = h.get("x-invariant-path") || "/";
   const isEs = locale === "es";
   const t = makeT(locale);
-  const description = isEs ? t("hero_subtitle") : m.description;
+  const description = isEs ? (m as { descriptionEs?: string }).descriptionEs ?? m.description : m.description;
   const alternates = buildAlternates(m.url, invariantPath, locale);
 
   return {

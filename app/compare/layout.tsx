@@ -9,6 +9,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const h = await headers();
   const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
+  const isPA = brand === "plagueatlas";
   const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const invariantPath = h.get("x-invariant-path") || "/";
   const isEs = locale === "es";
@@ -18,12 +19,20 @@ export async function generateMetadata(): Promise<Metadata> {
     ? `${meta.name} — Compara los eventos más mortíferos de la historia`
     : `${meta.name} — Compare History's Deadliest Events`;
   const description = isEs
-    ? `Compara dos eventos históricos lado a lado en ${meta.name}. Muertes, cronologías y propagación geográfica — Peste Negra vs Segunda Guerra Mundial, Gripe Española vs COVID-19 y más.`
-    : `Compare any two historical events side by side on ${meta.name}. Deaths, timelines, and geographic spread — Black Death vs WWII, Spanish Flu vs COVID-19, and more.`;
+    ? (isPA
+        ? `Compara dos pandemias o epidemias históricas lado a lado en ${meta.name}. Muertes, cronologías y propagación geográfica — Peste Negra vs Gripe Española, Gripe Española vs COVID-19 y más.`
+        : `Compara dos eventos históricos lado a lado en ${meta.name}. Muertes, cronologías y propagación geográfica — Peste Negra vs Segunda Guerra Mundial, Gripe Española vs COVID-19 y más.`)
+    : (isPA
+        ? `Compare any two historical pandemics side by side on ${meta.name}. Deaths, timelines, and geographic spread — Black Death vs Spanish Flu, Spanish Flu vs COVID-19, and more.`
+        : `Compare any two historical events side by side on ${meta.name}. Deaths, timelines, and geographic spread — Black Death vs WWII, Spanish Flu vs COVID-19, and more.`);
   const ogTitle = isEs ? `Comparar eventos históricos | ${meta.name}` : `Compare Historical Events | ${meta.name}`;
   const ogDescription = isEs
-    ? "Comparación lado a lado de pandemias, guerras y eventos nucleares. Cifras de muertes, cronologías e impacto geográfico."
-    : "Side-by-side comparison of pandemics, wars, and nuclear events. Death tolls, timelines, and geographic impact.";
+    ? (isPA
+        ? "Comparación lado a lado de las pandemias y epidemias más mortíferas de la historia. Cifras de muertes, cronologías e impacto geográfico."
+        : "Comparación lado a lado de pandemias, guerras y eventos nucleares. Cifras de muertes, cronologías e impacto geográfico.")
+    : (isPA
+        ? "Side-by-side comparison of history's deadliest pandemics and epidemics. Death tolls, timelines, and geographic impact."
+        : "Side-by-side comparison of pandemics, wars, and nuclear events. Death tolls, timelines, and geographic impact.");
 
   return {
     title,

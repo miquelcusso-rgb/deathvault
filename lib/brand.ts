@@ -24,6 +24,7 @@ export const BRAND_META = {
     headline:    "History's Deadliest Pandemics, Mapped",
     tagline:     "Interactive epidemic & disease history map — 1,500 years of data",
     description: "How many people died from the Black Death, Spanish Flu, and COVID-19? Interactive 3D map of history's deadliest pandemics with real-time death counters and outbreak news.",
+    descriptionEs: "¿Cuántas personas murieron por la Peste Negra, la Gripe Española o el COVID-19? Mapa 3D interactivo de las pandemias más mortíferas de la historia, con contadores de muertes en tiempo real y noticias de brotes.",
     url:         "https://www.plagueatlas.com",
     canonical:   "https://www.plagueatlas.com",
     keywords:    [
@@ -48,6 +49,7 @@ export const BRAND_META = {
     headline:    "Every Mass Death Event in Recorded History",
     tagline:     "Pandemics · Wars · Famines · Nuclear disasters — 813M+ casualties documented",
     description: "How many people died in WWII, the Black Death, or Chernobyl? Interactive archive of history's deadliest events — pandemics, world wars, famines, nuclear disasters. 813M+ deaths documented.",
+    descriptionEs: "¿Cuántas personas murieron en la Segunda Guerra Mundial, la Peste Negra o Chernóbil? Archivo interactivo de los eventos más mortíferos de la historia: pandemias, guerras mundiales, hambrunas y desastres nucleares. Más de 813M de muertes documentadas.",
     url:         "https://www.deathvault.app",
     canonical:   "https://www.deathvault.app",
     keywords:    [

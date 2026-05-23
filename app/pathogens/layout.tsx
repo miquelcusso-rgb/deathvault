@@ -46,25 +46,30 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function PathogensLayout({ children }: { children: React.ReactNode }) {
-  const host = (await headers()).get("host") ?? "";
-  const brand = detectBrand(host);
+  const h = await headers();
+  const brand = detectBrand(h.get("host") ?? "");
   const m = BRAND_META[brand];
+  const isEs = h.get("x-locale") === "es";
+  const base = isEs ? `${m.url}/es` : m.url;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "name": "Pathogen Archive — Viruses, Bacteria & Parasites",
-    "description": "Interactive archive of the world's deadliest pathogens with biology, transmission, and lethality data.",
-    "url": `${m.url}/pathogens`,
-    "isPartOf": { "@type": "WebSite", "name": m.name, "url": m.url },
+    "inLanguage": isEs ? "es" : "en",
+    "name": isEs ? "Archivo de patógenos — Virus, bacterias y parásitos" : "Pathogen Archive — Viruses, Bacteria & Parasites",
+    "description": isEs
+      ? "Archivo interactivo de los patógenos más mortíferos del mundo con datos de biología, transmisión y letalidad."
+      : "Interactive archive of the world's deadliest pathogens with biology, transmission, and lethality data.",
+    "url": `${base}/pathogens`,
+    "isPartOf": { "@type": "WebSite", "name": m.name, "url": base },
   };
 
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": m.url },
-      { "@type": "ListItem", "position": 2, "name": "Pathogens", "item": `${m.url}/pathogens` },
+      { "@type": "ListItem", "position": 1, "name": isEs ? "Inicio" : "Home", "item": base },
+      { "@type": "ListItem", "position": 2, "name": isEs ? "Patógenos" : "Pathogens", "item": `${base}/pathogens` },
     ],
   };
 
