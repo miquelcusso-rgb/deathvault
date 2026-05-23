@@ -218,6 +218,7 @@ export default async function EventLayout({
     "measurementTechnique": "Epidemiological estimates from WHO, CDC, and peer-reviewed sources",
     "temporalCoverage": period,
     "spatialCoverage": event.originCountry,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
   };
 
   return (
