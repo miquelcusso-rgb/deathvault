@@ -200,22 +200,35 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
 
       <ComposableMap
         projection="geoNaturalEarth1"
+        width={800}
+        height={600}
         className="w-full h-full"
         projectionConfig={{ scale: 210, center: [0, 5] }}
         style={{ overflow: "hidden" }}
       >
-        <ZoomableGroup zoom={zoom} center={center} onMoveEnd={(pos: any) => {
-          const nextZoom = Math.max(1, Math.min(8, pos.zoom));
-          const [lng, lat] = pos.coordinates as [number, number];
-          // Tighter clamping at higher zoom so no blank space is visible at edges
-          const maxLng = Math.max(20, 160 / nextZoom);
-          const maxLat = Math.max(10, 70 / nextZoom);
-          setCenter([
-            Math.max(-maxLng, Math.min(maxLng, lng)),
-            Math.max(-maxLat, Math.min(maxLat, lat)),
-          ]);
-          setZoom(nextZoom);
-        }}>
+        <ZoomableGroup
+          zoom={zoom}
+          center={center}
+          minZoom={1}
+          maxZoom={8}
+          // Constrain live panning to the map's own box so the viewport is
+          // never dragged onto blank background.
+          translateExtent={[[0, 0], [800, 600]]}
+          onMoveEnd={(pos: any) => {
+            const nextZoom = Math.max(1, Math.min(8, pos.zoom));
+            const [lng, lat] = pos.coordinates as [number, number];
+            // Keep the frame 100% covered by map: at zoom 1 the map fits exactly
+            // so the centre locks to [0,5]; the pannable room grows with zoom.
+            const k = 1 - 1 / nextZoom;        // 0 at z=1 → 0.875 at z=8
+            const maxLng = 178 * k;
+            const maxLat = 70 * k;
+            setCenter([
+              Math.max(-maxLng, Math.min(maxLng, lng)),
+              Math.max(5 - maxLat, Math.min(5 + maxLat, lat)),
+            ]);
+            setZoom(nextZoom);
+          }}
+        >
           <Geographies geography={GEO_URL}>
             {({ geographies }: any) =>
               geographies.map((geo: any) => (

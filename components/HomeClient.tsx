@@ -48,8 +48,8 @@ export function HomeClient({ brandEvents }: Props) {
       {/* Main interactive layout */}
       <main id="main-content" className="max-w-[1350px] mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr_300px] gap-4">
-          {/* Left — Event Selector — matches the square map's height on desktop */}
-          <div className="card p-4 h-[340px] lg:h-full lg:min-h-0 flex flex-col overflow-hidden order-2 lg:order-1">
+          {/* Left — Event Selector — fixed 600px on desktop (matches the map) */}
+          <div className="card p-4 h-[340px] lg:h-[600px] flex flex-col overflow-hidden order-2 lg:order-1">
             <h2 className="text-white font-display font-semibold text-sm mb-3 flex items-center gap-2">
               <div className="w-1.5 h-4 rounded-full bg-crimson-light" />
               {t("home_events_panel")}
@@ -60,8 +60,8 @@ export function HomeClient({ brandEvents }: Props) {
             />
           </div>
 
-          {/* Center — Globe / Map — always square (height = width) */}
-          <div className="overflow-hidden aspect-square w-full relative order-1 lg:order-2 rounded-2xl border border-border/60 bg-surface" style={{ isolation: "isolate" }}>
+          {/* Center — Globe / Map — square on mobile, fixed 600px on desktop */}
+          <div className="overflow-hidden aspect-square w-full lg:aspect-auto lg:h-[600px] relative order-1 lg:order-2 rounded-2xl border border-border/60 bg-surface" style={{ isolation: "isolate" }}>
             <div className="absolute top-4 left-4 z-10 flex gap-1 bg-black/40 border border-border/50 backdrop-blur-sm rounded-xl p-1">
               <button
                 onClick={() => setMapView("globe")}
@@ -108,8 +108,8 @@ export function HomeClient({ brandEvents }: Props) {
             </div>
           </div>
 
-          {/* Right — Death Counter — matches the square map's height on desktop */}
-          <div className="card p-4 h-[340px] lg:h-full lg:min-h-0 overflow-y-auto scrollbar-thin order-3">
+          {/* Right — Death Counter — fixed 600px on desktop (matches the map) */}
+          <div className="card p-4 h-[340px] lg:h-[600px] overflow-y-auto scrollbar-thin order-3">
             <DeathCounter event={selectedEvent} />
           </div>
         </div>
