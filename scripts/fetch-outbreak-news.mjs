@@ -187,6 +187,57 @@ async function fetchFeed(feed) {
   }
 }
 
+// ── Translation (bilingual headlines) ───────────────────────────────────────
+// Each news item is stored with BOTH headlineEn and headlineEs so the EN and ES
+// pages always show the headline in the reader's language. Uses MyMemory's free
+// endpoint (no key). On any failure we fall back to the original text.
+
+function sourceLang(source) {
+  return /(-ES|_ES)$/i.test(source || "") ? "es" : "en";
+}
+
+async function translate(text, from, to) {
+  if (!text || from === to) return text;
+  try {
+    const q = encodeURIComponent(text.slice(0, 480)); // MyMemory ~500 char limit
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${q}&langpair=${from}|${to}&de=bot@plagueatlas.com`,
+      { headers: { "User-Agent": "PlagueAtlas-NewsBot/1.0" }, signal: AbortSignal.timeout(12000) },
+    );
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    const out = data?.responseData?.translatedText;
+    if (out && typeof out === "string" && !/MYMEMORY WARNING|QUERY LENGTH LIMIT/i.test(out)) {
+      return out.trim();
+    }
+    return text;
+  } catch (err) {
+    console.warn(`  ⚠ translate(${from}→${to}) failed: ${err.message}`);
+    return text;
+  }
+}
+
+/** Ensure every item has headlineEn + headlineEs. Only translates what's missing. */
+async function bilingualize(items) {
+  let done = 0;
+  for (const item of items) {
+    if (item.headlineEn && item.headlineEs) continue; // already bilingual
+    if (done >= 60) break; // safety cap per run (respect free-tier limits)
+    const orig = item.headline || item.headlineEn || item.headlineEs || "";
+    if (sourceLang(item.source) === "es") {
+      item.headlineEs = item.headlineEs || orig;
+      item.headlineEn = item.headlineEn || (await translate(orig, "es", "en"));
+    } else {
+      item.headlineEn = item.headlineEn || orig;
+      item.headlineEs = item.headlineEs || (await translate(orig, "en", "es"));
+    }
+    done++;
+    await new Promise((r) => setTimeout(r, 250)); // gentle pacing for the free API
+  }
+  if (done) console.log(`🌐 Translated ${done} headline(s) to add the missing language`);
+  return done;
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -246,6 +297,9 @@ async function main() {
     countPerEvent[item.eventId] = (countPerEvent[item.eventId] ?? 0) + 1;
     return countPerEvent[item.eventId] <= 8;
   });
+
+  // Add the missing-language headline to every item (new + any legacy items)
+  await bilingualize(capped);
 
   const output = {
     lastUpdated: new Date().toISOString(),

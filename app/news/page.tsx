@@ -14,6 +14,8 @@ interface NewsItem {
   eventId: string;
   date: string;
   headline: string;
+  headlineEn?: string;
+  headlineEs?: string;
   source: string;
   url: string;
   urgent?: boolean;
@@ -174,7 +176,7 @@ export default async function NewsPage() {
                             </time>
                           </div>
                           <p className="text-slate-200 text-sm leading-snug group-hover:text-white transition-colors duration-150">
-                            {item.headline}
+                            {lang === "es" ? (item.headlineEs ?? item.headline) : (item.headlineEn ?? item.headline)}
                           </p>
                         </div>
                         <ExternalLink className="w-4 h-4 flex-shrink-0 text-slate-600 group-hover:text-slate-400 mt-0.5 transition-colors duration-150" />

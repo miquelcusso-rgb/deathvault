@@ -12,12 +12,18 @@ import newsFeedRaw from "@/data/news-feed.json";
 import deathRatesRaw from "@/data/death-rates.json";
 
 // Hardcoded fallbacks — used when death-rates.json is missing a key
+// Annual death-rate estimates (deaths/year) for ONGOING events.
 const RATE_FALLBACKS: Record<string, number> = {
   "hiv-aids":   680_000,   // UNAIDS 2024
   "malaria":    597_000,   // WHO World Malaria Report 2025
   "covid-19":    80_000,   // conservative 2026 estimate
   "hantavirus":    200,    // elevated 2026 (MV Hondius cluster + sporadic global)
   "cholera":    100_000,   // WHO 2025
+  // Ongoing conflicts (DeathVault only — filtered out on PlagueAtlas).
+  // Estimates are contested and span wide ranges; values approximate the
+  // average annual toll since onset.
+  "ukraine-war": 75_000,   // Russia–Ukraine war (2022–): combined military + civilian deaths/yr
+  "gaza-war":    25_000,   // Israel–Gaza (2023–): reported deaths/yr (Gaza MoH / UN OCHA)
 };
 
 // Merge fallbacks with dynamically-updated JSON values (updated daily by GitHub Actions)
@@ -32,7 +38,8 @@ const ANNUAL_RATES: Record<string, number> = Object.fromEntries(
 // News items loaded from data/news-feed.json (updated daily by GitHub Actions)
 const NEWS_ITEMS = (newsFeedRaw as { lastUpdated: string; items: Array<{
   id: string; eventId: string; date: string;
-  headline: string; source: string; url: string; urgent: boolean;
+  headline: string; headlineEn?: string; headlineEs?: string;
+  source: string; url: string; urgent: boolean;
 }> }).items;
 
 const FEED_UPDATED = (newsFeedRaw as { lastUpdated: string }).lastUpdated;
@@ -80,12 +87,11 @@ function formatLive(n: number): string {
   return n.toLocaleString();
 }
 
+// Uniform rate display — always deaths per day (rounded; one decimal for tiny rates)
 function formatRate(perSecond: number): string {
-  if (perSecond >= 1)        return `~${perSecond.toFixed(1)}/s`;
-  if (perSecond >= 1 / 60)  return `~${(perSecond * 60).toFixed(1)}/min`;
-  if (perSecond >= 1 / 3600) return `~${(perSecond * 3600).toFixed(1)}/hr`;
-  const annualRate = Math.round(perSecond * 365.25 * 24 * 3600);
-  return `~${annualRate}/yr`;
+  const perDay = perSecond * 86400;
+  const v = perDay >= 10 ? Math.round(perDay).toLocaleString() : perDay.toFixed(1);
+  return `~${v}/day`;
 }
 
 function EventCounter({ event, isSelected, onSelect }: {
@@ -232,7 +238,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
                   )}
                   <div className="flex-1 min-w-0">
                     <p className={cn("text-xs leading-snug group-hover:text-white transition-colors", darkMode ? "text-slate-300" : "text-slate-700")}>
-                      {item.headline}
+                      {lang === "es" ? (item.headlineEs ?? item.headline) : (item.headlineEn ?? item.headline)}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] font-mono text-slate-600">{item.source}</span>

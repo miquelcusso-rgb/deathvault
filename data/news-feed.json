@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-05-22T16:07:27.461Z",
+  "lastUpdated": "2026-05-23T08:02:17.494Z",
   "items": [
     {
       "id": "ecdc-threat-assessment-brief-ebola-disease-ou-2026-05-21",
@@ -8,7 +8,9 @@
       "headline": "Threat assessment brief: Ebola disease outbreak caused by Bundibugyo virus – Democratic Republic of the Congo and Uganda – 2026",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/publications-data/threat-assessment-brief-ebola-disease-outbreak-caused-bundibugyo-virus-democratic",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "Threat assessment brief: Ebola disease outbreak caused by Bundibugyo virus – Democratic Republic of the Congo and Uganda – 2026",
+      "headlineEs": "Resumen de evaluación de amenazas: brote de la enfermedad del Ébola causado por el virus Bundibugyo – República Democrática del Congo y Uganda – 2026"
     },
     {
       "id": "ecdc-andes-hantavirus-outbreak-in-cruise-ship-2026-05-21",
@@ -17,7 +19,9 @@
       "headline": "Andes hantavirus outbreak in cruise ship, 21 May 2026",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/infectious-disease-topics/hantavirus-infection/surveillance-and-updates/andes-hantavirus-outbreak",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "Andes hantavirus outbreak in cruise ship, 21 May 2026",
+      "headlineEs": "Brote de hantavirus en los Andes en un crucero, 21 de mayo de 2026"
     },
     {
       "id": "ecdc-ebola-virus-disease-outbreak-in-the-demo-2026-05-21",
@@ -26,7 +30,9 @@
       "headline": "Ebola virus disease outbreak in the Democratic Republic of the Congo and Uganda",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "Ebola virus disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "headlineEs": "Brote de la enfermedad por el virus del Ébola en la República Democrática del Congo y Uganda"
     },
     {
       "id": "paho-es-suicide-among-adolescents-and-young-adul-2026-05-20",
@@ -35,7 +41,9 @@
       "headline": "Suicide among adolescents and young adults on the rise in the Americas: PAHO warns of urgent need for prevention",
       "source": "PAHO-ES",
       "url": "https://www.paho.org/en/news/20-5-2026-suicide-among-adolescents-and-young-adults-rise-americas-paho-warns-urgent-need",
-      "urgent": true
+      "urgent": true,
+      "headlineEs": "Suicide among adolescents and young adults on the rise in the Americas: PAHO warns of urgent need for prevention",
+      "headlineEn": "Suicide among adolescents and young adults on the rise in the Americas: PAHO warns of urgent need for prevention"
     },
     {
       "id": "paho-paho-reinforces-preparedness-measures-fo-2026-05-18",
@@ -44,7 +52,9 @@
       "headline": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
       "source": "PAHO",
       "url": "https://www.paho.org/en/news/18-5-2026-paho-reinforces-preparedness-measures-following-who-ebola-emergency-declaration",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
+      "headlineEs": "La OPS refuerza las medidas de preparación tras la declaración de emergencia del ébola de la OMS en la región de África"
     },
     {
       "id": "paho-es-paho-reinforces-preparedness-measures-fo-2026-05-18",
@@ -53,7 +63,9 @@
       "headline": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
       "source": "PAHO-ES",
       "url": "https://www.paho.org/en/news/18-5-2026-paho-reinforces-preparedness-measures-following-who-ebola-emergency-declaration",
-      "urgent": true
+      "urgent": true,
+      "headlineEs": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
+      "headlineEn": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region"
     },
     {
       "id": "ecdc-rapid-scientific-advice-on-infection-pre-2026-05-15",
@@ -62,7 +74,9 @@
       "headline": "Rapid scientific advice on infection, prevention and control measures for patients in healthcare settings with Andes virus (ANDV) disease",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/publications-data/rapid-scientific-advice-infection-prevention-and-control-measures-patients",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "Rapid scientific advice on infection, prevention and control measures for patients in healthcare settings with Andes virus (ANDV) disease",
+      "headlineEs": "Asesoramiento científico rápido sobre medidas de infección, prevención y control para pacientes en entornos de atención médica con enfermedad por el virus de los Andes (ANDV)"
     },
     {
       "id": "ecdc-mpox-worldwide-overview-2026-05-13",
@@ -71,7 +85,9 @@
       "headline": "Mpox worldwide overview",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/mpox-worldwide-overview",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "Mpox worldwide overview",
+      "headlineEs": "Descripción general de Mpox en todo el mundo"
     },
     {
       "id": "who-don601",
@@ -80,7 +96,9 @@
       "headline": "WHO: Hantavirus cluster — cruise ship MV Hondius. 11 cases, 3 deaths across UK, France, Spain, USA, Argentina, Chile",
       "source": "WHO",
       "url": "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON601",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "WHO: Hantavirus cluster — cruise ship MV Hondius. 11 cases, 3 deaths across UK, France, Spain, USA, Argentina, Chile",
+      "headlineEs": "OMS: Hantavirus cluster — crucero MV Hondius. 11 casos, 3 muertes en el Reino Unido, Francia, España, Estados Unidos, Argentina, Chile"
     },
     {
       "id": "sanidad-es-20260512",
@@ -89,7 +107,9 @@
       "headline": "España: 14 pasajeros del MV Hondius en cuarentena en Hospital Gómez Ulla (Madrid) — 1 caso confirmado, variante Andes sin mutaciones relevantes",
       "source": "Sanidad España",
       "url": "https://www.sanidad.gob.es/areas/alertasEmergenciasSanitarias/alertasActuales/fiebreHemorragica/docs/20260512_informe_situacion_HANTAVIRUS.pdf",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "España: 14 pasajeros del MV Hondius en cuarentena en Hospital Gómez Ulla (Madrid) — 1 caso confirmado, variante Andes sin mutaciones relevantes",
+      "headlineEs": "España: 14 pasajeros del MV Hondius en cuarentena en Hospital Gómez Ulla (Madrid) — 1 caso confirmado, variante Andes sin mutaciones relevantes"
     },
     {
       "id": "paho-es-la-ops-realiz-sesi-n-de-preguntas-y-resp-2026-05-11",
@@ -98,7 +118,9 @@
       "headline": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
       "source": "PAHO-ES",
       "url": "https://www.paho.org/es/noticias/11-5-2026-ops-realizo-sesion-preguntas-respuestas-sobre-hantavirus-tras-brote-crucero",
-      "urgent": false
+      "urgent": false,
+      "headlineEs": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
+      "headlineEn": "PAHO Conducted Hantavirus Q&A After Cruise Ship Outbreak"
     },
     {
       "id": "paho-la-ops-realiz-sesi-n-de-preguntas-y-resp-2026-05-11",
@@ -107,7 +129,9 @@
       "headline": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
       "source": "PAHO",
       "url": "https://www.paho.org/es/noticias/11-5-2026-ops-realizo-sesion-preguntas-respuestas-sobre-hantavirus-tras-brote-crucero",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
+      "headlineEs": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero"
     },
     {
       "id": "cdc-han00528",
@@ -116,7 +140,9 @@
       "headline": "CDC Health Alert HAN00528: Multi-country Hantavirus Andes cluster linked to cruise ship travel",
       "source": "CDC",
       "url": "https://www.cdc.gov/han/php/notices/han00528.html",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "CDC Health Alert HAN00528: Multi-country Hantavirus Andes cluster linked to cruise ship travel",
+      "headlineEs": "Alerta de salud de los CDC HAN00528: Grupo de Hantavirus Andes de varios países vinculado a los viajes en cruceros"
     },
     {
       "id": "ecdc-rapid-scientific-advice-on-the-managemen-2026-05-09",
@@ -125,7 +151,9 @@
       "headline": "Rapid scientific advice on the management of passengers - In the context of the Andes virus outbreak on the cruise ship MV Hondius",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/publications-data/rapid-scientific-advice-management-passengers-context-andes-virus-outbreak-cruise",
-      "urgent": true
+      "urgent": true,
+      "headlineEn": "Rapid scientific advice on the management of passengers - In the context of the Andes virus outbreak on the cruise ship MV Hondius",
+      "headlineEs": "Asesoramiento científico rápido sobre la gestión de pasajeros - En el contexto del brote del virus de los Andes en el crucero MV Hondius"
     },
     {
       "id": "paho-es-paho-and-france-strengthen-partnership-t-2026-05-06",
@@ -134,7 +162,9 @@
       "headline": "PAHO and France strengthen partnership to advance malaria elimination in the Guiana Shield",
       "source": "PAHO-ES",
       "url": "https://www.paho.org/en/news/6-5-2026-paho-and-france-strengthen-partnership-advance-malaria-elimination-guiana-shield",
-      "urgent": false
+      "urgent": false,
+      "headlineEs": "PAHO and France strengthen partnership to advance malaria elimination in the Guiana Shield",
+      "headlineEn": "PAHO and France strengthen partnership to advance malaria elimination in the Guiana Shield"
     },
     {
       "id": "paho-paho-and-france-strengthen-partnership-t-2026-05-06",
@@ -143,7 +173,9 @@
       "headline": "PAHO and France strengthen partnership to advance malaria elimination in the Guiana Shield",
       "source": "PAHO",
       "url": "https://www.paho.org/en/news/6-5-2026-paho-and-france-strengthen-partnership-advance-malaria-elimination-guiana-shield",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "PAHO and France strengthen partnership to advance malaria elimination in the Guiana Shield",
+      "headlineEs": "La OPS y Francia fortalecen su asociación para avanzar en la eliminación de la malaria en el Escudo Guayanés"
     },
     {
       "id": "who-malaria-africa-2026",
@@ -152,7 +184,9 @@
       "headline": "ECDC: Malaria imported cases rising in EU — 10,000+ cases reported in 2025 among travellers",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/malaria",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "ECDC: Malaria imported cases rising in EU — 10,000+ cases reported in 2025 among travellers",
+      "headlineEs": "ECDC: Los casos de malaria importada aumentan en la UE: más de 10000 casos notificados en 2025 entre los viajeros"
     },
     {
       "id": "who-cholera-2026-apr",
@@ -161,7 +195,9 @@
       "headline": "WHO: Cholera active in 24 countries — Sudan, DRC, and Haiti at highest burden, 4,000+ deaths YTD",
       "source": "WHO",
       "url": "https://www.who.int/emergencies/disease-outbreak-news",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "WHO: Cholera active in 24 countries — Sudan, DRC, and Haiti at highest burden, 4,000+ deaths YTD",
+      "headlineEs": "OMS: El cólera está activo en 24 países: Sudán, República Democrática del Congo y Haití con la carga más alta, más de 4.000 muertes en lo que va de año"
     },
     {
       "id": "who-covid-2026",
@@ -170,7 +206,9 @@
       "headline": "WHO: XEC COVID variant spreading in Europe — no new severity signal, vaccination urged for elderly",
       "source": "WHO",
       "url": "https://www.who.int/emergencies/disease-outbreak-news",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "WHO: XEC COVID variant spreading in Europe — no new severity signal, vaccination urged for elderly",
+      "headlineEs": "OMS: La variante XEC COVID se propaga en Europa: no hay nuevas señales de gravedad, se insta a la vacunación para las personas mayores"
     },
     {
       "id": "ecdc-dengue-worldwide-overview-2026-03-30",
@@ -179,7 +217,9 @@
       "headline": "Dengue worldwide overview",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/dengue-monthly",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "Dengue worldwide overview",
+      "headlineEs": "Panorama mundial del dengue"
     },
     {
       "id": "ecdc-mpox-worldwide-overview-2026-03-16",
@@ -188,7 +228,9 @@
       "headline": "Mpox worldwide overview",
       "source": "ECDC",
       "url": "https://www.ecdc.europa.eu/en/mpox-worldwide-overview",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "Mpox worldwide overview",
+      "headlineEs": "Descripción general de Mpox en todo el mundo"
     },
     {
       "id": "who-cholera-haiti-2026",
@@ -197,7 +239,9 @@
       "headline": "Haiti cholera: 1,200+ cases recorded in Q1 2026 amid ongoing humanitarian crisis",
       "source": "PAHO",
       "url": "https://www.paho.org/en/topics/cholera",
-      "urgent": false
+      "urgent": false,
+      "headlineEn": "Haiti cholera: 1,200+ cases recorded in Q1 2026 amid ongoing humanitarian crisis",
+      "headlineEs": "Cólera en Haití: más de 1.200 casos registrados en el primer trimestre de 2026 en medio de la crisis humanitaria en curso"
     }
   ]
 }

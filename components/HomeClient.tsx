@@ -48,8 +48,8 @@ export function HomeClient({ brandEvents }: Props) {
       {/* Main interactive layout */}
       <main id="main-content" className="max-w-[1350px] mx-auto px-4 pb-8">
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr_300px] gap-4">
-          {/* Left — Event Selector */}
-          <div className="card p-4 h-[340px] lg:h-full flex flex-col overflow-hidden order-2 lg:order-1">
+          {/* Left — Event Selector — matches the square map's height on desktop */}
+          <div className="card p-4 h-[340px] lg:h-full lg:min-h-0 flex flex-col overflow-hidden order-2 lg:order-1">
             <h2 className="text-white font-display font-semibold text-sm mb-3 flex items-center gap-2">
               <div className="w-1.5 h-4 rounded-full bg-crimson-light" />
               {t("home_events_panel")}
@@ -108,8 +108,8 @@ export function HomeClient({ brandEvents }: Props) {
             </div>
           </div>
 
-          {/* Right — Death Counter */}
-          <div className="card p-4 h-[340px] lg:h-full overflow-y-auto scrollbar-thin order-3">
+          {/* Right — Death Counter — matches the square map's height on desktop */}
+          <div className="card p-4 h-[340px] lg:h-full lg:min-h-0 overflow-y-auto scrollbar-thin order-3">
             <DeathCounter event={selectedEvent} />
           </div>
         </div>
