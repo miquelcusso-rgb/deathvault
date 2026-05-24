@@ -1,6 +1,17 @@
 {
-  "lastUpdated": "2026-05-23T11:38:29.230Z",
+  "lastUpdated": "2026-05-24T11:51:05.849Z",
   "items": [
+    {
+      "id": "ecdc-andes-hantavirus-outbreak-in-cruise-ship-2026-05-22",
+      "eventId": "hantavirus",
+      "date": "2026-05-22",
+      "headline": "Andes hantavirus outbreak in cruise ship, 24 May 2026",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/infectious-disease-topics/hantavirus-infection/surveillance-and-updates/andes-hantavirus-outbreak",
+      "urgent": true,
+      "headlineEn": "Andes hantavirus outbreak in cruise ship, 24 May 2026",
+      "headlineEs": "Brote de hantavirus en los Andes en un crucero, 24 de mayo de 2026"
+    },
     {
       "id": "ecdc-threat-assessment-brief-ebola-disease-ou-2026-05-21",
       "eventId": "ebola",
@@ -143,17 +154,6 @@
       "urgent": false,
       "headlineEn": "CDC Health Alert HAN00528: Multi-country Hantavirus Andes cluster linked to cruise ship travel",
       "headlineEs": "Alerta de salud de los CDC HAN00528: Grupo de Hantavirus Andes de varios países vinculado a los viajes en cruceros"
-    },
-    {
-      "id": "ecdc-rapid-scientific-advice-on-the-managemen-2026-05-09",
-      "eventId": "hantavirus",
-      "date": "2026-05-09",
-      "headline": "Rapid scientific advice on the management of passengers - In the context of the Andes virus outbreak on the cruise ship MV Hondius",
-      "source": "ECDC",
-      "url": "https://www.ecdc.europa.eu/en/publications-data/rapid-scientific-advice-management-passengers-context-andes-virus-outbreak-cruise",
-      "urgent": true,
-      "headlineEn": "Rapid scientific advice on the management of passengers - In the context of the Andes virus outbreak on the cruise ship MV Hondius",
-      "headlineEs": "Asesoramiento científico rápido sobre la gestión de pasajeros - En el contexto del brote del virus de los Andes en el crucero MV Hondius"
     },
     {
       "id": "paho-es-paho-and-france-strengthen-partnership-t-2026-05-06",
