@@ -20,7 +20,7 @@ export default function AboutPage() {
       <Navbar />
       <main className="max-w-3xl mx-auto px-4 pt-24 pb-16">
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="section-title mb-2">{t("about_title")}</h1>
+          <h1 className="section-title mb-2">{t("about_title")} {meta.name}</h1>
 
           <div className="space-y-6 mt-8">
             <div className="card p-6">

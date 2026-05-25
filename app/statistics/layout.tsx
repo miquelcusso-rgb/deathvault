@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : "Ranked comparisons of history's deadliest pandemics, wars, and nuclear events. Interactive charts and data visualizations.");
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {

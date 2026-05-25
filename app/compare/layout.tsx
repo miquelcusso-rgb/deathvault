@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : "Side-by-side comparison of pandemics, wars, and nuclear events. Death tolls, timelines, and geographic impact.");
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {

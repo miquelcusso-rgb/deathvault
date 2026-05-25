@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : "Complete archive of history's deadliest events — pandemics, world wars, nuclear disasters and famines. 813M+ deaths documented across 16 events with interactive visualisations.");
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: isPA
       ? ["deadliest pandemics history", "list of pandemics", "pandemic death tolls", "epidemic history", "black death", "spanish flu", "cholera pandemics"]

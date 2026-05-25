@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : "Breaking news on pandemics, outbreaks, wars, and disasters — WHO, CDC, ECDC alerts. Updated daily with the latest global health and crisis intelligence.");
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: isPA
       ? ["pandemic news 2026", "outbreak alerts", "who disease outbreak news", "epidemic updates", "hantavirus 2026", "cholera outbreak", "covid variant 2026"]

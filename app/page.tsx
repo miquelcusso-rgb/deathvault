@@ -38,7 +38,7 @@ export default async function HomePage() {
                   : <>Plague<span className={accentColor}>Atlas</span></>
                 }
               </h1>
-              <p className="text-slate-500 text-sm mt-0.5">{meta.tagline}</p>
+              <p className="text-slate-500 text-sm mt-0.5">{isEs ? ((meta as { taglineEs?: string }).taglineEs ?? meta.tagline) : meta.tagline}</p>
             </div>
             <div className="flex items-center gap-5">
               <div className="text-center">

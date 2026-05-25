@@ -134,7 +134,7 @@ export const translations = {
     ev_no_events_territory: "No tracked events for this territory",
     ev_events_affected: "event(s) affected this region",
     // Pages
-    about_title: "About PlagueAtlas",
+    about_title: "About",
     privacy_title: "Privacy Policy",
     terms_title: "Terms of Service",
     support_title: "Support the Project",
@@ -489,14 +489,14 @@ export const translations = {
     ev_no_events_territory: "No hay eventos registrados para este territorio",
     ev_events_affected: "evento(s) afectó esta región",
     // Pages
-    about_title: "Sobre PlagueAtlas",
+    about_title: "Sobre",
     privacy_title: "Política de Privacidad",
     terms_title: "Términos de Servicio",
     support_title: "Apoya el Proyecto",
     support_subtitle: "Ayuda a mantener este recurso educativo gratuito y actualizado",
     support_donate: "Donar con Stripe",
     support_why: "¿Por qué apoyar?",
-    support_why_text: "PlagueAtlas es un proyecto educativo independiente y sin ánimo de lucro. Tu apoyo ayuda a cubrir costos del servidor, investigación de datos y mantener el sitio sin publicidad.",
+    support_why_text: "Un proyecto educativo independiente y sin ánimo de lucro. Tu apoyo ayuda a cubrir los costes del servidor y la investigación continua de datos.",
     // Footer
     footer_description: "Un proyecto de visualización de datos educativo que rastrea las mayores crisis sanitarias y conflictos de la humanidad.",
     footer_legal: "Legal",

@@ -207,7 +207,7 @@ export default function ComparePage() {
                 style={ev ? { borderColor: ev.color + "40", boxShadow: `0 0 20px ${ev.color}15` } : {}}
               >
                 <EventPicker
-                  label={SLOT_LABELS[idx]}
+                  label={(lang === "es" ? ["Evento A", "Evento B", "Evento C", "Evento D"] : SLOT_LABELS)[idx]}
                   selectedId={id}
                   onSelect={(v) => updateSlot(idx, v)}
                   excludeIds={otherIds}
@@ -228,7 +228,7 @@ export default function ComparePage() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-dashed border-border/50 text-slate-500 hover:text-slate-300 hover:border-border/80 text-sm font-medium transition-all duration-200 cursor-pointer hover:bg-white/5"
             >
               <Plus className="w-4 h-4" />
-              Add event {ids.length + 1} of 4
+              {lang === "es" ? `Añadir evento ${ids.length + 1} de 4` : `Add event ${ids.length + 1} of 4`}
             </button>
           </div>
         )}
@@ -313,7 +313,7 @@ export default function ComparePage() {
                 if (pcts.every((p) => !p)) return null;
                 return (
                   <CompareRow
-                    label="% of World Population"
+                    label={lang === "es" ? "% de la población mundial" : "% of World Population"}
                     icon={<Globe className="w-4 h-4" />}
                     entries={validEvents.map((ev, i) => ({
                       val: pcts[i] ? formatPct(pcts[i]!) : "—",
@@ -339,9 +339,9 @@ export default function ComparePage() {
           </motion.div>
         ) : (
           <div className="card p-12 text-center">
-            <p className="text-slate-500 text-lg">Select at least two events above to compare</p>
+            <p className="text-slate-500 text-lg">{lang === "es" ? "Selecciona al menos dos eventos arriba para comparar" : "Select at least two events above to compare"}</p>
             <p className="text-slate-600 text-sm mt-2">
-              Add up to 4 events for a side-by-side comparison
+              {lang === "es" ? "Añade hasta 4 eventos para una comparación lado a lado" : "Add up to 4 events for a side-by-side comparison"}
             </p>
           </div>
         )}

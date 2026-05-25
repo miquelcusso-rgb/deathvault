@@ -23,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : `Help keep ${meta.name} free and up to date. Cover server costs and ongoing data research.`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: { title: ogTitle, description: ogDescription, url: alt.canonical, locale: isEs ? "es_ES" : "en_US" },

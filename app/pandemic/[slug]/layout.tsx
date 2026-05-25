@@ -56,7 +56,7 @@ export async function generateMetadata(
   const description = descBase.length > 158 ? descBase.slice(0, 155) + "…" : descBase;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: [
       evName,

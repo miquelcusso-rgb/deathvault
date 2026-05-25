@@ -9,6 +9,7 @@ import "./globals.css";
 import { Providers } from "./providers";
 import { CookieBanner } from "@/components/ui/CookieBanner";
 import { AddToHomeBanner } from "@/components/ui/AddToHomeBanner";
+import { AdSense } from "@/components/ui/AdSense";
 import { detectBrand, BRAND_META } from "@/lib/brand";
 import { JsonLd } from "@/components/ui/JsonLd";
 
@@ -158,13 +159,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${brand === "plagueatlas" ? "GTM-5XWCZFN6" : "GTM-PCBW2RMX"}');`,
           }}
         />
-        {/* AdSense — lazyOnload, consent-gated */}
-        <Script
-          id="adsense"
-          strategy="lazyOnload"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959"
-          crossOrigin="anonymous"
-        />
+        {/* AdSense is loaded ONLY after cookie consent — see <AdSense /> in body */}
         {/* GA4 is managed via GTM — no direct script needed here */}
       </head>
       <body className="min-h-screen bg-void antialiased">
@@ -183,6 +178,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           <AddToHomeBanner />
           <CookieBanner />
         </Providers>
+        <AdSense />
         <SpeedInsights />
       </body>
     </html>

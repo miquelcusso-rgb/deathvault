@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : "How deadly is Ebola vs COVID-19? Explore the biology, lethality, and transmission of history's most dangerous pathogens — viruses, bacteria, parasites, prions, and fungi — with interactive threat profiles.";
 
   return {
-    title,
+    title: { absolute: title },
     description,
     keywords: [
       "deadliest pathogens in history",

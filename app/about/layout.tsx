@@ -39,7 +39,7 @@ export async function generateMetadata(): Promise<Metadata> {
         : `An independent, educational data visualization of history's deadliest pandemics, wars, and nuclear events.`);
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: {

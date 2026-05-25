@@ -429,6 +429,73 @@ export default function PathogensPage() {
 
   const accentColor = isDV ? "#F59E0B" : selected.color;
 
+  // ── DeathVault: pathogen deep-dives live on PlagueAtlas. Show only the
+  //    pathogen classes + a central banner pointing to the sister site. ──
+  if (isDV) {
+    return (
+      <div className="min-h-screen bg-void bg-grid">
+        <Navbar />
+        <main className="max-w-5xl mx-auto px-4 pt-24 pb-16">
+          <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} className="mb-8">
+            <div className="flex items-center gap-3 mb-3">
+              <div
+                className="text-[10px] font-mono font-bold tracking-[0.2em] uppercase px-3 py-1 rounded-full border"
+                style={{ color: accentColor, borderColor: accentColor + "40", backgroundColor: accentColor + "12" }}
+              >
+                {t("path_archive")}
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-border/60 to-transparent" />
+            </div>
+            <h1 className={cn("font-display font-black text-4xl sm:text-5xl mb-2", darkMode ? "text-white" : "text-slate-900")}>
+              {t("path_hero_title_main")} <span style={{ color: accentColor }}>{t("path_hero_title_accent")}</span>
+            </h1>
+            <p className={cn("text-base max-w-2xl", darkMode ? "text-slate-400" : "text-slate-600")}>
+              {isEs
+                ? "Las clases de patógenos que han marcado la historia. El análisis completo de cada una vive en PlagueAtlas."
+                : "The pathogen classes that have shaped history. The full deep-dive on each lives on PlagueAtlas."}
+            </p>
+          </motion.div>
+
+          {/* Pathogen classes — names only */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-10">
+            {PATHOGEN_TYPES.map((pt) => (
+              <div key={pt.id} className="card p-4 flex flex-col items-center text-center gap-2">
+                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: pt.color }} />
+                <span className="font-display font-bold text-white text-sm">{isEs ? pt.nameEs : pt.name}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Central banner → PlagueAtlas */}
+          <a
+            href="https://www.plagueatlas.com/pathogens"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block card p-8 text-center transition-all duration-200 hover:bg-white/5 cursor-pointer"
+            style={{ border: "2px solid #DC262640" }}
+          >
+            <Bug className="w-10 h-10 mx-auto mb-3" style={{ color: "#DC2626" }} />
+            <h2 className="font-display font-black text-2xl text-white mb-2">
+              {isEs ? "Todo esto y mucho más en PlagueAtlas" : "All this and much more on PlagueAtlas"}
+            </h2>
+            <p className="text-slate-400 text-sm max-w-xl mx-auto mb-4">
+              {isEs
+                ? "Biología, transmisión, síntomas, letalidad e historia completa de cada clase de patógeno — en nuestro proyecto hermano dedicado a las pandemias."
+                : "Biology, transmission, symptoms, lethality and the full history of every pathogen class — on our sister project dedicated to pandemics."}
+            </p>
+            <span
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm"
+              style={{ backgroundColor: "#DC262615", color: "#f87171", border: "1px solid #DC262640" }}
+            >
+              plagueatlas.com/pathogens →
+            </span>
+          </a>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />

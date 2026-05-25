@@ -34,6 +34,8 @@ export function CookieBanner() {
         ad_personalization: "granted",
       });
     } catch (e) {}
+    // Let the consent-gated AdSense loader fire immediately
+    try { window.dispatchEvent(new Event("cookie-consent-accepted")); } catch (e) {}
     setVisible(false);
   };
 

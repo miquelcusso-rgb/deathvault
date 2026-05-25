@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : `Terms of service for ${meta.name}. Educational use only.`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: { title, description: ogDescription, url: alt.canonical, locale: isEs ? "es_ES" : "en_US" },

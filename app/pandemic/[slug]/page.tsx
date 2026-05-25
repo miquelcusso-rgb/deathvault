@@ -34,6 +34,7 @@ export default async function PandemicPage({ params }: Props) {
     ? ((event as any).longDescriptionEs ?? event.longDescriptionEn)
     : event.longDescriptionEn;
   const evSymptoms    = isEs ? event.symptomsEs    : event.symptomsEn;
+  const evFaqs        = (isEs ? (event.faqsEs ?? event.faqs) : event.faqs) ?? [];
   const evPresent     = t("ev_present");
   const evCategory    = t(event.category as any);
 
@@ -212,13 +213,13 @@ export default async function PandemicPage({ params }: Props) {
         </div>
 
         {/* FAQ Accordion — native <details> works without JS */}
-        {event.faqs && event.faqs.length > 0 && (
+        {evFaqs.length > 0 && (
           <div className="card p-6 mb-6">
             <h2 className="font-display font-bold text-white text-xl mb-4">
               {t("ev_faq")}
             </h2>
             <div className="space-y-2">
-              {event.faqs.map(({ q, a }, i) => (
+              {evFaqs.map(({ q, a }, i) => (
                 <details
                   key={i}
                   className="group rounded-xl border overflow-hidden"

@@ -19,7 +19,7 @@ export async function generateMetadata(): Promise<Metadata> {
     : `Privacy policy for ${meta.name}. Learn how we handle cookies, analytics, and advertising data.`;
 
   return {
-    title,
+    title: { absolute: title },
     description,
     alternates: { canonical: alt.canonical, languages: alt.languages },
     openGraph: { title, description, url: alt.canonical, locale: isEs ? "es_ES" : "en_US" },
