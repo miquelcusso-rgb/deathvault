@@ -1,6 +1,28 @@
 {
-  "lastUpdated": "2026-05-25T16:10:18.662Z",
+  "lastUpdated": "2026-05-26T18:06:58.262Z",
   "items": [
+    {
+      "id": "ecdc-andes-hantavirus-outbreak-in-cruise-ship-2026-05-26",
+      "eventId": "hantavirus",
+      "date": "2026-05-26",
+      "headline": "Andes hantavirus outbreak in cruise ship",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/infectious-disease-topics/hantavirus-infection/surveillance-and-updates/andes-hantavirus-outbreak",
+      "urgent": true,
+      "headlineEn": "Andes hantavirus outbreak in cruise ship",
+      "headlineEs": "Brote de hantavirus en los Andes en un crucero"
+    },
+    {
+      "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-05-26",
+      "eventId": "ebola",
+      "date": "2026-05-26",
+      "headline": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda",
+      "urgent": true,
+      "headlineEn": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "headlineEs": "Brote de ébola en la República Democrática del Congo y Uganda"
+    },
     {
       "id": "ecdc-andes-hantavirus-outbreak-in-cruise-ship-2026-05-22",
       "eventId": "hantavirus",
@@ -143,17 +165,6 @@
       "urgent": true,
       "headlineEn": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
       "headlineEs": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero"
-    },
-    {
-      "id": "cdc-han00528",
-      "eventId": "hantavirus",
-      "date": "2026-05-10",
-      "headline": "CDC Health Alert HAN00528: Multi-country Hantavirus Andes cluster linked to cruise ship travel",
-      "source": "CDC",
-      "url": "https://www.cdc.gov/han/php/notices/han00528.html",
-      "urgent": false,
-      "headlineEn": "CDC Health Alert HAN00528: Multi-country Hantavirus Andes cluster linked to cruise ship travel",
-      "headlineEs": "Alerta de salud de los CDC HAN00528: Grupo de Hantavirus Andes de varios países vinculado a los viajes en cruceros"
     },
     {
       "id": "paho-es-paho-and-france-strengthen-partnership-t-2026-05-06",
