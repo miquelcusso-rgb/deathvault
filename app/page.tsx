@@ -6,6 +6,7 @@ import { EVENTS, formatDeaths } from "@/data/events";
 import { detectBrand, BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { getServerLang, getServerT } from "@/lib/i18n-server";
 import { cn } from "@/lib/utils";
+import { JsonLd } from "@/components/ui/JsonLd";
 
 export default async function HomePage() {
   const host = (await headers()).get("host") ?? "";
@@ -23,8 +24,33 @@ export default async function HomePage() {
   const accentColor = isDV ? "text-amber-400" : "text-crimson-light";
   const accentNeon  = isDV ? "" : "neon-red";
 
+  const faqEntries = isDV
+    ? [
+        ["How many people died in World War II?", "World War II caused an estimated 70–85 million deaths (1939–1945), including both military and civilian casualties — the deadliest conflict in human history."],
+        ["What was the deadliest event in human history?", "By total death toll, the deadliest events include World War II (70–85M), the Mongol conquests (estimates up to 40M), the Black Death (75–200M over the 14th century) and the 1918 Spanish flu (~50M). DeathVault documents these across pandemics, wars, famines and disasters."],
+        ["How many deaths does DeathVault document?", "DeathVault documents over 813 million casualties across recorded history, spanning pandemics, wars, famines, nuclear disasters and genocides."],
+        ["How many people died at Chernobyl?", "Direct deaths from the 1986 Chernobyl disaster were 31 (acute radiation and the explosion). Long-term estimates of cancer deaths attributable to the radiation vary widely, from a few thousand (WHO) to higher modelled figures."],
+      ]
+    : [
+        ["How many people died from the Black Death?", "The Black Death (1346–1353) killed an estimated 75–200 million people across Europe, Asia and North Africa — roughly 30–60% of Europe's population at the time."],
+        ["How many people died from the Spanish flu?", "The 1918 influenza pandemic ('Spanish flu') killed an estimated 50 million people worldwide, and possibly as many as 100 million, between 1918 and 1920."],
+        ["How many people have died from COVID-19?", "Confirmed COVID-19 deaths exceed 7 million worldwide, while excess-mortality estimates put the true toll at 18–28 million since 2020."],
+        ["What was the deadliest pandemic in history?", "By total death toll the Black Death is generally considered the deadliest single pandemic event (75–200M). Over a longer span, tuberculosis, malaria and smallpox have each killed far more cumulatively."],
+      ];
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqEntries.map(([q, a]) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-void bg-grid">
+      <JsonLd data={[faqSchema]} />
       <Navbar />
 
       {/* Hero strip — server-rendered, fully indexable by Google */}

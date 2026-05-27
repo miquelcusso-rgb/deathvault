@@ -89,6 +89,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     "name": m.name,
     "url": m.url,
     "description": m.description,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Furiosa Studio",
+      "url": "https://furiosa.studio",
+    },
     "potentialAction": {
       "@type": "SearchAction",
       "target": `${m.url}/events?q={search_term_string}`,

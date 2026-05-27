@@ -14,6 +14,19 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
         allow: "/",
         disallow: ["/api/", "/_next/"],
       },
+      {
+        userAgent: [
+          "GPTBot",
+          "OAI-SearchBot",
+          "ChatGPT-User",
+          "ClaudeBot",
+          "Claude-Web",
+          "PerplexityBot",
+          "Google-Extended",
+          "CCBot",
+        ],
+        allow: "/",
+      },
     ],
     sitemap: `${base}/sitemap.xml`,
   };
