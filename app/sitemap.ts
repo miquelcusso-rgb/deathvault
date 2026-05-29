@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/pathogens",  changeFrequency: "monthly", priority: 0.85 },
     { path: "/compare",    changeFrequency: "monthly", priority: 0.8 },
     { path: "/statistics", changeFrequency: "weekly",  priority: 0.8 },
+    { path: "/black-death", changeFrequency: "monthly", priority: 0.95 },
     { path: "/about",      changeFrequency: "yearly",  priority: 0.4 },
     { path: "/support",    changeFrequency: "yearly",  priority: 0.3 },
     { path: "/privacy",    changeFrequency: "yearly",  priority: 0.2 },
