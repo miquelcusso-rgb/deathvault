@@ -24,7 +24,9 @@ export function stripLocale(path: string): { lang: Lang; path: string } {
  */
 export function buildAlternates(baseUrl: string, invariantPath: string, locale: Lang) {
   const p = invariantPath === "/" ? "" : invariantPath;
-  const enUrl = `${baseUrl}${p}`;
+  // For the root path, append "/" so canonical matches the 200 URL (e.g. https://www.deathvault.app/).
+  // GSC was reporting "Página con redirección" when canonical lacked the trailing slash (29-may-2026).
+  const enUrl = `${baseUrl}${p || "/"}`;
   const esUrl = `${baseUrl}/es${p}`;
   return {
     canonical: locale === "es" ? esUrl : enUrl,
