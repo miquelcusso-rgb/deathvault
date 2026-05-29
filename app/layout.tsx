@@ -43,6 +43,15 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = makeT(locale);
   const description = isEs ? (m as { descriptionEs?: string }).descriptionEs ?? m.description : m.description;
   const alternates = buildAlternates(m.url, invariantPath, locale);
+  // Next.js 15 strip-ea el trailing slash del canonical cuando es root,
+  // generando https://www.deathvault.app (sin slash) y rompiendo el match
+  // con la URL 200 https://www.deathvault.app/. Workaround: para la home,
+  // dejamos solo languages (hreflang) en metadata y el canonical se inyecta
+  // a mano en <head> del RootLayout (preserva la barra final).
+  const isHome = invariantPath === "/";
+  const metadataAlternates = isHome
+    ? { languages: alternates.languages }
+    : alternates;
 
   return {
     metadataBase: new URL(m.url),
@@ -52,7 +61,7 @@ export async function generateMetadata(): Promise<Metadata> {
     authors: [{ name: "Furiosa Studio" }],
     creator: "Furiosa Studio",
     publisher: m.name,
-    alternates,
+    alternates: metadataAlternates,
     openGraph: {
       title: `${m.name} — ${m.headline}`,
       description,
@@ -82,6 +91,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const brand = detectBrand(host);
   const initialLang: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const m = BRAND_META[brand];
+  // Manual canonical for home (Next.js 15 strips trailing slash in metadata.alternates.canonical
+  // for root URLs, breaking the match with the 200 URL).
+  const invariantPath = h.get("x-invariant-path") || "/";
+  const isHome = invariantPath === "/";
+  const homeCanonical = initialLang === "es" ? `${m.url}/es` : `${m.url}/`;
 
   const websiteSchema = {
     "@context": "https://schema.org",
@@ -119,6 +133,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang={initialLang} data-brand={brand} suppressHydrationWarning
       className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable}`}>
       <head>
+        {isHome && <link rel="canonical" href={homeCanonical} />}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* PWA / Add to Home Screen */}
         <meta name="mobile-web-app-capable" content="yes" />
