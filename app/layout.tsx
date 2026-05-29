@@ -73,6 +73,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: "summary_large_image",
+      site: "@furiosadata",
+      creator: "@furiosadata",
       title: `${m.name} — ${m.headline}`,
       description: m.description,
       images: ["/opengraph-image"],
@@ -118,14 +120,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const orgSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": m.name,
-    "url": m.url,
+    "name": "Furiosa Studio",
+    "url": "https://furiosadata.com",
     "logo": `${m.url}/icon`,
     "sameAs": [
-      "https://furiosa.studio",
-      brand === "plagueatlas"
-        ? "https://twitter.com/plagueatlas"
-        : "https://twitter.com/deathvaultapp",
+      "https://x.com/furiosadata",
+      "https://furiosadata.com",
     ],
   };
 
