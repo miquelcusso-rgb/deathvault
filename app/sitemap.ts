@@ -31,6 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/spanish-flu", changeFrequency: "monthly", priority: 0.95 },
     { path: "/bubonic-plague", changeFrequency: "monthly", priority: 0.95 },
     { path: "/cholera", changeFrequency: "monthly", priority: 0.95 },
+    { path: "/world-war-2-deaths", changeFrequency: "monthly", priority: 0.95 },
     { path: "/about",      changeFrequency: "yearly",  priority: 0.4 },
     { path: "/support",    changeFrequency: "yearly",  priority: 0.3 },
     { path: "/privacy",    changeFrequency: "yearly",  priority: 0.2 },
