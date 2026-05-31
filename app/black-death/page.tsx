@@ -383,10 +383,10 @@ export default async function BlackDeathPage() {
         </h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {[
+            { href: "/spanish-flu", label: "Spanish Flu 1918 — 50M dead", tag: "Pandemic" },
+            { href: "/bubonic-plague", label: "Bubonic plague — symptoms & cases", tag: "Disease" },
+            { href: "/cholera", label: "Cholera — cause, symptoms, 7 pandemics", tag: "Disease" },
             { href: "/", label: `${m.name} home — interactive map`, tag: "Tool" },
-            { href: "/events", label: "All historical events", tag: "Database" },
-            { href: "/compare", label: "Compare pandemics side by side", tag: "Tool" },
-            { href: "/statistics", label: "Aggregate death statistics", tag: "Data" },
           ].map((c) => (
             <Link
               key={c.href}
