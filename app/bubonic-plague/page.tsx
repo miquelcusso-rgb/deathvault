@@ -3,258 +3,148 @@ import Link from "next/link";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META } from "@/lib/brand";
 
+type Lang = "en" | "es";
+
+const T = {
+  en: {
+    title: "Bubonic Plague — Symptoms, Cause, Treatment & Is It Still Around?",
+    desc: "Bubonic plague is a bacterial infection caused by Yersinia pestis, spread by flea bites. Symptoms, transmission, modern treatment, and the 1,000–2,000 cases still reported worldwide every year.",
+    ogTitle: "Bubonic Plague — Symptoms, Cause, Treatment",
+    ogDesc: "Caused by Yersinia pestis, spread by fleas. Symptoms, modern treatment, and why it still exists today.",
+    eyebrow: "Yersinia pestis · Still active today",
+    h1: "Bubonic Plague",
+    lede: "The disease behind the Black Death is not history — it still infects 1,000–2,000 people a year. What it is, how it spreads, the symptoms, and why modern antibiotics make it survivable.",
+    shortLabel: "Short answer",
+    short: 'Bubonic plague is a bacterial infection caused by <strong><em>Yersinia pestis</em></strong>, spread mainly by <strong>flea bites</strong> from infected rodents. It causes fever and painful swollen lymph nodes (<strong>buboes</strong>). Untreated it kills 30–60%; with early antibiotics most people recover. It still causes about <strong>1,000–2,000 cases a year</strong> worldwide, mainly in Madagascar, the DR Congo and Peru.',
+    factsH: "Key facts",
+    stats: [["2–8 days","Incubation"],["30–60%","Untreated fatality"],["~10%","Treated fatality"],["1–2K/yr","Cases worldwide"]],
+    formsH: "The three forms of plague",
+    forms: [
+      ["Bubonic","the classic form. Flea bite → swollen, painful lymph nodes (buboes). 30–60% fatal untreated."],
+      ["Septicemic","the bacteria multiply in the bloodstream, blackening fingers and toes (origin of the name “Black” Death). Near-universally fatal untreated."],
+      ["Pneumonic","infection of the lungs, the only form that spreads person-to-person by airborne droplets. Fatal within 2–3 days untreated."],
+    ],
+    spreadH: "How it spreads",
+    spreadP: "The classic cycle runs <strong>rodent → flea → human</strong>. A flea feeds on an infected rodent, the bacteria block its gut, and when the starving flea bites a human it regurgitates <em>Yersinia pestis</em> into the wound. Bubonic plague on its own is <strong>not contagious between people</strong> — the fear comes from its ability to progress to pneumonic plague, which is.",
+    treatH: "Treatment today",
+    treatP: "Modern antibiotics make plague survivable when caught early: <strong>gentamicin</strong>, the fluoroquinolones (<strong>ciprofloxacin, levofloxacin</strong>) and doxycycline. Treatment started within <strong>24 hours</strong> cuts mortality dramatically. The key risk is delay — plague is rare enough that doctors may not consider it quickly.",
+    faqH: "Frequently asked questions",
+    relH: "Related",
+    rel: [["/black-death","The Black Death — the 1346 pandemic","History"],["/spanish-flu","Spanish Flu 1918 — 50M dead","Pandemic"],["/cholera","Cholera — cause & the 7 pandemics","Disease"],["/","{brand} home — interactive map","Tool"]],
+    disclaimer: "Informational only — not medical advice. For symptoms, contact a healthcare professional.",
+  },
+  es: {
+    title: "Peste Bubónica — Síntomas, Causa, Tratamiento y ¿Sigue Existiendo?",
+    desc: "La peste bubónica es una infección bacteriana causada por Yersinia pestis, transmitida por picaduras de pulga. Síntomas, transmisión, tratamiento moderno y los 1.000–2.000 casos que aún se reportan cada año.",
+    ogTitle: "Peste Bubónica — Síntomas, Causa, Tratamiento",
+    ogDesc: "Causada por Yersinia pestis, transmitida por pulgas. Síntomas, tratamiento moderno y por qué aún existe.",
+    eyebrow: "Yersinia pestis · Aún activa hoy",
+    h1: "La Peste Bubónica",
+    lede: "La enfermedad tras la Peste Negra no es historia — aún infecta a 1.000–2.000 personas al año. Qué es, cómo se transmite, los síntomas y por qué los antibióticos modernos la hacen superable.",
+    shortLabel: "Respuesta corta",
+    short: 'La peste bubónica es una infección bacteriana causada por <strong><em>Yersinia pestis</em></strong>, transmitida sobre todo por <strong>picaduras de pulga</strong> de roedores infectados. Provoca fiebre y ganglios linfáticos hinchados y dolorosos (<strong>bubones</strong>). Sin tratar mata al 30–60%; con antibióticos tempranos la mayoría se recupera. Aún causa unos <strong>1.000–2.000 casos al año</strong> en el mundo, sobre todo en Madagascar, RD del Congo y Perú.',
+    factsH: "Datos clave",
+    stats: [["2–8 días","Incubación"],["30–60%","Letalidad sin tratar"],["~10%","Letalidad tratada"],["1–2K/año","Casos mundiales"]],
+    formsH: "Las tres formas de peste",
+    forms: [
+      ["Bubónica","la forma clásica. Picadura de pulga → ganglios hinchados y dolorosos (bubones). 30–60% letal sin tratar."],
+      ["Septicémica","la bacteria se multiplica en la sangre, ennegreciendo dedos de manos y pies (origen del nombre “Negra”). Casi siempre letal sin tratar."],
+      ["Neumónica","infección de los pulmones, la única forma que se transmite de persona a persona por gotículas en el aire. Letal en 2–3 días sin tratar."],
+    ],
+    spreadH: "Cómo se transmite",
+    spreadP: "El ciclo clásico es <strong>roedor → pulga → humano</strong>. Una pulga se alimenta de un roedor infectado, las bacterias bloquean su tracto digestivo, y cuando la pulga hambrienta pica a un humano regurgita <em>Yersinia pestis</em> en la herida. La peste bubónica por sí sola <strong>no es contagiosa entre personas</strong> — el miedo viene de su capacidad de progresar a peste neumónica, que sí lo es.",
+    treatH: "Tratamiento hoy",
+    treatP: "Los antibióticos modernos hacen la peste superable si se detecta pronto: <strong>gentamicina</strong>, las fluoroquinolonas (<strong>ciprofloxacino, levofloxacino</strong>) y doxiciclina. Empezar el tratamiento en <strong>24 horas</strong> reduce drásticamente la mortalidad. El riesgo clave es el retraso — la peste es tan rara que los médicos pueden no considerarla rápido.",
+    faqH: "Preguntas frecuentes",
+    relH: "Relacionado",
+    rel: [["/black-death","La Peste Negra — la pandemia de 1346","Historia"],["/spanish-flu","Gripe Española 1918 — 50M muertos","Pandemia"],["/cholera","Cólera — causa y las 7 pandemias","Enfermedad"],["/","{brand} — mapa interactivo","Herramienta"]],
+    disclaimer: "Solo informativo — no es consejo médico. Ante síntomas, acude a un profesional sanitario.",
+  },
+} as const;
+
+const FAQ = {
+  en: [
+    ["What is bubonic plague?", "A serious bacterial infection caused by Yersinia pestis, named for the painful swollen lymph nodes (buboes) it produces. Usually transmitted by infected flea bites. Untreated it kills 30–60%; with prompt antibiotics most recover."],
+    ["What are the symptoms?", "2–8 days after infection: sudden fever, chills, headache, weakness, then one or more swollen, extremely painful lymph nodes (buboes), often in the groin or armpit. Untreated it can spread to blood (septicemic) or lungs (pneumonic)."],
+    ["How is it transmitted?", "Mostly by the bite of a flea that fed on an infected rodent. People can also catch it handling infected animal tissue. Bubonic plague does not spread person-to-person — but pneumonic plague can, via respiratory droplets."],
+    ["Is bubonic plague still around today?", "Yes — the WHO records roughly 1,000–2,000 human cases a year, mainly in Madagascar, the DR Congo and Peru. The US averages about 7 cases a year in the rural Southwest."],
+    ["Can bubonic plague be cured?", "Yes, with antibiotics (gentamicin, ciprofloxacin, doxycycline), especially within 24 hours of symptoms. Early treatment drops mortality from 30–60% to around 10%."],
+    ["What is the difference between bubonic plague and the Black Death?", "Same bacterium, Yersinia pestis. 'Bubonic plague' is the disease that still occurs today; the 'Black Death' was the 1346–1353 pandemic that killed 75–200 million people."],
+    ["How can you prevent plague?", "Reduce rodent and flea exposure: flea-control on pets, avoid dead/sick rodents, use repellent in endemic areas, rodent-proof homes. No vaccine is widely available for the public."],
+  ],
+  es: [
+    ["¿Qué es la peste bubónica?", "Una infección bacteriana grave causada por Yersinia pestis, llamada así por los ganglios linfáticos hinchados y dolorosos (bubones) que produce. Suele transmitirse por picaduras de pulga infectada. Sin tratar mata al 30–60%; con antibióticos rápidos la mayoría se recupera."],
+    ["¿Cuáles son los síntomas?", "2–8 días tras la infección: fiebre repentina, escalofríos, dolor de cabeza, debilidad, y luego uno o más ganglios hinchados y muy dolorosos (bubones), a menudo en ingle o axila. Sin tratar puede pasar a la sangre (septicémica) o los pulmones (neumónica)."],
+    ["¿Cómo se transmite?", "Sobre todo por la picadura de una pulga que se alimentó de un roedor infectado. También al manipular tejido de animales infectados. La bubónica no se transmite entre personas — pero la neumónica sí, por gotículas respiratorias."],
+    ["¿Sigue existiendo la peste bubónica hoy?", "Sí — la OMS registra unos 1.000–2.000 casos humanos al año, sobre todo en Madagascar, RD del Congo y Perú. EEUU promedia unos 7 casos al año en el suroeste rural."],
+    ["¿Tiene cura la peste bubónica?", "Sí, con antibióticos (gentamicina, ciprofloxacino, doxiciclina), especialmente en las primeras 24 horas. El tratamiento temprano baja la mortalidad del 30–60% a alrededor del 10%."],
+    ["¿Cuál es la diferencia entre peste bubónica y Peste Negra?", "La misma bacteria, Yersinia pestis. 'Peste bubónica' es la enfermedad que aún ocurre hoy; la 'Peste Negra' fue la pandemia de 1346–1353 que mató a 75–200 millones de personas."],
+    ["¿Cómo se previene la peste?", "Reduciendo la exposición a roedores y pulgas: antiparasitarios en mascotas, evitar roedores muertos/enfermos, repelente en zonas endémicas, sellar la casa. No hay vacuna ampliamente disponible para el público."],
+  ],
+} as const;
+
 export async function generateMetadata(): Promise<Metadata> {
   const h = await headers();
-  const brand = detectBrand(h.get("host") ?? "");
-  const m = BRAND_META[brand];
-  const canonical = `${m.url}/bubonic-plague`;
+  const m = BRAND_META[detectBrand(h.get("host") ?? "")];
+  const lang = (h.get("x-locale") === "es" ? "es" : "en") as Lang;
+  const t = T[lang];
+  const enUrl = `${m.url}/bubonic-plague`, esUrl = `${m.url}/es/bubonic-plague`;
+  const canonical = lang === "es" ? esUrl : enUrl;
   return {
-    title: "Bubonic Plague — Symptoms, Cause, Treatment & Is It Still Around?",
-    description:
-      "Bubonic plague is a bacterial infection caused by Yersinia pestis, spread by flea bites. Symptoms, transmission, modern treatment, and the 1,000–2,000 cases still reported worldwide every year.",
-    alternates: {
-      canonical,
-      languages: { en: canonical, es: `${m.url}/es/bubonic-plague`, "x-default": canonical },
-    },
-    openGraph: {
-      title: "Bubonic Plague — Symptoms, Cause, Treatment",
-      description:
-        "Caused by Yersinia pestis, spread by fleas. Symptoms, modern treatment, and why it still exists today.",
-      url: canonical,
-      type: "article",
-      images: [{ url: `${m.url}/og-default.png`, width: 1200, height: 630, alt: "Bubonic plague" }],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: "Bubonic Plague — Symptoms, Cause, Treatment",
-      description: "Caused by Yersinia pestis, spread by fleas. Still ~1,000–2,000 cases/year worldwide.",
-      images: [`${m.url}/og-default.png`],
-    },
+    title: t.title, description: t.desc,
+    alternates: { canonical, languages: { en: enUrl, es: esUrl, "x-default": enUrl } },
+    openGraph: { title: t.ogTitle, description: t.ogDesc, url: canonical, type: "article", locale: lang === "es" ? "es_ES" : "en_US", images: [{ url: `${m.url}/og-default.png`, width: 1200, height: 630, alt: t.h1 }] },
+    twitter: { card: "summary_large_image", title: t.ogTitle, description: t.ogDesc, images: [`${m.url}/og-default.png`] },
     robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large" } },
   };
 }
 
-const articleSchema = (url: string) => ({
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Bubonic Plague — Symptoms, Cause, Treatment and Modern Cases",
-  description:
-    "A clear medical and historical guide to bubonic plague: the Yersinia pestis bacterium, how it spreads, its three clinical forms, modern antibiotic treatment, and where cases still occur today.",
-  datePublished: "2026-05-30",
-  dateModified: "2026-05-30",
-  author: { "@type": "Organization", name: "Furiosa Studio", url: "https://furiosadata.com" },
-  publisher: { "@type": "Organization", name: "Furiosa Studio", url: "https://furiosadata.com" },
-  mainEntityOfPage: url,
-  image: `${url.replace("/bubonic-plague", "")}/og-default.png`,
-});
-
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "What is bubonic plague?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Bubonic plague is a serious bacterial infection caused by Yersinia pestis. It is the most common form of plague and is named for the painful, swollen lymph nodes — called buboes — that appear in the groin, armpit or neck. It is usually transmitted by the bite of an infected flea. Untreated, it kills 30–60% of those infected; with prompt antibiotics, most people recover.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What are the symptoms of bubonic plague?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Symptoms appear 2–8 days after infection: sudden fever, chills, headache, weakness and muscle aches, followed by one or more swollen, extremely painful lymph nodes (buboes), often in the groin or armpit near the flea bite. Without treatment the infection can spread to the blood (septicemic plague) or lungs (pneumonic plague), both of which are far more dangerous.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How is bubonic plague transmitted?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Most cases come from the bite of a flea that has fed on an infected rodent (rats, prairie dogs, ground squirrels). People can also catch it by handling an infected animal's tissue or fluids. Bubonic plague itself does not spread person-to-person — but if it progresses to pneumonic (lung) plague, that form can spread through respiratory droplets between humans.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Is bubonic plague still around today?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. The WHO records roughly 1,000 to 2,000 human plague cases worldwide each year, though the true number is likely higher. The most affected countries are Madagascar, the Democratic Republic of the Congo and Peru. The United States averages about 7 cases per year, mostly in rural areas of New Mexico, Arizona, Colorado and California.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "Can bubonic plague be cured?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Yes. Bubonic plague is curable with antibiotics — gentamicin, ciprofloxacin, levofloxacin or doxycycline — especially when treatment begins within 24 hours of symptoms. Early treatment drops mortality from 30–60% to around 10% or less. Delay is the single biggest risk factor, which is why prompt diagnosis is critical in plague-endemic regions.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "What is the difference between bubonic plague and the Black Death?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "They are caused by the same bacterium, Yersinia pestis. 'Bubonic plague' is the disease (the medical condition that still occurs today). The 'Black Death' is the specific historical pandemic of 1346–1353 that killed an estimated 75–200 million people across Eurasia — the deadliest outbreak of that disease in history.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How deadly is bubonic plague?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Untreated bubonic plague has a fatality rate of 30–60%. If it progresses to septicemic or pneumonic plague, untreated fatality approaches 100%. With modern antibiotics started early, overall mortality falls to roughly 10%. The disease is dangerous primarily when it is misdiagnosed or treatment is delayed.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "How can you prevent plague?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "There is no widely available plague vaccine for the general public. Prevention focuses on reducing rodent and flea exposure: flea-control products on pets, avoiding contact with dead or sick rodents, using insect repellent in endemic areas, and rodent-proofing homes. Healthcare workers use standard precautions, plus respiratory isolation for suspected pneumonic cases.",
-      },
-    },
-  ],
-};
+const faqSchema = (lang: Lang) => ({ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: FAQ[lang].map(([q, a]) => ({ "@type": "Question", name: q, acceptedAnswer: { "@type": "Answer", text: a } })) });
+const articleSchema = (url: string, t: (typeof T)[Lang], lang: Lang) => ({ "@context": "https://schema.org", "@type": "Article", headline: t.title, description: t.desc, inLanguage: lang, datePublished: "2026-05-30", dateModified: "2026-05-31", author: { "@type": "Organization", name: "Furiosa Studio", url: "https://furiosadata.com" }, publisher: { "@type": "Organization", name: "Furiosa Studio", url: "https://furiosadata.com" }, mainEntityOfPage: url, image: `${url.replace(/\/(es\/)?bubonic-plague$/, "")}/og-default.png` });
 
 export default async function BubonicPlaguePage() {
   const h = await headers();
-  const brand = detectBrand(h.get("host") ?? "");
-  const m = BRAND_META[brand];
-  const canonical = `${m.url}/bubonic-plague`;
-  const article = articleSchema(canonical);
-
+  const m = BRAND_META[detectBrand(h.get("host") ?? "")];
+  const lang = (h.get("x-locale") === "es" ? "es" : "en") as Lang;
+  const t = T[lang];
+  const prefix = lang === "es" ? "/es" : "";
+  const canonical = `${m.url}${prefix}/bubonic-plague`;
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(article) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
-
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(canonical, t, lang)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema(lang)) }} />
       <article className="mx-auto max-w-3xl px-5 py-12 sm:py-16">
         <nav aria-label="Breadcrumb" className="mb-4 text-xs uppercase tracking-[0.3em] text-slate-500">
-          <Link href="/" className="hover:text-slate-300">{m.name}</Link> / Bubonic Plague
+          <Link href={prefix + "/"} className="hover:text-slate-300">{m.name}</Link> / {t.h1}
         </nav>
-
-        <p className="mb-2 text-xs uppercase tracking-[0.4em] text-rose-400/70">Yersinia pestis · Still active today</p>
-        <h1 className="mb-4 text-3xl font-bold leading-tight sm:text-4xl">Bubonic Plague</h1>
-        <p className="mb-8 max-w-2xl text-lg italic text-slate-400">
-          The disease behind the Black Death is not history — it still infects 1,000–2,000 people a year.
-          What it is, how it spreads, the symptoms, and why modern antibiotics make it survivable.
-        </p>
-
-        <section aria-label="Featured answer" className="mb-10 rounded-md border-l-2 border-rose-400/60 bg-rose-400/5 p-5">
-          <p className="mb-2 text-[0.65rem] uppercase tracking-[0.3em] text-rose-400/80">Short answer</p>
-          <p className="text-base leading-relaxed text-slate-200">
-            Bubonic plague is a bacterial infection caused by{" "}
-            <strong className="text-white"><em>Yersinia pestis</em></strong>, spread mainly by{" "}
-            <strong className="text-white">flea bites</strong> from infected rodents. It causes fever and
-            painful swollen lymph nodes (<strong className="text-white">buboes</strong>). Untreated it kills
-            30–60%; with early antibiotics most people recover. It still causes about{" "}
-            <strong className="text-white">1,000–2,000 cases a year</strong> worldwide, mainly in Madagascar,
-            the DR Congo and Peru.
-          </p>
+        <p className="mb-2 text-xs uppercase tracking-[0.4em] text-rose-400/70">{t.eyebrow}</p>
+        <h1 className="mb-4 text-3xl font-bold leading-tight sm:text-4xl">{t.h1}</h1>
+        <p className="mb-8 max-w-2xl text-lg italic text-slate-400">{t.lede}</p>
+        <section className="mb-10 rounded-md border-l-2 border-rose-400/60 bg-rose-400/5 p-5">
+          <p className="mb-2 text-[0.65rem] uppercase tracking-[0.3em] text-rose-400/80">{t.shortLabel}</p>
+          <p className="text-base leading-relaxed text-slate-200" dangerouslySetInnerHTML={{ __html: t.short }} />
         </section>
-
-        <h2 className="mb-3 mt-10 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">Key facts</h2>
+        <h2 className="mb-3 mt-10 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">{t.factsH}</h2>
         <div className="mb-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
-          {[
-            { v: "2–8 days", l: "Incubation" },
-            { v: "30–60%", l: "Untreated fatality" },
-            { v: "~10%", l: "Treated fatality" },
-            { v: "1–2K/yr", l: "Cases worldwide" },
-          ].map((s, i) => (
-            <div key={i} className="rounded-md border border-slate-800 bg-slate-900/40 p-3 text-center">
-              <p className="font-mono text-xl text-rose-300">{s.v}</p>
-              <p className="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-slate-500">{s.l}</p>
-            </div>
-          ))}
+          {t.stats.map((s, i) => (<div key={i} className="rounded-md border border-slate-800 bg-slate-900/40 p-3 text-center"><p className="font-mono text-xl text-rose-300">{s[0]}</p><p className="mt-1 text-[0.65rem] uppercase tracking-[0.18em] text-slate-500">{s[1]}</p></div>))}
         </div>
-
         <hr className="my-10 border-slate-800" />
-
-        <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">The three forms of plague</h2>
-        <ul className="mb-4 list-disc space-y-2 pl-6 text-slate-400">
-          <li>
-            <strong className="text-slate-200">Bubonic</strong> — the classic form. Flea bite → swollen,
-            painful lymph nodes (buboes). 30–60% fatal untreated.
-          </li>
-          <li>
-            <strong className="text-slate-200">Septicemic</strong> — the bacteria multiply in the
-            bloodstream, causing tissue death and blackening of fingers and toes (the origin of the name
-            &quot;Black&quot; Death). Near-universally fatal untreated.
-          </li>
-          <li>
-            <strong className="text-slate-200">Pneumonic</strong> — infection of the lungs, the only form
-            that spreads person-to-person through airborne droplets. Fatal within 2–3 days untreated, and the
-            most dangerous from a public-health standpoint.
-          </li>
-        </ul>
-
+        <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">{t.formsH}</h2>
+        <ul className="mb-4 list-disc space-y-2 pl-6 text-slate-400">{t.forms.map(([k, v], i) => (<li key={i}><strong className="text-slate-200">{k}</strong> — {v}</li>))}</ul>
         <hr className="my-10 border-slate-800" />
-
-        <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">How it spreads</h2>
-        <p className="mb-4 text-slate-400">
-          The classic cycle runs <strong className="text-slate-200">rodent → flea → human</strong>. A flea
-          feeds on an infected rat or other rodent, the bacteria multiply and block the flea&apos;s gut, and
-          when the starving flea bites a human it regurgitates <em>Yersinia pestis</em> into the wound.
-          Humans can also be infected by handling infected animal tissue (hunters, herders) or — in the
-          pneumonic form — by inhaling droplets from an infected person or animal coughing nearby.
-        </p>
-        <p className="mb-4 text-slate-400">
-          Bubonic plague on its own is <strong className="text-slate-200">not contagious between people</strong>.
-          The fear factor comes from its ability to progress to pneumonic plague, which is.
-        </p>
-
+        <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">{t.spreadH}</h2>
+        <p className="mb-4 text-slate-400" dangerouslySetInnerHTML={{ __html: t.spreadP }} />
         <hr className="my-10 border-slate-800" />
-
-        <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">Treatment today</h2>
-        <p className="mb-4 text-slate-400">
-          Modern antibiotics make plague survivable when caught early. First-line drugs are{" "}
-          <strong className="text-slate-200">gentamicin</strong> and the fluoroquinolones (
-          <strong className="text-slate-200">ciprofloxacin, levofloxacin</strong>); doxycycline is also
-          effective. Treatment started within <strong className="text-slate-200">24 hours</strong> of symptom
-          onset cuts mortality dramatically. Patients with suspected pneumonic plague are isolated, and close
-          contacts may receive preventive antibiotics. The key risk is delay — plague is rare enough in most
-          countries that doctors may not consider it quickly.
-        </p>
-
+        <h2 className="mb-3 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">{t.treatH}</h2>
+        <p className="mb-4 text-slate-400" dangerouslySetInnerHTML={{ __html: t.treatP }} />
         <hr className="my-10 border-slate-800" />
-
-        <h2 className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">Frequently asked questions</h2>
-        <div className="divide-y divide-slate-800/60 border-y border-slate-800/60">
-          {faqSchema.mainEntity.map((q, i) => (
-            <div key={i} className="py-5">
-              <p className="mb-2 font-medium text-slate-100">{q.name}</p>
-              <p className="text-slate-400">{q.acceptedAnswer.text}</p>
-            </div>
-          ))}
-        </div>
-
+        <h2 className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">{t.faqH}</h2>
+        <div className="divide-y divide-slate-800/60 border-y border-slate-800/60">{FAQ[lang].map(([q, a], i) => (<div key={i} className="py-5"><p className="mb-2 font-medium text-slate-100">{q}</p><p className="text-slate-400">{a}</p></div>))}</div>
         <hr className="my-10 border-slate-800" />
-
-        <h2 className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">Related</h2>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {[
-            { href: "/black-death", label: "The Black Death — the 1346 pandemic", tag: "History" },
-            { href: "/spanish-flu", label: "Spanish Flu 1918 — 50M dead", tag: "Pandemic" },
-            { href: "/", label: `${m.name} home — interactive map`, tag: "Tool" },
-            { href: "/statistics", label: "Aggregate death statistics", tag: "Data" },
-          ].map((c) => (
-            <Link key={c.href} href={c.href} className="block rounded-md border border-slate-800 p-4 transition hover:border-rose-400/40">
-              <p className="text-[0.6rem] uppercase tracking-[0.28em] text-rose-400/70">{c.tag}</p>
-              <p className="mt-1 italic text-slate-200">{c.label}</p>
-            </Link>
-          ))}
-        </div>
-
-        <p className="mt-10 text-center text-xs uppercase tracking-[0.25em] text-slate-600">
-          © 2026 Furiosa Studio · Part of the{" "}
-          <a href="https://furiosadata.com" rel="dofollow" className="underline">Furiosa Data Tools Network</a>
-        </p>
-        <p className="mt-3 text-center text-[0.65rem] text-slate-600">
-          Informational only — not medical advice. For symptoms, contact a healthcare professional.
-        </p>
+        <h2 className="mb-4 text-xs font-medium uppercase tracking-[0.25em] text-slate-300">{t.relH}</h2>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">{t.rel.map((c, i) => (<Link key={i} href={prefix + c[0]} className="block rounded-md border border-slate-800 p-4 transition hover:border-rose-400/40"><p className="text-[0.6rem] uppercase tracking-[0.28em] text-rose-400/70">{c[2]}</p><p className="mt-1 italic text-slate-200">{c[1].replace("{brand}", m.name)}</p></Link>))}</div>
+        <p className="mt-10 text-center text-xs uppercase tracking-[0.25em] text-slate-600">© 2026 Furiosa Studio · Part of the <a href="https://furiosadata.com" rel="dofollow" className="underline">Furiosa Data Tools Network</a></p>
+        <p className="mt-3 text-center text-[0.65rem] text-slate-600">{t.disclaimer}</p>
       </article>
     </main>
   );
