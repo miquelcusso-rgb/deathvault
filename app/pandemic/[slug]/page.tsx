@@ -43,6 +43,12 @@ export default async function PandemicPage({ params }: Props) {
     .sort((a, b) => b.deathsEstimate - a.deathsEstimate)
     .slice(0, 3);
 
+  // Pillar deep-dive pages that exist as root routes (/black-death, /cholera…).
+  // This indexed event page links to its pillar to pass discovery + link equity
+  // (fixes pillars showing "URL is unknown to Google" — 2026-06-01).
+  const PILLAR_SLUGS = new Set(["black-death", "spanish-flu", "bubonic-plague", "cholera"]);
+  const hasPillar = PILLAR_SLUGS.has(event.id);
+
   return (
     <div className="min-h-screen bg-void bg-grid">
       <Navbar />
@@ -139,6 +145,27 @@ export default async function PandemicPage({ params }: Props) {
             </div>
           ))}
         </div>
+
+        {/* Pillar deep-dive CTA — links the indexed event page to its in-depth guide */}
+        {hasPillar && (
+          <Link
+            href={localizedHref("/" + event.id, lang)}
+            className="card p-5 mb-6 flex items-center justify-between gap-4 group transition-colors"
+            style={{ borderColor: event.color + "40" }}
+          >
+            <div>
+              <p className="text-xs font-mono uppercase tracking-wider mb-1" style={{ color: event.color }}>
+                {isEs ? "Guía completa" : "In-depth guide"}
+              </p>
+              <p className="text-white font-display font-bold">
+                {isEs
+                  ? `${evName}: síntomas, causa, tratamiento e historia`
+                  : `${evName}: symptoms, cause, treatment & history`}
+              </p>
+            </div>
+            <ArrowLeft className="w-5 h-5 rotate-180 shrink-0 text-slate-400 group-hover:text-white transition-colors" />
+          </Link>
+        )}
 
         {/* Overview */}
         <div className="card p-6 mb-6">
