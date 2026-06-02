@@ -43,11 +43,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const t = makeT(locale);
   const description = isEs ? (m as { descriptionEs?: string }).descriptionEs ?? m.description : m.description;
   const alternates = buildAlternates(m.url, invariantPath, locale);
-  // Next.js 15 strip-ea el trailing slash del canonical cuando es root,
-  // generando https://www.deathvault.app (sin slash) y rompiendo el match
-  // con la URL 200 https://www.deathvault.app/. Workaround: para la home,
-  // dejamos solo languages (hreflang) en metadata y el canonical se inyecta
-  // a mano en <head> del RootLayout (preserva la barra final).
+  // Next.js 15 strip-ea el trailing slash del canonical root → mismatch con URL 200.
+  // Para home, solo languages en metadata; el canonical se inyecta en <head> manual.
   const isHome = invariantPath === "/";
   const metadataAlternates = isHome
     ? { languages: alternates.languages }
@@ -93,8 +90,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const brand = detectBrand(host);
   const initialLang: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const m = BRAND_META[brand];
-  // Manual canonical for home (Next.js 15 strips trailing slash in metadata.alternates.canonical
-  // for root URLs, breaking the match with the 200 URL).
+  // Manual canonical for home (Next.js 15 strips trailing slash from metadata canonical).
   const invariantPath = h.get("x-invariant-path") || "/";
   const isHome = invariantPath === "/";
   const homeCanonical = initialLang === "es" ? `${m.url}/es` : `${m.url}/`;
@@ -131,7 +127,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={initialLang} data-brand={brand} suppressHydrationWarning
-      className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable}`}>
+      className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable}${brand === "deathvault" ? " light" : ""}`}>
       <head>
         {isHome && <link rel="canonical" href={homeCanonical} />}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
