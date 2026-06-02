@@ -1,6 +1,17 @@
 {
-  "lastUpdated": "2026-06-01T12:39:44.606Z",
+  "lastUpdated": "2026-06-02T11:20:08.171Z",
   "items": [
+    {
+      "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-01",
+      "eventId": "ebola",
+      "date": "2026-06-01",
+      "headline": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda",
+      "urgent": true,
+      "headlineEn": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "headlineEs": "Brote de ébola en la República Democrática del Congo y Uganda"
+    },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-05-29",
       "eventId": "ebola",
