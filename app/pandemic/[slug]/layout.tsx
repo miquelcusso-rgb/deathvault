@@ -44,15 +44,19 @@ export async function generateMetadata(
     ? `${event.startYear}–${event.endYear}`
     : `${event.startYear}–${isEs ? "actualidad" : "present"}`;
 
-  // Keyword-rich title: "Black Death — 120M Deaths (1347–1353)"
-  const title = isEs
+  // Keyword-rich title. Prefer an explicit exact-match SEO title when the event
+  // declares one (targets the real searched phrasing, e.g. "Biafran War death
+  // toll"); otherwise fall back to "<Name> — <N> Deaths (<period>)".
+  const seoTitle = isEs ? event.seoTitleEs : event.seoTitle;
+  const title = seoTitle ?? (isEs
     ? `${evName} — ${deathFormatted} muertes (${period})`
-    : `${evName} — ${deathFormatted} Deaths (${period})`;
+    : `${evName} — ${deathFormatted} Deaths (${period})`);
 
-  // Full description: max ~160 chars for SERP snippet
-  const descBase = isEs
+  // Full description: max ~160 chars for SERP snippet.
+  const seoDesc = isEs ? event.seoDescriptionEs : event.seoDescription;
+  const descBase = seoDesc ?? (isEs
     ? `${evName}: ${deathFormatted} muertes estimadas (${period}). ${evDesc.slice(0, 100)}`
-    : `${evName}: ${deathFormatted} estimated deaths (${period}). ${evDesc.slice(0, 100)}`;
+    : `${evName}: ${deathFormatted} estimated deaths (${period}). ${evDesc.slice(0, 100)}`);
   const description = descBase.length > 158 ? descBase.slice(0, 155) + "…" : descBase;
 
   return {
@@ -120,9 +124,9 @@ export default async function EventLayout({
     ? `${event.startYear}–${event.endYear}`
     : `${event.startYear}–${isEs ? "actualidad" : "present"}`;
 
-  const pageTitle = isEs
+  const pageTitle = (isEs ? event.seoTitleEs : event.seoTitle) ?? (isEs
     ? `${evName} — ${deathFormatted} muertes (${period})`
-    : `${evName} — ${deathFormatted} Deaths (${period})`;
+    : `${evName} — ${deathFormatted} Deaths (${period})`);
 
   // ── JSON-LD schemas ────────────────────────────────────────────────────────
 

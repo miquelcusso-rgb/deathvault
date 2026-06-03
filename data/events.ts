@@ -20,6 +20,19 @@ export interface Reference {
   source: string;
 }
 
+/** A single death-toll estimate attributed to a named source. Renders as a
+ *  citable comparison table on the event page (strong GEO signal — AI engines
+ *  extract "estimate by source" tables well). */
+export interface TollEstimate {
+  source: string;
+  sourceEs?: string;
+  /** Human-readable figure as published, e.g. "4,000" or "1–3 million" */
+  figure: string;
+  figureEs?: string;
+  note?: string;
+  noteEs?: string;
+}
+
 export interface HistoricalEvent {
   id: string;
   name: string;
@@ -53,6 +66,20 @@ export interface HistoricalEvent {
   /** Shown as a footnote on the event page to indicate source reliability */
   dataReliabilityLevel?: "high" | "moderate" | "low";
   dataReliabilityNote?: string;
+  /** Exact-match SEO overrides. When set, these replace the auto-generated
+   *  "<Name> — <N> Deaths (<period>)" title/description so the page targets the
+   *  real searched phrasing (e.g. "Biafran War death toll", "Chernobyl
+   *  casualties") rather than the display name. */
+  seoTitle?: string;
+  seoTitleEs?: string;
+  seoDescription?: string;
+  seoDescriptionEs?: string;
+  /** Keyword-rich tagline rendered directly under the H1 (an <p>, not a heading,
+   *  so the single-H1 rule holds). Carries the exact-match query in body copy. */
+  seoTagline?: string;
+  seoTaglineEs?: string;
+  /** Death-toll estimates broken down by source — rendered as a citable table. */
+  tollBySource?: TollEstimate[];
 }
 
 export const EVENTS: HistoricalEvent[] = [
@@ -1325,6 +1352,19 @@ La Zona de Exclusión de Chernóbil — todavía vigente hoy — se ha convertid
       { q: "¿Qué le ocurrió a la ciudad de Prípiat tras Chernóbil?", a: "Prípiat, una ciudad soviética construida expresamente con unos 50.000 residentes adyacente a la planta, fue evacuada el 27 de abril de 1986 — 36 horas después de la explosión. A los residentes se les dijo que llevaran solo lo esencial para una evacuación temporal. Nunca regresaron. La ciudad permanece abandonada y es ahora un importante lugar turístico dentro de la Zona de Exclusión." },
     ],
     tags: ["nuclear", "accident", "ukraine", "soviet", "radiation"],
+    seoTitle: "Chernobyl Death Toll: 31 to 60,000+ Deaths by Source (1986)",
+    seoTitleEs: "Muertes de Chernóbil: de 31 a más de 60.000 según la fuente (1986)",
+    seoDescription: "How many people died from Chernobyl? Immediate deaths were 31; long-term cancer death estimates range from 4,000 (WHO/IAEA) to 60,000+ (Greenpeace). Casualties and death count compared by source.",
+    seoDescriptionEs: "¿Cuántas personas murieron por Chernóbil? Las muertes inmediatas fueron 31; las estimaciones de muertes por cáncer a largo plazo van de 4.000 (OMS/OIEA) a más de 60.000 (Greenpeace). Cifras comparadas por fuente.",
+    seoTagline: "Chernobyl death toll estimates and casualties by source — from 31 confirmed immediate deaths to 4,000–60,000+ projected long-term cancer deaths.",
+    seoTaglineEs: "Estimaciones del número de muertes y víctimas de Chernóbil por fuente — desde 31 muertes inmediatas confirmadas hasta 4.000–60.000+ muertes por cáncer a largo plazo proyectadas.",
+    tollBySource: [
+      { source: "Immediate deaths (1986)", sourceEs: "Muertes inmediatas (1986)", figure: "31", note: "2 from the blast, 28 firefighters/workers from Acute Radiation Syndrome.", noteEs: "2 por la explosión, 28 bomberos/trabajadores por Síndrome de Radiación Aguda." },
+      { source: "WHO / IAEA Chernobyl Forum (2005)", figure: "4,000", figureEs: "4.000", note: "Projected long-term cancer deaths among the most highly exposed populations.", noteEs: "Muertes por cáncer a largo plazo proyectadas entre las poblaciones más expuestas." },
+      { source: "WHO (broader Europe, 2006)", sourceEs: "OMS (Europa amplia, 2006)", figure: "~9,000", figureEs: "~9.000", note: "Estimate extended to all contaminated territories of Ukraine, Belarus and Russia.", noteEs: "Estimación extendida a todos los territorios contaminados de Ucrania, Bielorrusia y Rusia." },
+      { source: "TORCH report (2006)", sourceEs: "Informe TORCH (2006)", figure: "30,000–60,000", figureEs: "30.000–60.000", note: "Independent scientific report accounting for the wider European fallout.", noteEs: "Informe científico independiente que tiene en cuenta la lluvia radiactiva europea más amplia." },
+      { source: "Greenpeace (2006)", figure: "60,000+", figureEs: "60.000+", note: "Highest mainstream estimate, including projected cancers across all of Europe.", noteEs: "Estimación dominante más alta, incluidos los cánceres proyectados en toda Europa." },
+    ],
     dataReliabilityLevel: "moderate",
     dataReliabilityNote: "Immediate deaths well-documented. Long-term cancer mortality is the subject of ongoing scientific debate — WHO estimates 4,000 excess deaths; Greenpeace and TORCH report project higher figures (60,000+). Soviet-era suppression of data complicates early estimates.",
   },
@@ -2171,6 +2211,18 @@ Las estimaciones del total de muertes oscilan entre 1 y 3 millones, muriendo la 
       { title: "The Biafran War and Postcolonial Humanitarianism — Charlotte Lydia Riley", url: "https://www.cambridge.org/", source: "Cambridge University Press" },
     ],
     tags: ["nigeria", "biafra", "africa", "famine", "igbo", "blockade", "20th century", "humanitarian"],
+    seoTitle: "Biafran War Death Toll: 1–3 Million Casualties by Source (1967–70)",
+    seoTitleEs: "Muertes de la Guerra de Biafra: 1–3 millones de víctimas por fuente (1967–70)",
+    seoDescription: "Biafran War death toll estimates by source: 1 to 3 million casualties, ~2 million most cited. ~90% died from the famine caused by the federal blockade, not combat. Death count compared.",
+    seoDescriptionEs: "Estimaciones del número de muertes de la Guerra de Biafra por fuente: de 1 a 3 millones de víctimas, ~2 millones la más citada. ~90 % murió por la hambruna del bloqueo federal, no por el combate.",
+    seoTagline: "Biafran War death toll estimates and casualties by source — figures range from 1 to 3 million, with roughly 2 million the most cited; the great majority died from blockade-induced famine.",
+    seoTaglineEs: "Estimaciones del número de muertes y víctimas de la Guerra de Biafra por fuente — las cifras van de 1 a 3 millones, siendo unos 2 millones la más citada; la gran mayoría murió por la hambruna del bloqueo.",
+    tollBySource: [
+      { source: "Lower-bound scholarly estimate", sourceEs: "Estimación académica mínima", figure: "1 million", figureEs: "1 millón", note: "Most conservative figure cited by Nigerian federal and some academic sources.", noteEs: "Cifra más conservadora citada por fuentes federales nigerianas y algunas académicas." },
+      { source: "Most-cited consensus figure", sourceEs: "Cifra de consenso más citada", figure: "~2 million", figureEs: "~2 millones", note: "The figure most commonly used by historians and encyclopedias for total deaths.", noteEs: "La cifra más usada por historiadores y enciclopedias para el total de muertes." },
+      { source: "Upper-bound / Igbo nationalist sources", sourceEs: "Máximo / fuentes nacionalistas igbo", figure: "3 million", figureEs: "3 millones", note: "Higher estimates emphasising the full scale of the blockade famine.", noteEs: "Estimaciones más altas que enfatizan la escala completa de la hambruna del bloqueo." },
+      { source: "Peak famine mortality (1968–69)", sourceEs: "Mortalidad máxima de la hambruna (1968–69)", figure: "8,000–10,000 / day", figureEs: "8.000–10.000 / día", note: "Daily death rate at the height of the blockade, ~90% from starvation and disease.", noteEs: "Tasa de muertes diaria en el punto álgido del bloqueo, ~90 % por inanición y enfermedad." },
+    ],
     dataReliabilityLevel: "moderate",
     dataReliabilityNote: "Death toll is heavily debated. The range 1–3M reflects genuine uncertainty; most deaths were from famine with no reliable enumeration. The 2M figure is widely cited but contested. Igbo nationalist sources tend toward higher estimates; Nigerian federal sources lower.",
   },

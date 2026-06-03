@@ -54,14 +54,21 @@ export default async function PandemicPage({ params }: Props) {
       <Navbar />
       <main id="main-content" className="max-w-4xl mx-auto px-4 pt-24 pb-16">
 
-        {/* Back */}
-        <div className="flex items-center gap-3 mb-8">
+        {/* Back + breadcrumb (visible internal links for crawl discovery) */}
+        <div className="flex items-center gap-3 mb-8 text-sm">
           <Link
             href={localizedHref("/", lang)}
-            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer"
+            className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-300 transition-colors duration-200 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             {t("back")}
+          </Link>
+          <span className="text-slate-700">/</span>
+          <Link
+            href={localizedHref("/events", lang)}
+            className="text-slate-500 hover:text-slate-300 transition-colors duration-200 cursor-pointer"
+          >
+            {isEs ? "Archivo de eventos" : "Event Archive"}
           </Link>
         </div>
 
@@ -93,6 +100,11 @@ export default async function PandemicPage({ params }: Props) {
                   <h1 className="font-display font-black text-4xl text-white mb-1">{evName}</h1>
                   {event.pathogen && (
                     <p className="text-slate-500 font-mono text-sm">{event.pathogen}</p>
+                  )}
+                  {(isEs ? event.seoTaglineEs : event.seoTagline) && (
+                    <p className="text-slate-300 text-sm leading-relaxed mt-2 max-w-2xl">
+                      {isEs ? event.seoTaglineEs : event.seoTagline}
+                    </p>
                   )}
                 </div>
                 <div className="text-right">
@@ -172,6 +184,51 @@ export default async function PandemicPage({ params }: Props) {
           <h2 className="font-display font-bold text-white text-xl mb-4">{t("ev_overview")}</h2>
           <p className="text-slate-300 leading-relaxed">{evDescription}</p>
         </div>
+
+        {/* Death toll by source — citable comparison table (GEO/featured-snippet target) */}
+        {event.tollBySource && event.tollBySource.length > 0 && (
+          <div className="card p-6 mb-6">
+            <h2 className="font-display font-bold text-white text-xl mb-4">
+              {isEs ? "Número de muertes por fuente" : "Death Toll by Source"}
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="border-b" style={{ borderColor: event.color + "40" }}>
+                    <th className="text-left font-mono text-xs uppercase tracking-wider text-slate-500 py-2 pr-4">
+                      {isEs ? "Fuente / estimación" : "Source / estimate"}
+                    </th>
+                    <th className="text-right font-mono text-xs uppercase tracking-wider text-slate-500 py-2 pl-4 whitespace-nowrap">
+                      {isEs ? "Muertes" : "Deaths"}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {event.tollBySource.map((row, i) => (
+                    <tr key={i} className="border-b border-border/20 align-top">
+                      <td className="py-3 pr-4">
+                        <p className="text-slate-200 font-semibold">
+                          {isEs ? (row.sourceEs ?? row.source) : row.source}
+                        </p>
+                        {(isEs ? (row.noteEs ?? row.note) : row.note) && (
+                          <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">
+                            {isEs ? (row.noteEs ?? row.note) : row.note}
+                          </p>
+                        )}
+                      </td>
+                      <td
+                        className="py-3 pl-4 text-right font-mono font-bold whitespace-nowrap"
+                        style={{ color: event.color }}
+                      >
+                        {isEs ? (row.figureEs ?? row.figure) : row.figure}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
 
         {/* Full History */}
         {evLongDesc && (
