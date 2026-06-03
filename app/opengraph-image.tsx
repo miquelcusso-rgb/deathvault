@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { headers } from "next/headers";
-import { detectBrand } from "@/lib/brand";
+import { detectBrand, BRAND_CATEGORIES } from "@/lib/brand";
+import { EVENTS } from "@/data/events";
 
 export const dynamic = "force-dynamic";
 
@@ -8,34 +9,51 @@ export const alt = "Interactive map of history's deadliest events";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
+function formatBigDeaths(n: number): string {
+  if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(1) + "B+";
+  if (n >= 1_000_000) return Math.round(n / 1_000_000) + "M+";
+  if (n >= 1_000) return Math.round(n / 1_000) + "K+";
+  return String(n);
+}
+
 export default async function OGImage() {
   const host = (await headers()).get("host") ?? "";
   const brand = detectBrand(host);
-
   const isPlagueAtlas = brand === "plagueatlas";
+
+  // Real, brand-filtered totals (computed live from the dataset)
+  const brandEvents = EVENTS.filter((e) => BRAND_CATEGORIES[brand].includes(e.category));
+  const totalDeaths = brandEvents.reduce((s, e) => s + e.deathsEstimate, 0);
+  const eventCount = brandEvents.length;
+  const categoryCount = new Set(brandEvents.map((e) => e.category)).size;
+  const earliestYear = brandEvents.reduce((m, e) => Math.min(m, e.startYear), Infinity);
+  const yearsSpan = new Date().getFullYear() - earliestYear;
+
   const accent = isPlagueAtlas ? "#DC2626" : "#F59E0B";
   const accentRgb = isPlagueAtlas ? "220,38,38" : "245,158,11";
-  const bg = isPlagueAtlas ? "#05080F" : "#07090D";
-  const secondGlow = isPlagueAtlas ? "rgba(6,182,212,0.12)" : "rgba(245,158,11,0.08)";
+  const bg = isPlagueAtlas ? "#05080F" : "#0A0905";
+  const secondGlow = isPlagueAtlas ? "rgba(6,182,212,0.14)" : "rgba(217,119,6,0.18)";
   const gridColor = isPlagueAtlas ? "#4FC3DC" : "#F59E0B";
   const urlText = isPlagueAtlas ? "plagueatlas.com" : "deathvault.app";
 
   const wordA = isPlagueAtlas ? "Plague" : "Death";
   const wordB = isPlagueAtlas ? "Atlas" : "Vault";
-  const badge = isPlagueAtlas ? "INTERACTIVE DEATH MAP" : "CLASSIFIED ARCHIVE";
+  const badge = isPlagueAtlas ? "DISEASE ARCHIVE" : "DEATH ARCHIVE";
   const subtitle = isPlagueAtlas
     ? "Interactive epidemic & disease history map"
     : "Every mass death event in recorded history";
+
+  // Stats: real numbers + a third metric that's distinct per brand
   const stats = isPlagueAtlas
     ? [
-        { value: "813M+", label: "Deaths tracked", color: accent },
-        { value: "16", label: "Events", color: "#06B6D4" },
-        { value: "1,500yr", label: "Time span", color: "#10B981" },
+        { value: formatBigDeaths(totalDeaths), label: "Pandemic deaths", color: accent },
+        { value: String(eventCount), label: "Pandemics", color: "#06B6D4" },
+        { value: `${Math.round(yearsSpan / 100) * 100}yr`, label: "Of history", color: "#10B981" },
       ]
     : [
-        { value: "813M+", label: "Deaths tracked", color: accent },
-        { value: "16", label: "Events", color: "#06B6D4" },
-        { value: "wars · nuclear", label: "Categories", color: "#8B5CF6" },
+        { value: formatBigDeaths(totalDeaths), label: "Deaths documented", color: accent },
+        { value: String(eventCount), label: "Mass-death events", color: "#F472B6" },
+        { value: String(categoryCount), label: "Categories", color: "#8B5CF6" },
       ];
 
   return new ImageResponse(
@@ -118,39 +136,66 @@ export default async function OGImage() {
             {/* Globe outer ring */}
             <circle cx="140" cy="155" r="90" fill="none" stroke="#2A6A9A" strokeWidth="1.5" />
 
-            {/* Skull shadow/glow behind */}
-            <circle cx="140" cy="80" r="46" fill={`rgba(${accentRgb},0.15)`} />
-            <circle cx="140" cy="80" r="38" fill={`rgba(${accentRgb},0.08)`} />
+            {/* Glow halo behind the symbol */}
+            <circle cx="140" cy="80" r="50" fill={`rgba(${accentRgb},0.14)`} />
+            <circle cx="140" cy="80" r="38" fill={`rgba(${accentRgb},0.18)`} />
 
-            {/* Skull cranium */}
-            <ellipse cx="140" cy="72" rx="34" ry="32" fill="#1A0A0A" stroke={accent} strokeWidth="2" />
-
-            {/* Skull cheekbone base */}
-            <rect x="110" y="92" width="60" height="18" rx="4" fill="#1A0A0A" stroke={accent} strokeWidth="1.5" />
-
-            {/* Eye sockets */}
-            <ellipse cx="126" cy="70" rx="11" ry="12" fill={accent} opacity="0.9" />
-            <ellipse cx="154" cy="70" rx="11" ry="12" fill={accent} opacity="0.9" />
-
-            {/* Eye inner dark */}
-            <ellipse cx="126" cy="70" rx="8" ry="9" fill="#050810" />
-            <ellipse cx="154" cy="70" rx="8" ry="9" fill="#050810" />
-
-            {/* Eye glow */}
-            <ellipse cx="126" cy="68" rx="4" ry="4" fill={`rgba(${accentRgb},0.6)`} />
-            <ellipse cx="154" cy="68" rx="4" ry="4" fill={`rgba(${accentRgb},0.6)`} />
-
-            {/* Nose cavity */}
-            <path d="M136 82 L140 76 L144 82 Z" fill="#050810" />
-
-            {/* Teeth */}
-            <rect x="114" y="98" width="9" height="11" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-            <rect x="126" y="98" width="9" height="13" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-            <rect x="138" y="98" width="9" height="13" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-            <rect x="150" y="98" width="9" height="11" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-
-            {/* Skull crack detail */}
-            <path d="M140 42 L138 52 L143 58 L140 68" fill="none" stroke={accent} strokeWidth="1" opacity="0.5" />
+            {isPlagueAtlas ? (
+              // ─── PlagueAtlas: spiky virus / pathogen motif ───
+              <>
+                {/* Spike proteins — 8 radiating from the body */}
+                {[0, 45, 90, 135, 180, 225, 270, 315].map((deg) => {
+                  const r = (deg * Math.PI) / 180;
+                  const x1 = 140 + Math.cos(r) * 30;
+                  const y1 = 80 + Math.sin(r) * 30;
+                  const x2 = 140 + Math.cos(r) * 50;
+                  const y2 = 80 + Math.sin(r) * 50;
+                  return (
+                    <g key={deg}>
+                      <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={accent} strokeWidth="3" strokeLinecap="round" />
+                      <circle cx={x2} cy={y2} r="4.5" fill={accent} />
+                    </g>
+                  );
+                })}
+                {/* Virus capsid */}
+                <circle cx="140" cy="80" r="30" fill="#1A0A0A" stroke={accent} strokeWidth="2.5" />
+                {/* Surface receptors */}
+                <circle cx="128" cy="66" r="3.5" fill={accent} opacity="0.95" />
+                <circle cx="152" cy="66" r="3.5" fill={accent} opacity="0.95" />
+                <circle cx="124" cy="84" r="3" fill={accent} opacity="0.85" />
+                <circle cx="156" cy="84" r="3" fill={accent} opacity="0.85" />
+                <circle cx="140" cy="94" r="3" fill={accent} opacity="0.85" />
+                {/* Inner core (genome) */}
+                <circle cx="140" cy="80" r="13" fill="#050810" stroke={accent} strokeWidth="1" opacity="0.85" />
+                <path d="M131 80 Q140 71 149 80 Q140 89 131 80" fill="none" stroke={accent} strokeWidth="1.4" opacity="0.85" />
+              </>
+            ) : (
+              // ─── DeathVault: skull ───
+              <>
+                {/* Skull cranium */}
+                <ellipse cx="140" cy="72" rx="34" ry="32" fill="#1A0A0A" stroke={accent} strokeWidth="2" />
+                {/* Skull cheekbone base */}
+                <rect x="110" y="92" width="60" height="18" rx="4" fill="#1A0A0A" stroke={accent} strokeWidth="1.5" />
+                {/* Eye sockets */}
+                <ellipse cx="126" cy="70" rx="11" ry="12" fill={accent} opacity="0.9" />
+                <ellipse cx="154" cy="70" rx="11" ry="12" fill={accent} opacity="0.9" />
+                {/* Eye inner dark */}
+                <ellipse cx="126" cy="70" rx="8" ry="9" fill="#050810" />
+                <ellipse cx="154" cy="70" rx="8" ry="9" fill="#050810" />
+                {/* Eye glow */}
+                <ellipse cx="126" cy="68" rx="4" ry="4" fill={`rgba(${accentRgb},0.6)`} />
+                <ellipse cx="154" cy="68" rx="4" ry="4" fill={`rgba(${accentRgb},0.6)`} />
+                {/* Nose cavity */}
+                <path d="M136 82 L140 76 L144 82 Z" fill="#050810" />
+                {/* Teeth */}
+                <rect x="114" y="98" width="9" height="11" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
+                <rect x="126" y="98" width="9" height="13" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
+                <rect x="138" y="98" width="9" height="13" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
+                <rect x="150" y="98" width="9" height="11" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
+                {/* Skull crack detail */}
+                <path d="M140 42 L138 52 L143 58 L140 68" fill="none" stroke={accent} strokeWidth="1" opacity="0.5" />
+              </>
+            )}
 
             {/* Pulsing dots */}
             <circle cx="160" cy="145" r="4" fill={accent} opacity="0.9" />
