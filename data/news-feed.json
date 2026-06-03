@@ -1,6 +1,39 @@
 {
-  "lastUpdated": "2026-06-02T11:20:08.171Z",
+  "lastUpdated": "2026-06-03T11:57:49.658Z",
   "items": [
+    {
+      "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-03",
+      "eventId": "ebola",
+      "date": "2026-06-03",
+      "headline": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda",
+      "urgent": true,
+      "headlineEn": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "headlineEs": "Brote de ébola en la República Democrática del Congo y Uganda"
+    },
+    {
+      "id": "paho-as-countries-prepare-for-the-2026-fifa-w-2026-06-02",
+      "eventId": "hiv-aids",
+      "date": "2026-06-02",
+      "headline": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
+      "source": "PAHO",
+      "url": "https://www.paho.org/en/news/2-6-2026-countries-prepare-2026-fifa-world-cuptm-paho-issues-recommendations-strengthen",
+      "urgent": false,
+      "headlineEn": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
+      "headlineEs": "Mientras los países se preparan para la Copa Mundial de la FIFA 2026™, la OPS emite recomendaciones para fortalecer la vigilancia y la vacunación contra el sarampión"
+    },
+    {
+      "id": "paho-es-as-countries-prepare-for-the-2026-fifa-w-2026-06-02",
+      "eventId": "hiv-aids",
+      "date": "2026-06-02",
+      "headline": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/en/news/2-6-2026-countries-prepare-2026-fifa-world-cuptm-paho-issues-recommendations-strengthen",
+      "urgent": false,
+      "headlineEs": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
+      "headlineEn": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination"
+    },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-01",
       "eventId": "ebola",
