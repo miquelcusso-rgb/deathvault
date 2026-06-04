@@ -16,7 +16,15 @@ function ThemeSync({ children }: { children: ReactNode }) {
   const [mounted, setMounted] = useState(false);
   const darkMode = useAppStore((s) => s.darkMode);
 
-  useEffect(() => { setMounted(true); }, []);
+  // On first mount, adopt whatever class the head-init script already set
+  // (matches localStorage preference or brand default). Avoids stomping it.
+  useEffect(() => {
+    const domDark = document.documentElement.classList.contains("dark");
+    if (domDark !== useAppStore.getState().darkMode) {
+      useAppStore.setState({ darkMode: domDark });
+    }
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!mounted) return;

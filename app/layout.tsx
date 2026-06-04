@@ -127,7 +127,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
   return (
     <html lang={initialLang} data-brand={brand} suppressHydrationWarning
-      className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable}${brand === "deathvault" ? " light" : ""}`}>
+      className={`${fontSpace.variable} ${fontMono.variable} ${fontInter.variable} ${brand === "plagueatlas" ? "dark" : "light"}`}>
       <head>
         {isHome && <link rel="canonical" href={homeCanonical} />}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -137,6 +137,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="apple-mobile-web-app-title" content={m.name} />
         <link rel="manifest" href="/manifest.json" />
+        {/* Theme init — runs DURING HTML parse (before React hydration) to avoid
+            any light/dark flash. Source of truth: localStorage > brand default.
+            PlagueAtlas defaults to dark, DeathVault to light. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var h=document.documentElement,b=h.getAttribute('data-brand'),s=localStorage.getItem('pw-store-v2'),d;if(s){try{var p=JSON.parse(s);if(p&&p.state&&typeof p.state.darkMode==='boolean')d=p.state.darkMode}catch(e){}}if(d===undefined)d=b==='plagueatlas';if(d){h.classList.add('dark');h.classList.remove('light')}else{h.classList.add('light');h.classList.remove('dark')}}catch(e){}})();`,
+          }}
+        />
         <JsonLd data={[websiteSchema, orgSchema]} />
         {/* GTM Consent Mode v2 — must run BEFORE GTM loads */}
         <Script
