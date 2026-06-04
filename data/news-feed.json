@@ -1,6 +1,28 @@
 {
-  "lastUpdated": "2026-06-03T11:57:49.658Z",
+  "lastUpdated": "2026-06-04T10:39:50.388Z",
   "items": [
+    {
+      "id": "paho-who-certifies-turks-and-caicos-for-elimi-2026-06-03",
+      "eventId": "hiv-aids",
+      "date": "2026-06-03",
+      "headline": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
+      "source": "PAHO",
+      "url": "https://www.paho.org/en/news/3-6-2026-who-certifies-turks-and-caicos-eliminating-mother-child-transmission-hiv-and",
+      "urgent": false,
+      "headlineEn": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
+      "headlineEs": "La OMS certifica que las Islas Turcas y Caicos eliminan la transmisión maternoinfantil del VIH y la hepatitis B"
+    },
+    {
+      "id": "paho-es-who-certifies-turks-and-caicos-for-elimi-2026-06-03",
+      "eventId": "hiv-aids",
+      "date": "2026-06-03",
+      "headline": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/en/news/3-6-2026-who-certifies-turks-and-caicos-eliminating-mother-child-transmission-hiv-and",
+      "urgent": false,
+      "headlineEs": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
+      "headlineEn": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B"
+    },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-03",
       "eventId": "ebola",
