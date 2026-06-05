@@ -1,6 +1,28 @@
 {
-  "lastUpdated": "2026-06-04T10:39:50.388Z",
+  "lastUpdated": "2026-06-05T10:49:11.696Z",
   "items": [
+    {
+      "id": "paho-paho-steps-up-preparedness-across-the-am-2026-06-04",
+      "eventId": "hiv-aids",
+      "date": "2026-06-04",
+      "headline": "PAHO steps up preparedness across the Americas amid Ebola outbreak in Africa",
+      "source": "PAHO",
+      "url": "https://www.paho.org/en/news/4-6-2026-paho-steps-preparedness-across-americas-amid-ebola-outbreak-africa",
+      "urgent": true,
+      "headlineEn": "PAHO steps up preparedness across the Americas amid Ebola outbreak in Africa",
+      "headlineEs": "La OPS intensifica la preparación en las Américas en medio del brote de ébola en África"
+    },
+    {
+      "id": "paho-es-paho-steps-up-preparedness-across-the-am-2026-06-04",
+      "eventId": "hiv-aids",
+      "date": "2026-06-04",
+      "headline": "PAHO steps up preparedness across the Americas amid Ebola outbreak in Africa",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/en/news/4-6-2026-paho-steps-preparedness-across-americas-amid-ebola-outbreak-africa",
+      "urgent": true,
+      "headlineEs": "PAHO steps up preparedness across the Americas amid Ebola outbreak in Africa",
+      "headlineEn": "PAHO steps up preparedness across the Americas amid Ebola outbreak in Africa"
+    },
     {
       "id": "paho-who-certifies-turks-and-caicos-for-elimi-2026-06-03",
       "eventId": "hiv-aids",
@@ -165,17 +187,6 @@
       "urgent": true,
       "headlineEn": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
       "headlineEs": "La OPS refuerza las medidas de preparación tras la declaración de emergencia del ébola de la OMS en la región de África"
-    },
-    {
-      "id": "paho-es-paho-reinforces-preparedness-measures-fo-2026-05-18",
-      "eventId": "hiv-aids",
-      "date": "2026-05-18",
-      "headline": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
-      "source": "PAHO-ES",
-      "url": "https://www.paho.org/en/news/18-5-2026-paho-reinforces-preparedness-measures-following-who-ebola-emergency-declaration",
-      "urgent": true,
-      "headlineEs": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
-      "headlineEn": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region"
     },
     {
       "id": "ecdc-rapid-scientific-advice-on-infection-pre-2026-05-15",
