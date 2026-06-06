@@ -1,6 +1,28 @@
 {
-  "lastUpdated": "2026-06-05T10:49:11.696Z",
+  "lastUpdated": "2026-06-06T09:27:16.045Z",
   "items": [
+    {
+      "id": "paho-paho-calls-for-strengthened-preparedness-2026-06-05",
+      "eventId": "hiv-aids",
+      "date": "2026-06-05",
+      "headline": "PAHO calls for strengthened preparedness despite forecasts of a below-normal 2026 Atlantic hurricane season",
+      "source": "PAHO",
+      "url": "https://www.paho.org/en/news/5-6-2026-paho-calls-strengthened-preparedness-despite-forecasts-below-normal-2026-atlantic",
+      "urgent": false,
+      "headlineEn": "PAHO calls for strengthened preparedness despite forecasts of a below-normal 2026 Atlantic hurricane season",
+      "headlineEs": "La OPS pide una mayor preparación a pesar de las previsiones de una temporada de huracanes en el Atlántico inferior a la normal en 2026"
+    },
+    {
+      "id": "paho-es-paho-calls-for-strengthened-preparedness-2026-06-05",
+      "eventId": "hiv-aids",
+      "date": "2026-06-05",
+      "headline": "PAHO calls for strengthened preparedness despite forecasts of a below-normal 2026 Atlantic hurricane season",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/en/news/5-6-2026-paho-calls-strengthened-preparedness-despite-forecasts-below-normal-2026-atlantic",
+      "urgent": false,
+      "headlineEs": "PAHO calls for strengthened preparedness despite forecasts of a below-normal 2026 Atlantic hurricane season",
+      "headlineEn": "PAHO calls for strengthened preparedness despite forecasts of a below-normal 2026 Atlantic hurricane season"
+    },
     {
       "id": "paho-paho-steps-up-preparedness-across-the-am-2026-06-04",
       "eventId": "hiv-aids",
@@ -165,28 +187,6 @@
       "urgent": true,
       "headlineEn": "Ebola virus disease outbreak in the Democratic Republic of the Congo and Uganda",
       "headlineEs": "Brote de la enfermedad por el virus del Ébola en la República Democrática del Congo y Uganda"
-    },
-    {
-      "id": "paho-es-suicide-among-adolescents-and-young-adul-2026-05-20",
-      "eventId": "hiv-aids",
-      "date": "2026-05-20",
-      "headline": "Suicide among adolescents and young adults on the rise in the Americas: PAHO warns of urgent need for prevention",
-      "source": "PAHO-ES",
-      "url": "https://www.paho.org/en/news/20-5-2026-suicide-among-adolescents-and-young-adults-rise-americas-paho-warns-urgent-need",
-      "urgent": true,
-      "headlineEs": "Suicide among adolescents and young adults on the rise in the Americas: PAHO warns of urgent need for prevention",
-      "headlineEn": "Suicide among adolescents and young adults on the rise in the Americas: PAHO warns of urgent need for prevention"
-    },
-    {
-      "id": "paho-paho-reinforces-preparedness-measures-fo-2026-05-18",
-      "eventId": "hiv-aids",
-      "date": "2026-05-18",
-      "headline": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
-      "source": "PAHO",
-      "url": "https://www.paho.org/en/news/18-5-2026-paho-reinforces-preparedness-measures-following-who-ebola-emergency-declaration",
-      "urgent": true,
-      "headlineEn": "PAHO reinforces preparedness measures following WHO Ebola emergency declaration in Africa Region",
-      "headlineEs": "La OPS refuerza las medidas de preparación tras la declaración de emergencia del ébola de la OMS en la región de África"
     },
     {
       "id": "ecdc-rapid-scientific-advice-on-infection-pre-2026-05-15",
