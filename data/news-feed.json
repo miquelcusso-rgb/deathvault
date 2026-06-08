@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-07T10:06:24.933Z",
+  "lastUpdated": "2026-06-08T11:59:24.024Z",
   "items": [
     {
       "id": "paho-paho-calls-for-strengthened-preparedness-2026-06-05",
@@ -330,17 +330,6 @@
       "urgent": false,
       "headlineEn": "Mpox worldwide overview",
       "headlineEs": "Descripción general de Mpox en todo el mundo"
-    },
-    {
-      "id": "who-cholera-haiti-2026",
-      "eventId": "cholera",
-      "date": "2026-03-10",
-      "headline": "Haiti cholera: 1,200+ cases recorded in Q1 2026 amid ongoing humanitarian crisis",
-      "source": "PAHO",
-      "url": "https://www.paho.org/en/topics/cholera",
-      "urgent": false,
-      "headlineEn": "Haiti cholera: 1,200+ cases recorded in Q1 2026 amid ongoing humanitarian crisis",
-      "headlineEs": "Cólera en Haití: más de 1.200 casos registrados en el primer trimestre de 2026 en medio de la crisis humanitaria en curso"
     }
   ]
 }
