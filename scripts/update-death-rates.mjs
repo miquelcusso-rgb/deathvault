@@ -157,19 +157,28 @@ async function fetchCholera(existing) {
 // ── Fetch HIV/AIDS deaths ─────────────────────────────────────────────────────
 // UNAIDS doesn't have a clean public API; try WHO GHO HIV indicator as fallback.
 
+// Plausible upper bound for ANNUAL deaths of a single ongoing event. Anything
+// above this is almost certainly a prevalence/cumulative indicator, not deaths
+// (e.g. WHO HIV_0000000001 returns ~40M people LIVING with HIV, not deaths).
+const MAX_PLAUSIBLE_ANNUAL_DEATHS = 5_000_000;
+
 async function fetchHIV(existing) {
-  // WHO GHO: HIV_0000000001 = HIV deaths
+  // WHO GHO: HIV_0000000006 = "Number of deaths due to HIV/AIDS"
+  // (HIV_0000000001 is people LIVING with HIV — prevalence, not deaths.)
   const data = await fetchJSON(
-    "https://ghoapi.azureedge.net/api/HIV_0000000001?$filter=SpatialDim eq 'GLOBAL'",
+    "https://ghoapi.azureedge.net/api/HIV_0000000006?$filter=SpatialDim eq 'GLOBAL'",
     "WHO GHO — HIV deaths"
   );
 
   const parsed = data ? parseGHO(data, "HIV/AIDS") : null;
+  if (parsed && parsed.annualDeaths > 0 && parsed.annualDeaths <= MAX_PLAUSIBLE_ANNUAL_DEATHS) {
+    return { ...parsed, source: `WHO GHO HIV_0000000006 (${parsed.year})` };
+  }
   if (parsed) {
-    return { ...parsed, source: `WHO GHO HIV_0000000001 (${parsed.year})` };
+    console.warn(`  ⚠ HIV value ${parsed.annualDeaths.toLocaleString()} implausible as annual deaths — using fallback`);
   }
 
-  if (existing.rates?.["hiv-aids"]) {
+  if (existing.rates?.["hiv-aids"] && existing.rates["hiv-aids"].annualDeaths <= MAX_PLAUSIBLE_ANNUAL_DEATHS) {
     console.log(`  → hiv-aids: using existing data (${existing.rates["hiv-aids"].year})`);
     return existing.rates["hiv-aids"];
   }

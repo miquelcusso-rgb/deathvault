@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Newspaper, ExternalLink, ChevronRight, TrendingUp, RefreshCw } from "lucide-react";
 import { EVENTS, type HistoricalEvent } from "@/data/events";
@@ -8,6 +8,7 @@ import { BRAND_CATEGORIES } from "@/lib/brand";
 import { useBrand } from "@/app/providers";
 import { useI18n } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
+import { dedupeNews, displayHeadline, type NewsItem } from "@/lib/news";
 import newsFeedRaw from "@/data/news-feed.json";
 import deathRatesRaw from "@/data/death-rates.json";
 
@@ -26,21 +27,24 @@ const RATE_FALLBACKS: Record<string, number> = {
   "gaza-war":    25_000,   // Israel–Gaza (2023–): reported deaths/yr (Gaza MoH / UN OCHA)
 };
 
+// Sanity ceiling: a single ongoing event can't plausibly have more than ~5M
+// deaths/year. Higher values mean the data source returned prevalence/cumulative
+// figures (e.g. WHO's HIV indicator returns ~40M people LIVING with HIV) — fall
+// back to the curated estimate instead of showing a wildly wrong rate.
+const MAX_PLAUSIBLE_ANNUAL = 5_000_000;
+
 // Merge fallbacks with dynamically-updated JSON values (updated daily by GitHub Actions)
 const ratesFromJson = (deathRatesRaw as { rates?: Record<string, { annualDeaths: number }> }).rates ?? {};
 const ANNUAL_RATES: Record<string, number> = Object.fromEntries(
-  Object.entries(RATE_FALLBACKS).map(([id, fallback]) => [
-    id,
-    ratesFromJson[id]?.annualDeaths ?? fallback,
-  ])
+  Object.entries(RATE_FALLBACKS).map(([id, fallback]) => {
+    const fromJson = ratesFromJson[id]?.annualDeaths;
+    const valid = typeof fromJson === "number" && fromJson > 0 && fromJson <= MAX_PLAUSIBLE_ANNUAL;
+    return [id, valid ? fromJson : fallback];
+  })
 );
 
 // News items loaded from data/news-feed.json (updated daily by GitHub Actions)
-const NEWS_ITEMS = (newsFeedRaw as { lastUpdated: string; items: Array<{
-  id: string; eventId: string; date: string;
-  headline: string; headlineEn?: string; headlineEs?: string;
-  source: string; url: string; urgent: boolean;
-}> }).items;
+const NEWS_ITEMS = (newsFeedRaw as { lastUpdated: string; items: NewsItem[] }).items;
 
 const FEED_UPDATED = (newsFeedRaw as { lastUpdated: string }).lastUpdated;
 
@@ -87,11 +91,12 @@ function formatLive(n: number): string {
   return n.toLocaleString();
 }
 
-// Uniform rate display — always deaths per day (rounded; one decimal for tiny rates)
+// Uniform rate display — absolute whole-number deaths/day (estimates are
+// approximate). Force en-US grouping so the thousands separator is a comma
+// ("1,862/day") and never a locale dot that could read as a decimal.
 function formatRate(perSecond: number): string {
-  const perDay = perSecond * 86400;
-  const v = perDay >= 10 ? Math.round(perDay).toLocaleString() : perDay.toFixed(1);
-  return `~${v}/day`;
+  const perDay = Math.max(0, Math.round(perSecond * 86400));
+  return `${perDay.toLocaleString("en-US")}/day`;
 }
 
 function EventCounter({ event, isSelected, onSelect }: {
@@ -147,8 +152,15 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
     ongoingEvents[0]?.id ?? "hantavirus"
   );
 
-  const visibleNews = NEWS_ITEMS.filter((n) => n.eventId === selectedNews || selectedNews === "all")
-    .slice(0, 4);
+  const visibleNews = useMemo(
+    () =>
+      dedupeNews(
+        NEWS_ITEMS.filter((n) => n.eventId === selectedNews || selectedNews === "all"),
+        lang,
+        4,
+      ),
+    [selectedNews, lang],
+  );
 
   const accentColor = isDV ? "#F59E0B" : "#DC2626";
 
@@ -238,7 +250,7 @@ export function NowLive({ onEventClick }: { onEventClick?: (e: HistoricalEvent) 
                   )}
                   <div className="flex-1 min-w-0">
                     <p className={cn("text-xs leading-snug group-hover:text-white transition-colors", darkMode ? "text-slate-300" : "text-slate-700")}>
-                      {lang === "es" ? (item.headlineEs ?? item.headline) : (item.headlineEn ?? item.headline)}
+                      {displayHeadline(item, lang)}
                     </p>
                     <div className="flex items-center gap-2 mt-1">
                       <span className="text-[10px] font-mono text-slate-600">{item.source}</span>
