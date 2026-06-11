@@ -17,13 +17,12 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
     background_color: "#080C10",
     theme_color: isDV ? "#F59E0B" : "#DC2626",
     orientation: "portrait",
-    // Icons: use the OG image endpoint until dedicated PWA icons are created
+    // Square PWA icons — brand mark on the amber/crimson field
     icons: [
-      {
-        src: "/opengraph-image",
-        sizes: "1200x630",
-        type: "image/png",
-      },
+      { src: "/icon", sizes: "32x32", type: "image/png" },
+      { src: "/apple-icon", sizes: "180x180", type: "image/png" },
+      { src: "/icon-512", sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: "/icon-512", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
     categories: ["education", "news"],
     lang: "en",

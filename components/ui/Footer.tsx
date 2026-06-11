@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { Activity, Shield, ExternalLink } from "lucide-react";
+import { Activity, ExternalLink } from "lucide-react";
+import { BrandMark } from "./BrandMark";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
 import { localizedHref } from "@/lib/locale";
@@ -23,12 +24,13 @@ export function Footer() {
           {/* Brand */}
           <div className="col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center border", accentBg, accentBorder)}>
-                {isDV
-                  ? <Shield className={cn("w-3.5 h-3.5", accentText)} />
-                  : <Activity className={cn("w-3.5 h-3.5", accentText)} />
-                }
-              </div>
+              {isDV ? (
+                <BrandMark size={28} color="#F59E0B" />
+              ) : (
+                <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center border", accentBg, accentBorder)}>
+                  <Activity className={cn("w-3.5 h-3.5", accentText)} />
+                </div>
+              )}
               <span className="font-display font-bold text-white text-sm">
                 {isDV
                   ? <>Death<span className={accentText}>Vault</span></>

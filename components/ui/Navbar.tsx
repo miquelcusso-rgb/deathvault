@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, Activity, Shield, FlaskConical, Skull } from "lucide-react";
+import { Menu, X, Activity, FlaskConical, Skull } from "lucide-react";
+import { BrandMark } from "./BrandMark";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
 import { BRAND_META } from "@/lib/brand";
@@ -50,16 +51,19 @@ export function Navbar() {
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <Link href={localizedHref("/", lang)} className="flex items-center gap-2.5 group cursor-pointer">
-              <div className={cn(
-                "w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-200",
-                accentBg, accentBorder,
-                isDV ? "group-hover:bg-amber-500/30" : "group-hover:bg-crimson/30",
-              )}>
-                {isDV
-                  ? <Shield className={cn("w-4 h-4", accentText)} />
-                  : <Activity className={cn("w-4 h-4", accentText)} />
-                }
-              </div>
+              {isDV ? (
+                <span className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+                  <BrandMark size={30} color="#F59E0B" />
+                </span>
+              ) : (
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-200",
+                  accentBg, accentBorder,
+                  "group-hover:bg-crimson/30",
+                )}>
+                  <Activity className={cn("w-4 h-4", accentText)} />
+                </div>
+              )}
               <span className="font-display font-bold text-white text-sm tracking-wide hidden sm:block">
                 {isDV
                   ? <>Death<span className={accentText}>Vault</span></>
