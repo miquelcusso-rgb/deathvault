@@ -4,6 +4,7 @@ import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
 import { buildAlternates } from "@/lib/locale";
 import type { Lang } from "@/lib/translations";
 import { EVENTS } from "@/data/events";
+import { brandTotals } from "@/lib/totals";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
   const isPA = brand === "plagueatlas";
+  const totals = brandTotals(brand);
   const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const invariantPath = h.get("x-invariant-path") || "/";
   const isEs = locale === "es";
@@ -20,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = isEs
     ? (isPA
         ? `Estadísticas basadas en datos sobre las pandemias y epidemias más mortíferas en ${meta.name}. Cifras de muertes clasificadas, desgloses por categoría y gráficos interactivos.`
-        : `Estadísticas basadas en datos sobre las pandemias, guerras y eventos nucleares más mortíferos en ${meta.name}. Cifras de muertes clasificadas, desgloses por categoría y gráficos interactivos que comparan más de 813M de muertes en 16 eventos históricos.`)
+        : `Estadísticas basadas en datos sobre las pandemias, guerras y eventos nucleares más mortíferos en ${meta.name}. Cifras de muertes clasificadas, desgloses por categoría y gráficos interactivos que comparan más de ${totals.label} de muertes en ${totals.count} eventos históricos.`)
     : (isPA
         ? `Data-driven statistics on the deadliest pandemics and epidemics on ${meta.name}. Ranked death tolls, category breakdowns, and interactive charts.`
-        : `Data-driven statistics on the deadliest pandemics, wars, and nuclear events on ${meta.name}. Ranked death tolls, category breakdowns, and interactive charts comparing 813M+ deaths across 16 historical events.`);
+        : `Data-driven statistics on the deadliest pandemics, wars, and nuclear events on ${meta.name}. Ranked death tolls, category breakdowns, and interactive charts comparing ${totals.label} deaths across ${totals.count} historical events.`);
   const ogTitle = isEs ? `Estadísticas históricas de mortalidad | ${meta.name}` : `Historical Death Statistics | ${meta.name}`;
   const ogDescription = isEs
     ? (isPA

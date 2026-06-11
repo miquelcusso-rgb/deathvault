@@ -80,13 +80,15 @@ function BlobMarker({ r, color, intensity = 1, opacity = 1, seed = 0, onClick }:
         {/* Soft core — no hard dot */}
         <circle r={r * 0.6 * intensity} fill={color} fillOpacity={0.50 * opacity} />
       </g>
-      {/* Transparent click target over the blob */}
+      {/* Small click target over the bright core only — selects the event.
+          Kept tiny so the rest of the country stays clickable for country
+          info (large transparent blobs used to swallow country clicks). */}
       {onClick && (
         <circle
-          r={r * 5 * intensity}
+          r={Math.max(6, r * 1.1 * intensity)}
           fill="transparent"
           style={{ cursor: "pointer" }}
-          onClick={onClick}
+          onClick={(e) => { e.stopPropagation(); onClick(); }}
         />
       )}
     </>
@@ -312,7 +314,11 @@ export function FlatMap({ event, allEvents, onEventClick }: Props) {
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="fixed pointer-events-none bg-surface/90 border border-border/60 px-3 py-1.5 rounded-lg text-xs text-slate-300 font-mono z-50"
+            className={`fixed pointer-events-none border px-3 py-1.5 rounded-lg text-xs font-mono z-50 ${
+              darkMode
+                ? "bg-surface/90 border-border/60 text-slate-300"
+                : "bg-white/95 border-slate-200 text-slate-700"
+            }`}
             style={{ left: tooltip.x + 12, top: tooltip.y - 32 }}
           >
             {tooltip.label}

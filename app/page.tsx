@@ -28,7 +28,7 @@ export default async function HomePage() {
     ? [
         ["How many people died in World War II?", "World War II caused an estimated 70–85 million deaths (1939–1945), including both military and civilian casualties — the deadliest conflict in human history."],
         ["What was the deadliest event in human history?", "By total death toll, the deadliest events include World War II (70–85M), the Mongol conquests (estimates up to 40M), the Black Death (75–200M over the 14th century) and the 1918 Spanish flu (~50M). DeathVault documents these across pandemics, wars, famines and disasters."],
-        ["How many deaths does DeathVault document?", "DeathVault documents over 813 million casualties across recorded history, spanning pandemics, wars, famines, nuclear disasters and genocides."],
+        ["How many deaths does DeathVault document?", `DeathVault documents over ${Math.round(TOTAL_DEATHS / 1_000_000)} million casualties across ${TOTAL_EVENTS} events in recorded history, spanning pandemics, wars, famines, nuclear disasters and genocides.`],
         ["How many people died at Chernobyl?", "Direct deaths from the 1986 Chernobyl disaster were 31 (acute radiation and the explosion). Long-term estimates of cancer deaths attributable to the radiation vary widely, from a few thousand (WHO) to higher modelled figures."],
       ]
     : [

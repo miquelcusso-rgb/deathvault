@@ -1,5 +1,6 @@
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META } from "@/lib/brand";
+import { brandTotals } from "@/lib/totals";
 
 export const dynamic = "force-dynamic";
 
@@ -7,6 +8,7 @@ export async function GET() {
   const h = await headers();
   const brand = detectBrand(h.get("host") ?? "");
   const m = BRAND_META[brand];
+  const totals = brandTotals(brand);
 
   const body =
     brand === "plagueatlas"
@@ -34,7 +36,7 @@ export async function GET() {
 
 ## Key pages
 
-- [Home — mass death event archive](${m.url}/): interactive archive of history's deadliest events with 813M+ casualties documented.
+- [Home — mass death event archive](${m.url}/): interactive archive of history's deadliest events with ${totals.label} casualties documented.
 - [Events](${m.url}/events): browse every documented mass-death event — pandemics, wars, famines, nuclear disasters, genocides.
 - [Pathogens](${m.url}/pathogens): disease events by pathogen with death tolls.
 - [Statistics](${m.url}/statistics): aggregate casualty data and charts across event categories.

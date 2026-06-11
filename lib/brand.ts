@@ -48,10 +48,10 @@ export const BRAND_META = {
   deathvault: {
     name:        "DeathVault",
     headline:    "Every Mass Death Event in Recorded History",
-    tagline:     "Pandemics · Wars · Famines · Nuclear disasters — 813M+ casualties documented",
-    taglineEs:   "Pandemias · Guerras · Hambrunas · Desastres nucleares — Más de 813M de víctimas documentadas",
-    description: "How many people died in WWII, the Black Death, or Chernobyl? Interactive archive of history's deadliest events — pandemics, world wars, famines, nuclear disasters. 813M+ deaths documented.",
-    descriptionEs: "¿Cuántas personas murieron en la Segunda Guerra Mundial, la Peste Negra o Chernóbil? Archivo interactivo de los eventos más mortíferos de la historia: pandemias, guerras mundiales, hambrunas y desastres nucleares. Más de 813M de muertes documentadas.",
+    tagline:     "Pandemics · Wars · Famines · Nuclear disasters · Genocides",
+    taglineEs:   "Pandemias · Guerras · Hambrunas · Desastres nucleares · Genocidios",
+    description: "How many people died in WWII, the Black Death, or Chernobyl? Interactive archive of history's deadliest events — pandemics, world wars, famines, nuclear disasters. 917M+ deaths documented.",
+    descriptionEs: "¿Cuántas personas murieron en la Segunda Guerra Mundial, la Peste Negra o Chernóbil? Archivo interactivo de los eventos más mortíferos de la historia: pandemias, guerras mundiales, hambrunas y desastres nucleares. Más de 917M de muertes documentadas.",
     url:         "https://www.deathvault.app",
     canonical:   "https://www.deathvault.app",
     keywords:    [
