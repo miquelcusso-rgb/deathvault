@@ -100,7 +100,7 @@ export default async function OGImage() {
           background: `radial-gradient(circle, ${secondGlow} 0%, transparent 70%)`,
         }} />
 
-        {/* ─── GLOBE + SKULL logo, left side ─── */}
+        {/* ─── Brand mark, left side — shield+pulse (DV) / globe+skull (PA) ─── */}
         <div style={{
           position: "absolute",
           left: 80,
@@ -110,6 +110,7 @@ export default async function OGImage() {
           alignItems: "center",
           justifyContent: "center",
         }}>
+          {isPlagueAtlas ? (
           <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
             {/* Outer glow ring */}
             <circle cx="140" cy="155" r="108" fill="none" stroke={`rgba(${accentRgb},0.2)`} strokeWidth="12" />
@@ -176,6 +177,18 @@ export default async function OGImage() {
             <circle cx="115" cy="170" r="3" fill="#06B6D4" opacity="0.8" />
             <circle cx="115" cy="170" r="6" fill="none" stroke="#06B6D4" strokeWidth="1" opacity="0.4" />
           </svg>
+          ) : (
+          <svg width="290" height="290" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+            {/* Glow halo */}
+            <circle cx="140" cy="140" r="112" fill="none" stroke={`rgba(${accentRgb},0.16)`} strokeWidth="14" />
+            <circle cx="140" cy="140" r="94" fill="none" stroke={`rgba(${accentRgb},0.09)`} strokeWidth="26" />
+            {/* Shield */}
+            <path d="M140 48 L216 74 L216 140 Q216 198 140 230 Q64 198 64 140 L64 74 Z" fill="#140A06" stroke={accent} strokeWidth="4" />
+            {/* Flatline pulse — one beat, then flat */}
+            <path d="M86 142 H124 L135 110 L149 172 L160 142 H196" fill="none" stroke={accent} strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="86" cy="142" r="7" fill={accent} />
+          </svg>
+          )}
         </div>
 
         {/* ─── RIGHT side — text content ─── */}

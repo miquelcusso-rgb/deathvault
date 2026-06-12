@@ -28,10 +28,10 @@ export async function GET() {
         }}
       >
         {isDV ? (
-          <svg width="300" height="300" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <rect x="16" y="16" width="68" height="68" rx="20" fill="none" stroke={dark} strokeWidth="6" strokeOpacity="0.35" />
-            <path d="M26 50 H42 L48 33 L55 67 L61 50 H74" fill="none" stroke={dark} strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" />
-            <circle cx="26" cy="50" r="4.2" fill={dark} />
+          <svg width="320" height="320" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 16 L82 27 L82 54 Q82 78 50 91 Q18 78 18 54 L18 27 Z" fill={dark} />
+            <path d="M28 54 H45 L50 41 L56 67 L61 54 H75" fill="none" stroke={bg} strokeWidth="6.5" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="28" cy="54" r="4" fill={bg} />
           </svg>
         ) : (
           <svg width="300" height="300" viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg">
