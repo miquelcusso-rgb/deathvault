@@ -1,6 +1,39 @@
 {
-  "lastUpdated": "2026-06-12T11:02:48.754Z",
+  "lastUpdated": "2026-06-13T09:57:09.013Z",
   "items": [
+    {
+      "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-12",
+      "eventId": "ebola",
+      "date": "2026-06-12",
+      "headline": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda",
+      "urgent": true,
+      "headlineEn": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "headlineEs": "Brote de ébola en la República Democrática del Congo y Uganda"
+    },
+    {
+      "id": "paho-ops-y-socios-fortalecen-la-vigilancia-de-2026-06-12",
+      "eventId": "hantavirus",
+      "date": "2026-06-12",
+      "headline": "OPS y socios fortalecen la vigilancia del hantavirus y otras fiebres hemorrágicas en las Américas",
+      "source": "PAHO",
+      "url": "https://www.paho.org/es/noticias/12-6-2026-ops-socios-fortalecen-vigilancia-hantavirus-otras-fiebres-hemorragicas-americas",
+      "urgent": false,
+      "headlineEn": "OPS y socios fortalecen la vigilancia del hantavirus y otras fiebres hemorrágicas en las Américas",
+      "headlineEs": "OPS y socios fortalecen la vigilancia del hantavirus y otras fiebres hemorrágicas en las Américas"
+    },
+    {
+      "id": "paho-es-ops-y-socios-fortalecen-la-vigilancia-de-2026-06-12",
+      "eventId": "hantavirus",
+      "date": "2026-06-12",
+      "headline": "OPS y socios fortalecen la vigilancia del hantavirus y otras fiebres hemorrágicas en las Américas",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/es/noticias/12-6-2026-ops-socios-fortalecen-vigilancia-hantavirus-otras-fiebres-hemorragicas-americas",
+      "urgent": false,
+      "headlineEs": "OPS y socios fortalecen la vigilancia del hantavirus y otras fiebres hemorrágicas en las Américas",
+      "headlineEn": "PAHO and partners strengthen surveillance for hantavirus and other hemorrhagic fevers in the Americas"
+    },
     {
       "id": "paho-paho-calls-for-strengthened-preparedness-2026-06-05",
       "eventId": "hiv-aids",
@@ -231,28 +264,6 @@
       "urgent": true,
       "headlineEn": "España: 14 pasajeros del MV Hondius en cuarentena en Hospital Gómez Ulla (Madrid) — 1 caso confirmado, variante Andes sin mutaciones relevantes",
       "headlineEs": "España: 14 pasajeros del MV Hondius en cuarentena en Hospital Gómez Ulla (Madrid) — 1 caso confirmado, variante Andes sin mutaciones relevantes"
-    },
-    {
-      "id": "paho-es-la-ops-realiz-sesi-n-de-preguntas-y-resp-2026-05-11",
-      "eventId": "hantavirus",
-      "date": "2026-05-11",
-      "headline": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
-      "source": "PAHO-ES",
-      "url": "https://www.paho.org/es/noticias/11-5-2026-ops-realizo-sesion-preguntas-respuestas-sobre-hantavirus-tras-brote-crucero",
-      "urgent": false,
-      "headlineEs": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
-      "headlineEn": "PAHO Conducted Hantavirus Q&A After Cruise Ship Outbreak"
-    },
-    {
-      "id": "paho-la-ops-realiz-sesi-n-de-preguntas-y-resp-2026-05-11",
-      "eventId": "hantavirus",
-      "date": "2026-05-11",
-      "headline": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
-      "source": "PAHO",
-      "url": "https://www.paho.org/es/noticias/11-5-2026-ops-realizo-sesion-preguntas-respuestas-sobre-hantavirus-tras-brote-crucero",
-      "urgent": true,
-      "headlineEn": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero",
-      "headlineEs": "La OPS realizó sesión de preguntas y respuestas sobre hantavirus tras el brote en un crucero"
     },
     {
       "id": "paho-es-paho-and-france-strengthen-partnership-t-2026-05-06",
