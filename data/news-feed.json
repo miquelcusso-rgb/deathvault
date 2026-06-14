@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-13T09:57:09.013Z",
+  "lastUpdated": "2026-06-14T10:26:22.876Z",
   "items": [
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-12",
@@ -330,17 +330,6 @@
       "urgent": false,
       "headlineEn": "Dengue worldwide overview",
       "headlineEs": "Panorama mundial del dengue"
-    },
-    {
-      "id": "ecdc-mpox-worldwide-overview-2026-03-16",
-      "eventId": "mpox",
-      "date": "2026-03-16",
-      "headline": "Mpox worldwide overview",
-      "source": "ECDC",
-      "url": "https://www.ecdc.europa.eu/en/mpox-worldwide-overview",
-      "urgent": false,
-      "headlineEn": "Mpox worldwide overview",
-      "headlineEs": "Descripción general de Mpox en todo el mundo"
     }
   ]
 }
