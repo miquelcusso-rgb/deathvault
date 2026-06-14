@@ -13,6 +13,7 @@ export const translations = {
     nav_statistics: "Statistics",
     nav_about: "About",
     nav_support: "Support",
+    nav_insights: "Insights",
     // Hero
     hero_title: "PlagueAtlas",
     hero_subtitle: "Visualize the deadliest pandemics, wars, and nuclear events in human history.",
@@ -368,6 +369,7 @@ export const translations = {
     nav_statistics: "Estadísticas",
     nav_about: "Acerca de",
     nav_support: "Apoyo",
+    nav_insights: "Análisis",
     // Hero
     hero_title: "PlagueAtlas",
     hero_subtitle: "Visualiza las pandemias, guerras y eventos nucleares más mortíferos de la historia.",
