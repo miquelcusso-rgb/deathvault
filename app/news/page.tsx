@@ -6,6 +6,7 @@ import { getServerT, getServerLang } from "@/lib/i18n-server";
 import { localizedHref } from "@/lib/locale";
 import { detectBrand, BRAND_CATEGORIES } from "@/lib/brand";
 import { EVENTS } from "@/data/events";
+import { dedupeNews, displayHeadline } from "@/lib/news";
 import newsFeedRaw from "@/data/news-feed.json";
 import { ExternalLink, AlertTriangle, Clock } from "lucide-react";
 
@@ -59,7 +60,10 @@ export default async function NewsPage() {
       .map((e) => e.id)
   );
 
-  const items = feed.items.filter((item) => allowedEventIds.has(item.eventId));
+  const items = dedupeNews(
+    feed.items.filter((item) => allowedEventIds.has(item.eventId)),
+    lang,
+  );
 
   // Group by eventId for section headers
   const eventMap = new Map(EVENTS.map((e) => [e.id, e]));
@@ -176,7 +180,7 @@ export default async function NewsPage() {
                             </time>
                           </div>
                           <p className="text-slate-200 text-sm leading-snug group-hover:text-white transition-colors duration-150">
-                            {lang === "es" ? (item.headlineEs ?? item.headline) : (item.headlineEn ?? item.headline)}
+                            {displayHeadline(item, lang)}
                           </p>
                         </div>
                         <ExternalLink className="w-4 h-4 flex-shrink-0 text-slate-600 group-hover:text-slate-400 mt-0.5 transition-colors duration-150" />

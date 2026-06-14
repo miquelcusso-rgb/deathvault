@@ -28,17 +28,11 @@ export default async function Icon() {
         }}
       >
         {isDV ? (
-          // Skull icon for DeathVault
-          <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="10" cy="8.5" rx="7" ry="6.5" fill="#07090D" />
-            <rect x="4.5" y="13" width="11" height="3.5" rx="1.5" fill="#07090D" />
-            <ellipse cx="7" cy="8.5" rx="2.2" ry="2.4" fill={bg} opacity="0.9" />
-            <ellipse cx="13" cy="8.5" rx="2.2" ry="2.4" fill={bg} opacity="0.9" />
-            <ellipse cx="7" cy="8.5" rx="1.5" ry="1.7" fill="#07090D" />
-            <ellipse cx="13" cy="8.5" rx="1.5" ry="1.7" fill="#07090D" />
-            <rect x="5" y="14" width="2.2" height="2.5" rx="0.5" fill="#07090D" />
-            <rect x="8.9" y="14" width="2.2" height="2.5" rx="0.5" fill="#07090D" />
-            <rect x="12.8" y="14" width="2.2" height="2.5" rx="0.5" fill="#07090D" />
+          // Sealed-pulse shield for DeathVault (dark shield + amber flatline)
+          <svg width="26" height="26" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 16 L82 27 L82 54 Q82 78 50 91 Q18 78 18 54 L18 27 Z" fill="#0A0905" />
+            <path d="M28 54 H45 L50 41 L56 67 L61 54 H75" fill="none" stroke={bg} strokeWidth="7" strokeLinecap="round" strokeLinejoin="round" />
+            <circle cx="28" cy="54" r="4.5" fill={bg} />
           </svg>
         ) : (
           // Virus/globe icon for PlagueAtlas

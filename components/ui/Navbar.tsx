@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Menu, X, Activity, Shield, FlaskConical, Skull } from "lucide-react";
+import { Menu, X, Activity, FlaskConical, Skull, ChevronDown } from "lucide-react";
+import { BrandMark } from "./BrandMark";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
 import { BRAND_META } from "@/lib/brand";
@@ -22,17 +23,27 @@ export function Navbar() {
 
   // hrefs are the locale-free paths; we localize at render time and compare on
   // the locale-free path so the active state works in both locales.
-  const links = [
+  // v2 IA: 4 primary entries + an "Insights" group for the data tools. SEO note:
+  // every link stays rendered in the DOM (the dropdown is CSS hover, not JS-gated)
+  // so internal-link discovery is preserved. About/Support live in the footer.
+  const primaryLinks = [
     { href: "/", label: t("nav_home") },
     { href: "/events", label: t("nav_events") },
     { href: "/news", label: t("nav_news") },
+  ];
+  const insightsLinks = [
+    { href: "/statistics", label: t("nav_statistics") },
+    { href: "/compare", label: t("nav_compare") },
     // Pathogens only on PlagueAtlas — DeathVault links out to PA instead
     ...(!isDV ? [{ href: "/pathogens", label: t("nav_pathogens") }] : []),
-    { href: "/compare", label: t("nav_compare") },
-    { href: "/statistics", label: t("nav_statistics") },
+  ];
+  const metaLinks = [
     { href: "/about", label: t("nav_about") },
     { href: "/support", label: t("nav_support") },
   ];
+  // Mobile shows everything flat.
+  const allLinks = [...primaryLinks, ...insightsLinks, ...metaLinks];
+  const insightsActive = insightsLinks.some((l) => l.href === currentPath);
 
   const meta = BRAND_META[brand];
 
@@ -50,16 +61,19 @@ export function Navbar() {
           <div className="flex items-center justify-between gap-4">
             {/* Logo */}
             <Link href={localizedHref("/", lang)} className="flex items-center gap-2.5 group cursor-pointer">
-              <div className={cn(
-                "w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-200",
-                accentBg, accentBorder,
-                isDV ? "group-hover:bg-amber-500/30" : "group-hover:bg-crimson/30",
-              )}>
-                {isDV
-                  ? <Shield className={cn("w-4 h-4", accentText)} />
-                  : <Activity className={cn("w-4 h-4", accentText)} />
-                }
-              </div>
+              {isDV ? (
+                <span className="flex items-center justify-center transition-transform duration-200 group-hover:scale-105">
+                  <BrandMark size={30} color="#F59E0B" />
+                </span>
+              ) : (
+                <div className={cn(
+                  "w-8 h-8 rounded-lg flex items-center justify-center border transition-colors duration-200",
+                  accentBg, accentBorder,
+                  "group-hover:bg-crimson/30",
+                )}>
+                  <Activity className={cn("w-4 h-4", accentText)} />
+                </div>
+              )}
               <span className="font-display font-bold text-white text-sm tracking-wide hidden sm:block">
                 {isDV
                   ? <>Death<span className={accentText}>Vault</span></>
@@ -75,7 +89,7 @@ export function Navbar() {
 
             {/* Desktop links */}
             <div className="hidden md:flex items-center gap-1">
-              {links.map((link) => (
+              {primaryLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={localizedHref(link.href, lang)}
@@ -89,6 +103,38 @@ export function Navbar() {
                   {link.label}
                 </Link>
               ))}
+
+              {/* Insights dropdown — CSS hover; links stay in the DOM for crawlers */}
+              <div className="relative group">
+                <button
+                  className={cn(
+                    "px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer inline-flex items-center gap-1",
+                    insightsActive ? activeLink : "text-slate-400 hover:text-white hover:bg-white/5"
+                  )}
+                  aria-haspopup="true"
+                >
+                  {t("nav_insights")}
+                  <ChevronDown className="w-3.5 h-3.5" />
+                </button>
+                <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block">
+                  <div className="bg-surface border border-border/60 rounded-xl p-1 shadow-panel min-w-[170px]">
+                    {insightsLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={localizedHref(link.href, lang)}
+                        className={cn(
+                          "block px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer",
+                          currentPath === link.href
+                            ? activeLink
+                            : "text-slate-400 hover:text-white hover:bg-white/5"
+                        )}
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Controls */}
@@ -137,7 +183,7 @@ export function Navbar() {
           {/* Mobile menu */}
           {mobileOpen && (
             <div className="md:hidden mt-3 pt-3 border-t border-border/40 flex flex-col gap-1">
-              {links.map((link) => (
+              {allLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={localizedHref(link.href, lang)}

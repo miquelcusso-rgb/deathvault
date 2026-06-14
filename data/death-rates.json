@@ -12,9 +12,9 @@
       "source": "WHO GHO WHS3_62 (2024)"
     },
     "hiv-aids": {
-      "annualDeaths": 40800000,
+      "annualDeaths": 630000,
       "year": 2024,
-      "source": "WHO GHO HIV_0000000001 (2024)"
+      "source": "UNAIDS 2024 (AIDS-related deaths)"
     },
     "covid-19": {
       "annualDeaths": 80000,

@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_META } from "@/lib/brand";
+import { brandTotals } from "@/lib/totals";
 
 export const dynamic = "force-dynamic";
 
@@ -20,6 +21,7 @@ export default async function OGImage() {
   const host = (await headers()).get("host") ?? "";
   const brand = detectBrand(host);
   const meta = BRAND_META[brand];
+  const totals = brandTotals(brand);
 
   const isPlagueAtlas = brand === "plagueatlas";
   const accent = isPlagueAtlas ? "#DC2626" : "#F59E0B";
@@ -204,7 +206,7 @@ export default async function OGImage() {
             display: "flex",
             maxWidth: 380,
           }}>
-            Interactive charts and statistics across 813M+ deaths
+            Interactive charts and statistics across {totals.label} deaths
           </div>
         </div>
 

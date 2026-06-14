@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
-import { Activity, Shield, ExternalLink } from "lucide-react";
+import { Activity, ExternalLink } from "lucide-react";
+import { BrandMark } from "./BrandMark";
 import { useI18n } from "@/lib/i18n";
 import { useBrand } from "@/app/providers";
 import { localizedHref } from "@/lib/locale";
@@ -19,16 +20,17 @@ export function Footer() {
   return (
     <footer className="border-t border-border/40 bg-surface/60 backdrop-blur-sm mt-20">
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-8 mb-8">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="col-span-2">
             <div className="flex items-center gap-2 mb-3">
-              <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center border", accentBg, accentBorder)}>
-                {isDV
-                  ? <Shield className={cn("w-3.5 h-3.5", accentText)} />
-                  : <Activity className={cn("w-3.5 h-3.5", accentText)} />
-                }
-              </div>
+              {isDV ? (
+                <BrandMark size={28} color="#F59E0B" />
+              ) : (
+                <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center border", accentBg, accentBorder)}>
+                  <Activity className={cn("w-3.5 h-3.5", accentText)} />
+                </div>
+              )}
               <span className="font-display font-bold text-white text-sm">
                 {isDV
                   ? <>Death<span className={accentText}>Vault</span></>
@@ -85,7 +87,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="border-t border-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
           <p className="text-slate-600 text-xs">
             © {year} {isDV ? "DeathVault" : "PlagueAtlas"} by <a href="https://furiosa.studio" target="_blank" rel="noopener noreferrer" className="hover:text-slate-400 transition-colors duration-200">Furiosa Studio</a>. {t("footer_rights")}
           </p>

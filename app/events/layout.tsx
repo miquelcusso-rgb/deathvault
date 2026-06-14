@@ -4,6 +4,7 @@ import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
 import { buildAlternates } from "@/lib/locale";
 import type { Lang } from "@/lib/translations";
 import { EVENTS } from "@/data/events";
+import { brandTotals } from "@/lib/totals";
 import { JsonLd } from "@/components/ui/JsonLd";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -11,6 +12,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const brand = detectBrand(h.get("host") ?? "");
   const meta = BRAND_META[brand];
   const isPA = brand === "plagueatlas";
+  const totals = brandTotals(brand);
   const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const invariantPath = h.get("x-invariant-path") || "/";
   const isEs = locale === "es";
@@ -27,10 +29,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const description = isEs
     ? (isPA
         ? "Archivo completo de las pandemias y epidemias más mortíferas de la historia — Peste Negra, Gripe Española, VIH/SIDA, COVID-19 y más. Cifras de muertes, cronologías y mapas interactivos."
-        : "Archivo completo de los eventos más mortíferos de la historia — pandemias, guerras mundiales, desastres nucleares y hambrunas. Más de 813M de muertes documentadas con visualizaciones interactivas.")
+        : `Archivo completo de los eventos más mortíferos de la historia — pandemias, guerras mundiales, desastres nucleares y hambrunas. Más de ${totals.label} de muertes documentadas con visualizaciones interactivas.`)
     : (isPA
         ? "Full archive of history's deadliest pandemics and epidemics — Black Death, Spanish Flu, HIV/AIDS, COVID-19 and more. Interactive death tolls, timelines and maps."
-        : "Complete archive of history's deadliest events — pandemics, world wars, nuclear disasters and famines. 813M+ deaths documented across 16 events with interactive visualisations.");
+        : `Complete archive of history's deadliest events — pandemics, world wars, nuclear disasters and famines. ${totals.label} deaths documented across ${totals.count} events with interactive visualisations.`);
 
   return {
     title: { absolute: title },
