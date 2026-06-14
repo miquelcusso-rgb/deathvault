@@ -25,6 +25,10 @@ export default async function HomePage() {
   const TOTAL_DEATHS = brandEvents.reduce((sum, e) => sum + e.deathsEstimate, 0);
   const TOTAL_EVENTS = brandEvents.length;
   const TOTAL_CATEGORIES = new Set(brandEvents.map((e) => e.category)).size;
+  // PlagueAtlas spans one category (pandemics) — its distinctive third stat is the
+  // time range it documents (earliest outbreak → today), rounded to the century.
+  const earliestYear = Math.min(...brandEvents.map((e) => e.startYear));
+  const yearsCovered = Math.round((new Date().getFullYear() - earliestYear) / 100) * 100;
 
   const meta = BRAND_META[brand];
   const accentColor = isDV ? "text-amber-400" : "text-crimson-light";
@@ -121,8 +125,12 @@ export default async function HomePage() {
                 <p className="text-slate-500 text-[10px] mt-1.5 font-mono uppercase tracking-wider">{t("home_events_label")}</p>
               </div>
               <div className="card p-4 text-center">
-                <p className="font-mono font-black text-2xl sm:text-3xl leading-none" style={{ color: "#8B5CF6" }}>{TOTAL_CATEGORIES}</p>
-                <p className="text-slate-500 text-[10px] mt-1.5 font-mono uppercase tracking-wider">{t("home_stat_categories")}</p>
+                <p className="font-mono font-black text-2xl sm:text-3xl leading-none" style={{ color: "#8B5CF6" }}>
+                  {isDV ? TOTAL_CATEGORIES : `${yearsCovered.toLocaleString("en-US")}+`}
+                </p>
+                <p className="text-slate-500 text-[10px] mt-1.5 font-mono uppercase tracking-wider">
+                  {isDV ? t("home_stat_categories") : t("home_stat_years")}
+                </p>
               </div>
             </div>
           </div>
