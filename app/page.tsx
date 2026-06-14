@@ -1,10 +1,14 @@
+import Link from "next/link";
 import { headers } from "next/headers";
 import { Navbar } from "@/components/ui/Navbar";
 import { Footer } from "@/components/ui/Footer";
 import { HomeClient } from "@/components/HomeClient";
+import { BrandMark } from "@/components/ui/BrandMark";
+import { Activity } from "lucide-react";
 import { EVENTS, formatDeaths } from "@/data/events";
 import { detectBrand, BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { getServerLang, getServerT } from "@/lib/i18n-server";
+import { localizedHref } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { JsonLd } from "@/components/ui/JsonLd";
 
@@ -13,16 +17,21 @@ export default async function HomePage() {
   const brand = detectBrand(host);
   const isDV = brand === "deathvault";
   const t = await getServerT();
-  const isEs = (await getServerLang()) === "es";
+  const lang = await getServerLang();
+  const isEs = lang === "es";
 
   const allowedCats = BRAND_CATEGORIES[brand];
   const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
   const TOTAL_DEATHS = brandEvents.reduce((sum, e) => sum + e.deathsEstimate, 0);
   const TOTAL_EVENTS = brandEvents.length;
+  const TOTAL_CATEGORIES = new Set(brandEvents.map((e) => e.category)).size;
 
   const meta = BRAND_META[brand];
   const accentColor = isDV ? "text-amber-400" : "text-crimson-light";
   const accentNeon  = isDV ? "" : "neon-red";
+  const accentHex   = isDV ? "#F59E0B" : "#DC2626";
+  const headline    = isEs ? ((meta as { headlineEs?: string }).headlineEs ?? meta.headline) : meta.headline;
+  const tagline     = isEs ? ((meta as { taglineEs?: string }).taglineEs ?? meta.tagline) : meta.tagline;
 
   const faqEntries = isDV
     ? [
@@ -53,32 +62,67 @@ export default async function HomePage() {
       <JsonLd data={[faqSchema]} />
       <Navbar />
 
-      {/* Hero strip — server-rendered, fully indexable by Google */}
-      <div className="pt-20 pb-0">
-        <div className={cn("max-w-[1350px] mx-auto px-4 pt-4")}>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-4 mb-3">
+      {/* ─── Landing hero — server-rendered, fully indexable by Google ─── */}
+      <section className="pt-24 pb-2">
+        <div className="max-w-[1350px] mx-auto px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8 lg:items-center mb-4">
+            {/* Left: identity + value prop + CTAs */}
             <div>
-              <h1 className="font-display font-black text-4xl sm:text-5xl text-white">
-                {isDV
-                  ? <>Death<span className={accentColor}>Vault</span></>
-                  : <>Plague<span className={accentColor}>Atlas</span></>
-                }
-              </h1>
-              <p className="text-slate-500 text-sm mt-0.5">{isEs ? ((meta as { taglineEs?: string }).taglineEs ?? meta.tagline) : meta.tagline}</p>
+              <div className="flex items-center gap-3 mb-4">
+                {isDV ? (
+                  <BrandMark size={46} color={accentHex} />
+                ) : (
+                  <span className="w-[46px] h-[46px] rounded-xl flex items-center justify-center border bg-crimson/20 border-crimson/40">
+                    <Activity className="w-6 h-6 text-crimson-light" />
+                  </span>
+                )}
+                <h1 className="font-display font-black text-4xl sm:text-5xl text-white leading-none">
+                  {isDV
+                    ? <>Death<span className={accentColor}>Vault</span></>
+                    : <>Plague<span className={accentColor}>Atlas</span></>
+                  }
+                </h1>
+              </div>
+              <p className="text-slate-200 text-xl sm:text-2xl font-display font-semibold leading-snug mb-2 max-w-xl">
+                {headline}
+              </p>
+              <p className="text-slate-500 text-sm mb-6 max-w-xl">{tagline}</p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href={localizedHref("/events", lang)}
+                  className={cn(
+                    "inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer shadow-sm",
+                    isDV
+                      ? "bg-amber-500 text-[#0A0905] border border-amber-500 hover:bg-amber-400"
+                      : "bg-crimson text-white border border-crimson hover:bg-crimson-light",
+                  )}
+                >
+                  {t("home_cta_explore")}
+                </Link>
+                <Link
+                  href={localizedHref("/statistics", lang)}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-slate-300 border border-border/60 hover:border-border hover:bg-white/5 transition-all duration-200 cursor-pointer"
+                >
+                  {t("home_cta_stats")}
+                </Link>
+              </div>
             </div>
-            <div className="flex items-center gap-5">
-              <div className="text-center">
-                <p className={cn("font-mono font-black text-4xl sm:text-5xl leading-none", accentColor, accentNeon)}>
+
+            {/* Right: headline stats */}
+            <div className="grid grid-cols-3 gap-3">
+              <div className="card p-4 text-center">
+                <p className={cn("font-mono font-black text-2xl sm:text-3xl leading-none", accentColor, accentNeon)}>
                   {formatDeaths(TOTAL_DEATHS)}
                 </p>
-                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">{t("home_deaths_label")}</p>
+                <p className="text-slate-500 text-[10px] mt-1.5 font-mono uppercase tracking-wider">{t("home_deaths_label")}</p>
               </div>
-              <div className="w-px h-12 bg-border/40" />
-              <div className="text-center">
-                <p className="font-mono font-black text-4xl sm:text-5xl leading-none text-cyan-light">
-                  {TOTAL_EVENTS}
-                </p>
-                <p className="text-slate-500 text-xs mt-1 font-mono uppercase tracking-wider">{t("home_events_label")}</p>
+              <div className="card p-4 text-center">
+                <p className="font-mono font-black text-2xl sm:text-3xl leading-none text-cyan-light">{TOTAL_EVENTS}</p>
+                <p className="text-slate-500 text-[10px] mt-1.5 font-mono uppercase tracking-wider">{t("home_events_label")}</p>
+              </div>
+              <div className="card p-4 text-center">
+                <p className="font-mono font-black text-2xl sm:text-3xl leading-none" style={{ color: "#8B5CF6" }}>{TOTAL_CATEGORIES}</p>
+                <p className="text-slate-500 text-[10px] mt-1.5 font-mono uppercase tracking-wider">{t("home_stat_categories")}</p>
               </div>
             </div>
           </div>
@@ -98,7 +142,7 @@ export default async function HomePage() {
               : `and more. Total documented deaths: ${formatDeaths(TOTAL_DEATHS)}.`}
           </p>
         </div>
-      </div>
+      </section>
 
       {/* Interactive section — client component (globe, selector, counters) */}
       <HomeClient brandEvents={brandEvents} />

@@ -14,6 +14,9 @@ export const translations = {
     nav_about: "About",
     nav_support: "Support",
     nav_insights: "Insights",
+    home_cta_explore: "Explore the archive",
+    home_cta_stats: "View statistics",
+    home_stat_categories: "Categories",
     // Hero
     hero_title: "PlagueAtlas",
     hero_subtitle: "Visualize the deadliest pandemics, wars, and nuclear events in human history.",
@@ -370,6 +373,9 @@ export const translations = {
     nav_about: "Acerca de",
     nav_support: "Apoyo",
     nav_insights: "Análisis",
+    home_cta_explore: "Explorar el archivo",
+    home_cta_stats: "Ver estadísticas",
+    home_stat_categories: "Categorías",
     // Hero
     hero_title: "PlagueAtlas",
     hero_subtitle: "Visualiza las pandemias, guerras y eventos nucleares más mortíferos de la historia.",
