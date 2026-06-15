@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-14T10:26:26.278Z",
+  "lastUpdated": "2026-06-15T13:17:00.198Z",
   "rates": {
     "malaria": {
       "annualDeaths": 609930,
@@ -14,7 +14,7 @@
     "hiv-aids": {
       "annualDeaths": 630000,
       "year": 2024,
-      "source": "UNAIDS 2024 (AIDS-related deaths)"
+      "source": "WHO GHO HIV_0000000006 (2024)"
     },
     "covid-19": {
       "annualDeaths": 80000,
