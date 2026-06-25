@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
-import { detectBrand, BRAND_META } from "@/lib/brand";
+import { detectBrand, BRAND_META, PLAGUE_CANONICAL_BASE } from "@/lib/brand";
 
 type Lang = "en" | "es";
 async function getLang(): Promise<Lang> {
@@ -120,8 +120,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const m = BRAND_META[brand];
   const lang = h.get("x-locale") === "es" ? "es" : "en";
   const t = T[lang];
-  const enUrl = `${m.url}/black-death`;
-  const esUrl = `${m.url}/es/black-death`;
+  const enUrl = `${PLAGUE_CANONICAL_BASE}/black-death`;
+  const esUrl = `${PLAGUE_CANONICAL_BASE}/es/black-death`;
   const canonical = lang === "es" ? esUrl : enUrl;
   return {
     title: t.title,
@@ -164,7 +164,7 @@ export default async function BlackDeathPage() {
   const lang = (h.get("x-locale") === "es" ? "es" : "en") as Lang;
   const t = T[lang];
   const prefix = lang === "es" ? "/es" : "";
-  const canonical = lang === "es" ? `${m.url}/es/black-death` : `${m.url}/black-death`;
+  const canonical = lang === "es" ? `${PLAGUE_CANONICAL_BASE}/es/black-death` : `${PLAGUE_CANONICAL_BASE}/black-death`;
 
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200">

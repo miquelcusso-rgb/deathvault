@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { headers } from "next/headers";
-import { detectBrand, BRAND_META } from "@/lib/brand";
+import { detectBrand, BRAND_META, PLAGUE_CANONICAL_BASE } from "@/lib/brand";
 
 type Lang = "en" | "es";
 
@@ -107,7 +107,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const m = BRAND_META[detectBrand(h.get("host") ?? "")];
   const lang = (h.get("x-locale") === "es" ? "es" : "en") as Lang;
   const t = T[lang];
-  const enUrl = `${m.url}/spanish-flu`, esUrl = `${m.url}/es/spanish-flu`;
+  const enUrl = `${PLAGUE_CANONICAL_BASE}/spanish-flu`, esUrl = `${PLAGUE_CANONICAL_BASE}/es/spanish-flu`;
   const canonical = lang === "es" ? esUrl : enUrl;
   return {
     title: t.title, description: t.desc,
@@ -127,7 +127,7 @@ export default async function SpanishFluPage() {
   const lang = (h.get("x-locale") === "es" ? "es" : "en") as Lang;
   const t = T[lang];
   const prefix = lang === "es" ? "/es" : "";
-  const canonical = `${m.url}${prefix}/spanish-flu`;
+  const canonical = `${PLAGUE_CANONICAL_BASE}${prefix}/spanish-flu`;
   return (
     <main className="min-h-screen bg-slate-950 text-slate-200">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema(canonical, t, lang)) }} />

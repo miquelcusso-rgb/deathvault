@@ -73,3 +73,13 @@ export const BRAND_META = {
     ],
   },
 } as const;
+
+/**
+ * PlagueAtlas owns the plague/pandemic topic cross-domain. DeathVault.app
+ * canonicalizes its pandemic event pages + the 4 plague pillars here, so Google
+ * (and AdSense) see PlagueAtlas as the original and don't flag DeathVault as a
+ * duplicate. On plagueatlas.com this resolves to the same host = self-canonical.
+ * Decision: SEO session ruling 2026-06-15 (AdSense "low value" = cross-domain dup).
+ * DeathVault keeps self-canonical on its unique war/nuclear/famine/genocide pages.
+ */
+export const PLAGUE_CANONICAL_BASE = BRAND_META.plagueatlas.url;

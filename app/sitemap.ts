@@ -10,6 +10,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allowedCats = BRAND_CATEGORIES[brand];
   const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
 
+  // DeathVault canonicalizes its plague/pandemic pages to PlagueAtlas (it owns
+  // the topic cross-domain). Those pages stay live for users, but they must NOT
+  // appear in DeathVault's sitemap — a sitemap of only its original (non-pandemic)
+  // pages is a clean "original site" signal for AdSense. PlagueAtlas lists all.
+  const isDV = brand === "deathvault";
+  const PLAGUE_PILLARS = ["/black-death", "/spanish-flu", "/bubonic-plague", "/cholera"];
+
   // Use a fixed recent date so Google knows content is actively maintained
   const maintained = new Date("2026-05-23");
 
@@ -40,7 +47,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { path: "/contact",    changeFrequency: "yearly",  priority: 0.3 },
   ];
 
-  const staticPages: MetadataRoute.Sitemap = staticRoutes.map((r) => ({
+  const staticPages: MetadataRoute.Sitemap = staticRoutes
+    .filter((r) => !(isDV && PLAGUE_PILLARS.includes(r.path)))
+    .map((r) => ({
     url: `${base}${r.path === "/" ? "" : r.path}`,
     lastModified: maintained,
     changeFrequency: r.changeFrequency,
@@ -51,7 +60,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Event pages — highest priority
   // lastModified = when the PAGE was last updated (not when the historical event ended)
   // Ancient event endYears (e.g. 430 AD) would produce invalid ISO dates for Google
-  const eventPages: MetadataRoute.Sitemap = brandEvents.map((ev) => ({
+  const eventPages: MetadataRoute.Sitemap = brandEvents
+    .filter((ev) => !(isDV && ev.category === "pandemic"))
+    .map((ev) => ({
     url: `${base}/pandemic/${ev.id}`,
     lastModified: maintained,
     changeFrequency: (ev.endYear === null ? "weekly" : "yearly") as MetadataRoute.Sitemap[number]["changeFrequency"],

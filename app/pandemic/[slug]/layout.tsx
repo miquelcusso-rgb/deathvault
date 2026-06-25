@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { notFound } from "next/navigation";
-import { detectBrand, BRAND_META, BRAND_CATEGORIES } from "@/lib/brand";
+import { detectBrand, BRAND_META, BRAND_CATEGORIES, PLAGUE_CANONICAL_BASE } from "@/lib/brand";
 import { buildAlternates } from "@/lib/locale";
 import type { Lang } from "@/lib/translations";
 import { EVENTS, getEventById } from "@/data/events";
@@ -26,7 +26,10 @@ export async function generateMetadata(
   const locale: Lang = h.get("x-locale") === "es" ? "es" : "en";
   const invariantPath = h.get("x-invariant-path") || `/pandemic/${slug}`;
   const isEs = locale === "es";
-  const alt = buildAlternates(meta.url, invariantPath, locale);
+  // Pandemic events are canonicalized to PlagueAtlas cross-domain (it owns the
+  // plague topic); DeathVault keeps self-canonical on its non-pandemic events.
+  const canonicalBase = event?.category === "pandemic" ? PLAGUE_CANONICAL_BASE : meta.url;
+  const alt = buildAlternates(canonicalBase, invariantPath, locale);
 
   if (!event) {
     return { title: isEs ? "Evento no encontrado" : "Event Not Found" };
