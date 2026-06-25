@@ -58,6 +58,12 @@ export function Footer() {
               <Link href={localizedHref("/terms", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
                 {t("footer_terms")}
               </Link>
+              <Link href={localizedHref("/cookies", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+                {t("footer_cookies")}
+              </Link>
+              <Link href={localizedHref("/contact", lang)} className="text-slate-500 hover:text-slate-300 text-sm transition-colors duration-200 cursor-pointer">
+                {t("footer_contact")}
+              </Link>
             </div>
           </div>
 
