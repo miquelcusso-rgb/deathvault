@@ -7,7 +7,7 @@ import { EVENTS, formatDeaths } from "@/data/events";
 import { useI18n } from "@/lib/i18n";
 import { useAppStore } from "@/lib/store";
 import { useBrand } from "@/app/providers";
-import { BRAND_CATEGORIES } from "@/lib/brand";
+import { BRAND_CATEGORIES, BRAND_META } from "@/lib/brand";
 import { localizedHref } from "@/lib/locale";
 import { motion } from "framer-motion";
 import { Skull, TrendingUp, Globe } from "lucide-react";
@@ -17,6 +17,7 @@ export default function StatisticsPage() {
   const { t, lang } = useI18n();
   const darkMode = useAppStore((s) => s.darkMode);
   const brand = useBrand();
+  const meta = BRAND_META[brand];
   const allowedCats = BRAND_CATEGORIES[brand];
   const brandEvents = EVENTS.filter((e) => allowedCats.includes(e.category));
   const sorted = [...brandEvents].sort((a, b) => b.deathsEstimate - a.deathsEstimate);
@@ -30,6 +31,10 @@ export default function StatisticsPage() {
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}>
           <h1 className="section-title">{t("stats_title")}</h1>
           <p className="section-sub">{t("stats_subtitle")}</p>
+          <div className="card p-6 mt-6 text-slate-400 leading-relaxed text-sm space-y-3 max-w-3xl">
+            <p>{meta.name} {t("stats_intro_p1")}</p>
+            <p>{t("stats_intro_p2")}</p>
+          </div>
         </motion.div>
 
         {/* Summary cards */}
@@ -146,6 +151,19 @@ export default function StatisticsPage() {
               </Link>
             ))}
           </div>
+        </div>
+
+        {/* Notes on the data — context + sourcing for the figures above */}
+        <div className="card p-6 text-slate-400 leading-relaxed text-sm space-y-3 max-w-3xl">
+          <h2 className="font-display font-bold text-white text-lg">{t("stats_notes_title")}</h2>
+          <p>{t("stats_notes_p1")}</p>
+          <p>{t("stats_notes_p2")}</p>
+          <p className="text-slate-600 text-xs">
+            {t("stats_notes_p3_before")}{" "}
+            <Link href={localizedHref("/about", lang)} className="text-cyan-light hover:underline">{t("stats_notes_methodology_link")}</Link>{" "}
+            {t("stats_notes_p3_mid")}{" "}
+            <Link href={localizedHref("/events", lang)} className="text-cyan-light hover:underline">{t("stats_notes_events_link")}</Link>.
+          </p>
         </div>
       </main>
       <Footer />

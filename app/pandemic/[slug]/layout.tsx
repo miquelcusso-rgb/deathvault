@@ -140,7 +140,7 @@ export default async function EventLayout({
     "description": evDesc,
     "inLanguage": isEs ? "es" : "en",
     "url": pageUrl,
-    "datePublished": "2025-01-01",  // date this site/content was first published
+    "datePublished": "2026-05-20",  // real content publish window (was a 2025-01-01 placeholder that predated the site)
     "dateModified": "2026-05-20",   // date content was last updated
 
     "author": {

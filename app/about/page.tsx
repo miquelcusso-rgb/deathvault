@@ -6,7 +6,7 @@ import { BRAND_META } from "@/lib/brand";
 import { useI18n } from "@/lib/i18n";
 import { localizedHref } from "@/lib/locale";
 import { motion } from "framer-motion";
-import { Activity, Database, Globe, Shield } from "lucide-react";
+import { Activity, Database, Globe, Shield, Scale, BookOpen, Users } from "lucide-react";
 import Link from "next/link";
 
 export default function AboutPage() {
@@ -59,6 +59,39 @@ export default function AboutPage() {
               </ul>
               <p className="text-slate-600 text-xs mt-4">
                 {t("about_data_vary")}
+              </p>
+            </div>
+
+            <div className="card p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Scale className="w-5 h-5 text-amber-light" />
+                <h2 className="font-display font-bold text-white text-lg">{t("about_methodology")}</h2>
+              </div>
+              <div className="text-slate-400 leading-relaxed text-sm space-y-3">
+                <p>{t("about_methodology_p1")}</p>
+                <p>{t("about_methodology_p2")}</p>
+                <p>{t("about_methodology_p3")}</p>
+              </div>
+            </div>
+
+            <div className="card p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <BookOpen className="w-5 h-5 text-cyan-light" />
+                <h2 className="font-display font-bold text-white text-lg">{t("about_editorial")}</h2>
+              </div>
+              <div className="text-slate-400 leading-relaxed text-sm space-y-3">
+                <p>{t("about_editorial_p1")}</p>
+                <p>{t("about_editorial_p2")}</p>
+              </div>
+            </div>
+
+            <div className="card p-6">
+              <div className="flex items-center gap-3 mb-3">
+                <Users className="w-5 h-5 text-emerald-light" />
+                <h2 className="font-display font-bold text-white text-lg">{t("about_authorship")}</h2>
+              </div>
+              <p className="text-slate-400 leading-relaxed text-sm">
+                {meta.name} {t("about_authorship_p")}
               </p>
             </div>
 
