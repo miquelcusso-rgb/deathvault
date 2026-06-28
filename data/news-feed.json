@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-27T09:29:08.457Z",
+  "lastUpdated": "2026-06-28T09:57:48.061Z",
   "items": [
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-23",
@@ -330,17 +330,6 @@
       "urgent": false,
       "headlineEn": "WHO: XEC COVID variant spreading in Europe — no new severity signal, vaccination urged for elderly",
       "headlineEs": "OMS: La variante XEC COVID se propaga en Europa: no hay nuevas señales de gravedad, se insta a la vacunación para las personas mayores"
-    },
-    {
-      "id": "ecdc-dengue-worldwide-overview-2026-03-30",
-      "eventId": "dengue",
-      "date": "2026-03-30",
-      "headline": "Dengue worldwide overview",
-      "source": "ECDC",
-      "url": "https://www.ecdc.europa.eu/en/dengue-monthly",
-      "urgent": false,
-      "headlineEn": "Dengue worldwide overview",
-      "headlineEs": "Panorama mundial del dengue"
     }
   ]
 }
