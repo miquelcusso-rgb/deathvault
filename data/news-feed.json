@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-06-29T12:00:50.417Z",
+  "lastUpdated": "2026-06-30T10:31:58.859Z",
   "items": [
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-23",
@@ -319,17 +319,6 @@
       "urgent": false,
       "headlineEn": "WHO: Cholera active in 24 countries — Sudan, DRC, and Haiti at highest burden, 4,000+ deaths YTD",
       "headlineEs": "OMS: El cólera está activo en 24 países: Sudán, República Democrática del Congo y Haití con la carga más alta, más de 4.000 muertes en lo que va de año"
-    },
-    {
-      "id": "who-covid-2026",
-      "eventId": "covid-19",
-      "date": "2026-04-01",
-      "headline": "WHO: XEC COVID variant spreading in Europe — no new severity signal, vaccination urged for elderly",
-      "source": "WHO",
-      "url": "https://www.who.int/emergencies/disease-outbreak-news",
-      "urgent": false,
-      "headlineEn": "WHO: XEC COVID variant spreading in Europe — no new severity signal, vaccination urged for elderly",
-      "headlineEs": "OMS: La variante XEC COVID se propaga en Europa: no hay nuevas señales de gravedad, se insta a la vacunación para las personas mayores"
     }
   ]
 }
