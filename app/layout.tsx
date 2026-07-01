@@ -182,7 +182,14 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${brand === "plagueatlas" ? "GTM-5XWCZFN6" : "GTM-PCBW2RMX"}');`,
           }}
         />
-        {/* AdSense is loaded ONLY after cookie consent — see <AdSense /> in body */}
+        {/* AdSense: script cargado SIEMPRE en el <head> para verificación/serving; la privacidad la gatea Consent Mode v2 de arriba (ad_storage denegado por defecto → sin anuncios personalizados hasta consentir, patrón recomendado por Google). */}
+        <Script
+          id="adsbygoogle-init"
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6498215334315959"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         {/* GA4 is managed via GTM — no direct script needed here */}
       </head>
       <body className="min-h-screen bg-void antialiased">
