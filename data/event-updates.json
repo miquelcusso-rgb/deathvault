@@ -1,40 +1,40 @@
 {
-  "lastUpdated": "2026-06-30T10:32:06.074Z",
+  "lastUpdated": "2026-07-01T10:42:59.394Z",
   "events": {
     "hantavirus": {
       "wikiTitle": "Hantavirus",
       "wikiSummary": "Orthohantavirus is a genus of viruses which includes all hantaviruses that cause disease in humans. Hantaviruses are naturally found primarily in rodents. In general, each hantavirus is carried by one rodent species and each rodent that carries a hantavirus carries one hantavirus species. Hantaviruses in their natural reservoirs usually cause an asymptomatic, persistent infection. In humans, however, hantaviruses cause two diseases: hemorrhagic fever with renal syndrome (HFRS) and hantavirus pulmonary syndrome (HPS). HFRS is mainly caused by hantaviruses in Africa, Asia, and Europe, called Old World hantaviruses, and HPS is usually caused by hantaviruses in the Americas, called New World hantaviruses.",
       "wikiImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Sin_Nombre_virus_Hanta_TEM_1137_lores.jpg/330px-Sin_Nombre_virus_Hanta_TEM_1137_lores.jpg",
       "wikiUrl": "https://en.wikipedia.org/wiki/Hantavirus",
-      "fetchedAt": "2026-06-30T10:32:03.459Z"
+      "fetchedAt": "2026-07-01T10:42:56.744Z"
     },
     "hiv-aids": {
       "wikiTitle": "HIV/AIDS",
       "wikiSummary": "The human immunodeficiency virus (HIV) is a retrovirus that attacks the immune system. Without treatment, it can lead to a spectrum of conditions including acquired immunodeficiency syndrome (AIDS). It is a preventable disease. It can be managed with treatment and become a manageable chronic health condition. While there is no cure or vaccine for HIV, antiretroviral treatment can slow the course of the disease, and, if used before significant disease progression, can extend the life expectancy of someone living with HIV to a nearly standard level. An HIV-positive person on treatment can expect to live a normal life, and die with the virus, not of it. Effective treatment for HIV-positive people involves a life-long regimen of medicine to suppress the virus, making the viral load undetectable. Early testing can show if treatment is needed to stop progression and to prevent infecting others.",
       "wikiImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Red_Ribbon.svg/330px-Red_Ribbon.svg.png",
       "wikiUrl": "https://en.wikipedia.org/wiki/HIV%2FAIDS",
-      "fetchedAt": "2026-06-30T10:32:04.013Z"
+      "fetchedAt": "2026-07-01T10:42:57.275Z"
     },
     "malaria": {
       "wikiTitle": "Malaria",
       "wikiSummary": "Malaria is a mosquito-borne infectious disease that is transmitted by the bite of Anopheles mosquitoes. The symptoms of human malaria typically include fever, fatigue, vomiting, and headaches. In severe cases, the disease can cause jaundice, seizures, coma, or death. Symptoms usually begin 10 to 15 days after being bitten by an infected Anopheles mosquito. If not properly treated, people may have recurrences of the disease months later. Those who survive an infection develop partial immunity, being susceptible to reinfection although with milder symptoms. This partial resistance disappears over months to years if the person has no continuing exposure to malaria.",
       "wikiImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Malaria_Parasite_Connecting_to_Human_Red_Blood_Cell_%2834034143483%29.jpg/330px-Malaria_Parasite_Connecting_to_Human_Red_Blood_Cell_%2834034143483%29.jpg",
       "wikiUrl": "https://en.wikipedia.org/wiki/Malaria",
-      "fetchedAt": "2026-06-30T10:32:04.518Z"
+      "fetchedAt": "2026-07-01T10:42:57.813Z"
     },
     "covid-19": {
       "wikiTitle": "COVID-19 pandemic",
       "wikiSummary": "The global COVID-19 pandemic, caused by severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2), began with an outbreak in Wuhan, China, in December 2019. It spread to other parts of Asia and then worldwide in early 2020. The World Health Organization (WHO) declared the outbreak a public health emergency of international concern (PHEIC) on 30 January 2020 and assessed it as having become a pandemic on 11 March. The WHO declared that the public health emergency caused by COVID-19 had ended in May 2023, while noting that COVID-19 continued to be a global health threat.",
       "wikiImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Covid-19_SP_-_UTI_V._Nova_Cachoeirinha.jpg/330px-Covid-19_SP_-_UTI_V._Nova_Cachoeirinha.jpg",
       "wikiUrl": "https://en.wikipedia.org/wiki/COVID-19_pandemic",
-      "fetchedAt": "2026-06-30T10:32:05.022Z"
+      "fetchedAt": "2026-07-01T10:42:58.349Z"
     },
     "cholera": {
       "wikiTitle": "Cholera",
       "wikiSummary": "Cholera is an infection of the small intestine by some strains of the bacterium Vibrio cholerae. Symptoms may range from none, to mild, to severe. The classic symptom is large amounts of watery diarrhea lasting a few days. Vomiting and muscle cramps may also occur. Diarrhea can be so severe that it leads within hours to severe dehydration and electrolyte imbalance. This can in turn result in sunken eyes, cold or cyanotic skin, decreased skin elasticity, wrinkling of the hands and feet, and, in severe cases, death. Symptoms start two hours to five days after exposure.",
       "wikiImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Adult_cholera_patient.jpg/330px-Adult_cholera_patient.jpg",
       "wikiUrl": "https://en.wikipedia.org/wiki/Cholera",
-      "fetchedAt": "2026-06-30T10:32:05.574Z"
+      "fetchedAt": "2026-07-01T10:42:58.894Z"
     }
   }
 }
