@@ -1,6 +1,28 @@
 {
-  "lastUpdated": "2026-07-01T10:42:52.555Z",
+  "lastUpdated": "2026-07-02T10:11:04.899Z",
   "items": [
+    {
+      "id": "paho-ante-el-aumento-de-la-actividad-de-influ-2026-07-01",
+      "eventId": "hiv-aids",
+      "date": "2026-07-01",
+      "headline": "Ante el aumento de la actividad de influenza en países del hemisferio sur, OPS llama a vacunarse y fortalecer la preparación de los servicios de salud",
+      "source": "PAHO",
+      "url": "https://www.paho.org/es/noticias/1-7-2026-ante-aumento-actividad-influenza-paises-hemisferio-sur-ops-llama-vacunarse",
+      "urgent": false,
+      "headlineEn": "Ante el aumento de la actividad de influenza en países del hemisferio sur, OPS llama a vacunarse y fortalecer la preparación de los servicios de salud",
+      "headlineEs": "Ante el aumento de la actividad de influenza en países del hemisferio sur, OPS llama a vacunarse y fortalecer la preparación de los servicios de salud"
+    },
+    {
+      "id": "paho-es-ante-el-aumento-de-la-actividad-de-influ-2026-07-01",
+      "eventId": "hiv-aids",
+      "date": "2026-07-01",
+      "headline": "Ante el aumento de la actividad de influenza en países del hemisferio sur, OPS llama a vacunarse y fortalecer la preparación de los servicios de salud",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/es/noticias/1-7-2026-ante-aumento-actividad-influenza-paises-hemisferio-sur-ops-llama-vacunarse",
+      "urgent": false,
+      "headlineEs": "Ante el aumento de la actividad de influenza en países del hemisferio sur, OPS llama a vacunarse y fortalecer la preparación de los servicios de salud",
+      "headlineEn": "Given the increase in influenza activity in countries of the southern hemisphere, PAHO calls for vaccination and strengthening the preparedness of health services"
+    },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-23",
       "eventId": "ebola",
@@ -121,28 +143,6 @@
       "urgent": true,
       "headlineEn": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
       "headlineEs": "Brote de ébola en la República Democrática del Congo y Uganda"
-    },
-    {
-      "id": "paho-as-countries-prepare-for-the-2026-fifa-w-2026-06-02",
-      "eventId": "hiv-aids",
-      "date": "2026-06-02",
-      "headline": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
-      "source": "PAHO",
-      "url": "https://www.paho.org/en/news/2-6-2026-countries-prepare-2026-fifa-world-cuptm-paho-issues-recommendations-strengthen",
-      "urgent": false,
-      "headlineEn": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
-      "headlineEs": "Mientras los países se preparan para la Copa Mundial de la FIFA 2026™, la OPS emite recomendaciones para fortalecer la vigilancia y la vacunación contra el sarampión"
-    },
-    {
-      "id": "paho-es-as-countries-prepare-for-the-2026-fifa-w-2026-06-02",
-      "eventId": "hiv-aids",
-      "date": "2026-06-02",
-      "headline": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
-      "source": "PAHO-ES",
-      "url": "https://www.paho.org/en/news/2-6-2026-countries-prepare-2026-fifa-world-cuptm-paho-issues-recommendations-strengthen",
-      "urgent": false,
-      "headlineEs": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination",
-      "headlineEn": "As countries prepare for the 2026 FIFA World Cup™, PAHO issues recommendations to strengthen measles surveillance and vaccination"
     },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-01",
