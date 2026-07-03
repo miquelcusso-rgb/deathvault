@@ -16,6 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // pages is a clean "original site" signal for AdSense. PlagueAtlas lists all.
   const isDV = brand === "deathvault";
   const PLAGUE_PILLARS = ["/black-death", "/spanish-flu", "/bubonic-plague", "/cholera"];
+  // Pillars que SOLO existen en DeathVault (guerra/nuclear/etc) → fuera del sitemap de PlagueAtlas (si no, 404).
+  const DV_ONLY_PILLARS = ["/world-war-2-deaths"];
 
   // Use a fixed recent date so Google knows content is actively maintained
   const maintained = new Date("2026-05-23");
@@ -48,7 +50,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const staticPages: MetadataRoute.Sitemap = staticRoutes
-    .filter((r) => !(isDV && PLAGUE_PILLARS.includes(r.path)))
+    .filter((r) => !(isDV && PLAGUE_PILLARS.includes(r.path)) && !(!isDV && DV_ONLY_PILLARS.includes(r.path)))
     .map((r) => ({
     url: `${base}${r.path === "/" ? "" : r.path}`,
     lastModified: maintained,
