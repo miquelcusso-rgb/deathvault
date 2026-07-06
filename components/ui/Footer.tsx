@@ -105,6 +105,26 @@ export function Footer() {
         <div style={{ marginTop: '1rem', paddingTop: '0.75rem', borderTop: '1px solid currentColor', borderTopColor: 'rgba(128,128,128,0.15)', fontSize: 11, opacity: 0.6, textAlign: 'center' }}>
           Part of the <a href="https://furiosadata.com" rel="dofollow" style={{ color: 'inherit', borderBottom: '1px solid currentColor' }}>Furiosa Data Tools Network</a> — open data and 8 free tools by Furiosa Studio.
         </div>
+
+        {/* Badges de directorios — requeridos para el backlink dofollow de cada
+            listing (verifican periódicamente; si se quita, lo desactivan).
+            LaunchBuff = listing de PlagueAtlas · Launchstag = listing de DeathVault. */}
+        {!isDV && (
+          <div style={{ marginTop: '0.75rem', textAlign: 'center' }}>
+            <a href="https://launchbuff.com" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="https://launchbuff.com/badge-featured-dark.svg" alt="Featured on LaunchBuff" width={128} height={40} loading="lazy" style={{ display: 'inline-block', opacity: 0.7 }} />
+            </a>
+          </div>
+        )}
+        {isDV && (
+          <div style={{ marginTop: '0.75rem', textAlign: 'center' }}>
+            <a href="https://launchstag.com" target="_blank" rel="noopener noreferrer" title="Featured on Launchstag">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="https://launchstag.com/badge-dark.svg" alt="Featured on Launchstag" width={128} height={40} loading="lazy" style={{ display: 'inline-block', opacity: 0.7 }} />
+            </a>
+          </div>
+        )}
       </div>
     </footer>
   );
