@@ -1,6 +1,17 @@
 {
-  "lastUpdated": "2026-07-06T11:38:12.674Z",
+  "lastUpdated": "2026-07-07T10:26:47.516Z",
   "items": [
+    {
+      "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-07-06",
+      "eventId": "ebola",
+      "date": "2026-07-06",
+      "headline": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "source": "ECDC",
+      "url": "https://www.ecdc.europa.eu/en/ebola-outbreak-democratic-republic-congo-and-uganda",
+      "urgent": true,
+      "headlineEn": "Ebola disease outbreak in the Democratic Republic of the Congo and Uganda",
+      "headlineEs": "Brote de ébola en la República Democrática del Congo y Uganda"
+    },
     {
       "id": "paho-ante-el-aumento-de-la-actividad-de-influ-2026-07-01",
       "eventId": "hiv-aids",
@@ -220,17 +231,6 @@
       "urgent": true,
       "headlineEn": "Andes hantavirus outbreak in cruise ship, 21 May 2026",
       "headlineEs": "Brote de hantavirus en los Andes en un crucero, 21 de mayo de 2026"
-    },
-    {
-      "id": "ecdc-ebola-virus-disease-outbreak-in-the-demo-2026-05-21",
-      "eventId": "ebola",
-      "date": "2026-05-21",
-      "headline": "Ebola virus disease outbreak in the Democratic Republic of the Congo and Uganda",
-      "source": "ECDC",
-      "url": "https://www.ecdc.europa.eu/en/ebola-virus-disease-outbreak-democratic-republic-congo-and-uganda",
-      "urgent": true,
-      "headlineEn": "Ebola virus disease outbreak in the Democratic Republic of the Congo and Uganda",
-      "headlineEs": "Brote de la enfermedad por el virus del Ébola en la República Democrática del Congo y Uganda"
     },
     {
       "id": "ecdc-rapid-scientific-advice-on-infection-pre-2026-05-15",
