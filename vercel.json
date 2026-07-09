@@ -6,6 +6,24 @@
   "outputDirectory": ".next",
   "headers": [
     {
+      "source": "/(.*\\.(?:png|jpg|jpeg|ico|svg|webp))",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/opengraph-image",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
       "source": "/_next/static/(.*)",
       "headers": [
         {
