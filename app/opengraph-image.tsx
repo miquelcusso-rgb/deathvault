@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { headers } from "next/headers";
 import { detectBrand, BRAND_CATEGORIES } from "@/lib/brand";
+import { BroteMark } from "@/lib/brote-mark";
 import { EVENTS } from "@/data/events";
 
 export const dynamic = "force-dynamic";
@@ -32,8 +33,9 @@ export default async function OGImage() {
   const accent = isPlagueAtlas ? "#DC2626" : "#F59E0B";
   const accentRgb = isPlagueAtlas ? "220,38,38" : "245,158,11";
   const bg = isPlagueAtlas ? "#05080F" : "#0A0905";
-  const secondGlow = isPlagueAtlas ? "rgba(6,182,212,0.14)" : "rgba(217,119,6,0.18)";
-  const gridColor = isPlagueAtlas ? "#4FC3DC" : "#F59E0B";
+  const secondGlow = isPlagueAtlas ? "rgba(124,58,237,0.14)" : "rgba(217,119,6,0.18)";
+  const gridColor = isPlagueAtlas ? "#8B5CF6" : "#F59E0B";
+  const secondAccent = isPlagueAtlas ? "#8B5CF6" : "#06B6D4";
   const urlText = isPlagueAtlas ? "plagueatlas.com" : "deathvault.app";
 
   const wordA = isPlagueAtlas ? "Plague" : "Death";
@@ -47,7 +49,7 @@ export default async function OGImage() {
   const stats = isPlagueAtlas
     ? [
         { value: formatBigDeaths(totalDeaths), label: "Pandemic deaths", color: accent },
-        { value: String(eventCount), label: "Pandemics", color: "#06B6D4" },
+        { value: String(eventCount), label: "Pandemics", color: "#A78BFA" },
         { value: `${Math.round(yearsSpan / 100) * 100}yr`, label: "Of history", color: "#10B981" },
       ]
     : [
@@ -100,7 +102,7 @@ export default async function OGImage() {
           background: `radial-gradient(circle, ${secondGlow} 0%, transparent 70%)`,
         }} />
 
-        {/* ─── Brand mark, left side — shield+pulse (DV) / globe+skull (PA) ─── */}
+        {/* ─── Brand mark, left side — shield+pulse (DV) / outbreak virion (PA) ─── */}
         <div style={{
           position: "absolute",
           left: 80,
@@ -111,72 +113,29 @@ export default async function OGImage() {
           justifyContent: "center",
         }}>
           {isPlagueAtlas ? (
-          <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
-            {/* Outer glow ring */}
-            <circle cx="140" cy="155" r="108" fill="none" stroke={`rgba(${accentRgb},0.2)`} strokeWidth="12" />
-            <circle cx="140" cy="155" r="95" fill="none" stroke={`rgba(${accentRgb},0.12)`} strokeWidth="20" />
-
-            {/* Globe body */}
-            <circle cx="140" cy="155" r="90" fill="#0A1E3D" stroke="#1E4A7A" strokeWidth="1.5" />
-
-            {/* Globe latitude lines */}
-            <ellipse cx="140" cy="155" rx="90" ry="25" fill="none" stroke="#1E5A8A" strokeWidth="1" opacity="0.7" />
-            <ellipse cx="140" cy="120" rx="80" ry="18" fill="none" stroke="#1E5A8A" strokeWidth="0.8" opacity="0.5" />
-            <ellipse cx="140" cy="190" rx="80" ry="18" fill="none" stroke="#1E5A8A" strokeWidth="0.8" opacity="0.5" />
-            <ellipse cx="140" cy="85" rx="55" ry="12" fill="none" stroke="#1E5A8A" strokeWidth="0.7" opacity="0.4" />
-            <ellipse cx="140" cy="225" rx="55" ry="12" fill="none" stroke="#1E5A8A" strokeWidth="0.7" opacity="0.4" />
-
-            {/* Globe vertical meridian */}
-            <path d="M140 65 Q170 105 170 155 Q170 205 140 245" fill="none" stroke="#1E5A8A" strokeWidth="1" opacity="0.6" />
-            <path d="M140 65 Q110 105 110 155 Q110 205 140 245" fill="none" stroke="#1E5A8A" strokeWidth="1" opacity="0.6" />
-            <line x1="140" y1="65" x2="140" y2="245" stroke="#1E5A8A" strokeWidth="1" opacity="0.5" />
-
-            {/* Globe shimmer */}
-            <circle cx="110" cy="110" r="20" fill="rgba(78,180,220,0.06)" />
-
-            {/* Globe outer ring */}
-            <circle cx="140" cy="155" r="90" fill="none" stroke="#2A6A9A" strokeWidth="1.5" />
-
-            {/* Skull shadow/glow behind */}
-            <circle cx="140" cy="80" r="46" fill={`rgba(${accentRgb},0.15)`} />
-            <circle cx="140" cy="80" r="38" fill={`rgba(${accentRgb},0.08)`} />
-
-            {/* Skull cranium */}
-            <ellipse cx="140" cy="72" rx="34" ry="32" fill="#1A0A0A" stroke={accent} strokeWidth="2" />
-
-            {/* Skull cheekbone base */}
-            <rect x="110" y="92" width="60" height="18" rx="4" fill="#1A0A0A" stroke={accent} strokeWidth="1.5" />
-
-            {/* Eye sockets */}
-            <ellipse cx="126" cy="70" rx="11" ry="12" fill={accent} opacity="0.9" />
-            <ellipse cx="154" cy="70" rx="11" ry="12" fill={accent} opacity="0.9" />
-
-            {/* Eye inner dark */}
-            <ellipse cx="126" cy="70" rx="8" ry="9" fill="#050810" />
-            <ellipse cx="154" cy="70" rx="8" ry="9" fill="#050810" />
-
-            {/* Eye glow */}
-            <ellipse cx="126" cy="68" rx="4" ry="4" fill={`rgba(${accentRgb},0.6)`} />
-            <ellipse cx="154" cy="68" rx="4" ry="4" fill={`rgba(${accentRgb},0.6)`} />
-
-            {/* Nose cavity */}
-            <path d="M136 82 L140 76 L144 82 Z" fill="#050810" />
-
-            {/* Teeth */}
-            <rect x="114" y="98" width="9" height="11" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-            <rect x="126" y="98" width="9" height="13" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-            <rect x="138" y="98" width="9" height="13" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-            <rect x="150" y="98" width="9" height="11" rx="2" fill="#050810" stroke={accent} strokeWidth="1" />
-
-            {/* Skull crack detail */}
-            <path d="M140 42 L138 52 L143 58 L140 68" fill="none" stroke={accent} strokeWidth="1" opacity="0.5" />
-
-            {/* Pulsing dots */}
-            <circle cx="160" cy="145" r="4" fill={accent} opacity="0.9" />
-            <circle cx="160" cy="145" r="8" fill="none" stroke={accent} strokeWidth="1" opacity="0.5" />
-            <circle cx="115" cy="170" r="3" fill="#06B6D4" opacity="0.8" />
-            <circle cx="115" cy="170" r="6" fill="none" stroke="#06B6D4" strokeWidth="1" opacity="0.4" />
-          </svg>
+          <div style={{
+            position: "relative",
+            width: 310,
+            height: 310,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}>
+            {/* Iridescent bio glow: red halo + violet/magenta core */}
+            <div style={{
+              position: "absolute", top: 0, left: 0,
+              width: 310, height: 310,
+              borderRadius: "50%",
+              background: `radial-gradient(circle, rgba(${accentRgb},0.16) 0%, transparent 70%)`,
+            }} />
+            <div style={{
+              position: "absolute", top: 45, left: 45,
+              width: 220, height: 220,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(124,58,237,0.35) 0%, rgba(192,38,211,0.15) 50%, transparent 72%)",
+            }} />
+            <BroteMark size={300} body="#0B1220" line={accent} outline={accent} />
+          </div>
           ) : (
           <svg width="290" height="290" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
             {/* Glow halo */}
@@ -287,7 +246,7 @@ export default async function OGImage() {
           position: "absolute",
           bottom: 0, left: 0, right: 0,
           height: 3,
-          background: `linear-gradient(90deg, transparent, ${accent} 30%, #06B6D4 70%, transparent)`,
+          background: `linear-gradient(90deg, transparent, ${accent} 30%, ${secondAccent} 70%, transparent)`,
         }} />
 
         {/* URL watermark */}

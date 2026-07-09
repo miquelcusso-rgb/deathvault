@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { headers } from "next/headers";
 import { detectBrand } from "@/lib/brand";
+import { BroteMark } from "@/lib/brote-mark";
 
 export const dynamic = "force-dynamic";
 export const size = { width: 32, height: 32 };
@@ -35,14 +36,8 @@ export default async function Icon() {
             <circle cx="28" cy="54" r="4.5" fill={bg} />
           </svg>
         ) : (
-          // Virus/globe icon for PlagueAtlas
-          <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="10" cy="10" r="7" fill="#05080F" stroke="white" strokeWidth="0.8" strokeOpacity="0.6" />
-            <ellipse cx="10" cy="10" rx="7" ry="2.5" fill="none" stroke="white" strokeWidth="0.6" strokeOpacity="0.5" />
-            <ellipse cx="10" cy="10" rx="2.5" ry="7" fill="none" stroke="white" strokeWidth="0.6" strokeOpacity="0.5" />
-            <circle cx="10" cy="10" r="2" fill={bg} opacity="0.9" />
-            <circle cx="10" cy="10" r="3.5" fill="none" stroke={bg} strokeWidth="0.8" strokeOpacity="0.5" />
-          </svg>
+          // Outbreak virion ("Brote") for PlagueAtlas — simplified for 32px
+          <BroteMark size={30} body="#05080F" line="#05080F" core={bg} detail="small" />
         )}
       </div>
     ),
