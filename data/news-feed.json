@@ -1,6 +1,17 @@
 {
-  "lastUpdated": "2026-07-09T10:26:04.107Z",
+  "lastUpdated": "2026-07-10T10:24:26.982Z",
   "items": [
+    {
+      "id": "paho-es-two-weeks-after-venezuela-s-earthquakes--2026-07-09",
+      "eventId": "hiv-aids",
+      "date": "2026-07-09",
+      "headline": "Two weeks after Venezuela's earthquakes, PAHO highlights ongoing health needs as response shifts to recovery",
+      "source": "PAHO-ES",
+      "url": "https://www.paho.org/en/news/9-7-2026-two-weeks-after-venezuelas-earthquakes-paho-highlights-ongoing-health-needs-response",
+      "urgent": false,
+      "headlineEs": "Two weeks after Venezuela's earthquakes, PAHO highlights ongoing health needs as response shifts to recovery",
+      "headlineEn": "Two weeks after Venezuela's earthquakes, PAHO highlights ongoing health needs as response shifts to recovery"
+    },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-07-06",
       "eventId": "ebola",
@@ -132,17 +143,6 @@
       "urgent": false,
       "headlineEn": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
       "headlineEs": "La OMS certifica que las Islas Turcas y Caicos eliminan la transmisión maternoinfantil del VIH y la hepatitis B"
-    },
-    {
-      "id": "paho-es-who-certifies-turks-and-caicos-for-elimi-2026-06-03",
-      "eventId": "hiv-aids",
-      "date": "2026-06-03",
-      "headline": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
-      "source": "PAHO-ES",
-      "url": "https://www.paho.org/en/news/3-6-2026-who-certifies-turks-and-caicos-eliminating-mother-child-transmission-hiv-and",
-      "urgent": false,
-      "headlineEs": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B",
-      "headlineEn": "WHO certifies Turks and Caicos for eliminating mother-to-child transmission of HIV and hepatitis B"
     },
     {
       "id": "ecdc-ebola-disease-outbreak-in-the-democratic-2026-06-03",
