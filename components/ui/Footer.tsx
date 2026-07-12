@@ -111,7 +111,7 @@ export function Footer() {
             LaunchBuff = listing de PlagueAtlas · Launchstag = listing de DeathVault. */}
         {!isDV && (
           <div style={{ marginTop: '0.75rem', textAlign: 'center' }}>
-            <a href="https://launchbuff.com" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
+            <a href="https://launchbuff.com/products/plagueatlas-xn6yy5" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="https://launchbuff.com/badge-featured-dark.svg" alt="Featured on LaunchBuff" width={128} height={40} loading="lazy" style={{ display: 'inline-block', opacity: 0.7 }} />
             </a>
@@ -163,9 +163,9 @@ export function Footer() {
         {/* launchbuff · Featured on LaunchBuff — listing propio de DeathVault */}
         {isDV && (
           <div style={{ marginTop: '0.5rem', textAlign: 'center' }}>
-            <a href="https://launchbuff.com/" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
+            <a href="https://launchbuff.com/products/deathvault-volb2z" target="_blank" rel="noopener noreferrer" title="Featured on LaunchBuff">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="https://launchbuff.com/badge-featured-dark.svg" alt="Featured on LaunchBuff" width={256} height={80} style={{ display: 'inline-block' }} />
+              <img src="https://launchbuff.com/badge-featured-light.svg" alt="Featured on LaunchBuff" width={160} height={50} style={{ display: 'inline-block' }} />
             </a>
           </div>
         )}
