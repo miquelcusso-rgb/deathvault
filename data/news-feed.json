@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-13T10:28:30.142Z",
+  "lastUpdated": "2026-07-14T09:05:21.944Z",
   "items": [
     {
       "id": "paho-es-two-weeks-after-venezuela-s-earthquakes--2026-07-09",
@@ -308,17 +308,6 @@
       "urgent": false,
       "headlineEn": "ECDC: Malaria imported cases rising in EU — 10,000+ cases reported in 2025 among travellers",
       "headlineEs": "ECDC: Los casos de malaria importada aumentan en la UE: más de 10000 casos notificados en 2025 entre los viajeros"
-    },
-    {
-      "id": "who-cholera-2026-apr",
-      "eventId": "cholera",
-      "date": "2026-04-15",
-      "headline": "WHO: Cholera active in 24 countries — Sudan, DRC, and Haiti at highest burden, 4,000+ deaths YTD",
-      "source": "WHO",
-      "url": "https://www.who.int/emergencies/disease-outbreak-news",
-      "urgent": false,
-      "headlineEn": "WHO: Cholera active in 24 countries — Sudan, DRC, and Haiti at highest burden, 4,000+ deaths YTD",
-      "headlineEs": "OMS: El cólera está activo en 24 países: Sudán, República Democrática del Congo y Haití con la carga más alta, más de 4.000 muertes en lo que va de año"
     }
   ]
 }
