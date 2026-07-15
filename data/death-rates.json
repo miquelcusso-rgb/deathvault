@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-07-14T09:05:25.024Z",
+  "lastUpdated": "2026-07-15T09:09:58.232Z",
   "rates": {
     "malaria": {
       "annualDeaths": 609930,
@@ -7,9 +7,9 @@
       "source": "WHO GHO MALARIA_EST_DEATHS (2024)"
     },
     "cholera": {
-      "annualDeaths": 675533,
-      "year": 2024,
-      "source": "WHO GHO WHS3_62 (2024)"
+      "annualDeaths": 411913,
+      "year": 2025,
+      "source": "WHO GHO WHS3_62 (2025)"
     },
     "hiv-aids": {
       "annualDeaths": 630000,
